@@ -1,0 +1,27 @@
+{
+  "name": "easy-team.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev:vue": "repo=egg-vue vuepress dev .",
+    "build:easy": "repo=easywebpack vuepress build .",
+    "build:vue": "repo=egg-vue vuepress build .",
+    "build:react": "repo=egg-react vuepress build .",
+    "build:html": "repo=frontend vuepress build ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/easy-team/easy-team.github.io.git"
+  },
+  "author": "sky",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/easy-team/easy-team.github.io/issues"
+  },
+  "homepage": "https://github.com/easy-team/easy-team.github.io#readme",
+  "devDependencies": {
+    "vuepress": "^1.0.0-alpha.40",
+    "vuepress-plugin-yuque": "^0.3.1"
+  }
+}

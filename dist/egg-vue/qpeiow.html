@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>入口实现 | Egg + Vue 工程化解决方案</title>
+    <meta name="description" content="Egg + Vue 工程化解决方案, 支持 Egg + Vue 服务端渲染(Server Side Render) 和 前端渲染模式. GitHub: https://github.com/easy-team/egg-vue-webpack-boilerplate">
+    
+    
+    <link rel="preload" href="/assets/css/0.styles.6f683ea6.css" as="style"><link rel="preload" href="/assets/js/app.ad616d9c.js" as="script"><link rel="preload" href="/assets/js/2.67c62971.js" as="script"><link rel="preload" href="/assets/js/23.a53e99f9.js" as="script"><link rel="prefetch" href="/assets/js/10.5913bca5.js"><link rel="prefetch" href="/assets/js/11.61e8966f.js"><link rel="prefetch" href="/assets/js/12.03115eb8.js"><link rel="prefetch" href="/assets/js/13.b3b0b2e5.js"><link rel="prefetch" href="/assets/js/14.c3af845f.js"><link rel="prefetch" href="/assets/js/15.c4d16641.js"><link rel="prefetch" href="/assets/js/16.d5ea3b1b.js"><link rel="prefetch" href="/assets/js/17.d3aa1c4c.js"><link rel="prefetch" href="/assets/js/18.859ef396.js"><link rel="prefetch" href="/assets/js/19.9124f1fa.js"><link rel="prefetch" href="/assets/js/20.9542dbde.js"><link rel="prefetch" href="/assets/js/21.6a7ed926.js"><link rel="prefetch" href="/assets/js/22.6dd0d737.js"><link rel="prefetch" href="/assets/js/24.78389b2f.js"><link rel="prefetch" href="/assets/js/25.45266e9e.js"><link rel="prefetch" href="/assets/js/3.8ff6cff4.js"><link rel="prefetch" href="/assets/js/4.e73e36c5.js"><link rel="prefetch" href="/assets/js/5.ce1114e6.js"><link rel="prefetch" href="/assets/js/6.70ec450c.js"><link rel="prefetch" href="/assets/js/7.5134000b.js"><link rel="prefetch" href="/assets/js/8.b57e23ca.js"><link rel="prefetch" href="/assets/js/9.74b06747.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.6f683ea6.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">Egg + Vue 工程化解决方案</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <ul class="sidebar-links"><li><a href="/case.html" class="sidebar-link">项目一览</a></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>新手指南</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/init.html" class="sidebar-link">快速开始</a></li><li><a href="/start.html" class="sidebar-link">从零开始</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/render.html" class="sidebar-heading clickable"><span>渲染模式</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/node.html" class="sidebar-link">服务端渲染模式</a></li><li><a href="/web.html" class="sidebar-link">前端渲染模式</a></li><li><a href="/asset.html" class="sidebar-link">asset 渲染模式</a></li></ul></section></li><li><a href="/qpeiow.html" class="active sidebar-link">入口实现</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/qpeiow.html#方案一：-完全自定义入口代码逻辑" class="sidebar-link">方案一： 完全自定义入口代码逻辑</a></li><li class="sidebar-sub-header"><a href="/qpeiow.html#方案二：-自定义入口代码模板化" class="sidebar-link">方案二： 自定义入口代码模板化</a></li><li class="sidebar-sub-header"><a href="/qpeiow.html#方案三：-使用框架内置初始化模板loader" class="sidebar-link">方案三： 使用框架内置初始化模板loader</a></li></ul></li><li><a href="/build.html" class="sidebar-link">构建流程</a></li><li><a href="/online.html" class="sidebar-link">部署流程</a></li><li><a href="/version.html" class="sidebar-link">插件使用</a></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>特性介绍</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/seo.html" class="sidebar-link">SEO实现</a></li><li><a href="/async.html" class="sidebar-link">异步加载</a></li><li><a href="/typescript.html" class="sidebar-link">TypeScript</a></li><li><a href="/pwa.html" class="sidebar-link">Service Worker</a></li><li><a href="/i18n.html" class="sidebar-link">i18n 国际化支持</a></li><li><a href="/babel.html" class="sidebar-link">Babel 构建优化</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/about.html" class="sidebar-heading clickable"><span>相关问题</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/open.html" class="sidebar-link">社区作品</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="content default"><h1 id="入口实现"><a href="#入口实现" aria-hidden="true" class="header-anchor">#</a> 入口实现</h1> <p style="text-indent:2em;">服务端渲染模式需要对同一份 vue 文件构建出两份 JSBundle 文件出来，一份给 Node 渲染使用，一份给浏览器渲染使用，但 Node 和<span>浏览器文件初始化代码是不一样的，这就需要我们针对入口代码进行分别实现。这里提供三种实现方案，请根据项目需要选择合适的方案。</span></p> <h2 id="方案一：-完全自定义入口代码逻辑"><a href="#方案一：-完全自定义入口代码逻辑" aria-hidden="true" class="header-anchor">#</a> 方案一： 完全自定义入口代码逻辑</h2> <blockquote><p>这里仅提供代码基本实现，请根据项目实际情况进行修改。</p></blockquote><ul><li>编写 vue 服务端公共入口 <code>${app_root}/app/web/framework/app.js</code></li></ul> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> sync <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'vuex-router-sync'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string">'./vue/filter'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string">'./vue/directive'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">App</span> <span class="token punctuation">{</span>
+ <span class="token function">constructor</span><span class="token punctuation">(</span>config<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token keyword">this</span><span class="token punctuation">.</span>config <span class="token operator">=</span> config<span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+
+ <span class="token function">bootstrap</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token constant">EASY_ENV_IS_NODE</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">server</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+   <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">client</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+
+ <span class="token function">create</span><span class="token punctuation">(</span>initState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token keyword">const</span> <span class="token punctuation">{</span> index<span class="token punctuation">,</span> options<span class="token punctuation">,</span> createStore<span class="token punctuation">,</span> createRouter <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>config<span class="token punctuation">;</span>
+   <span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token function">createStore</span><span class="token punctuation">(</span>initState<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token function">createRouter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token function">sync</span><span class="token punctuation">(</span>store<span class="token punctuation">,</span> router<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token keyword">return</span> <span class="token punctuation">{</span>
+     <span class="token operator">...</span>index<span class="token punctuation">,</span>
+     <span class="token operator">...</span>options<span class="token punctuation">,</span>
+     router<span class="token punctuation">,</span>
+     store
+   <span class="token punctuation">}</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+
+ <span class="token function">client</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   Vue<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>$http <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'axios'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token keyword">const</span> options <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span>__INITIAL_STATE__<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   app<span class="token punctuation">.</span><span class="token function">$mount</span><span class="token punctuation">(</span><span class="token string">'#app'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token keyword">return</span> app<span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+
+ <span class="token function">server</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token keyword">return</span> context <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+     <span class="token keyword">const</span> options <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token keyword">const</span> <span class="token punctuation">{</span> store<span class="token punctuation">,</span> router <span class="token punctuation">}</span> <span class="token operator">=</span> options<span class="token punctuation">;</span>
+     router<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>context<span class="token punctuation">.</span>state<span class="token punctuation">.</span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span>resolve<span class="token punctuation">,</span> reject<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+       router<span class="token punctuation">.</span><span class="token function">onReady</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+         <span class="token keyword">const</span> matchedComponents <span class="token operator">=</span> router<span class="token punctuation">.</span><span class="token function">getMatchedComponents</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+         <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>matchedComponents<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+           <span class="token keyword">return</span> <span class="token function">reject</span><span class="token punctuation">(</span><span class="token punctuation">{</span> code<span class="token punctuation">:</span> <span class="token string">'404'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+         <span class="token punctuation">}</span>
+         <span class="token keyword">return</span> Promise<span class="token punctuation">.</span><span class="token function">all</span><span class="token punctuation">(</span>
+           matchedComponents<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>component <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+             <span class="token keyword">if</span> <span class="token punctuation">(</span>component<span class="token punctuation">.</span>methods <span class="token operator">&amp;&amp;</span> component<span class="token punctuation">.</span>methods<span class="token punctuation">.</span>fetchApi<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                 <span class="token keyword">return</span> component<span class="token punctuation">.</span>methods<span class="token punctuation">.</span><span class="token function">fetchApi</span><span class="token punctuation">(</span>store<span class="token punctuation">)</span><span class="token punctuation">;</span>
+             <span class="token punctuation">}</span>
+             <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+           <span class="token punctuation">}</span><span class="token punctuation">)</span>
+         <span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+           context<span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token punctuation">{</span>
+             <span class="token operator">...</span>store<span class="token punctuation">.</span>state<span class="token punctuation">,</span>
+             <span class="token operator">...</span>context<span class="token punctuation">.</span>state
+           <span class="token punctuation">}</span><span class="token punctuation">;</span>
+           <span class="token keyword">return</span> <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+         <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+       <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+
+</code></pre></div><ul><li>新建 <code>${app_root}/app/web/page/home/home.js</code>  webpack entry 入口文件</li></ul><blockquote><p>这种方式适合需要自定义实现入口代码的比较少页面入口项目，如果项目有多个单独页面，就需要编写下面类似的重复代码，但通过公共代码抽离，问题也不是太大，能满足所有自定义要求，这个完全交给项目自己去实现。</p></blockquote> <div class="language-javascript extra-class"><pre class="language-javascript"><code>
+<span class="token string">'use strict'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> App <span class="token keyword">from</span> <span class="token string">'framework/app.js'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> index <span class="token keyword">from</span> <span class="token string">'./index.vue'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> createStore <span class="token keyword">from</span> <span class="token string">'./store'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> createRouter <span class="token keyword">from</span> <span class="token string">'./router'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> options <span class="token operator">=</span> <span class="token punctuation">{</span> base<span class="token punctuation">:</span> <span class="token string">'/'</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">new</span> <span class="token class-name">App</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+ index<span class="token punctuation">,</span>
+ options<span class="token punctuation">,</span>
+ createStore<span class="token punctuation">,</span>
+ createRouter<span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">bootstrap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+</code></pre></div><p>详细实现请见：<a href="https://github.com/easy-team/egg-vue-webpack-boilerplate/tree/feature/green/spa" target="_blank">https://github.com/easy-team/egg-vue-webpack-boilerplate/tree/feature/green/spa</a></p> <h2 id="方案二：-自定义入口代码模板化"><a href="#方案二：-自定义入口代码模板化" aria-hidden="true" class="header-anchor">#</a> 方案二： 自定义入口代码模板化</h2> <blockquote><p>easywebpack 提供了通过 配置 <a href="https://www.yuque.com/easy-team/easywebpack/entry" target="_blank">entry.loader 实现入口代码模板化</a>，并且代码模板完全有项目自己实现. 项目只需要实现对应的 loader 即可。<span style="color:#8C8C8C;">这里仅提供代码基本实现，请根据实际<span style="color:#8C8C8C;">项目</span>情况进行修改。</span></p></blockquote><ul><li><span>编写 webpack 服务端模式构建 loader 代码 </span><code>${app_root}/app/web/framework/vue/entry/server-loader.js</code></li></ul> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token string">'use strict'</span><span class="token punctuation">;</span>
+module<span class="token punctuation">.</span><span class="token function-variable function">exports</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>source<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">cacheable</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token keyword">return</span> <span class="token template-string"><span class="token string">`
+   import Vue from 'vue';
+   import vm from '</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>resourcePath<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/\\/g</span><span class="token punctuation">,</span> <span class="token string">'\\\\'</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">';
+   export default function(context) {
+     const store = typeof vm.store === 'function' ? vm.store(context.state) : vm.store;
+     const router = typeof vm.router === 'function' ? vm.router() : vm.router;
+     if (store &amp;&amp; router) {
+       const sync = require('vuex-router-sync').sync;
+       sync(store, router);
+       router.push(context.state.url);
+       return new Promise((resolve, reject) =&gt; {
+         router.onReady(() =&gt; {
+           const matchedComponents = router.getMatchedComponents();
+           if (!matchedComponents) {
+             return reject({ code: '404' });
+           }
+           return Promise.all(
+             matchedComponents.map(component =&gt; {
+               if (component.methods &amp;&amp; component.methods.fetchApi) {
+                 return component.methods.fetchApi(store);
+               }
+               return null;
+             })
+           ).then(() =&gt; {
+             context.state = { ...store.state, ...context.state };
+             const instanceOptions = {
+               ...vm,
+               store,
+               router,
+             };
+             return resolve(new Vue(instanceOptions));
+           });
+         });
+       });
+     }
+     const VueApp = Vue.extend(vm);
+     const instanceOptions = {
+       ...vm,
+       data: context.state
+     };
+     return new VueApp(instanceOptions);
+   };
+ `</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span> 
+</code></pre></div><ul><li><span>编写 webpack <span>浏览器模式构建 </span><span>loader 代码 </span></span><code>${app_root}/app/web/framework/vue/entry/client-loader.js</code></li></ul> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token string">'use strict'</span><span class="token punctuation">;</span>
+module<span class="token punctuation">.</span><span class="token function-variable function">exports</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>source<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ <span class="token keyword">return</span> <span class="token template-string"><span class="token string">`
+   import Vue from 'vue';
+   import vm from '</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>resourcePath<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/\\/g</span><span class="token punctuation">,</span> <span class="token string">'\\\\'</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">';
+   const initState = window.__INITIAL_STATE__ || {};
+   const context = { state: initState };
+   const store = typeof vm.store === 'function' ? vm.store(initState) : vm.store;
+   const router = typeof vm.router === 'function' ? vm.router() : vm.router;
+   const data = typeof vm.data === 'function' ? vm.data() :  {};
+   const options = store &amp;&amp; router ? {
+     ...vm, 
+     store,
+     router
+   } : { 
+     ...vm,
+     ...{
+       data() {
+         return { ...initState, ...data};
+       }
+     } 
+   };
+   const app = new Vue(options);
+   app.$mount('#app');
+ `</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span> 
+</code></pre></div><ul><li>Webpack entry loader 配置，<span style="color:#096DD9;"></span><span style="color:#096DD9;">这样就不用写单独的 js 入口文件， vue  文件作为 entry 就可以直接构建出完整的 JSBundle 文件</span>。easywebpack 直接根据 include 目录下的 vue 文件 和  entry loader 构建出完整的 JSBundle 文件。</li></ul> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token string">'use strict'</span><span class="token punctuation">;</span>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+ egg<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+ framework<span class="token punctuation">:</span> <span class="token string">'vue'</span><span class="token punctuation">,</span>
+ entry<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+   include<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'app/web/page'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+   exclude<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'app/web/page/[a-z]+/component'</span><span class="token punctuation">,</span> <span class="token string">'app/web/page/test'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+   loader<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+     client<span class="token punctuation">:</span> <span class="token string">'app/web/framework/vue/entry/client-loader.js'</span><span class="token punctuation">,</span>
+     server<span class="token punctuation">:</span> <span class="token string">'app/web/framework/vue/entry/server-loader.js'</span><span class="token punctuation">,</span>
+   <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><p>具体例子可以参考：<a href="https://github.com/easy-team/egg-vue-webpack-boilerplate/tree/feature/green/multi" target="_blank">https://github.com/easy-team/egg-vue-webpack-boilerplate/tree/feature/green/multi</a></p> <h2 id="方案三：-使用框架内置初始化模板loader"><a href="#方案三：-使用框架内置初始化模板loader" aria-hidden="true" class="header-anchor">#</a> 方案三： 使用框架内置初始化模板loader</h2> <blockquote><p style="text-indent:2em;"><span>easywebpack@4.8.0 开始支持默认 entry  node-glob 配置模式。<span style="color:#8C8C8C;">node-glob 模式</span>会自动遍历 </span><code>app/web/page</code><span>  目录的所有 .vue 文件作为 entry 入口，排除 </span><code>component|components|view|views</code><span> 目录下的文件。 如果 entry 是已 .vue 文件，则使用 </span><a href="https://github.com/hubcarl/vue-entry-loader" target="_blank"><span>vue-entry-loader </span></a><span> 作为模板入口。 </span></p><p><strong>注意：只有 entry 文件是 .vue 文件(非.js）时，才会自动使用 </strong><span>vue-entry-loader</span><strong> 模板。</strong></p></blockquote><ul><li><strong>统一使用 .vue 文件作为 entry 入口</strong></li></ul> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// webpack.config.js</span>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+ <span class="token comment">// 注意 只有 entry 文件是 .vue 文件(非.js）时，才会自动使用 vue-entry-loader模板</span>
+ entry<span class="token punctuation">:</span> <span class="token string">'app/web/page/**!(component|components|view|views)/*.vue'</span>
+<span class="token punctuation">}</span> 
+</code></pre></div><ul><li><strong>js  和 .vue 文件 entry 混合配置</strong><br></li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code>module.exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+ entry: <span class="token punctuation">{</span>
+   app: <span class="token string">'app/web/page/app/index.js'</span>, // js 文件需要自己实现初始化逻辑，这个时候可以结合方案一
+   list: <span class="token string">'app/web/page/list/index.vue'</span> // 自动使用 vue-entry-loader模板
+ <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span> 
+</code></pre></div><h3 id="entry-更多配置"><a href="#entry-更多配置" aria-hidden="true" class="header-anchor">#</a> entry 更多配置</h3> <p style="text-indent:2em;"><a href="https://www.yuque.com/easy-team/easywebpack/entry" target="_blank">https://www.yuque.com/easy-team/easywebpack/entry</a></p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/asset.html" class="prev">
+          asset 渲染模式
+        </a></span> <span class="next"><a href="/build.html">
+          构建流程
+        </a>
+        →
+      </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.ad616d9c.js" defer></script><script src="/assets/js/2.67c62971.js" defer></script><script src="/assets/js/23.a53e99f9.js" defer></script>
+  </body>
+</html>

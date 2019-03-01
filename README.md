@@ -1,1 +1,0 @@
-# easy-team.github.io

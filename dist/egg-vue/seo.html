@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Egg + Vue SSR SEO 实现 | Egg + Vue 工程化解决方案</title>
+    <meta name="description" content="Egg + Vue 工程化解决方案, 支持 Egg + Vue 服务端渲染(Server Side Render) 和 前端渲染模式. GitHub: https://github.com/easy-team/egg-vue-webpack-boilerplate">
+    
+    
+    <link rel="preload" href="/assets/css/0.styles.6f683ea6.css" as="style"><link rel="preload" href="/assets/js/app.ad616d9c.js" as="script"><link rel="preload" href="/assets/js/2.67c62971.js" as="script"><link rel="preload" href="/assets/js/16.d5ea3b1b.js" as="script"><link rel="prefetch" href="/assets/js/10.5913bca5.js"><link rel="prefetch" href="/assets/js/11.61e8966f.js"><link rel="prefetch" href="/assets/js/12.03115eb8.js"><link rel="prefetch" href="/assets/js/13.b3b0b2e5.js"><link rel="prefetch" href="/assets/js/14.c3af845f.js"><link rel="prefetch" href="/assets/js/15.c4d16641.js"><link rel="prefetch" href="/assets/js/17.d3aa1c4c.js"><link rel="prefetch" href="/assets/js/18.859ef396.js"><link rel="prefetch" href="/assets/js/19.9124f1fa.js"><link rel="prefetch" href="/assets/js/20.9542dbde.js"><link rel="prefetch" href="/assets/js/21.6a7ed926.js"><link rel="prefetch" href="/assets/js/22.6dd0d737.js"><link rel="prefetch" href="/assets/js/23.a53e99f9.js"><link rel="prefetch" href="/assets/js/24.78389b2f.js"><link rel="prefetch" href="/assets/js/25.45266e9e.js"><link rel="prefetch" href="/assets/js/3.8ff6cff4.js"><link rel="prefetch" href="/assets/js/4.e73e36c5.js"><link rel="prefetch" href="/assets/js/5.ce1114e6.js"><link rel="prefetch" href="/assets/js/6.70ec450c.js"><link rel="prefetch" href="/assets/js/7.5134000b.js"><link rel="prefetch" href="/assets/js/8.b57e23ca.js"><link rel="prefetch" href="/assets/js/9.74b06747.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.6f683ea6.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">Egg + Vue 工程化解决方案</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <ul class="sidebar-links"><li><a href="/case.html" class="sidebar-link">项目一览</a></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>新手指南</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/init.html" class="sidebar-link">快速开始</a></li><li><a href="/start.html" class="sidebar-link">从零开始</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/render.html" class="sidebar-heading clickable"><span>渲染模式</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/node.html" class="sidebar-link">服务端渲染模式</a></li><li><a href="/web.html" class="sidebar-link">前端渲染模式</a></li><li><a href="/asset.html" class="sidebar-link">asset 渲染模式</a></li></ul></section></li><li><a href="/qpeiow.html" class="sidebar-link">入口实现</a></li><li><a href="/build.html" class="sidebar-link">构建流程</a></li><li><a href="/online.html" class="sidebar-link">部署流程</a></li><li><a href="/version.html" class="sidebar-link">插件使用</a></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>特性介绍</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/seo.html" class="active sidebar-link">SEO实现</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/seo.html#egg-vue-ssr-seo-实现" class="sidebar-link">Egg + Vue SSR SEO 实现</a></li></ul></li><li><a href="/async.html" class="sidebar-link">异步加载</a></li><li><a href="/typescript.html" class="sidebar-link">TypeScript</a></li><li><a href="/pwa.html" class="sidebar-link">Service Worker</a></li><li><a href="/i18n.html" class="sidebar-link">i18n 国际化支持</a></li><li><a href="/babel.html" class="sidebar-link">Babel 构建优化</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/about.html" class="sidebar-heading clickable"><span>相关问题</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/open.html" class="sidebar-link">社区作品</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="content default"><h2 id="egg-vue-ssr-seo-实现"><a href="#egg-vue-ssr-seo-实现" aria-hidden="true" class="header-anchor">#</a> Egg + Vue SSR SEO 实现</h2> <p>MVVM 服务端渲染相比前端渲染，支持SEO，更快的首屏渲染，相比传统的模板引擎，更好的组件化，前后端模板共用。在 Egg + Vue 的方案里面, HTML head 里面 meta 信息也作为 Vue 服务端渲染的一部分, 和普通的数据绑定没有什么差别。</p><p>在实现上面, 考虑到页面有统一的 HTML, header, footer, body 骨架, 可以结合 Vue 的 <code>slot</code> 封装成一个统一的 layout 组件。</p> <h3 id="一-layout-组件实现"><a href="#一-layout-组件实现" aria-hidden="true" class="header-anchor">#</a> 一. layout 组件实现</h3> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// component/layout/index.js 组件</span>
+<span class="token keyword">import</span> MainLayout <span class="token keyword">from</span> <span class="token string">'./main'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> content <span class="token operator">=</span> <span class="token string">'&lt;div id=&quot;app&quot;&gt;&lt;mainlayout&gt;&lt;div slot=&quot;main&quot;&gt;&lt;slot&gt;&lt;/slot&gt;&lt;/div&gt;&lt;/mainlayout&gt;&lt;/div&gt;'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> template <span class="token operator">=</span> <span class="token template-string"><span class="token string">`
+
+
+ &lt;title&gt;{{title}}&lt;/title&gt;
+ &lt;meta name=&quot;keywords&quot; :content=&quot;vTitle&quot;&gt;
+ &lt;meta name=&quot;description&quot; :content=&quot;vKeywords&quot;&gt;
+ &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html;charset=utf-8&quot;&gt;
+ &lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui&quot;&gt;
+ &lt;link rel=&quot;shortcut icon&quot; href=&quot;/favicon.ico&quot; type=&quot;image/x-icon&quot;&gt;
+
+
+ &lt;div id=&quot;app&quot;&gt;</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>content<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&lt;/div&gt;
+
+`</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+ name<span class="token punctuation">:</span> <span class="token string">'Layout'</span><span class="token punctuation">,</span>
+ props<span class="token punctuation">:</span> <span class="token punctuation">[</span> <span class="token string">'title'</span><span class="token punctuation">,</span> <span class="token string">'description'</span><span class="token punctuation">,</span> <span class="token string">'keywords'</span> <span class="token punctuation">]</span><span class="token punctuation">,</span>
+ components<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+   MainLayout
+ <span class="token punctuation">}</span><span class="token punctuation">,</span>
+ computed<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+   <span class="token function">vTitle</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$root<span class="token punctuation">.</span>title <span class="token operator">||</span> <span class="token keyword">this</span><span class="token punctuation">.</span>title <span class="token operator">||</span> <span class="token string">'Egg + Vue'</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span><span class="token punctuation">,</span>
+   <span class="token function">vKeywords</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$root<span class="token punctuation">.</span>keywords <span class="token operator">||</span> <span class="token keyword">this</span><span class="token punctuation">.</span>keywords <span class="token operator">||</span> <span class="token string">'egg, vue, webpack, server side render'</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span><span class="token punctuation">,</span>
+   <span class="token function">vDescription</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$root<span class="token punctuation">.</span>description <span class="token operator">||</span> <span class="token keyword">this</span><span class="token punctuation">.</span>description <span class="token operator">||</span> <span class="token string">'egg-vue-webpack server side render'</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span><span class="token punctuation">,</span>
+   <span class="token function">baseClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$root<span class="token punctuation">.</span>baseClass<span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span><span class="token punctuation">,</span>
+ template<span class="token punctuation">:</span> <span class="token constant">EASY_ENV_IS_NODE</span> <span class="token operator">?</span> template <span class="token punctuation">:</span> content
+<span class="token punctuation">}</span><span class="token punctuation">;</span> 
+</code></pre></div><h4 id="layout-组件依赖的-main-vue-实现"><a href="#layout-组件依赖的-main-vue-实现" aria-hidden="true" class="header-anchor">#</a> layout 组件依赖的 main.vue 实现</h4> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// component/layout/main.vue 组件</span>
+<span class="token operator">&lt;</span>template<span class="token operator">&gt;</span>
+ <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>
+   <span class="token operator">&lt;</span>layoutheader<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>layoutheader<span class="token operator">&gt;</span>
+   <span class="token operator">&lt;</span>layoutcontent<span class="token operator">&gt;</span>
+     <span class="token operator">&lt;</span>div slot<span class="token operator">=</span><span class="token string">&quot;content&quot;</span><span class="token operator">&gt;</span>
+       <span class="token operator">&lt;</span>slot name<span class="token operator">=</span><span class="token string">&quot;main&quot;</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>slot<span class="token operator">&gt;</span>
+     <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+   <span class="token operator">&lt;</span><span class="token operator">/</span>layoutcontent<span class="token operator">&gt;</span>
+ <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>style lang<span class="token operator">=</span><span class="token string">&quot;css&quot;</span><span class="token operator">&gt;</span>
+ @<span class="token keyword">import</span> <span class="token string">&quot;../../../asset/css/global.css&quot;</span><span class="token punctuation">;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>style<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>script type<span class="token operator">=</span><span class="token string">&quot;text/babel&quot;</span><span class="token operator">&gt;</span>
+ <span class="token keyword">import</span> LayoutHeader <span class="token keyword">from</span> <span class="token string">'./header'</span><span class="token punctuation">;</span>
+ <span class="token keyword">import</span> LayoutContent <span class="token keyword">from</span> <span class="token string">'./content'</span><span class="token punctuation">;</span>
+ <span class="token keyword">export</span> <span class="token keyword">default</span><span class="token punctuation">{</span>
+   components<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+     LayoutHeader<span class="token punctuation">,</span>
+     LayoutContent
+   <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span> 
+</code></pre></div><h4 id="mainlayout-组件依赖的-header-vue-实现"><a href="#mainlayout-组件依赖的-header-vue-实现" aria-hidden="true" class="header-anchor">#</a> MainLayout 组件依赖的 header.vue 实现</h4> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// component/layout/header.vue 组件</span>
+<span class="token operator">&lt;</span>template<span class="token operator">&gt;</span>
+ <span class="token operator">&lt;</span>header <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">&quot;header&quot;</span><span class="token operator">&gt;</span>
+   <span class="token operator">&lt;</span>div <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">&quot;container&quot;</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span>h1<span class="token operator">&gt;</span>
+     <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">&quot;/&quot;</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">&quot;router-link-active&quot;</span><span class="token operator">&gt;</span>Egg <span class="token operator">+</span> Vue<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>h1<span class="token operator">&gt;</span>
+     <span class="token operator">&lt;</span>ul <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">&quot;nav&quot;</span><span class="token operator">&gt;</span>
+       <span class="token operator">&lt;</span>li <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">&quot;nav-item&quot;</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">&quot;/&quot;</span><span class="token operator">&gt;</span>Server<span class="token operator">-</span>Render<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">&gt;</span>
+       <span class="token operator">&lt;</span>li <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">&quot;nav-item&quot;</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">&quot;/client&quot;</span><span class="token operator">&gt;</span>Client<span class="token operator">-</span>Render<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">&gt;</span>
+     <span class="token operator">&lt;</span><span class="token operator">/</span>ul<span class="token operator">&gt;</span>
+   <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+ <span class="token operator">&lt;</span><span class="token operator">/</span>header<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>style<span class="token operator">&gt;</span>
+ @<span class="token keyword">import</span> <span class="token string">&quot;./header.css&quot;</span><span class="token punctuation">;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>style<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>script type<span class="token operator">=</span><span class="token string">&quot;text/babel&quot;</span><span class="token operator">&gt;</span>
+ <span class="token keyword">export</span> <span class="token keyword">default</span><span class="token punctuation">{</span>
+   <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+     <span class="token keyword">return</span> <span class="token punctuation">{</span>
+       selectedMenu <span class="token punctuation">:</span> <span class="token string">'/'</span>
+     <span class="token punctuation">}</span>
+   <span class="token punctuation">}</span><span class="token punctuation">,</span>
+   computed<span class="token punctuation">:</span><span class="token punctuation">{</span>
+   <span class="token punctuation">}</span><span class="token punctuation">,</span>
+   <span class="token function">mounted</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    
+   <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span> 
+</code></pre></div><h4 id="mainlayout-组件依赖的-content-vue-实现"><a href="#mainlayout-组件依赖的-content-vue-实现" aria-hidden="true" class="header-anchor">#</a> MainLayout 组件依赖的 content.vue 实现</h4> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// component/layout/content.vue 组件</span>
+<span class="token operator">&lt;</span>template<span class="token operator">&gt;</span>
+ <span class="token operator">&lt;</span>div <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">&quot;main&quot;</span><span class="token operator">&gt;</span>
+   <span class="token operator">&lt;</span>div <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">&quot;page-container page-component&quot;</span><span class="token operator">&gt;</span>
+     <span class="token operator">&lt;</span>slot name<span class="token operator">=</span><span class="token string">&quot;content&quot;</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>slot<span class="token operator">&gt;</span>
+   <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+ <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>style<span class="token operator">&gt;</span>
+ @<span class="token keyword">import</span> <span class="token string">&quot;content.css&quot;</span><span class="token punctuation">;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>style<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>script type<span class="token operator">=</span><span class="token string">&quot;text/babel&quot;</span><span class="token operator">&gt;</span>
+ <span class="token keyword">export</span> <span class="token keyword">default</span><span class="token punctuation">{</span>
+   name<span class="token punctuation">:</span><span class="token string">'v-content'</span><span class="token punctuation">,</span>
+   <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+     <span class="token keyword">return</span> <span class="token punctuation">{</span>
+
+     <span class="token punctuation">}</span>
+   <span class="token punctuation">}</span><span class="token punctuation">,</span>
+   components<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+   <span class="token function">mounted</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+   <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span> 
+</code></pre></div><h3 id="二-layout-组件使用"><a href="#二-layout-组件使用" aria-hidden="true" class="header-anchor">#</a> 二. layout 组件使用</h3> <ul><li><p>Layout 组件注册</p></li></ul> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> Layout <span class="token keyword">from</span> <span class="token string">'component/layout'</span><span class="token punctuation">;</span>
+Vue<span class="token punctuation">.</span><span class="token function">component</span><span class="token punctuation">(</span>Layout<span class="token punctuation">.</span>name<span class="token punctuation">,</span> Layout<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+</code></pre></div><ul><li><p>Layout 组件使用</p></li></ul><p>写页面时, 直接在 template 顶层套上 layout 组件即可。 SEO 信息可以是静态, 也可以 Node 服务端传递过来进行数据绑定。</p> <div class="language-html extra-class"><pre class="language-html"><code>// ${app_root}/app/web/page/home/index.vue
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>layout</span> <span class="token attr-name">description</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>vue server side render<span class="token punctuation">&quot;</span></span> <span class="token attr-name">keywords</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>{{seo.keywords}}<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>container smart-container<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>layout</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span> 
+</code></pre></div><p>自己根据实际需要，可以扩展相关 layout 的 props 参数传递配置。</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/version.html" class="prev">
+          插件使用
+        </a></span> <span class="next"><a href="/async.html">
+          异步加载
+        </a>
+        →
+      </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.ad616d9c.js" defer></script><script src="/assets/js/2.67c62971.js" defer></script><script src="/assets/js/16.d5ea3b1b.js" defer></script>
+  </body>
+</html>
