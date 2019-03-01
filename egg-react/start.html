@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>从零开始搭建 Egg + React + Webpack 服务端渲染项目 | Egg + React  工程化解决方案</title>
+    <meta name="description" content="Egg + React 工程化解决方案, 支持 Egg + React 服务端渲染(Server Side Render) 和 前端渲染模式. GitHub: https://github.com/easy-team/egg-react-webpack-boilerplate">
+    
+    
+    <link rel="preload" href="/egg-react/assets/css/0.styles.803b77c2.css" as="style"><link rel="preload" href="/egg-react/assets/js/app.54578750.js" as="script"><link rel="preload" href="/egg-react/assets/js/2.67c62971.js" as="script"><link rel="preload" href="/egg-react/assets/js/14.832099be.js" as="script"><link rel="prefetch" href="/egg-react/assets/js/10.af30a2a4.js"><link rel="prefetch" href="/egg-react/assets/js/11.3488386f.js"><link rel="prefetch" href="/egg-react/assets/js/12.59b9189b.js"><link rel="prefetch" href="/egg-react/assets/js/13.4acfcdfb.js"><link rel="prefetch" href="/egg-react/assets/js/15.e4d419be.js"><link rel="prefetch" href="/egg-react/assets/js/16.21bdbc21.js"><link rel="prefetch" href="/egg-react/assets/js/17.4e28f88d.js"><link rel="prefetch" href="/egg-react/assets/js/18.1583aeaf.js"><link rel="prefetch" href="/egg-react/assets/js/19.b75580c8.js"><link rel="prefetch" href="/egg-react/assets/js/20.31b55d0c.js"><link rel="prefetch" href="/egg-react/assets/js/21.196dfafe.js"><link rel="prefetch" href="/egg-react/assets/js/22.9ce04c0f.js"><link rel="prefetch" href="/egg-react/assets/js/3.407b0684.js"><link rel="prefetch" href="/egg-react/assets/js/4.e73e36c5.js"><link rel="prefetch" href="/egg-react/assets/js/5.3cdbf2bc.js"><link rel="prefetch" href="/egg-react/assets/js/6.cc5f66ae.js"><link rel="prefetch" href="/egg-react/assets/js/7.71771cc7.js"><link rel="prefetch" href="/egg-react/assets/js/8.450a860c.js"><link rel="prefetch" href="/egg-react/assets/js/9.d47f63fa.js">
+    <link rel="stylesheet" href="/egg-react/assets/css/0.styles.803b77c2.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/egg-react/" class="home-link router-link-active"><!----> <span class="site-name">Egg + React  工程化解决方案</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/egg-react/easywebpack.html" class="nav-link">easywebpack</a></div><div class="nav-item"><a href="/egg-react/egg-vue.html" class="nav-link">egg + vue</a></div><div class="nav-item"><a href="/egg-react/egg-react.html" class="nav-link">egg + react</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/egg-react/easywebpack.html" class="nav-link">easywebpack</a></div><div class="nav-item"><a href="/egg-react/egg-vue.html" class="nav-link">egg + vue</a></div><div class="nav-item"><a href="/egg-react/egg-react.html" class="nav-link">egg + react</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>开发指南</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/egg-react/init.html" class="sidebar-link">快速开始</a></li><li><a href="/egg-react/start.html" class="active sidebar-link">从零开始</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/egg-react/start.html#从零开始搭建-egg-react-webpack-服务端渲染项目" class="sidebar-link">从零开始搭建 Egg + React + Webpack 服务端渲染项目</a></li><li class="sidebar-sub-header"><a href="/egg-react/start.html#_8-项目和插件" class="sidebar-link">8. 项目和插件</a></li><li class="sidebar-sub-header"><a href="/egg-react/start.html#_9-建议" class="sidebar-link">9. 建议</a></li></ul></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/egg-react/render.html" class="sidebar-heading clickable"><span>渲染模式</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/egg-react/node.html" class="sidebar-link">服务端渲染模式</a></li><li><a href="/egg-react/web.html" class="sidebar-link">前端渲染模式</a></li><li><a href="/egg-react/asset.html" class="sidebar-link">asset 前端渲染</a></li></ul></section></li><li><a href="/egg-react/config.html" class="sidebar-link">配置说明</a></li><li><a href="/egg-react/build.html" class="sidebar-link">构建流程</a></li><li><a href="/egg-react/online.html" class="sidebar-link">部署流程</a></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>特性介绍</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/egg-react/seo.html" class="sidebar-link">SEO实现</a></li><li><a href="/egg-react/pwa.html" class="sidebar-link">Service Worker</a></li><li><a href="/egg-react/https:/www.yuque.com/hubcarl/easywebpack/cssmodule.html" class="sidebar-link">Css Module</a></li><li><a href="/egg-react/babel.html" class="sidebar-link">Babel 配置</a></li><li><a href="/egg-react/antd.html" class="sidebar-link">AntD 配置</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/egg-react/version.html" class="sidebar-heading clickable"><span>插件版本</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/egg-react/about.html" class="sidebar-link">常见问题</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="content default"><h2 id="从零开始搭建-egg-react-webpack-服务端渲染项目"><a href="#从零开始搭建-egg-react-webpack-服务端渲染项目" aria-hidden="true" class="header-anchor">#</a> 从零开始搭建 Egg + React + Webpack 服务端渲染项目</h2> <h3 id="_1-初始化环境"><a href="#_1-初始化环境" aria-hidden="true" class="header-anchor">#</a> 1. 初始化环境</h3> <p>安装 Node LST (8.x.x) 环境： <a href="https://nodejs.org/zh-cn" target="_blank">https://nodejs.org/zh-cn</a></p> <h3 id="_2-初始化-egg-项目"><a href="#_2-初始化-egg-项目" aria-hidden="true" class="header-anchor">#</a> 2. 初始化 egg 项目</h3> <p><a href="https://github.com/eggjs/egg-init/blob/master/README.zh-CN.md" target="_blank">https://github.com/eggjs/egg-init/blob/master/README.zh-CN.md</a></p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">npm</span> i egg-init -g
+egg-init 
+</code></pre></div><ul><li><p>选择 <code>Simple egg app boilerplate</code> project 初始化 egg 项目</p></li></ul><ul><li><p>新建 <code>${app_root}/app/view</code> 目录(egg view规范目录)，并添加 <code>.gitkeep</code> 文件，保证该空目录被 git 提交到仓库</p></li></ul><ul><li><p>新建 <code>${app_root}/app/view/layout.html</code> 文件，用于服务端渲染失败后，采用客户端渲染</p></li></ul> <div class="language-html extra-class"><pre class="language-html"><code>
+
+
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>Egg + React + Webpack<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>keywords<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>description<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">http-equiv</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>content-type<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>text/html;charset=utf-8<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>viewport<span class="token punctuation">&quot;</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>shortcut icon<span class="token punctuation">&quot;</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>/favicon.ico<span class="token punctuation">&quot;</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>image/x-icon<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+
+
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>app<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+
+
+</code></pre></div><h3 id="_3-安装依赖"><a href="#_3-安装依赖" aria-hidden="true" class="header-anchor">#</a> 3. 安装依赖</h3> <ul><li><p>服务端渲染依赖</p></li></ul><p>react 没有内置在 egg-view-react-ssr 里面， 项目需要显示安装依赖。</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">npm</span> i react react-dom axios egg-view-react-ssr egg-scripts --save 
+</code></pre></div><ul><li><p>构建开发依赖</p></li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">npm</span> i egg-bin cross-env easywebpack-cli easywebpack-react egg-webpack egg-webpack-react --save-dev 
+</code></pre></div><ul><li><p>安装全部依赖</p></li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">npm</span> <span class="token function">install</span> 
+</code></pre></div><h3 id="_4-添加配置"><a href="#_4-添加配置" aria-hidden="true" class="header-anchor">#</a> 4. 添加配置</h3> <ul><li><p>添加 <code>${app_root}/config/plugin.local.js</code> 配置</p></li></ul> <div class="language-javascript extra-class"><pre class="language-javascript"><code>exports<span class="token punctuation">.</span>webpack <span class="token operator">=</span> <span class="token punctuation">{</span>
+ enable<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+ <span class="token keyword">package</span><span class="token punctuation">:</span> <span class="token string">'egg-webpack'</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+exports<span class="token punctuation">.</span>webpackreact <span class="token operator">=</span> <span class="token punctuation">{</span>
+ enable<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+ <span class="token keyword">package</span><span class="token punctuation">:</span> <span class="token string">'egg-webpack-react'</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span> 
+</code></pre></div><ul><li><p>添加 <code>${app_root}/config/plugin.js</code> 配置</p></li></ul> <div class="language-javascript extra-class"><pre class="language-javascript"><code>exports<span class="token punctuation">.</span>reactssr <span class="token operator">=</span> <span class="token punctuation">{</span>
+ enable<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+ <span class="token keyword">package</span><span class="token punctuation">:</span> <span class="token string">'egg-view-react-ssr'</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span> 
+</code></pre></div><ul><li><p>添加 <code>${app_root}/config/config.default.js</code> 配置</p></li></ul> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token string">'use strict'</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'path'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+module<span class="token punctuation">.</span><span class="token function-variable function">exports</span> <span class="token operator">=</span> app <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+ <span class="token keyword">const</span> config <span class="token operator">=</span> exports <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+ <span class="token comment">// 保证构建的静态资源文件能够被访问到</span>
+ config<span class="token punctuation">.</span><span class="token keyword">static</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+   prefix<span class="token punctuation">:</span> <span class="token string">'/public/'</span><span class="token punctuation">,</span>
+   dir<span class="token punctuation">:</span> path<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>app<span class="token punctuation">.</span>baseDir<span class="token punctuation">,</span> <span class="token string">'public'</span><span class="token punctuation">)</span>
+ <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+ config<span class="token punctuation">.</span>reactssr <span class="token operator">=</span> <span class="token punctuation">{</span>
+   renderOptions<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+     basedir<span class="token punctuation">:</span> path<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>app<span class="token punctuation">.</span>baseDir<span class="token punctuation">,</span> <span class="token string">'app/view'</span><span class="token punctuation">)</span>
+   <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span><span class="token punctuation">;</span>
+ <span class="token keyword">return</span> config<span class="token punctuation">;</span>
+<span class="token punctuation">}</span> 
+</code></pre></div><ul><li><p>添加 <code>easywebpack-cli</code> 配置文件 <code>${app_root}/webpack.config.js</code></p></li></ul><blockquote><p>关于 entry 配置，请务必先看这篇文档：<a href="https://www.yuque.com/easy-team/egg-react/config" target="_blank">https://www.yuque.com/easy-team/egg-react/config</a></p></blockquote> <div class="language-javascript extra-class"><pre class="language-javascript"><code>module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+ egg<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+ framework<span class="token punctuation">:</span> <span class="token string">'react'</span><span class="token punctuation">,</span> <span class="token comment">// 使用 easywebpack-react 构建解决方案</span>
+ entry<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+   app<span class="token punctuation">:</span> <span class="token string">'app/web/page/home/index.jsx'</span>
+ <span class="token punctuation">}</span><span class="token punctuation">,</span>
+ dll<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'react'</span><span class="token punctuation">,</span> <span class="token string">'react-dom'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token comment">// webpack dll 构建</span>
+ loaders<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+ plugins<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+ <span class="token function">done</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// 编译完成回调</span>
+
+ <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span> 
+</code></pre></div><ul><li><p>添加 <code>${app_root}/.babelrc</code> 文件</p></li></ul> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token punctuation">{</span>
+ <span class="token string">&quot;presets&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+   <span class="token string">&quot;react&quot;</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">&quot;env&quot;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+     <span class="token string">&quot;modules&quot;</span><span class="token punctuation">:</span> <span class="token boolean">false</span>
+   <span class="token punctuation">}</span><span class="token punctuation">]</span>
+ <span class="token punctuation">]</span><span class="token punctuation">,</span>
+ <span class="token string">&quot;plugins&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+   <span class="token string">&quot;transform-object-assign&quot;</span><span class="token punctuation">,</span>
+   <span class="token string">&quot;syntax-dynamic-import&quot;</span><span class="token punctuation">,</span>
+   <span class="token string">&quot;transform-object-rest-spread&quot;</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">&quot;import&quot;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+     <span class="token string">&quot;libraryName&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;antd&quot;</span><span class="token punctuation">,</span>
+     <span class="token string">&quot;style&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;css&quot;</span>
+   <span class="token punctuation">}</span><span class="token punctuation">]</span>
+ <span class="token punctuation">]</span><span class="token punctuation">,</span>
+ <span class="token string">&quot;env&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+   <span class="token string">&quot;development&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+     <span class="token string">&quot;plugins&quot;</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+       <span class="token string">&quot;react-hot-loader/babel&quot;</span>
+     <span class="token punctuation">]</span>
+   <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span><span class="token punctuation">,</span>
+ <span class="token string">&quot;comments&quot;</span><span class="token punctuation">:</span> <span class="token boolean">false</span>
+<span class="token punctuation">}</span> 
+</code></pre></div><p>安装 babel 相关依赖</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">npm</span> i babel-core babel-loader  --save-dev 
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">npm</span> i babel-preset-env babel-plugin-syntax-dynamic-import babel-plugin-transform-object-assign babel-plugin-transform-object-rest-spread --save-dev 
+</code></pre></div><ul><li><p>添加 <code>${app_root}/postcss.config.js</code> 文件<strong><span style="color:#F5222D;">(非必须)</span></strong></p></li></ul> <div class="language-javascript extra-class"><pre class="language-javascript"><code>module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+ plugins<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+   <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'autoprefixer'</span><span class="token punctuation">)</span>
+ <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span> 
+</code></pre></div><p>安装 autoprefixer 依赖</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">npm</span> i autoprefixer  --save-dev 
+</code></pre></div><ul><li><p>添加 <code>${app_root}/.gitignore</code> 配置</p></li></ul> <div class="language-undefined extra-class"><pre class="language-text"><code>.DS_Store
+.happypack/
+node_modules/
+npm-debug.log
+.idea/
+dist
+static
+public
+private
+run
+*.iml
+*tmp
+_site
+logs
+.vscode
+config/manifest.json
+app/view/*
+!app/view/layout.html
+!app/view/.gitkeep
+package-lock.json 
+</code></pre></div><h3 id="_5-写代码"><a href="#_5-写代码" aria-hidden="true" class="header-anchor">#</a> 5. 写代码</h3> <h4 id="编写前端-react-代码"><a href="#编写前端-react-代码" aria-hidden="true" class="header-anchor">#</a> 编写前端 react 代码</h4> <ul><li><p>新建 <code>${app_root}/app/web/component/layout.jsx</code> 文件</p></li></ul> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> Component <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> HeaderComponet <span class="token keyword">from</span> <span class="token string">'./header'</span><span class="token punctuation">;</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">Layout</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>
+ <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token constant">EASY_ENV_IS_NODE</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     <span class="token keyword">return</span> 
+       
+         <span class="token operator">&lt;</span>title<span class="token operator">&gt;</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>title<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>title<span class="token operator">&gt;</span>
+         <span class="token operator">&lt;</span>meta charset<span class="token operator">=</span><span class="token string">&quot;utf-8&quot;</span><span class="token operator">&gt;</span>
+         <span class="token operator">&lt;</span>meta name<span class="token operator">=</span><span class="token string">&quot;viewport&quot;</span> content<span class="token operator">=</span><span class="token string">&quot;initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui&quot;</span><span class="token operator">&gt;</span>
+         <span class="token operator">&lt;</span>meta name<span class="token operator">=</span><span class="token string">&quot;keywords&quot;</span> content<span class="token operator">=</span><span class="token string">&quot;{this.props.keywords}&quot;</span><span class="token operator">&gt;</span>
+         <span class="token operator">&lt;</span>meta name<span class="token operator">=</span><span class="token string">&quot;description&quot;</span> content<span class="token operator">=</span><span class="token string">&quot;{this.props.description}&quot;</span><span class="token operator">&gt;</span>
+         <span class="token operator">&lt;</span>link rel<span class="token operator">=</span><span class="token string">&quot;shortcut icon&quot;</span> href<span class="token operator">=</span><span class="token string">&quot;/favicon.ico&quot;</span> type<span class="token operator">=</span><span class="token string">&quot;image/x-icon&quot;</span><span class="token operator">&gt;</span>
+       
+       <span class="token operator">&lt;</span>headercomponet<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>headercomponet<span class="token operator">&gt;</span><span class="token operator">&lt;</span>div id<span class="token operator">=</span><span class="token string">&quot;app&quot;</span><span class="token operator">&gt;</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>children<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+     <span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+   <span class="token keyword">return</span> <span class="token operator">&lt;</span>div id<span class="token operator">=</span><span class="token string">&quot;app&quot;</span><span class="token operator">&gt;</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>children<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+<span class="token punctuation">}</span> 
+</code></pre></div><ul><li><p>新建 <code>${app_root}/app/web/page/home/index.jsx</code> 文件</p></li></ul> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> Component <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> Layout <span class="token keyword">from</span> <span class="token string">'component/layout.jsx'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> List <span class="token keyword">from</span> <span class="token string">'./componets/list'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string">'./index.css'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">HomeIndex</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>
+ <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'----componentDidMount-----'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+
+ <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token keyword">return</span> <span class="token operator">&lt;</span>layout<span class="token operator">&gt;</span>
+     <span class="token operator">&lt;</span>div classname<span class="token operator">=</span><span class="token string">&quot;main&quot;</span><span class="token operator">&gt;</span>
+       <span class="token operator">&lt;</span>div classname<span class="token operator">=</span><span class="token string">&quot;page-container page-component&quot;</span><span class="token operator">&gt;</span>
+         <span class="token operator">&lt;</span>list list<span class="token operator">=</span><span class="token string">&quot;{this.props.message}&quot;</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>list<span class="token operator">&gt;</span>
+       <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+     <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+   <span class="token operator">&lt;</span><span class="token operator">/</span>layout<span class="token operator">&gt;</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+<span class="token punctuation">}</span> 
+</code></pre></div><h4 id="编写-node-端代码"><a href="#编写-node-端代码" aria-hidden="true" class="header-anchor">#</a> 编写 Node 端代码</h4> <p>通过 <code>egg-view-react-ssr</code> 插件 <code>render</code> 方法实现， 请看<a href="https://www.yuque.com/easy-team/egg-react/ssr" target="_blank">服务端渲染</a>和<a href="https://www.yuque.com/easy-team/egg-react/client" target="_blank">前端渲染模式</a></p><ul><li><p>创建 controller 文件 <code>${app_root}/app/controller/home.js</code></p></li></ul> <div class="language-javascript extra-class"><pre class="language-javascript"><code>module<span class="token punctuation">.</span><span class="token function-variable function">exports</span> <span class="token operator">=</span> app <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+ <span class="token keyword">return</span> <span class="token keyword">class</span> <span class="token class-name">HomeController</span> <span class="token keyword">extends</span> <span class="token class-name">app<span class="token punctuation">.</span>Controller</span> <span class="token punctuation">{</span>
+   <span class="token keyword">async</span> <span class="token function">server</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     <span class="token keyword">const</span> <span class="token punctuation">{</span> ctx <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+     <span class="token keyword">await</span> ctx<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token string">'home/index.js'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> message<span class="token punctuation">:</span> <span class="token string">'egg react server side render'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+
+   <span class="token keyword">async</span> <span class="token function">client</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     <span class="token keyword">const</span> <span class="token punctuation">{</span> ctx <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+     <span class="token comment">// renderClient 前端渲染，Node层只做 layout.html和资源依赖组装，渲染交给前端渲染。与服务端渲染的差别你可以通过查看运行后页面源代码即可明白两者之间的差异</span>
+     <span class="token keyword">await</span> ctx<span class="token punctuation">.</span><span class="token function">renderClient</span><span class="token punctuation">(</span><span class="token string">'home/index.js'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> message<span class="token punctuation">:</span> <span class="token string">'egg react client render'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span> 
+</code></pre></div><ul><li><p>添加路由配置</p></li></ul> <div class="language-javascript extra-class"><pre class="language-javascript"><code>app<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">,</span> app<span class="token punctuation">.</span>controller<span class="token punctuation">.</span>home<span class="token punctuation">.</span>server<span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'/client'</span><span class="token punctuation">,</span> app<span class="token punctuation">.</span>controller<span class="token punctuation">.</span>home<span class="token punctuation">.</span>client<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+</code></pre></div><h3 id="_6-本地运行"><a href="#_6-本地运行" aria-hidden="true" class="header-anchor">#</a> 6. 本地运行</h3> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">npm</span> run dev 
+</code></pre></div><p>npm run dev 做了如下三件事情</p><ul><li><p>首先启动 egg 应用</p></li></ul><ul><li><p>启动 webpack(egg-webpack) 构建, 文件不落地磁盘，构建的文件都在内存里面(只在本地启动, 发布模式是提前构建好文件到磁盘)</p></li></ul><ul><li><p>构建会同时启动两个 Webpack 构建服务, 客户端js构建端口9000, 服务端端口9001</p></li></ul><ul><li><p>构建完成，Egg 应用正式可用，自动打开浏览器</p></li></ul> <h3 id="_7-发布模式"><a href="#_7-发布模式" aria-hidden="true" class="header-anchor">#</a> 7. 发布模式</h3> <ul><li><p><code>${app_root}/package.json</code> 添加命令</p></li></ul> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+ <span class="token property">&quot;scripts&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+   <span class="token property">&quot;dev&quot;</span><span class="token operator">:</span> <span class="token string">&quot;egg-bin dev&quot;</span><span class="token punctuation">,</span>
+   <span class="token property">&quot;start&quot;</span><span class="token operator">:</span> <span class="token string">&quot;egg-scripts start&quot;</span><span class="token punctuation">,</span>
+   <span class="token property">&quot;debug&quot;</span><span class="token operator">:</span> <span class="token string">&quot;egg-bin debug&quot;</span><span class="token punctuation">,</span>
+   <span class="token property">&quot;clean&quot;</span><span class="token operator">:</span> <span class="token string">&quot;easy clean all&quot;</span><span class="token punctuation">,</span>
+   <span class="token property">&quot;build&quot;</span><span class="token operator">:</span> <span class="token string">&quot;easy build&quot;</span><span class="token punctuation">,</span>
+ <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span> 
+</code></pre></div><ul><li><p>命令行运行 webpack 编译</p></li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">npm</span> run build 或 easy build prod 
+</code></pre></div><ol start="1"><li><p>启动 Webpack 构建，文件落地磁盘</p></li></ol><ol start="2"><li><p>服务端构建的文件放到 <code>app/view</code> 目录</p></li></ol><ol start="3"><li><p>客户端构建的文件放到 <code>public</code> 目录</p></li></ol><ol start="4"><li><p>生成的 <code>manifest.json</code> 放到 <code>config</code> 目录</p></li></ol><ol start="5"><li><p>构建的文件都是gitignore的，部署时请注意把这些文件打包进去</p></li></ol><ul><li><p>部署</p></li></ul><p>启动应用前， 如果是非 <code>egg-scripts</code>  方式启动， 请设置 <code>EGG_SERVER_ENV</code> 环境变量，本地local, 测试环境设置 <code>test</code>， 正式环境设置 <code>prod</code></p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">npm</span> start 
+</code></pre></div><h2 id="_8-项目和插件"><a href="#_8-项目和插件" aria-hidden="true" class="header-anchor">#</a> 8. 项目和插件</h2> <ul><li><p><a href="https://github.com/easy-team/egg-react-webpack-boilerplate" target="_blank">egg-react-webpack-boilerplate</a> 基于easywebpack-react和 egg-view-react-ssr插件的工程骨架项目</p></li></ul><ul><li><p><a href="https://github.com/easy-team/easywebpack-react" target="_blank">easywebpack-react</a> Webpack React 构建工程化基础</p></li></ul><ul><li><p><a href="https://github.com/easy-team/easywebpack-cli" target="_blank">easywebpack-cli</a>  Webpack 构建工程化脚手架.</p></li></ul><ul><li><p><a href="https://github.com/easy-team/egg-view-react-ssr" target="_blank">egg-view-react-ssr</a> egg react ssr 插件.</p></li></ul><ul><li><p><a href="https://github.com/easy-team/egg-webpack" target="_blank">egg-webpack</a> 本地开发热更新使用.</p></li></ul><ul><li><p><a href="https://github.com/easy-team/egg-webpack-react" target="_blank">egg-webpack-react</a> 本地开发渲染内存读取辅助 egg-webpack-react插件</p></li></ul> <h2 id="_9-建议"><a href="#_9-建议" aria-hidden="true" class="header-anchor">#</a> 9. 建议</h2> <p style="padding-left:2em;">以上详细步骤只是告诉大家 Egg + React + easywebpack 搭建项目整个流程，帮助搭建理清流程和细节。实际使用使用时建议使用 easywebpack-cli 初始化项目或者 clone <a href="https://github.com/easy-team/egg-react-webpack-boilerplate" target="_blank">egg-react-webpack-boilerplate</a> 代码初始化项目。</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/egg-react/init.html" class="prev">
+          快速开始
+        </a></span> <span class="next"><a href="/egg-react/node.html">
+          服务端渲染模式
+        </a>
+        →
+      </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/egg-react/assets/js/app.54578750.js" defer></script><script src="/egg-react/assets/js/2.67c62971.js" defer></script><script src="/egg-react/assets/js/14.832099be.js" defer></script>
+  </body>
+</html>

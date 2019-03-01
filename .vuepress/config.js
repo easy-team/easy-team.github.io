@@ -2,9 +2,8 @@
 const path = require('path');
 
 module.exports = {
-  title: 'Egg + Vue 工程化解决方案',
-  description: 'Egg + Vue 服务端和前端渲染工程方案',
-  dest: path.resolve(__dirname, '../dist', process.env.repo),
+  base: `/${process.env.repo}`,
+  dest: path.resolve(__dirname, '../', process.env.repo),
   themeConfig: {
     nav: [
       { text: 'easywebpack', link: '/easywebpack' },
