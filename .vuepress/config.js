@@ -2,6 +2,8 @@
 const path = require('path');
 
 module.exports = {
+  title: 'easy-team',
+  description: 'easy-team',
   base: `/${process.env.repo}`,
   dest: path.resolve(__dirname, '../', process.env.repo),
   themeConfig: {
