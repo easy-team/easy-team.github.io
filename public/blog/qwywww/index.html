@@ -1,0 +1,1702 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="React Native 热更新实现, node, egg, webpack, ves, res, ssr">
+    <meta name="description" content="
+原文：http://hubcarl.github.io/blog/2016/09/15/react-native-update/
+
+React Native 动态更新实际效果如下
+
+React Native 热更新实现APK
+
+我们知道,">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>React Native 热更新实现 | easy-team</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper head-container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">easy-team</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Home</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/res" class="waves-effect waves-light">
+      
+      <i class="fas fa-forward" style="zoom: 0.6;"></i>
+      
+      <span>Res</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/ves" class="waves-effect waves-light">
+      
+      <i class="fas fa-forward" style="zoom: 0.6;"></i>
+      
+      <span>Ves</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>Egg</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/egg-react">
+          
+          <i class="fas fa-forward" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Egg+React</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/egg-vue">
+          
+          <i class="fas fa-forward" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Egg+Vue</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/easywebpack" class="waves-effect waves-light">
+      
+      <i class="fas fa-building" style="zoom: 0.6;"></i>
+      
+      <span>Webpack</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog" class="waves-effect waves-light">
+      
+      <i class="fas fa-hacker-news" style="zoom: 0.6;"></i>
+      
+      <span>Blog</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>Contact</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">easy-team</div>
+        <div class="logo-desc">
+            
+            前端工程化,Node开发,Webpack,Egg,React Server Side Render, Vue Server Side Render
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Home
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/res" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-forward"></i>
+			
+			Res
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/ves" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-forward"></i>
+			
+			Ves
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			Egg
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>   
+				
+                  <a href="/egg-react " style="margin-left:75px";>
+				  
+				   <i class="fa fas fa-forward" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Egg+React</span>
+                  </a>
+                </li>
+              
+                <li>   
+				
+                  <a href="/egg-vue " style="margin-left:75px";>
+				  
+				   <i class="fa fas fa-forward" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Egg+Vue</span>
+                  </a>
+                </li>
+               
+            </ul>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/easywebpack" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-building"></i>
+			
+			Webpack
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-hacker-news"></i>
+			
+			Blog
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/easy-team" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/easy-team" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    <div class="bg-cover pd-header" style="height: 9vh">
+    <div class="container"></div>
+</div>
+
+
+    <script>
+        // 每天切换 banner 图.  Switch banner image every day.
+        $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
+    </script>
+    
+
+<div class="doc-content">
+    
+     <div class="doc-left-nav">
+        <div class="side-nav docsidenav">
+
+    <!-- <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">easy-team</div>
+        <div class="logo-desc">
+            
+            前端工程化,Node开发,Webpack,Egg,React Server Side Render, Vue Server Side Render
+            
+        </div>
+    </div> -->
+
+
+    <div class="doc-left-nav-title">blog</div>
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+            <a href="/blog/kiygy5" class="waves-effect waves-light" id="m-nav-item-blog-kiygy5">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Vue SSR 组件加载
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/ekvirc" class="waves-effect waves-light" id="m-nav-item-blog-ekvirc">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Webpack 构建流程解密
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/az519d" class="waves-effect waves-light" id="m-nav-item-blog-az519d">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                页面资源加载
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/dxrrhq" class="waves-effect waves-light" id="m-nav-item-blog-dxrrhq">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Webpack 4 编译内存泄漏
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/xcw19a" class="waves-effect waves-light" id="m-nav-item-blog-xcw19a">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native, Hybrid App, H5 简单对比分析
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/vzgcgb" class="waves-effect waves-light" id="m-nav-item-blog-vzgcgb">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native Android APK包大小分析
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/wk5ney" class="waves-effect waves-light" id="m-nav-item-blog-wk5ney">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native 自定义插件
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/kghphs" class="waves-effect waves-light" id="m-nav-item-blog-kghphs">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native代码执行跟踪和调试
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/qwywww" class="waves-effect waves-light" id="m-nav-item-blog-qwywww">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native 热更新实现
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/rh45zo" class="waves-effect waves-light" id="m-nav-item-blog-rh45zo">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native Android源码解读和交互原理分析
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/uhmdkg" class="waves-effect waves-light" id="m-nav-item-blog-uhmdkg">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Hybrid系列-phonegap android框架详解
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/sxys82" class="waves-effect waves-light" id="m-nav-item-blog-sxys82">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Hybrid系列-Cordova android框架详解
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/syh43v" class="waves-effect waves-light" id="m-nav-item-blog-syh43v">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                npm 常用命令
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/vfhw62" class="waves-effect waves-light" id="m-nav-item-blog-vfhw62">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Git 使用技巧
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/gayu0o" class="waves-effect waves-light" id="m-nav-item-blog-gayu0o">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Docker 随记
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/egret" class="waves-effect waves-light" id="m-nav-item-blog-egret">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Egret  游戏开发
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/og9ogk" class="waves-effect waves-light" id="m-nav-item-blog-og9ogk">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                vscode 插件开发
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/qz7n03" class="waves-effect waves-light" id="m-nav-item-blog-qz7n03">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Mac PHP 环境
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/qwr449" class="waves-effect waves-light" id="m-nav-item-blog-qwr449">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Webpack 热更新实现原理分析
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/ruv09m" class="waves-effect waves-light" id="m-nav-item-blog-ruv09m">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Egg SSR Webpack 内存编译热更新实现
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/sg8avg" class="waves-effect waves-light" id="m-nav-item-blog-sg8avg">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Babel 构建优化
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/zfri65" class="waves-effect waves-light" id="m-nav-item-blog-zfri65">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Webpack 构建大小分析与优化
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/xriz8a" class="waves-effect waves-light" id="m-nav-item-blog-xriz8a">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Egg + Vue/Nunjucks 服务端渲染性能测试
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/lsrssy" class="waves-effect waves-light" id="m-nav-item-blog-lsrssy">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Flutter  Android  混合工程实践
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/zs3hog" class="waves-effect waves-light" id="m-nav-item-blog-zs3hog">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Flutter iOS 混合工程实践
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/nrswgq" class="waves-effect waves-light" id="m-nav-item-blog-nrswgq">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Android 与 Flutter 入门开发实践指引
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/wydpi1" class="waves-effect waves-light" id="m-nav-item-blog-wydpi1">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Flutter 动态更新
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/cdal6o" class="waves-effect waves-light" id="m-nav-item-blog-cdal6o">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Egg + Web 自定义前端渲染
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/easy-team" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+     </div>
+    
+    <div class="doc-right-nav">
+        <div class="card" class="doc-right-card">
+            <div class="card-content article-info">
+                <h1 style="margin-top: 12px;">React Native 热更新实现</h1>
+                <div class="row">
+                    <div class="col s5 right-align">
+                        
+                    </div>
+                </div>
+                
+                <div class="post-info">
+                    <div class="post-date info-break-policy">
+                        <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                        2019-10-20
+                    </div>
+    
+                    
+                        
+                        <div class="info-break-policy">
+                            <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
+                            2k
+                        </div>
+                        
+    
+                        
+                        <div class="info-break-policy">
+                            <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
+                            10 Min
+                        </div>
+                        
+                    
+                    
+                    
+                        <div id="busuanzi_container_page_pv" class="info-break-policy">
+                            <i class="far fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                            <span id="busuanzi_value_page_pv"></span>
+                        </div>
+                    
+                </div>
+            </div>
+            <hr class="clearfix">
+            <div class="card-content article-card-content" style="padding-top: 0px;">
+                <div id="articleContent">
+                    <blockquote>
+<p>原文：<a href="http://hubcarl.github.io/blog/2016/09/15/react-native-update/" target="_blank" rel="noopener">http://hubcarl.github.io/blog/2016/09/15/react-native-update/</a></p>
+</blockquote>
+<p>React Native 动态更新实际效果如下</p>
+<p><img src="https://raw.githubusercontent.com/hubcarl/hubcarl.github.io/master/_posts/images/react/react-native-update.gif#width=" alt=""></p>
+<p><a href="https://raw.githubusercontent.com/hubcarl/hubcarl.github.io/master/_posts/images/react/react-native-update.apk" target="_blank" rel="noopener">React Native 热更新实现APK</a></p>
+<p><img src="https://raw.githubusercontent.com/hubcarl/hubcarl.github.io/master/_posts/images/react/react-native-update-qrcode.png#width=" alt=""></p>
+<p>我们知道, React Native所有的js文件都打包在一个jsbundle文件中，发布时也是打包到app里面,一般是放到asset目录.<br />如是猜想是不是可以从远程下载jsbundle文件覆盖asset的jsbundle. 查资料发现asset目录是只读的,该想法行不通.</p>
+<p>在看React Native 启动入口时,看到通过是setBundleAssetName指定 asset文件的, 查看方法实现:</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> ReactInstanceManager<span class="token punctuation">.</span>Builder <span class="token function">setBundleAssetName</span><span class="token punctuation">(</span>String bundleAssetName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setJSBundleFile</span><span class="token punctuation">(</span>bundleAssetName <span class="token operator">==</span> null<span class="token operator">?</span>null<span class="token operator">:</span><span class="token string">"assets://"</span> <span class="token operator">+</span> bundleAssetName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>发现调用了setJSBundleFile方法,  而且该方法是public的, 也就是可以通过这个方法指定的jsbundle文件</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> ReactInstanceManager<span class="token punctuation">.</span>Builder <span class="token function">setJSBundleFile</span><span class="token punctuation">(</span>String jsBundleFile<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>mJSBundleFile <span class="token operator">=</span> jsBundleFile<span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>mJSBundleLoader <span class="token operator">=</span> null<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>可以设置了jsbundle文件, 那我们就可以把jsbundle文件放到sdcard, 经过测试发现, 确实可以读取sdcard jsbundle.</p>
+<p>sdcar的文件开业读取了,那我们就可以把文件放到远程服务器, 启动后下载远程jsbundle文件到sdcard. 大概思路如下:</p>
+<ol>
+<li><p>我们打好包jsbundle文件放到<a href="https://raw.githubusercontent.com/hubcarl/smart-react-native-app/debug/app/src/main/assets/index.android.bundle" target="_blank" rel="noopener">远程服务器</a></p>
+</li>
+<li><p>启动React Native, 检查sdcard是否有jsbundle文件, 如果没有调用setBundleAssetName加载asset目录的jsbundle, 同时启动线程下载远程jsbundle文件到sdcard目录.</p>
+</li>
+<li><p>待下次启动时, sdcard是有jsbundle文件的, 加载的就是最新的jsbundle文件.</p>
+</li>
+</ol>
+<p>实现代码如下:</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">final</span> String JS_BUNDLE_REACT_UPDATE_PATH <span class="token operator">=</span> Environment<span class="token punctuation">.</span><span class="token function">getExternalStorageDirectory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> File<span class="token punctuation">.</span>separator <span class="token operator">+</span> <span class="token string">"react_native_update/debug.android.bundle"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">iniReactRootView</span><span class="token punctuation">(</span><span class="token keyword">boolean</span> isRelease<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        ReactInstanceManager<span class="token punctuation">.</span>Builder builder <span class="token operator">=</span> ReactInstanceManager<span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">setApplication</span><span class="token punctuation">(</span><span class="token function">getApplication</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">setJSMainModuleName</span><span class="token punctuation">(</span><span class="token string">"debug.android.bundle"</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">addPackage</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">MainReactPackage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">addPackage</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Package</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">setInitialLifecycleState</span><span class="token punctuation">(</span>LifecycleState<span class="token punctuation">.</span>RESUMED<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        File file <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span>JS_BUNDLE_LOCAL_PATH<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>isRelease <span class="token operator">&amp;&amp;</span> file <span class="token operator">!=</span> null <span class="token operator">&amp;&amp;</span> file<span class="token punctuation">.</span><span class="token function">exists</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            builder<span class="token punctuation">.</span><span class="token function">setJSBundleFile</span><span class="token punctuation">(</span>JS_BUNDLE_LOCAL_PATH<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Log<span class="token punctuation">.</span><span class="token function">i</span><span class="token punctuation">(</span>TAG<span class="token punctuation">,</span> <span class="token string">"load bundle from local cache"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            builder<span class="token punctuation">.</span><span class="token function">setBundleAssetName</span><span class="token punctuation">(</span>JS_BUNDLE_LOCAL_FILE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Log<span class="token punctuation">.</span><span class="token function">i</span><span class="token punctuation">(</span>TAG<span class="token punctuation">,</span> <span class="token string">"load bundle from asset"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">updateJSBundle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        mReactRootView <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ReactRootView</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        mReactInstanceManager <span class="token operator">=</span> builder<span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        mReactRootView<span class="token punctuation">.</span><span class="token function">startReactApplication</span><span class="token punctuation">(</span>mReactInstanceManager<span class="token punctuation">,</span> <span class="token string">"SmartReactApp"</span><span class="token punctuation">,</span> null<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">setContentView</span><span class="token punctuation">(</span>mReactRootView<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// 从远程服务器下载新的jsbundle文件</span>
+<span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">updateJSBundle</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        DownloadManager<span class="token punctuation">.</span>Request request <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DownloadManager<span class="token punctuation">.</span>Request</span><span class="token punctuation">(</span>Uri<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>JS_BUNDLE_REMOTE_URL<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        request<span class="token punctuation">.</span><span class="token function">setAllowedNetworkTypes</span><span class="token punctuation">(</span>DownloadManager<span class="token punctuation">.</span>Request<span class="token punctuation">.</span>NETWORK_WIFI<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        request<span class="token punctuation">.</span><span class="token function">setDestinationUri</span><span class="token punctuation">(</span>Uri<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span><span class="token string">"file://"</span> <span class="token operator">+</span> JS_BUNDLE_LOCAL_PATH<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        DownloadManager dm <span class="token operator">=</span> <span class="token punctuation">(</span>DownloadManager<span class="token punctuation">)</span> <span class="token function">getSystemService</span><span class="token punctuation">(</span>Context<span class="token punctuation">.</span>DOWNLOAD_SERVICE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        mDownloadId <span class="token operator">=</span> dm<span class="token punctuation">.</span><span class="token function">enqueue</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Log<span class="token punctuation">.</span><span class="token function">i</span><span class="token punctuation">(</span>TAG<span class="token punctuation">,</span> <span class="token string">"start download remote js bundle file"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>经过测试发现, 确实可以实现动态更新, 但要下次启动才能看到最新的效果, 那有没有办法实现立即看到更新效果呢?</p>
+<p>通过查看React Native 源码和<a href="https://github.com/fengjundev/React-Native-Remote-Update" target="_blank" rel="noopener">查阅资料</a>是可以实现的, 具体实现如下:</p>
+<p>为了在运行中重新加载bundle文件，查看ReactInstanceManager的源码，找到如下方法：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">recreateReactContextInBackground</span><span class="token punctuation">(</span>JavaScriptExecutor jsExecutor<span class="token punctuation">,</span> JSBundleLoader jsBundleLoader<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    UiThreadUtil<span class="token punctuation">.</span><span class="token function">assertOnUiThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    ReactContextInitParams initParams <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ReactContextInitParams</span><span class="token punctuation">(</span>jsExecutor<span class="token punctuation">,</span> jsBundleLoader<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>mIsContextInitAsyncTaskRunning<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment" spellcheck="true">// No background task to create react context is currently running, create and execute one.</span>
+      ReactContextInitAsyncTask initTask <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ReactContextInitAsyncTask</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      initTask<span class="token punctuation">.</span><span class="token function">execute</span><span class="token punctuation">(</span>initParams<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      mIsContextInitAsyncTaskRunning <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token comment" spellcheck="true">// Background task is currently running, queue up most recent init params to recreate context</span>
+      <span class="token comment" spellcheck="true">// once task completes.</span>
+      mPendingReactContextInitParams <span class="token operator">=</span> initParams<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>虽然这个方法是private的，但是可以通过反射调用,下面是0.29版本的实现(上面React-Native-Remote-Update项目实现React Native版本旧了,直接拷贝反射参数有问题)</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">onJSBundleLoadedFromServer</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        File file <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span>JS_BUNDLE_LOCAL_PATH<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>file <span class="token operator">==</span> null <span class="token operator">||</span> <span class="token operator">!</span>file<span class="token punctuation">.</span><span class="token function">exists</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            Log<span class="token punctuation">.</span><span class="token function">i</span><span class="token punctuation">(</span>TAG<span class="token punctuation">,</span> <span class="token string">"js bundle file download error, check URL or network state"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        Log<span class="token punctuation">.</span><span class="token function">i</span><span class="token punctuation">(</span>TAG<span class="token punctuation">,</span> <span class="token string">"js bundle file file success, reload js bundle"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        Toast<span class="token punctuation">.</span><span class="token function">makeText</span><span class="token punctuation">(</span>UpdateReactActivity<span class="token punctuation">.</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token string">"download bundle complete"</span><span class="token punctuation">,</span> Toast<span class="token punctuation">.</span>LENGTH_SHORT<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+
+            Class<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> RIManagerClazz <span class="token operator">=</span> mReactInstanceManager<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            Field f <span class="token operator">=</span> RIManagerClazz<span class="token punctuation">.</span><span class="token function">getDeclaredField</span><span class="token punctuation">(</span><span class="token string">"mJSCConfig"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            f<span class="token punctuation">.</span><span class="token function">setAccessible</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            JSCConfig jscConfig <span class="token operator">=</span> <span class="token punctuation">(</span>JSCConfig<span class="token punctuation">)</span>f<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>mReactInstanceManager<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            Method method <span class="token operator">=</span> RIManagerClazz<span class="token punctuation">.</span><span class="token function">getDeclaredMethod</span><span class="token punctuation">(</span><span class="token string">"recreateReactContextInBackground"</span><span class="token punctuation">,</span>
+                    com<span class="token punctuation">.</span>facebook<span class="token punctuation">.</span>react<span class="token punctuation">.</span>cxxbridge<span class="token punctuation">.</span>JavaScriptExecutor<span class="token punctuation">.</span>Factory<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span>
+                    com<span class="token punctuation">.</span>facebook<span class="token punctuation">.</span>react<span class="token punctuation">.</span>cxxbridge<span class="token punctuation">.</span>JSBundleLoader<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            method<span class="token punctuation">.</span><span class="token function">setAccessible</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            method<span class="token punctuation">.</span><span class="token function">invoke</span><span class="token punctuation">(</span>mReactInstanceManager<span class="token punctuation">,</span>
+                    <span class="token keyword">new</span> <span class="token class-name">com<span class="token punctuation">.</span>facebook<span class="token punctuation">.</span>react<span class="token punctuation">.</span>cxxbridge<span class="token punctuation">.</span>JSCJavaScriptExecutor<span class="token punctuation">.</span>Factory</span><span class="token punctuation">(</span>jscConfig<span class="token punctuation">.</span><span class="token function">getConfigMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                    com<span class="token punctuation">.</span>facebook<span class="token punctuation">.</span>react<span class="token punctuation">.</span>cxxbridge<span class="token punctuation">.</span>JSBundleLoader<span class="token punctuation">.</span><span class="token function">createFileLoader</span><span class="token punctuation">(</span><span class="token function">getApplicationContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> JS_BUNDLE_LOCAL_PATH<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">NoSuchMethodException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IllegalAccessException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InvocationTargetException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IllegalArgumentException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">NoSuchFieldException</span> e<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>通过监听下载成功事件, 然后调用onJSBundleLoadedFromServer接口就可以看到立即更新的效果.</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> CompleteReceiver mDownloadCompleteReceiver<span class="token punctuation">;</span>
+<span class="token keyword">private</span> <span class="token keyword">long</span> mDownloadId<span class="token punctuation">;</span>
+
+<span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">initDownloadManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   mDownloadCompleteReceiver <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">CompleteReceiver</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token function">registerReceiver</span><span class="token punctuation">(</span>mDownloadCompleteReceiver<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">IntentFilter</span><span class="token punctuation">(</span>DownloadManager<span class="token punctuation">.</span>ACTION_DOWNLOAD_COMPLETE<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">private</span> <span class="token keyword">class</span> <span class="token class-name">CompleteReceiver</span> <span class="token keyword">extends</span> <span class="token class-name">BroadcastReceiver</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onReceive</span><span class="token punctuation">(</span>Context context<span class="token punctuation">,</span> Intent intent<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">long</span> completeDownloadId <span class="token operator">=</span> intent<span class="token punctuation">.</span><span class="token function">getLongExtra</span><span class="token punctuation">(</span>DownloadManager<span class="token punctuation">.</span>EXTRA_DOWNLOAD_ID<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>completeDownloadId <span class="token operator">==</span> mDownloadId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">onJSBundleLoadedFromServer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>尝试以后果然可以更新, 当时心情非常好~  可是……,  后面继续实现项目时发现,  动态更新后, 本地图片始终不显示, 远程图片可以.</p>
+<p>接下来查看React Native, jsbundle 源码和查看资料,  终于寻的一点蛛丝马迹, 大概的意思如下:</p>
+<ol>
+<li><p>如果bundle在sd卡【 比如bundle在file://sdcard/react_native_update/index.android.bundle 那么图片目录在file://sdcard/react_native_update/drawable-mdpi】</p>
+</li>
+<li><p>如果你的bundle在assets里，图片资源要放到res文件夹里,例如res/drawable-mdpi</p>
+</li>
+</ol>
+<p>接下来按照该说法进行了实验, 发现确实可以. 当界面刷新时,心情格外好! 下面是详细代码实现(部分代码参考React-Native-Remote-Update项目,在这里直接引用):</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>react<span class="token punctuation">.</span>smart<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>app<span class="token punctuation">.</span>Activity<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>app<span class="token punctuation">.</span>DownloadManager<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>content<span class="token punctuation">.</span>BroadcastReceiver<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>content<span class="token punctuation">.</span>Context<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>content<span class="token punctuation">.</span>Intent<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>content<span class="token punctuation">.</span>IntentFilter<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>net<span class="token punctuation">.</span>Uri<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>os<span class="token punctuation">.</span>Bundle<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>os<span class="token punctuation">.</span>Environment<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Log<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>view<span class="token punctuation">.</span>KeyEvent<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>widget<span class="token punctuation">.</span>Toast<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>facebook<span class="token punctuation">.</span>react<span class="token punctuation">.</span>JSCConfig<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>facebook<span class="token punctuation">.</span>react<span class="token punctuation">.</span>LifecycleState<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>facebook<span class="token punctuation">.</span>react<span class="token punctuation">.</span>ReactInstanceManager<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>facebook<span class="token punctuation">.</span>react<span class="token punctuation">.</span>ReactRootView<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>facebook<span class="token punctuation">.</span>react<span class="token punctuation">.</span>modules<span class="token punctuation">.</span>core<span class="token punctuation">.</span>DefaultHardwareBackBtnHandler<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>facebook<span class="token punctuation">.</span>react<span class="token punctuation">.</span>shell<span class="token punctuation">.</span>MainReactPackage<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>react<span class="token punctuation">.</span>smart<span class="token punctuation">.</span>componet<span class="token punctuation">.</span>Package<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>react<span class="token punctuation">.</span>smart<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>FileAssetUtils<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>File<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>reflect<span class="token punctuation">.</span>Field<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>reflect<span class="token punctuation">.</span>InvocationTargetException<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>reflect<span class="token punctuation">.</span>Method<span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">/**
+ * Created by sky on 16/7/15.
+ * https://github.com/hubcarl
+ */</span>
+<span class="token comment" spellcheck="true">/**
+ * Created by sky on 16/9/4.
+ *
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UpdateReactActivity</span> <span class="token keyword">extends</span> <span class="token class-name">Activity</span> <span class="token keyword">implements</span> <span class="token class-name">DefaultHardwareBackBtnHandler</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> String TAG <span class="token operator">=</span> <span class="token string">"UpdateReactActivity"</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">final</span> String JS_BUNDLE_REMOTE_URL <span class="token operator">=</span> <span class="token string">"https://raw.githubusercontent.com/hubcarl/smart-react-native-app/debug/app/src/main/assets/index.android.bundle"</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">final</span> String JS_BUNDLE_LOCAL_FILE <span class="token operator">=</span> <span class="token string">"debug.android.bundle"</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">final</span> String JS_BUNDLE_REACT_UPDATE_PATH <span class="token operator">=</span> Environment<span class="token punctuation">.</span><span class="token function">getExternalStorageDirectory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> File<span class="token punctuation">.</span>separator <span class="token operator">+</span> <span class="token string">"react_native_update"</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">final</span> String JS_BUNDLE_LOCAL_PATH <span class="token operator">=</span> JS_BUNDLE_REACT_UPDATE_PATH <span class="token operator">+</span> File<span class="token punctuation">.</span>separator <span class="token operator">+</span> JS_BUNDLE_LOCAL_FILE<span class="token punctuation">;</span>
+
+    <span class="token keyword">private</span> ReactInstanceManager mReactInstanceManager<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> ReactRootView mReactRootView<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> CompleteReceiver mDownloadCompleteReceiver<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">long</span> mDownloadId<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">onCreate</span><span class="token punctuation">(</span>Bundle savedInstanceState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">onCreate</span><span class="token punctuation">(</span>savedInstanceState<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">iniReactRootView</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">initDownloadManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">updateJSBundle</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// 如果bundle在sd卡【 比如bundle在file://sdcard/react_native_update/index.android.bundle 那么图片目录在file://sdcard/react_native_update/drawable-mdpi】</span>
+    <span class="token comment" spellcheck="true">// 如果你的bundle在assets里，图片资源要放到res文件夹里,例如res/drawable-mdpi</span>
+    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">iniReactRootView</span><span class="token punctuation">(</span><span class="token keyword">boolean</span> isRelease<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        ReactInstanceManager<span class="token punctuation">.</span>Builder builder <span class="token operator">=</span> ReactInstanceManager<span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">setApplication</span><span class="token punctuation">(</span><span class="token function">getApplication</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">setJSMainModuleName</span><span class="token punctuation">(</span>JS_BUNDLE_LOCAL_FILE<span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">addPackage</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">MainReactPackage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">addPackage</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Package</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">setInitialLifecycleState</span><span class="token punctuation">(</span>LifecycleState<span class="token punctuation">.</span>RESUMED<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        File file <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span>JS_BUNDLE_LOCAL_PATH<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>isRelease <span class="token operator">&amp;&amp;</span> file <span class="token operator">!=</span> null <span class="token operator">&amp;&amp;</span> file<span class="token punctuation">.</span><span class="token function">exists</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            builder<span class="token punctuation">.</span><span class="token function">setJSBundleFile</span><span class="token punctuation">(</span>JS_BUNDLE_LOCAL_PATH<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Log<span class="token punctuation">.</span><span class="token function">i</span><span class="token punctuation">(</span>TAG<span class="token punctuation">,</span> <span class="token string">"load bundle from local cache"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            builder<span class="token punctuation">.</span><span class="token function">setBundleAssetName</span><span class="token punctuation">(</span>JS_BUNDLE_LOCAL_FILE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Log<span class="token punctuation">.</span><span class="token function">i</span><span class="token punctuation">(</span>TAG<span class="token punctuation">,</span> <span class="token string">"load bundle from asset"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        mReactRootView <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ReactRootView</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        mReactInstanceManager <span class="token operator">=</span> builder<span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        mReactRootView<span class="token punctuation">.</span><span class="token function">startReactApplication</span><span class="token punctuation">(</span>mReactInstanceManager<span class="token punctuation">,</span> <span class="token string">"SmartReactApp"</span><span class="token punctuation">,</span> null<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">setContentView</span><span class="token punctuation">(</span>mReactRootView<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">updateJSBundle</span><span class="token punctuation">(</span><span class="token keyword">boolean</span> isRelease<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        File file <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span>JS_BUNDLE_LOCAL_PATH<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>isRelease <span class="token operator">&amp;&amp;</span> file <span class="token operator">!=</span> null <span class="token operator">&amp;&amp;</span> file<span class="token punctuation">.</span><span class="token function">exists</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            Log<span class="token punctuation">.</span><span class="token function">i</span><span class="token punctuation">(</span>TAG<span class="token punctuation">,</span> <span class="token string">"new bundle exists !"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+
+        File rootDir <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span>JS_BUNDLE_REACT_UPDATE_PATH<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>rootDir <span class="token operator">!=</span> null <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>rootDir<span class="token punctuation">.</span><span class="token function">exists</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            rootDir<span class="token punctuation">.</span><span class="token function">mkdir</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        File res <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span>JS_BUNDLE_REACT_UPDATE_PATH <span class="token operator">+</span> File<span class="token punctuation">.</span>separator <span class="token operator">+</span> <span class="token string">"drawable-mdpi"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>res <span class="token operator">!=</span> null <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>res<span class="token punctuation">.</span><span class="token function">exists</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            res<span class="token punctuation">.</span><span class="token function">mkdir</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        FileAssetUtils<span class="token punctuation">.</span><span class="token function">copyAssets</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token string">"drawable-mdpi"</span><span class="token punctuation">,</span> JS_BUNDLE_REACT_UPDATE_PATH<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+        DownloadManager<span class="token punctuation">.</span>Request request <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DownloadManager<span class="token punctuation">.</span>Request</span><span class="token punctuation">(</span>Uri<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>JS_BUNDLE_REMOTE_URL<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        request<span class="token punctuation">.</span><span class="token function">setAllowedNetworkTypes</span><span class="token punctuation">(</span>DownloadManager<span class="token punctuation">.</span>Request<span class="token punctuation">.</span>NETWORK_WIFI<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        request<span class="token punctuation">.</span><span class="token function">setDestinationUri</span><span class="token punctuation">(</span>Uri<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span><span class="token string">"file://"</span> <span class="token operator">+</span> JS_BUNDLE_LOCAL_PATH<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        DownloadManager dm <span class="token operator">=</span> <span class="token punctuation">(</span>DownloadManager<span class="token punctuation">)</span> <span class="token function">getSystemService</span><span class="token punctuation">(</span>Context<span class="token punctuation">.</span>DOWNLOAD_SERVICE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        mDownloadId <span class="token operator">=</span> dm<span class="token punctuation">.</span><span class="token function">enqueue</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        Log<span class="token punctuation">.</span><span class="token function">i</span><span class="token punctuation">(</span>TAG<span class="token punctuation">,</span> <span class="token string">"start download remote js bundle file"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">initDownloadManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        mDownloadCompleteReceiver <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">CompleteReceiver</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">registerReceiver</span><span class="token punctuation">(</span>mDownloadCompleteReceiver<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">IntentFilter</span><span class="token punctuation">(</span>DownloadManager<span class="token punctuation">.</span>ACTION_DOWNLOAD_COMPLETE<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">class</span> <span class="token class-name">CompleteReceiver</span> <span class="token keyword">extends</span> <span class="token class-name">BroadcastReceiver</span> <span class="token punctuation">{</span>
+
+        <span class="token annotation punctuation">@Override</span>
+        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onReceive</span><span class="token punctuation">(</span>Context context<span class="token punctuation">,</span> Intent intent<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">long</span> completeDownloadId <span class="token operator">=</span> intent<span class="token punctuation">.</span><span class="token function">getLongExtra</span><span class="token punctuation">(</span>DownloadManager<span class="token punctuation">.</span>EXTRA_DOWNLOAD_ID<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>completeDownloadId <span class="token operator">==</span> mDownloadId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token function">onJSBundleLoadedFromServer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">onJSBundleLoadedFromServer</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        File file <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span>JS_BUNDLE_LOCAL_PATH<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>file <span class="token operator">==</span> null <span class="token operator">||</span> <span class="token operator">!</span>file<span class="token punctuation">.</span><span class="token function">exists</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            Log<span class="token punctuation">.</span><span class="token function">i</span><span class="token punctuation">(</span>TAG<span class="token punctuation">,</span> <span class="token string">"js bundle file download error, check URL or network state"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        Log<span class="token punctuation">.</span><span class="token function">i</span><span class="token punctuation">(</span>TAG<span class="token punctuation">,</span> <span class="token string">"js bundle file file success, reload js bundle"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        Toast<span class="token punctuation">.</span><span class="token function">makeText</span><span class="token punctuation">(</span>UpdateReactActivity<span class="token punctuation">.</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token string">"download bundle complete"</span><span class="token punctuation">,</span> Toast<span class="token punctuation">.</span>LENGTH_SHORT<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+
+            Class<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> RIManagerClazz <span class="token operator">=</span> mReactInstanceManager<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            Field f <span class="token operator">=</span> RIManagerClazz<span class="token punctuation">.</span><span class="token function">getDeclaredField</span><span class="token punctuation">(</span><span class="token string">"mJSCConfig"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            f<span class="token punctuation">.</span><span class="token function">setAccessible</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            JSCConfig jscConfig <span class="token operator">=</span> <span class="token punctuation">(</span>JSCConfig<span class="token punctuation">)</span>f<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>mReactInstanceManager<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            Method method <span class="token operator">=</span> RIManagerClazz<span class="token punctuation">.</span><span class="token function">getDeclaredMethod</span><span class="token punctuation">(</span><span class="token string">"recreateReactContextInBackground"</span><span class="token punctuation">,</span>
+                    com<span class="token punctuation">.</span>facebook<span class="token punctuation">.</span>react<span class="token punctuation">.</span>cxxbridge<span class="token punctuation">.</span>JavaScriptExecutor<span class="token punctuation">.</span>Factory<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span>
+                    com<span class="token punctuation">.</span>facebook<span class="token punctuation">.</span>react<span class="token punctuation">.</span>cxxbridge<span class="token punctuation">.</span>JSBundleLoader<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            method<span class="token punctuation">.</span><span class="token function">setAccessible</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            method<span class="token punctuation">.</span><span class="token function">invoke</span><span class="token punctuation">(</span>mReactInstanceManager<span class="token punctuation">,</span>
+                    <span class="token keyword">new</span> <span class="token class-name">com<span class="token punctuation">.</span>facebook<span class="token punctuation">.</span>react<span class="token punctuation">.</span>cxxbridge<span class="token punctuation">.</span>JSCJavaScriptExecutor<span class="token punctuation">.</span>Factory</span><span class="token punctuation">(</span>jscConfig<span class="token punctuation">.</span><span class="token function">getConfigMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                    com<span class="token punctuation">.</span>facebook<span class="token punctuation">.</span>react<span class="token punctuation">.</span>cxxbridge<span class="token punctuation">.</span>JSBundleLoader<span class="token punctuation">.</span><span class="token function">createFileLoader</span><span class="token punctuation">(</span><span class="token function">getApplicationContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> JS_BUNDLE_LOCAL_PATH<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">NoSuchMethodException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IllegalAccessException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InvocationTargetException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IllegalArgumentException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">NoSuchFieldException</span> e<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">onDestroy</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">onDestroy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">unregisterReceiver</span><span class="token punctuation">(</span>mDownloadCompleteReceiver<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">onKeyUp</span><span class="token punctuation">(</span><span class="token keyword">int</span> keyCode<span class="token punctuation">,</span> KeyEvent event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>keyCode <span class="token operator">==</span> KeyEvent<span class="token punctuation">.</span>KEYCODE_MENU <span class="token operator">&amp;&amp;</span> mReactInstanceManager <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            mReactInstanceManager<span class="token punctuation">.</span><span class="token function">showDevOptionsDialog</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">onKeyUp</span><span class="token punctuation">(</span>keyCode<span class="token punctuation">,</span> event<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onBackPressed</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>mReactInstanceManager <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            mReactInstanceManager<span class="token punctuation">.</span><span class="token function">onBackPressed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">onBackPressed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">invokeDefaultOnBackPressed</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">onBackPressed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">onPause</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">onPause</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">onResume</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">onResume</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>asset资源文件拷贝到sdcard, 当然实际实现时, 资源文件和jsbundle文件可以都应该放到远程服务器.</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>react<span class="token punctuation">.</span>smart<span class="token punctuation">.</span>utils<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>content<span class="token punctuation">.</span>Context<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>content<span class="token punctuation">.</span>res<span class="token punctuation">.</span>AssetManager<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Log<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>*<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+ * Created by sky on 16/9/19.
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FileAssetUtils</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">copyAssets</span><span class="token punctuation">(</span>Context context<span class="token punctuation">,</span> String src<span class="token punctuation">,</span> String dist<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        AssetManager assetManager <span class="token operator">=</span> context<span class="token punctuation">.</span><span class="token function">getAssets</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        String<span class="token punctuation">[</span><span class="token punctuation">]</span> files <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            files <span class="token operator">=</span> assetManager<span class="token punctuation">.</span><span class="token function">list</span><span class="token punctuation">(</span>src<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            Log<span class="token punctuation">.</span><span class="token function">e</span><span class="token punctuation">(</span><span class="token string">"tag"</span><span class="token punctuation">,</span> <span class="token string">"Failed to get asset file list."</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span>String filename <span class="token operator">:</span> files<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            InputStream in <span class="token operator">=</span> null<span class="token punctuation">;</span>
+            OutputStream out <span class="token operator">=</span> null<span class="token punctuation">;</span>
+            <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                in <span class="token operator">=</span> assetManager<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span>src <span class="token operator">+</span> File<span class="token punctuation">.</span>separator <span class="token operator">+</span> filename<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                File outFile <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span>dist <span class="token operator">+</span> File<span class="token punctuation">.</span>separator <span class="token operator">+</span> src<span class="token punctuation">,</span> filename<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                out <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileOutputStream</span><span class="token punctuation">(</span>outFile<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token function">copyFile</span><span class="token punctuation">(</span>in<span class="token punctuation">,</span> out<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                in<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                in <span class="token operator">=</span> null<span class="token punctuation">;</span>
+                out<span class="token punctuation">.</span><span class="token function">flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                out<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                out <span class="token operator">=</span> null<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">catch</span><span class="token punctuation">(</span>IOException e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                Log<span class="token punctuation">.</span><span class="token function">e</span><span class="token punctuation">(</span><span class="token string">"tag"</span><span class="token punctuation">,</span> <span class="token string">"Failed to copy asset file: "</span> <span class="token operator">+</span> filename<span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">copyFile</span><span class="token punctuation">(</span>InputStream in<span class="token punctuation">,</span> OutputStream out<span class="token punctuation">)</span> <span class="token keyword">throws</span> IOException <span class="token punctuation">{</span>
+        <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> buffer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">byte</span><span class="token punctuation">[</span><span class="token number">1024</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> read<span class="token punctuation">;</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token punctuation">(</span>read <span class="token operator">=</span> in<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span>buffer<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            out<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>buffer<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> read<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>最后附上github项目地址:<a href="https://github.com/hubcarl/smart-react-native-app" target="_blank" rel="noopener">https://github.com/hubcarl/smart-react-native-app</a>,欢迎follow!</p>
+
+                </div>
+                <hr/>
+    
+                
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://easy-team.github.io" rel="external nofollow noreferrer">sky</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://easy-team.github.io/blog/qwywww/">https://easy-team.github.io/blog/qwywww/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="https://easy-team.github.io" target="_blank">sky</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+    
+                <div class="tag_share" style="display: block;">
+                    <div class="post-meta__tag-list" style="display: inline-block;">
+                        
+                            <div class="article-tag">
+                                <span class="chip bg-color">No tag</span>
+                            </div>
+                        
+                    </div>
+                    <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                        <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    
+    <div class="social-share" data-sites="qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                    </div>
+                </div>
+                
+                    <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+                
+            </div>
+        </div>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/blog/wydpi1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="Flutter 动态更新">
+                        
+                        <span class="card-title">Flutter 动态更新</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            关于动态更新Google 考虑自家 Android 应用安全和苹果策略， 本来在 2019 的 roadmap 里面有这样一项，roadmap公布后，过一段时间后面又移除了这一项，目前不是主航道。 Android 目前可以通过整包方式实现动态更新， iOS 目前还不支持。Android Flu...
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2019-10-20
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            sky
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/blog/ruv09m/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="Egg SSR Webpack 内存编译热更新实现">
+                        
+                        <span class="card-title">Egg SSR Webpack 内存编译热更新实现</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            1. 背景在用 Node.js + Webpack 构建的方式进行开发时, 我们希望能实现修改代码能实时刷新页面UI的效果. 这个特性 Webpack本身是支持的, 而且基于koa也有现成的 koa-webpack-hot-middleware 和 koa-webpack-dev-middle...
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-10-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            sky
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+     </div>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('50')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + 'From: easy-team<br />'
+            + 'Author: sky<br />'
+            + 'Link: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+    
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+<!-- menu-selected -->
+<script>
+    var pathname = location.pathname.replace(/^\//, '').replace(/\/$/, '').replace(/\//g, '-');
+    $('#m-nav-item-' + pathname).addClass('doc-left-nav-mene-selected');
+</script>
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">年份</span>
+            <a href="https://easy-team.github.io" target="_blank">sky</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/easy-team" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">92.8k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    window.setTimeout("siteTime()", 1000);
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2019";
+                    var startMonth = "10";
+                    var startDate = "20";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/hubcarl" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:hubcarl@126.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=433207205" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 433207205" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/hubcarl" class="tooltipped" target="_blank" data-tooltip="关注我的微博: https://weibo.com/hubcarl" data-position="top" data-delay="50">
+        <i class="fab fa-weibo"></i>
+    </a>
+
+
+
+    <a href="https://zhuanlan.zhihu.com/easywebpack" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: https://zhuanlan.zhihu.com/easywebpack" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <!-- Baidu Analytics -->
+
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i["DaoVoiceObject"] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            a.charset = "utf-8";
+            m.parentNode.insertBefore(a, m)
+        })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') +
+            "//widget.daovoice.io/widget/6984b559.js", "daovoice")
+        daovoice('init', {
+            app_id: ""
+        });
+        daovoice('update');
+    </script>
+    
+
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

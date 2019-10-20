@@ -1,0 +1,1784 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="常见问题, node, egg, webpack, ves, res, ssr">
+    <meta name="description" content="Babel 快速升级问题为了更方便升级 Babel7, 同时尽量减少配置且无需安装 @babel 依赖，@easy-team 模式直接内置Babel 7 的相关依赖，只需要把 easywebpack 依赖模式改成 @easy-team/ea">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>常见问题 | easy-team</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper head-container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">easy-team</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Home</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/res" class="waves-effect waves-light">
+      
+      <i class="fas fa-forward" style="zoom: 0.6;"></i>
+      
+      <span>Res</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/ves" class="waves-effect waves-light">
+      
+      <i class="fas fa-forward" style="zoom: 0.6;"></i>
+      
+      <span>Ves</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>Egg</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/egg-react">
+          
+          <i class="fas fa-forward" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Egg+React</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/egg-vue">
+          
+          <i class="fas fa-forward" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Egg+Vue</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/easywebpack" class="waves-effect waves-light">
+      
+      <i class="fas fa-building" style="zoom: 0.6;"></i>
+      
+      <span>Webpack</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog" class="waves-effect waves-light">
+      
+      <i class="fas fa-hacker-news" style="zoom: 0.6;"></i>
+      
+      <span>Blog</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>Contact</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">easy-team</div>
+        <div class="logo-desc">
+            
+            前端工程化,Node开发,Webpack,Egg,React Server Side Render, Vue Server Side Render
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Home
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/res" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-forward"></i>
+			
+			Res
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/ves" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-forward"></i>
+			
+			Ves
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			Egg
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>   
+				
+                  <a href="/egg-react " style="margin-left:75px";>
+				  
+				   <i class="fa fas fa-forward" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Egg+React</span>
+                  </a>
+                </li>
+              
+                <li>   
+				
+                  <a href="/egg-vue " style="margin-left:75px";>
+				  
+				   <i class="fa fas fa-forward" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Egg+Vue</span>
+                  </a>
+                </li>
+               
+            </ul>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/easywebpack" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-building"></i>
+			
+			Webpack
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-hacker-news"></i>
+			
+			Blog
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/easy-team" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/easy-team" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    <div class="bg-cover pd-header" style="height: 9vh">
+    <div class="container"></div>
+</div>
+
+
+    <script>
+        // 每天切换 banner 图.  Switch banner image every day.
+        $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
+    </script>
+    
+
+<div class="doc-content">
+    
+     <div class="doc-left-nav">
+        <div class="side-nav docsidenav">
+
+    <!-- <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">easy-team</div>
+        <div class="logo-desc">
+            
+            前端工程化,Node开发,Webpack,Egg,React Server Side Render, Vue Server Side Render
+            
+        </div>
+    </div> -->
+
+
+    <div class="doc-left-nav-title">easywebpack</div>
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/index" class="waves-effect waves-light" id="m-nav-item-easywebpack-index">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                总体介绍
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/about" class="waves-effect waves-light" id="m-nav-item-easywebpack-about">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                项目实战
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/problem" class="waves-effect waves-light" id="m-nav-item-easywebpack-problem">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                常见问题
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/version" class="waves-effect waves-light" id="m-nav-item-easywebpack-version">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                版本历史
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/config" class="waves-effect waves-light" id="m-nav-item-easywebpack-config">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                webpack.config.js
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/base" class="waves-effect waves-light" id="m-nav-item-easywebpack-base">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                扩展配置
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/build" class="waves-effect waves-light" id="m-nav-item-easywebpack-build">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                deploy
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/entry" class="waves-effect waves-light" id="m-nav-item-easywebpack-entry">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                entry
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/loader" class="waves-effect waves-light" id="m-nav-item-easywebpack-loader">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                loaders
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/plugin" class="waves-effect waves-light" id="m-nav-item-easywebpack-plugin">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                plugins
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/allconfig" class="waves-effect waves-light" id="m-nav-item-easywebpack-allconfig">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                全部配置项
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/native" class="waves-effect waves-light" id="m-nav-item-easywebpack-native">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                快速开始
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/debug" class="waves-effect waves-light" id="m-nav-item-easywebpack-debug">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                开发调试
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/proxy" class="waves-effect waves-light" id="m-nav-item-easywebpack-proxy">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                域名代理
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/var" class="waves-effect waves-light" id="m-nav-item-easywebpack-var">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                全局常量
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/deps" class="waves-effect waves-light" id="m-nav-item-easywebpack-deps">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                资源依赖
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/common" class="waves-effect waves-light" id="m-nav-item-easywebpack-common">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                公共提取
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/speed" class="waves-effect waves-light" id="m-nav-item-easywebpack-speed">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                极速编译
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/dll" class="waves-effect waves-light" id="m-nav-item-easywebpack-dll">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                DLL 构建
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/cdn" class="waves-effect waves-light" id="m-nav-item-easywebpack-cdn">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                CDN 构建
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/pwd" class="waves-effect waves-light" id="m-nav-item-easywebpack-pwd">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                PWA 支持
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/typescript" class="waves-effect waves-light" id="m-nav-item-easywebpack-typescript">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                TypeScript
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/rlm0ki" class="waves-effect waves-light" id="m-nav-item-easywebpack-rlm0ki">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                交流反馈
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/home" class="waves-effect waves-light" id="m-nav-item-easywebpack-home">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                基本介绍
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/vue" class="waves-effect waves-light" id="m-nav-item-easywebpack-vue">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Vue 项目构建
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/abtuv0" class="waves-effect waves-light" id="m-nav-item-easywebpack-abtuv0">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                基础配置
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/vue-single" class="waves-effect waves-light" id="m-nav-item-easywebpack-vue-single">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                单页面举例
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/mgzlq5" class="waves-effect waves-light" id="m-nav-item-easywebpack-mgzlq5">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                多页面举例
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/react" class="waves-effect waves-light" id="m-nav-item-easywebpack-react">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React 项目构建
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/in6n2r" class="waves-effect waves-light" id="m-nav-item-easywebpack-in6n2r">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                JS 文件打包
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/html" class="waves-effect waves-light" id="m-nav-item-easywebpack-html">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                静态页面构建
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/rpd7gu" class="waves-effect waves-light" id="m-nav-item-easywebpack-rpd7gu">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                构建速度
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/pdwchd" class="waves-effect waves-light" id="m-nav-item-easywebpack-pdwchd">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                构建大小
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/upgrade" class="waves-effect waves-light" id="m-nav-item-easywebpack-upgrade">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                升级指南
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/v4" class="waves-effect waves-light" id="m-nav-item-easywebpack-v4">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                easywebpack4
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/v3" class="waves-effect waves-light" id="m-nav-item-easywebpack-v3">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                easywebpack3
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/cssmodule" class="waves-effect waves-light" id="m-nav-item-easywebpack-cssmodule">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Css Module
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/ayrtv3" class="waves-effect waves-light" id="m-nav-item-easywebpack-ayrtv3">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                构建模式
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/wb66pe" class="waves-effect waves-light" id="m-nav-item-easywebpack-wb66pe">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                静态资源
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/babel" class="waves-effect waves-light" id="m-nav-item-easywebpack-babel">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Babel 配置
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/babel7" class="waves-effect waves-light" id="m-nav-item-easywebpack-babel7">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Babel 升级
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/open" class="waves-effect waves-light" id="m-nav-item-easywebpack-open">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                社区作品
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/ed847g" class="waves-effect waves-light" id="m-nav-item-easywebpack-ed847g">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                devServer
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/hot" class="waves-effect waves-light" id="m-nav-item-easywebpack-hot">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                热更新
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/postcss" class="waves-effect waves-light" id="m-nav-item-easywebpack-postcss">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                PostCss
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/optimizaiton" class="waves-effect waves-light" id="m-nav-item-easywebpack-optimizaiton">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                optimizaiton
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/v5" class="waves-effect waves-light" id="m-nav-item-easywebpack-v5">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                easywebpack5
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/css" class="waves-effect waves-light" id="m-nav-item-easywebpack-css">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Css Style
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/vue_project" class="waves-effect waves-light" id="m-nav-item-easywebpack-vue_project">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Vue 工程方案
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/react_project" class="waves-effect waves-light" id="m-nav-item-easywebpack-react_project">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React 工程方案
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/html_project" class="waves-effect waves-light" id="m-nav-item-easywebpack-html_project">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                HTML 工程方案
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/js_project" class="waves-effect waves-light" id="m-nav-item-easywebpack-js_project">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                JS 打包工程方案
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/easywebpack/weex_project" class="waves-effect waves-light" id="m-nav-item-easywebpack-weex_project">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Weex 工程方案
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/easy-team" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+     </div>
+    
+    <div class="doc-right-nav">
+        <div class="card" class="doc-right-card">
+            <div class="card-content article-info">
+                <h1 style="margin-top: 12px;">常见问题</h1>
+                <div class="row">
+                    <div class="col s5 right-align">
+                        
+                    </div>
+                </div>
+                
+                <div class="post-info">
+                    <div class="post-date info-break-policy">
+                        <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                        2019-10-20
+                    </div>
+    
+                    
+                        
+                        <div class="info-break-policy">
+                            <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
+                            2.3k
+                        </div>
+                        
+    
+                        
+                        <div class="info-break-policy">
+                            <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
+                            9 Min
+                        </div>
+                        
+                    
+                    
+                    
+                        <div id="busuanzi_container_page_pv" class="info-break-policy">
+                            <i class="far fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                            <span id="busuanzi_value_page_pv"></span>
+                        </div>
+                    
+                </div>
+            </div>
+            <hr class="clearfix">
+            <div class="card-content article-card-content" style="padding-top: 0px;">
+                <div id="articleContent">
+                    <h3 id="Babel-快速升级问题"><a href="#Babel-快速升级问题" class="headerlink" title="Babel 快速升级问题"></a>Babel 快速升级问题</h3><p>为了更方便升级 Babel7, 同时尽量减少配置且无需安装 @babel 依赖，@easy-team 模式直接内置Babel 7 的相关依赖，只需要把 easywebpack 依赖模式改成 @easy-team/easywebpack 模式，如果代码中直接依赖了也请一并修改。</p>
+<p>@easy-team/easywebpack-cli: ^4.0.0 替换  easywebpack-cli<br />@easy-team/easywebpack-react: ^4.0.0 替换  easywebpack-react<br />@easy-team/easywebpack-vue: ^4.0.0 替换  easywebpack-vue</p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="Server-Side-Render-引入-node-modules-UI-组件库-iview"><a href="#Server-Side-Render-引入-node-modules-UI-组件库-iview" class="headerlink" title="Server Side Render 引入 node_modules UI 组件库 iview"></a>Server Side Render 引入 node_modules UI 组件库 iview</h3><blockquote>
+<p>在通过 webpack 构建 server side render 模块(target: ‘node’)时，默认情况下，node_modules 下的模块不会打进构建后的 JSBundle 文件里，而是直接通过 require 方式引用模块的。如果在业务代码中直接引用 node-modules 下的 .vue 或 .jsx 文件时，会出现不能解析引入的组件模块。这是需要通过 <code>nodeExternals.whitelist</code>  配置该模块需要编译到 JSBundle 文件里面，这样才能被相应 loader 进行编译处理。</p>
+</blockquote>
+<p><img src="https://cdn.nlark.com/yuque/0/2019/png/116733/1564828978624-a8e511e0-4500-4a12-8363-ccdfa3dd561e.png#align=left&display=inline&height=165&name=image.png&originHeight=362&originWidth=1720&search=&size=574785&status=done&width=781.8181648727294" alt="image.png"></p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// ${root}/webpack.config.js</span>
+
+<span class="token keyword">const</span> path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'path'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> resolve <span class="token operator">=</span> filepath <span class="token operator">=</span><span class="token operator">></span> path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> filepath<span class="token punctuation">)</span><span class="token punctuation">;</span>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  nodeExternals<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    whitelist<span class="token punctuation">:</span> <span class="token punctuation">[</span> moduleName <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span> 
+      <span class="token keyword">return</span> <span class="token regex">/iview/</span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>moduleName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">]</span> 
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  module<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    rules<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        babel<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+          include<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token string">'app/web'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token string">'node_modules/iview'</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+          exclude<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        vue<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+          include<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token string">'app/web'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token string">'node_modules/iview'</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+          exclude<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><h3 id="自定义扩展或查看打印-Webpack-配置"><a href="#自定义扩展或查看打印-Webpack-配置" class="headerlink" title="自定义扩展或查看打印 Webpack 配置"></a>自定义扩展或查看打印 Webpack 配置</h3><ul>
+<li>通过 <a href="https://github.com/easy-team/easywebpack-cli" target="_blank" rel="noopener">easywebpack-cli  </a>命令行工具的 easy print 命令</li>
+<li>通过 <code>customize</code>  钩子处理 <pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">//${root}/webpack.config.js</span>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+<span class="token operator">...</span>
+<span class="token function">customize</span><span class="token punctuation">(</span>webpackConfig<span class="token punctuation">)</span><span class="token punctuation">{</span> 
+ <span class="token comment" spellcheck="true">// 此外 webpackConfig 为原生生成的 webpack config，可以进行自定义处理</span>
+ <span class="token keyword">return</span> webpackConfig<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+</li>
+</ul>
+<h3 id="关闭自动打开浏览器"><a href="#关闭自动打开浏览器" class="headerlink" title="关闭自动打开浏览器"></a>关闭自动打开浏览器</h3><ul>
+<li>使用 egg-webpack 进行开发时，可以通过配置 browser: false 关闭自动打开浏览器</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// ${root}/config/config.local.js</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> app <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> exports <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  exports<span class="token punctuation">.</span>webpack <span class="token operator">=</span> <span class="token punctuation">{</span>
+    browser<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 这里可以打开指定 url 地址</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> exports<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+</code></pre>
+<ul>
+<li>没有使用 egg-webpack 插件时，可以通过 devServer 的 open 开关设置是否打开指定页面</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// ${root}/webpack.config.js</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  devServer<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    open<span class="token punctuation">:</span> <span class="token string">'http://127.0.0.1:8888'</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+</code></pre>
+<h3 id="编译装饰器-Unexpected-charactor-错误"><a href="#编译装饰器-Unexpected-charactor-错误" class="headerlink" title="编译装饰器 Unexpected charactor @ 错误"></a>编译装饰器 Unexpected charactor @ 错误</h3><p>.babelrc 配置 babel 装饰器编译插件： <a href="https://babeljs.io/docs/en/babel-plugin-proposal-decorators" target="_blank" rel="noopener">https://babeljs.io/docs/en/babel-plugin-proposal-decorators</a></p>
+<h3 id="-2"><a href="#-2" class="headerlink" title=""></a></h3><h3 id="autoprefixer对-import方式引用css文件无效的解决方案"><a href="#autoprefixer对-import方式引用css文件无效的解决方案" class="headerlink" title="autoprefixer对@import方式引用css文件无效的解决方案"></a>autoprefixer对@import方式引用css文件无效的解决方案</h3><ul>
+<li><p>方式一：改为 import 方式</p>
+</li>
+<li><p>增加 css importLoaders 配置</p>
+</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// ${root}/webpack.config.js</span>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+ loaders<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  css<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+   importLoaders<span class="token punctuation">:</span> <span class="token number">1</span>
+  <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span> 
+<span class="token punctuation">}</span></code></pre>
+<h3 id="TypeScript-Vue-项目找不到-vue-文件"><a href="#TypeScript-Vue-项目找不到-vue-文件" class="headerlink" title="TypeScript  + Vue 项目找不到 .vue 文件"></a>TypeScript  + Vue 项目找不到 .vue 文件</h3><p>在用 TypeScript 编写 Vue 应用时， Vue 里面的 TypeScript 代码建议不要写在 Vue 文件里面，请以单独 ts 文件存放 TypeScript 代码。目前测试发现与 thread-loader 一起使用是有问题的。easywebpack  4.10.0 开始，默认开启了 thread-loader, 你可以通过如下方式禁用 thread-loader：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// ${root}/webpack.config.js</span>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+ compile<span class="token punctuation">:</span> <span class="token punctuation">{</span> 
+  thread<span class="token punctuation">:</span> <span class="token boolean">false</span> 
+ <span class="token punctuation">}</span> 
+<span class="token punctuation">}</span></code></pre>
+<h3 id="禁用-node-sass-安装"><a href="#禁用-node-sass-安装" class="headerlink" title="禁用 node-sass 安装"></a>禁用 node-sass 安装</h3><p>目前 easywebpack 3 默认是 开启了 sass 功能，但安装 <code>node-sass</code> 时, 会出现安装不成功(二进制本地编译)的情况，这个时候可以按照如下方式禁用 node-sass .  <strong>easywebpack 4</strong> 已默认禁用。</p>
+<ul>
+<li><p>确保代码引用里面没有用 sass 编写样式</p>
+</li>
+<li><p>删除 <code>package.json</code> 里面的  <code>node-sass</code> 依赖</p>
+</li>
+<li><p>禁用 webpack 引用 <code>node-sass</code> 编译</p>
+</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// ${app_root}/webpack.config.js</span>
+module<span class="token punctuation">.</span>exports<span class="token operator">=</span> <span class="token punctuation">{</span>
+  loaders <span class="token punctuation">:</span><span class="token punctuation">{</span>
+    scss<span class="token punctuation">:</span> <span class="token boolean">false</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+或
+
+module<span class="token punctuation">.</span>exports<span class="token operator">=</span> <span class="token punctuation">{</span>
+  module<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    rules<span class="token punctuation">:</span><span class="token punctuation">[</span>
+           <span class="token punctuation">{</span> scss<span class="token punctuation">:</span> <span class="token boolean">false</span> <span class="token punctuation">}</span>
+      <span class="token punctuation">]</span>
+ <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<h3 id="禁用图片压缩插件-imagemin-webpack-plugin-安装"><a href="#禁用图片压缩插件-imagemin-webpack-plugin-安装" class="headerlink" title="禁用图片压缩插件 imagemin-webpack-plugin 安装"></a>禁用图片压缩插件 imagemin-webpack-plugin 安装</h3><p>目前 easywebpack 默认是打正式包时开启了图片压缩功能，但在某些部分机器安装 <code>imagemin-webpack-plugin</code> 时, 会出现安装不成功的情况(二进制本地编译, 系统缺少某些本地库)，这个时候可以按照如下方式禁用 <code>imagemin-webpack-plugin</code></p>
+<ul>
+<li><p>删除 <code>package.json</code> 里面的  <code>imagemin-webpack-plugin</code> 依赖</p>
+</li>
+<li><p>禁用 webpack 引用 <code>imagemin-webpack-plugin</code> 编译</p>
+</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// ${app_root}/webpack.config.js</span>
+module<span class="token punctuation">.</span>exports<span class="token operator">=</span> <span class="token punctuation">{</span>
+  plugins <span class="token punctuation">:</span><span class="token punctuation">{</span>
+    imagemini<span class="token punctuation">:</span> <span class="token boolean">false</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<h3 id="引入-node-modules-下-vue-组件报找不到对应的-loader-错误"><a href="#引入-node-modules-下-vue-组件报找不到对应的-loader-错误" class="headerlink" title="引入 node_modules 下 vue 组件报找不到对应的 loader 错误"></a>引入 node_modules 下 vue 组件报找不到对应的 loader 错误</h3><p><code>easywebpack-vue</code> 默认的 <code>vue-loader</code> 配置排除了 <code>node_moudles</code> 目录, 主要目的是避免 <code>node_moudles</code> 被扫描，加快构建速度。如果你需要 引入 <code>node_moudles</code> 下 vue 组件, 请把对应的组件加入 <code>include</code> 配置 或者 用 <code>exclude</code> 覆盖默认配置，建议<code>include</code> 配置.</p>
+<h4 id="include-配置"><a href="#include-配置" class="headerlink" title="include 配置"></a><code>include</code> 配置</h4><p>例如： 代码在 app/web 目录，  引入 node_modules 下 vue 组件为</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// ${app_root}/webpack.config.js</span>
+<span class="token keyword">const</span> path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'path'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> resolve <span class="token operator">=</span> filepath <span class="token operator">=</span><span class="token operator">></span> path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> filepath<span class="token punctuation">)</span><span class="token punctuation">;</span>
+module<span class="token punctuation">.</span>exports<span class="token operator">=</span> <span class="token punctuation">{</span>
+  loaders <span class="token punctuation">:</span><span class="token punctuation">{</span>
+    vue<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      include<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token string">'app/web'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">/</span>node_module\<span class="token operator">/</span>vue<span class="token operator">-</span>datepicker<span class="token operator">-</span>local<span class="token operator">/</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<p>相关issue: <a href="https://github.com/hubcarl/egg-vue-webpack-boilerplate/issues/53" target="_blank" rel="noopener">import 外部模块失败</a></p>
+<h4 id="exclude-配置"><a href="#exclude-配置" class="headerlink" title="exclude 配置"></a><code>exclude</code> 配置</h4><pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// ${app_root}/webpack.config.js</span>
+module<span class="token punctuation">.</span>exports<span class="token operator">=</span> <span class="token punctuation">{</span>
+  loaders <span class="token punctuation">:</span><span class="token punctuation">{</span>
+    vue<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      exclude<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<p>see: <a href="https://github.com/webpack/webpack/issues/2031" target="_blank" rel="noopener">https://github.com/webpack/webpack/issues/2031</a></p>
+<h3 id="Egg-Vue-React-修改静态资源-publicPath-路径"><a href="#Egg-Vue-React-修改静态资源-publicPath-路径" class="headerlink" title="Egg + Vue/React 修改静态资源 publicPath 路径"></a>Egg + Vue/React 修改静态资源 publicPath 路径</h3><p>在 Egg + Vue/React 解决方案中, Webpack publicPath 使用的是默认 <code>publicPath: &#39;/public/&#39;</code> 配置。</p>
+<p>如果要修复默认的publicPath，比如要修改 <code>/static/</code>，需要修改三个地方：</p>
+<h4 id="首先版本要求"><a href="#首先版本要求" class="headerlink" title="首先版本要求"></a>首先版本要求</h4><ul>
+<li><p>easywebpack: ^3.5.1</p>
+</li>
+<li><p>egg-webpack: ^3.2.5</p>
+</li>
+</ul>
+<h4 id="配置修改"><a href="#配置修改" class="headerlink" title="配置修改"></a>配置修改</h4><ul>
+<li>Webpack <code>webpack.config.js</code> 配置添加 <code>publicPath</code> 配置覆盖默认配置</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// ${app_root}/webpack.config.js</span>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token operator">...</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+  publicPath<span class="token punctuation">:</span> <span class="token string">'/static/'</span> 
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<ul>
+<li>Egg 配置 <code>config.default.js</code> 添加静态资源</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// ${app_root}/config/config.local.js</span>
+ exports<span class="token punctuation">.</span><span class="token keyword">static</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+    prefix<span class="token punctuation">:</span> <span class="token string">'/static/'</span><span class="token punctuation">,</span>
+    dir<span class="token punctuation">:</span> path<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>app<span class="token punctuation">.</span>baseDir<span class="token punctuation">,</span> <span class="token string">'public'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<ul>
+<li>本地开发 Webpack 静态代理<blockquote>
+<p>see： <a href="https://github.com/easy-team/egg-webpack" target="_blank" rel="noopener">https://github.com/easy-team/egg-webpack</a></p>
+</blockquote>
+</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// ${app_root}/config/config.local.js</span>
+ exports<span class="token punctuation">.</span>webpack <span class="token operator">=</span> <span class="token punctuation">{</span>
+    proxy<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      match<span class="token punctuation">:</span> <span class="token regex">/^\/static\//</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<h3 id="npm-install-安装后-npm-start-启动失败"><a href="#npm-install-安装后-npm-start-启动失败" class="headerlink" title="npm install 安装后, npm start 启动失败"></a><code>npm install</code> 安装后, <code>npm start</code> 启动失败</h3><p>在使用 <code>easywebpack</code> 体系构建时, 在首次 <code>npm start</code> 时, <code>easywebpack</code> 会检查开启的 loader, plugin 插件是否已经安装, 如果没有安装则自动安装.<br>在这个过程会打印动态安装的 <code>npm</code> 模块, 如果安装失败则会导致启动失败, 这个时候你可以手动安装动态安装的 <code>npm</code> 模块 或者通过 <code>easy install</code> 自动动态安装缺失的依赖, 同时把依赖写入 <code>package.json</code> 的 <code>devDependencies</code>中.<br>然后重新启动.</p>
+<p><code>easywebpack</code> 解决方案只内置了必须的几个常用 loader 和 plugin, 其他 loader (比如 less, stylus) 和 plugin (imagemini) 都是需要项目自己根据需要安装。如果你自己搭建项目，遇到依赖缺失错误，除了手动 npm install 安装以外, 可以使用 <code>easy install</code> 命令，安装所有缺失的依赖，默认是 <code>npm</code> 方式</p>
+<pre class=" language-bash"><code class="language-bash">easy <span class="token function">install</span></code></pre>
+<p>通过 <code>mode</code> 参数指定 <code>cnpm</code> 方式安装依赖(前提是你全局安装了cnpm)</p>
+<pre class=" language-bash"><code class="language-bash">easy <span class="token function">install</span> --mode cnpm</code></pre>
+<p><strong>这里采用动态安装是因为如果把所有插件都内置, 会导致安装很多无用的 <code>npm</code> 模块, 安装缓慢, 更严重的是有些 <code>loader</code>, <code>plugin</code> 如果出现问题, 则导致整个 <code>easywebpack</code> 体系不能用.</strong></p>
+<h3 id="Egg-Vue-React-启动端口修改"><a href="#Egg-Vue-React-启动端口修改" class="headerlink" title="Egg + Vue/React 启动端口修改"></a>Egg + Vue/React 启动端口修改</h3><p><strong>注意： 该问题已在最新版本 <a href="mailto:easywebpack@4.8.0" target="_blank" rel="noopener">easywebpack@4.8.0</a>解决方案中已自动检测端口占用问题，无需配置。</strong></p>
+<p>Egg 应用本地开发时, npm run dev 默认启动打开浏览器的端口是 7001, 如果要修改自动打开的端口为6001, 可以在 <code>config/config.local.js</code> 中 添加 端口配置</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// ${app_root}/config/config.local.js</span>
+exports<span class="token punctuation">.</span>webpack <span class="token operator">=</span> <span class="token punctuation">{</span>
+  appPort<span class="token punctuation">:</span> <span class="token number">6001</span>
+  webpackConfigList<span class="token punctuation">:</span> EasyWebpack<span class="token punctuation">.</span><span class="token function">getWebpackConfig</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<p><code>egg-webpack</code> 启动打开浏览器的取端口逻辑: <code>this.config.webpack.appPort || process.env.PORT || 7001</code></p>
+<h3 id="多项目开发时-端口占用问题"><a href="#多项目开发时-端口占用问题" class="headerlink" title="多项目开发时, 端口占用问题"></a>多项目开发时, 端口占用问题</h3><p><strong>注意： 该问题已在最新版本 <a href="mailto:easywebpack@4.8.0" target="_blank" rel="noopener">easywebpack@4.8.0</a> 解决方案中已自动检测端口占用问题，无需配置。</strong></p>
+<p>在 Egg + Webpack 项目开发过程中, 会用到 7001, 9000, 9001 三个端口</p>
+<ul>
+<li><p>7001 是 Egg 应用启动的默认端口</p>
+</li>
+<li><p>9000, 9001 是 Webpack 启动 Webpack dev server 的端口, 9000 为 构建前端渲染js, 9001 构建后端渲染逻辑.</p>
+</li>
+</ul>
+<p>如果有两个项目同时开发, 第二个项目需要修改这三个端口, 假如 egg 应用: 5000,  Webpack 构建 9100 和 9101</p>
+<ul>
+<li>修改 Egg 应用端口为 5000</li>
+</ul>
+<p>Egg 应用默认会读取  <code>process.env.PORT</code> 变量, 这里我们新起一个环境变量或者直接写 5000</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// ${app_root}/index.js</span>
+<span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'egg'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">startCluster</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  baseDir<span class="token punctuation">:</span> __dirname<span class="token punctuation">,</span>
+  port<span class="token punctuation">:</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span>EGG_PORT <span class="token operator">||</span> <span class="token number">5000</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<ul>
+<li>修改 Webpack dev server 端口</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// ${app_root}/config/config.local.js</span>
+exports<span class="token punctuation">.</span>webpack <span class="token operator">=</span> <span class="token punctuation">{</span>
+  port<span class="token punctuation">:</span> <span class="token number">9100</span><span class="token punctuation">,</span> 
+  proxy<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      host<span class="token punctuation">:</span> <span class="token string">'http://127.0.0.1:9100'</span>
+  <span class="token punctuation">}</span>
+  webpackConfigList<span class="token punctuation">:</span> EasyWebpack<span class="token punctuation">.</span><span class="token function">getWebpackConfig</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<ul>
+<li>为了让热更新生效,需要修改 <code>webpack.config.js</code> 的 port 配置</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// ${app_root}/webpack.config.js</span>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  port<span class="token punctuation">:</span> <span class="token number">9100</span><span class="token punctuation">,</span> 
+  <span class="token operator">...</span><span class="token operator">...</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<h3 id="骨架项目中前端使用-async-await-特性时-报错：regeneratorRuntime-is-not-defined。"><a href="#骨架项目中前端使用-async-await-特性时-报错：regeneratorRuntime-is-not-defined。" class="headerlink" title="骨架项目中前端使用 async/await 特性时, 报错：regeneratorRuntime is not defined。"></a>骨架项目中前端使用 <code>async/await</code> 特性时, 报错：regeneratorRuntime is not defined。</h3><p>目前骨架前端是没有用 <code>async/await</code>，所以没有内置。有需要的自己可以在 .bablerc 文件加 <code>transform-runtime</code>，同时安装对应依赖到 <code>devDependencies</code> 中即可。</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> babel-plugin-transform-runtime --save-dev</code></pre>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// ${app_root}/.bablerc</span>
+<span class="token punctuation">{</span>
+  <span class="token string">'plugins'</span><span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token string">'transform-runtime'</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="本地开发时-相同的图片名称存在覆盖问题"><a href="#本地开发时-相同的图片名称存在覆盖问题" class="headerlink" title="本地开发时, 相同的图片名称存在覆盖问题"></a>本地开发时, 相同的图片名称存在覆盖问题</h3><p>因本地开发时,图片没有hash,如果存在相同的图片名称, 就会存在覆盖问题。目前可以通过开启本地开发图片 hash 临时解决。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// ${app_root}/webpack.config.js</span>
+module<span class="token punctuation">.</span>exports<span class="token operator">=</span> <span class="token punctuation">{</span>
+  imageHash<span class="token punctuation">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<h3 id="本地开发时-Chrome-偶尔出现-call-或-require-未定义等-JS-错误"><a href="#本地开发时-Chrome-偶尔出现-call-或-require-未定义等-JS-错误" class="headerlink" title="本地开发时, Chrome 偶尔出现 call 或 require 未定义等 JS 错误"></a>本地开发时, Chrome 偶尔出现 call 或 require 未定义等 JS 错误</h3><ul>
+<li><p>开发期间禁用 Chrome Network控制面板网络缓存, Disable cache 勾选上</p>
+</li>
+<li><p>运行 npx easy clean all 或 easy clean all (cli)</p>
+</li>
+</ul>
+<h3 id="windows-平台-node-sass-编译错误"><a href="#windows-平台-node-sass-编译错误" class="headerlink" title="windows 平台 node-sass 编译错误"></a>windows 平台 node-sass 编译错误</h3><pre class=" language-javascript"><code class="language-javascript">Error<span class="token punctuation">:</span> ENOENT<span class="token punctuation">:</span> no such file or directory<span class="token punctuation">,</span> scandir <span class="token string">'{PATH}\node-sass\vendor'</span>
+    at Error <span class="token punctuation">(</span>native<span class="token punctuation">)</span>
+    at Object<span class="token punctuation">.</span>fs<span class="token punctuation">.</span>readdirSync <span class="token punctuation">(</span>fs<span class="token punctuation">.</span>js<span class="token punctuation">:</span><span class="token number">856</span><span class="token punctuation">:</span><span class="token number">18</span><span class="token punctuation">)</span>
+    at Object<span class="token punctuation">.</span>getInstalledBinaries <span class="token punctuation">(</span><span class="token punctuation">{</span>PATH<span class="token punctuation">}</span>\node_modules\<span class="token punctuation">.</span>npminstall\node<span class="token operator">-</span>sass\<span class="token number">3.7</span><span class="token punctuation">.</span><span class="token number">0</span>\node<span class="token operator">-</span>sass\lib\extensions<span class="token punctuation">.</span>js<span class="token punctuation">:</span><span class="token number">74</span><span class="token punctuation">:</span><span class="token number">13</span><span class="token punctuation">)</span>
+    at foundBinariesList <span class="token punctuation">(</span><span class="token punctuation">{</span>PATH<span class="token punctuation">}</span>\node_modules\<span class="token punctuation">.</span>npminstall\node<span class="token operator">-</span>sass\<span class="token number">3.7</span><span class="token punctuation">.</span><span class="token number">0</span>\node<span class="token operator">-</span>sass\lib\errors<span class="token punctuation">.</span>js<span class="token punctuation">:</span><span class="token number">20</span><span class="token punctuation">:</span><span class="token number">15</span><span class="token punctuation">)</span>
+    at foundBinaries <span class="token punctuation">(</span><span class="token punctuation">{</span>PATH<span class="token punctuation">}</span>\node_modules\<span class="token punctuation">.</span>npminstall\node<span class="token operator">-</span>sass\<span class="token number">3.7</span><span class="token punctuation">.</span><span class="token number">0</span>\node<span class="token operator">-</span>sass\lib\errors<span class="token punctuation">.</span>js<span class="token punctuation">:</span><span class="token number">15</span><span class="token punctuation">:</span><span class="token number">5</span><span class="token punctuation">)</span>
+    at Object<span class="token punctuation">.</span>module<span class="token punctuation">.</span>exports<span class="token punctuation">.</span>missingBinary <span class="token punctuation">(</span><span class="token punctuation">{</span>PATH<span class="token punctuation">}</span>\node_modules\<span class="token punctuation">.</span>npminstall\node<span class="token operator">-</span>sass\<span class="token number">3.7</span><span class="token punctuation">.</span><span class="token number">0</span>\node<span class="token operator">-</span>sass\lib\errors<span class="token punctuation">.</span>js<span class="token punctuation">:</span><span class="token number">45</span><span class="token punctuation">:</span><span class="token number">5</span><span class="token punctuation">)</span>
+    at Object<span class="token punctuation">.</span><span class="token operator">&lt;</span>anonymous<span class="token operator">></span> <span class="token punctuation">(</span><span class="token punctuation">{</span>PATH<span class="token punctuation">}</span>\node_modules\<span class="token punctuation">.</span>npminstall\node<span class="token operator">-</span>sass\<span class="token number">3.7</span><span class="token punctuation">.</span><span class="token number">0</span>\node<span class="token operator">-</span>sass\lib\index<span class="token punctuation">.</span>js<span class="token punctuation">:</span><span class="token number">14</span><span class="token punctuation">:</span><span class="token number">28</span><span class="token punctuation">)</span>
+    at Module<span class="token punctuation">.</span>_compile <span class="token punctuation">(</span>module<span class="token punctuation">.</span>js<span class="token punctuation">:</span><span class="token number">413</span><span class="token punctuation">:</span><span class="token number">34</span><span class="token punctuation">)</span></code></pre>
+<p>这时需要重新编译 node-sass:  <code>npm rebuild node-sass</code>  解决</p>
+
+                </div>
+                <hr/>
+    
+                
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://easy-team.github.io" rel="external nofollow noreferrer">sky</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://easy-team.github.io/easywebpack/problem/">https://easy-team.github.io/easywebpack/problem/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="https://easy-team.github.io" target="_blank">sky</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+    
+                <div class="tag_share" style="display: block;">
+                    <div class="post-meta__tag-list" style="display: inline-block;">
+                        
+                            <div class="article-tag">
+                                <span class="chip bg-color">No tag</span>
+                            </div>
+                        
+                    </div>
+                    <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                        <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    
+    <div class="social-share" data-sites="qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                    </div>
+                </div>
+                
+                    <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+                
+            </div>
+        </div>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/blog/qz7n03/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="Mac PHP 环境">
+                        
+                        <span class="card-title">Mac PHP 环境</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            安装 PHP 5.6curl -s https://php-osx.liip.ch/install.sh | bash -s force 5.6php --ini 查看 php.ini 位置安装memcachebrew info memcachedbrew search memcachebre...
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2019-10-20
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            sky
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/easywebpack/vue_project/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="Vue 工程方案">
+                        
+                        <span class="card-title">Vue 工程方案</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            安装 easywebpack-cli 工具npm install easywebpack-cli -g添加 ${app_root}/.babelrc 文件具体根据实际情况添加相关 babel 插件配置，以下仅仅是举例. 详细配置见：https://www.yuque.com/easy-team...
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-10-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            sky
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+     </div>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('50')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + 'From: easy-team<br />'
+            + 'Author: sky<br />'
+            + 'Link: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+    
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+<!-- menu-selected -->
+<script>
+    var pathname = location.pathname.replace(/^\//, '').replace(/\/$/, '').replace(/\//g, '-');
+    $('#m-nav-item-' + pathname).addClass('doc-left-nav-mene-selected');
+</script>
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">年份</span>
+            <a href="https://easy-team.github.io" target="_blank">sky</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/easy-team" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">92.8k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    window.setTimeout("siteTime()", 1000);
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2019";
+                    var startMonth = "10";
+                    var startDate = "20";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/hubcarl" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:hubcarl@126.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=433207205" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 433207205" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/hubcarl" class="tooltipped" target="_blank" data-tooltip="关注我的微博: https://weibo.com/hubcarl" data-position="top" data-delay="50">
+        <i class="fab fa-weibo"></i>
+    </a>
+
+
+
+    <a href="https://zhuanlan.zhihu.com/easywebpack" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: https://zhuanlan.zhihu.com/easywebpack" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <!-- Baidu Analytics -->
+
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i["DaoVoiceObject"] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            a.charset = "utf-8";
+            m.parentNode.insertBefore(a, m)
+        })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') +
+            "//widget.daovoice.io/widget/6984b559.js", "daovoice")
+        daovoice('init', {
+            app_id: ""
+        });
+        daovoice('update');
+    </script>
+    
+
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

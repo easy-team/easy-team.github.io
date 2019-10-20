@@ -1,0 +1,1237 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Archives: 2019/10, node, egg, webpack, ves, res, ssr">
+    <meta name="description" content="Archives: 2019/10 | easy-team">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Archives: 2019/10 | easy-team</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper head-container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">easy-team</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Home</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/res" class="waves-effect waves-light">
+      
+      <i class="fas fa-forward" style="zoom: 0.6;"></i>
+      
+      <span>Res</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/ves" class="waves-effect waves-light">
+      
+      <i class="fas fa-forward" style="zoom: 0.6;"></i>
+      
+      <span>Ves</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>Egg</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/egg-react">
+          
+          <i class="fas fa-forward" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Egg+React</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/egg-vue">
+          
+          <i class="fas fa-forward" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Egg+Vue</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/easywebpack" class="waves-effect waves-light">
+      
+      <i class="fas fa-building" style="zoom: 0.6;"></i>
+      
+      <span>Webpack</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog" class="waves-effect waves-light">
+      
+      <i class="fas fa-hacker-news" style="zoom: 0.6;"></i>
+      
+      <span>Blog</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>Contact</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">easy-team</div>
+        <div class="logo-desc">
+            
+            前端工程化,Node开发,Webpack,Egg,React Server Side Render, Vue Server Side Render
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Home
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/res" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-forward"></i>
+			
+			Res
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/ves" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-forward"></i>
+			
+			Ves
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			Egg
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>   
+				
+                  <a href="/egg-react " style="margin-left:75px";>
+				  
+				   <i class="fa fas fa-forward" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Egg+React</span>
+                  </a>
+                </li>
+              
+                <li>   
+				
+                  <a href="/egg-vue " style="margin-left:75px";>
+				  
+				   <i class="fa fas fa-forward" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Egg+Vue</span>
+                  </a>
+                </li>
+               
+            </ul>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/easywebpack" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-building"></i>
+			
+			Webpack
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-hacker-news"></i>
+			
+			Blog
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/easy-team" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/easy-team" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    <div class="bg-cover pd-header about-cover">
+    <div class="container">
+    <div class="row">
+    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
+        <div class="brand">
+            <div class="title center-align">
+                
+                easy-team
+                
+            </div>
+
+            <div class="description center-align">
+                
+                <span id="typed"></span>
+                <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
+                <script>
+                    var typed = new Typed("#typed", {
+                        strings: ['前端工程体系,让开发更简单', ''],
+                        startDelay: 300,
+                        typeSpeed: 100,
+                        loop: true,
+                        backSpeed: 50,
+                        showCursor: true
+                    });
+                </script>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    // 每天切换 banner 图.  Switch banner image every day.
+    $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
+</script>
+
+
+    </div>
+</div>
+
+<main class="content">
+
+    
+    <div class="container archive-calendar">
+    <div class="card">
+        <div id="post-calendar" class="card-content"></div>
+    </div>
+</div>
+
+<script type="text/javascript" src="/libs/echarts/echarts.min.js"></script>
+<script type="text/javascript">
+    let myChart = echarts.init(document.getElementById('post-calendar'));
+
+    
+
+    let option = {
+        title: {
+            top: 0,
+            text: 'Post Calendar',
+            left: 'center',
+            textStyle: {
+                color: '#3C4858'
+            }
+        },
+        tooltip: {
+            padding: 10,
+            backgroundColor: '#555',
+            borderColor: '#777',
+            borderWidth: 1,
+            formatter: function (obj) {
+                var value = obj.value;
+                return '<div style="font-size: 14px;">' + value[0] + '：' + value[1] + '</div>';
+            }
+        },
+        visualMap: {
+            show: true,
+            showLabel: true,
+            categories: [0, 1, 2, 3, 4],
+            calculable: true,
+            inRange: {
+                symbol: 'rect',
+                color: ['#ebedf0', '#c6e48b', '#7bc96f', '#239a3b', '#196127']
+            },
+            itemWidth: 12,
+            itemHeight: 12,
+            orient: 'horizontal',
+            left: 'center',
+            bottom: 0
+        },
+        calendar: [{
+            left: 'center',
+            range: ["2018-10-20", "2019-10-20"],
+            cellSize: [13, 13],
+            splitLine: {
+                show: false
+            },
+            itemStyle: {
+                borderColor: '#fff',
+                borderWidth: 2
+            },
+            yearLabel: {
+                show: false
+            },
+            monthLabel: {
+                nameMap: 'en',
+                fontSize: 11
+            },
+            dayLabel: {
+                formatter: '{start}  1st',
+                nameMap: 'en',
+                fontSize: 11
+            }
+        }],
+        series: [{
+            type: 'heatmap',
+            coordinateSystem: 'calendar',
+            calendarIndex: 0,
+            data: [["2018-10-20", 0], ["2018-10-21", 0], ["2018-10-22", 0], ["2018-10-23", 0], ["2018-10-24", 0], ["2018-10-25", 0], ["2018-10-26", 0], ["2018-10-27", 0], ["2018-10-28", 0], ["2018-10-29", 0], ["2018-10-30", 0], ["2018-10-31", 0], ["2018-11-01", 0], ["2018-11-02", 0], ["2018-11-03", 0], ["2018-11-04", 0], ["2018-11-05", 0], ["2018-11-06", 0], ["2018-11-07", 0], ["2018-11-08", 0], ["2018-11-09", 0], ["2018-11-10", 0], ["2018-11-11", 0], ["2018-11-12", 0], ["2018-11-13", 0], ["2018-11-14", 0], ["2018-11-15", 0], ["2018-11-16", 0], ["2018-11-17", 0], ["2018-11-18", 0], ["2018-11-19", 0], ["2018-11-20", 0], ["2018-11-21", 0], ["2018-11-22", 0], ["2018-11-23", 0], ["2018-11-24", 0], ["2018-11-25", 0], ["2018-11-26", 0], ["2018-11-27", 0], ["2018-11-28", 0], ["2018-11-29", 0], ["2018-11-30", 0], ["2018-12-01", 0], ["2018-12-02", 0], ["2018-12-03", 0], ["2018-12-04", 0], ["2018-12-05", 0], ["2018-12-06", 0], ["2018-12-07", 0], ["2018-12-08", 0], ["2018-12-09", 0], ["2018-12-10", 0], ["2018-12-11", 0], ["2018-12-12", 0], ["2018-12-13", 0], ["2018-12-14", 0], ["2018-12-15", 0], ["2018-12-16", 0], ["2018-12-17", 0], ["2018-12-18", 0], ["2018-12-19", 0], ["2018-12-20", 0], ["2018-12-21", 0], ["2018-12-22", 0], ["2018-12-23", 0], ["2018-12-24", 0], ["2018-12-25", 0], ["2018-12-26", 0], ["2018-12-27", 0], ["2018-12-28", 0], ["2018-12-29", 0], ["2018-12-30", 0], ["2018-12-31", 0], ["2019-01-01", 0], ["2019-01-02", 0], ["2019-01-03", 0], ["2019-01-04", 0], ["2019-01-05", 0], ["2019-01-06", 0], ["2019-01-07", 0], ["2019-01-08", 0], ["2019-01-09", 0], ["2019-01-10", 0], ["2019-01-11", 0], ["2019-01-12", 0], ["2019-01-13", 0], ["2019-01-14", 0], ["2019-01-15", 0], ["2019-01-16", 0], ["2019-01-17", 0], ["2019-01-18", 0], ["2019-01-19", 0], ["2019-01-20", 0], ["2019-01-21", 0], ["2019-01-22", 0], ["2019-01-23", 0], ["2019-01-24", 0], ["2019-01-25", 0], ["2019-01-26", 0], ["2019-01-27", 0], ["2019-01-28", 0], ["2019-01-29", 0], ["2019-01-30", 0], ["2019-01-31", 0], ["2019-02-01", 0], ["2019-02-02", 0], ["2019-02-03", 0], ["2019-02-04", 0], ["2019-02-05", 0], ["2019-02-06", 0], ["2019-02-07", 0], ["2019-02-08", 0], ["2019-02-09", 0], ["2019-02-10", 0], ["2019-02-11", 0], ["2019-02-12", 0], ["2019-02-13", 0], ["2019-02-14", 0], ["2019-02-15", 0], ["2019-02-16", 0], ["2019-02-17", 0], ["2019-02-18", 0], ["2019-02-19", 0], ["2019-02-20", 0], ["2019-02-21", 0], ["2019-02-22", 0], ["2019-02-23", 0], ["2019-02-24", 0], ["2019-02-25", 0], ["2019-02-26", 0], ["2019-02-27", 0], ["2019-02-28", 0], ["2019-03-01", 0], ["2019-03-02", 0], ["2019-03-03", 0], ["2019-03-04", 0], ["2019-03-05", 0], ["2019-03-06", 0], ["2019-03-07", 0], ["2019-03-08", 0], ["2019-03-09", 0], ["2019-03-10", 0], ["2019-03-11", 0], ["2019-03-12", 0], ["2019-03-13", 0], ["2019-03-14", 0], ["2019-03-15", 0], ["2019-03-16", 0], ["2019-03-17", 0], ["2019-03-18", 0], ["2019-03-19", 0], ["2019-03-20", 0], ["2019-03-21", 0], ["2019-03-22", 0], ["2019-03-23", 0], ["2019-03-24", 0], ["2019-03-25", 0], ["2019-03-26", 0], ["2019-03-27", 0], ["2019-03-28", 0], ["2019-03-29", 0], ["2019-03-30", 0], ["2019-03-31", 0], ["2019-04-01", 0], ["2019-04-02", 0], ["2019-04-03", 0], ["2019-04-04", 0], ["2019-04-05", 0], ["2019-04-06", 0], ["2019-04-07", 0], ["2019-04-08", 0], ["2019-04-09", 0], ["2019-04-10", 0], ["2019-04-11", 0], ["2019-04-12", 0], ["2019-04-13", 0], ["2019-04-14", 0], ["2019-04-15", 0], ["2019-04-16", 0], ["2019-04-17", 0], ["2019-04-18", 0], ["2019-04-19", 0], ["2019-04-20", 0], ["2019-04-21", 0], ["2019-04-22", 0], ["2019-04-23", 0], ["2019-04-24", 0], ["2019-04-25", 0], ["2019-04-26", 0], ["2019-04-27", 0], ["2019-04-28", 0], ["2019-04-29", 0], ["2019-04-30", 0], ["2019-05-01", 0], ["2019-05-02", 0], ["2019-05-03", 0], ["2019-05-04", 0], ["2019-05-05", 0], ["2019-05-06", 0], ["2019-05-07", 0], ["2019-05-08", 0], ["2019-05-09", 0], ["2019-05-10", 0], ["2019-05-11", 0], ["2019-05-12", 0], ["2019-05-13", 0], ["2019-05-14", 0], ["2019-05-15", 0], ["2019-05-16", 0], ["2019-05-17", 0], ["2019-05-18", 0], ["2019-05-19", 0], ["2019-05-20", 0], ["2019-05-21", 0], ["2019-05-22", 0], ["2019-05-23", 0], ["2019-05-24", 0], ["2019-05-25", 0], ["2019-05-26", 0], ["2019-05-27", 0], ["2019-05-28", 0], ["2019-05-29", 0], ["2019-05-30", 0], ["2019-05-31", 0], ["2019-06-01", 0], ["2019-06-02", 0], ["2019-06-03", 0], ["2019-06-04", 0], ["2019-06-05", 0], ["2019-06-06", 0], ["2019-06-07", 0], ["2019-06-08", 0], ["2019-06-09", 0], ["2019-06-10", 0], ["2019-06-11", 0], ["2019-06-12", 0], ["2019-06-13", 0], ["2019-06-14", 0], ["2019-06-15", 0], ["2019-06-16", 0], ["2019-06-17", 0], ["2019-06-18", 0], ["2019-06-19", 0], ["2019-06-20", 0], ["2019-06-21", 0], ["2019-06-22", 0], ["2019-06-23", 0], ["2019-06-24", 0], ["2019-06-25", 0], ["2019-06-26", 0], ["2019-06-27", 0], ["2019-06-28", 0], ["2019-06-29", 0], ["2019-06-30", 0], ["2019-07-01", 0], ["2019-07-02", 0], ["2019-07-03", 0], ["2019-07-04", 0], ["2019-07-05", 0], ["2019-07-06", 0], ["2019-07-07", 0], ["2019-07-08", 0], ["2019-07-09", 0], ["2019-07-10", 0], ["2019-07-11", 0], ["2019-07-12", 0], ["2019-07-13", 0], ["2019-07-14", 0], ["2019-07-15", 0], ["2019-07-16", 0], ["2019-07-17", 0], ["2019-07-18", 0], ["2019-07-19", 0], ["2019-07-20", 0], ["2019-07-21", 0], ["2019-07-22", 0], ["2019-07-23", 0], ["2019-07-24", 0], ["2019-07-25", 0], ["2019-07-26", 0], ["2019-07-27", 0], ["2019-07-28", 0], ["2019-07-29", 0], ["2019-07-30", 0], ["2019-07-31", 0], ["2019-08-01", 0], ["2019-08-02", 0], ["2019-08-03", 0], ["2019-08-04", 0], ["2019-08-05", 0], ["2019-08-06", 0], ["2019-08-07", 0], ["2019-08-08", 0], ["2019-08-09", 0], ["2019-08-10", 0], ["2019-08-11", 0], ["2019-08-12", 0], ["2019-08-13", 0], ["2019-08-14", 0], ["2019-08-15", 0], ["2019-08-16", 0], ["2019-08-17", 0], ["2019-08-18", 0], ["2019-08-19", 0], ["2019-08-20", 0], ["2019-08-21", 0], ["2019-08-22", 0], ["2019-08-23", 0], ["2019-08-24", 0], ["2019-08-25", 0], ["2019-08-26", 0], ["2019-08-27", 0], ["2019-08-28", 0], ["2019-08-29", 0], ["2019-08-30", 0], ["2019-08-31", 0], ["2019-09-01", 0], ["2019-09-02", 0], ["2019-09-03", 0], ["2019-09-04", 0], ["2019-09-05", 0], ["2019-09-06", 0], ["2019-09-07", 0], ["2019-09-08", 0], ["2019-09-09", 0], ["2019-09-10", 0], ["2019-09-11", 0], ["2019-09-12", 0], ["2019-09-13", 0], ["2019-09-14", 0], ["2019-09-15", 0], ["2019-09-16", 0], ["2019-09-17", 0], ["2019-09-18", 0], ["2019-09-19", 0], ["2019-09-20", 0], ["2019-09-21", 0], ["2019-09-22", 0], ["2019-09-23", 0], ["2019-09-24", 0], ["2019-09-25", 0], ["2019-09-26", 0], ["2019-09-27", 0], ["2019-09-28", 0], ["2019-09-29", 0], ["2019-09-30", 0], ["2019-10-01", 0], ["2019-10-02", 0], ["2019-10-03", 0], ["2019-10-04", 0], ["2019-10-05", 0], ["2019-10-06", 0], ["2019-10-07", 0], ["2019-10-08", 0], ["2019-10-09", 0], ["2019-10-10", 0], ["2019-10-11", 0], ["2019-10-12", 0], ["2019-10-13", 0], ["2019-10-14", 0], ["2019-10-15", 0], ["2019-10-16", 0], ["2019-10-17", 0], ["2019-10-18", 0], ["2019-10-19", 27], ["2019-10-20", 97]]
+        }]
+
+    };
+
+    myChart.setOption(option);
+</script>
+    
+
+    
+
+    <div id="cd-timeline" class="container">
+        
+        <div class="cd-timeline-block">
+
+            
+            
+            
+            <div class="cd-timeline-img year" data-aos="zoom-in-up">
+                <a href="/archives/2019">2019</a>
+            </div>
+            
+
+            
+            
+            
+            <div class="cd-timeline-img month" data-aos="zoom-in-up">
+                <a href="/archives/2019/10">10</a>
+            </div>
+            
+
+            
+            <div class="cd-timeline-img day" data-aos="zoom-in-up">
+                <span>20</span>
+            </div>
+            <article class="cd-timeline-content" data-aos="fade-up">
+                <div class="article col s12 m6">
+                    <div class="card">
+                        <a href="/easywebpack/hot/">
+                            <div class="card-image">
+                                
+                                
+                                <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="热更新">
+                                
+                                <span class="card-title">热更新</span>
+                            </div>
+                        </a>
+                        <div class="card-content article-content">
+                            <div class="summary block-with-text">
+                                
+                                    easywebpack 是通过 koa-webpack-hot-middleware 和 koa-webpack-dev-middleware 插件实现热更新机制。具体实现封装成独立 webpack-tool 插件，该插件除了集成在 easywebpack 里面，同时也可以单独使用。下面详细说...
+                                
+                            </div>
+                            <div class="publish-info">
+                                <span class="publish-date">
+                                    <i class="far fa-clock fa-fw icon-date"></i>2019-10-20
+                                </span>
+                                <span class="publish-author">
+                                    
+                                    <i class="fas fa-user fa-fw"></i>
+                                    sky
+                                    
+                                </span>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+                </div>
+            </article>
+        </div>
+        
+        <div class="cd-timeline-block">
+
+            
+            
+
+            
+            
+
+            
+            <div class="cd-timeline-img day" data-aos="zoom-in-up">
+                <span>20</span>
+            </div>
+            <article class="cd-timeline-content" data-aos="fade-up">
+                <div class="article col s12 m6">
+                    <div class="card">
+                        <a href="/easywebpack/vue/">
+                            <div class="card-image">
+                                
+                                
+                                <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="Vue 项目构建">
+                                
+                                <span class="card-title">Vue 项目构建</span>
+                            </div>
+                        </a>
+                        <div class="card-content article-content">
+                            <div class="summary block-with-text">
+                                
+                                    Webpack  原始配置编写// webpack.config.js const easywebpack = require(&#x27;easywebpack-vue&#x27;); const webpack = easywebpack.webpack; const merge = easywebpack.merge; const env = process.env.BUILD_ENV; const baseWebpackConfig = easywebpack.getWebpackConfig...
+                                
+                            </div>
+                            <div class="publish-info">
+                                <span class="publish-date">
+                                    <i class="far fa-clock fa-fw icon-date"></i>2019-10-20
+                                </span>
+                                <span class="publish-author">
+                                    
+                                    <i class="fas fa-user fa-fw"></i>
+                                    sky
+                                    
+                                </span>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+                </div>
+            </article>
+        </div>
+        
+        <div class="cd-timeline-block">
+
+            
+            
+
+            
+            
+
+            
+            <div class="cd-timeline-img day" data-aos="zoom-in-up">
+                <span>20</span>
+            </div>
+            <article class="cd-timeline-content" data-aos="fade-up">
+                <div class="article col s12 m6">
+                    <div class="card">
+                        <a href="/easywebpack/weex_project/">
+                            <div class="card-image">
+                                
+                                
+                                <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Weex 工程方案">
+                                
+                                <span class="card-title">Weex 工程方案</span>
+                            </div>
+                        </a>
+                        <div class="card-content article-content">
+                            <div class="summary block-with-text">
+                                
+                                    easywebpack-weex 基于 easywebpack 的 Weex Native 和 Weex Web 打包构建解决方案.安装$ npm i easywebpack-weex --save-dev使用const weex = require('easywebpack-weex'); ...
+                                
+                            </div>
+                            <div class="publish-info">
+                                <span class="publish-date">
+                                    <i class="far fa-clock fa-fw icon-date"></i>2019-10-20
+                                </span>
+                                <span class="publish-author">
+                                    
+                                    <i class="fas fa-user fa-fw"></i>
+                                    sky
+                                    
+                                </span>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+                </div>
+            </article>
+        </div>
+        
+        <div class="cd-timeline-block">
+
+            
+            
+
+            
+            
+
+            
+            <div class="cd-timeline-img day" data-aos="zoom-in-up">
+                <span>20</span>
+            </div>
+            <article class="cd-timeline-content" data-aos="fade-up">
+                <div class="article col s12 m6">
+                    <div class="card">
+                        <a href="/easywebpack/typescript/">
+                            <div class="card-image">
+                                
+                                
+                                <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="TypeScript">
+                                
+                                <span class="card-title">TypeScript</span>
+                            </div>
+                        </a>
+                        <div class="card-content article-content">
+                            <div class="summary block-with-text">
+                                
+                                    TypeScript 构建支持在用 TypeScript 编写 Vue 应用时， Vue 里面的 TypeScript 代码建议不要写在 Vue 文件里面，请以单独 ts 文件存放 TypeScript 代码。目前测试发现与 thread-loader 一起使用是有问题的。easywebpac...
+                                
+                            </div>
+                            <div class="publish-info">
+                                <span class="publish-date">
+                                    <i class="far fa-clock fa-fw icon-date"></i>2019-10-20
+                                </span>
+                                <span class="publish-author">
+                                    
+                                    <i class="fas fa-user fa-fw"></i>
+                                    sky
+                                    
+                                </span>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+                </div>
+            </article>
+        </div>
+        
+        <div class="cd-timeline-block">
+
+            
+            
+
+            
+            
+
+            
+            <div class="cd-timeline-img day" data-aos="zoom-in-up">
+                <span>20</span>
+            </div>
+            <article class="cd-timeline-content" data-aos="fade-up">
+                <div class="article col s12 m6">
+                    <div class="card">
+                        <a href="/egg-vue/start/">
+                            <div class="card-image">
+                                
+                                
+                                <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="从零开始">
+                                
+                                <span class="card-title">从零开始</span>
+                            </div>
+                        </a>
+                        <div class="card-content article-content">
+                            <div class="summary block-with-text">
+                                
+                                    从零开始搭建 Egg + Vue + Webpack 服务端渲染项目1. 初始化环境安装 Node LST (8.x.x) 环境： https://nodejs.org/zh-cn2. 初始化 egg 项目https://github.com/eggjs/egg-init/blob/maste...
+                                
+                            </div>
+                            <div class="publish-info">
+                                <span class="publish-date">
+                                    <i class="far fa-clock fa-fw icon-date"></i>2019-10-20
+                                </span>
+                                <span class="publish-author">
+                                    
+                                    <i class="fas fa-user fa-fw"></i>
+                                    sky
+                                    
+                                </span>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+                </div>
+            </article>
+        </div>
+        
+        <div class="cd-timeline-block">
+
+            
+            
+
+            
+            
+
+            
+            <div class="cd-timeline-img day" data-aos="zoom-in-up">
+                <span>20</span>
+            </div>
+            <article class="cd-timeline-content" data-aos="fade-up">
+                <div class="article col s12 m6">
+                    <div class="card">
+                        <a href="/egg-vue/init/">
+                            <div class="card-image">
+                                
+                                
+                                <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="快速开始">
+                                
+                                <span class="card-title">快速开始</span>
+                            </div>
+                        </a>
+                        <div class="card-content article-content">
+                            <div class="summary block-with-text">
+                                
+                                    基于 Egg + Vue + Webpack 服务端渲染开发指南1. 项目初始化1.1 easywebpack-cli 脚手架初始化项目安装脚手架 npm install easywebpack-cli -g 命令行，然后就可以使用 easywebpack 或 easy 命令命令行运行 eas...
+                                
+                            </div>
+                            <div class="publish-info">
+                                <span class="publish-date">
+                                    <i class="far fa-clock fa-fw icon-date"></i>2019-10-20
+                                </span>
+                                <span class="publish-author">
+                                    
+                                    <i class="fas fa-user fa-fw"></i>
+                                    sky
+                                    
+                                </span>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+                </div>
+            </article>
+        </div>
+        
+        <div class="cd-timeline-block">
+
+            
+            
+
+            
+            
+
+            
+            <div class="cd-timeline-img day" data-aos="zoom-in-up">
+                <span>20</span>
+            </div>
+            <article class="cd-timeline-content" data-aos="fade-up">
+                <div class="article col s12 m6">
+                    <div class="card">
+                        <a href="/egg-vue/version/">
+                            <div class="card-image">
+                                
+                                
+                                <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="插件使用">
+                                
+                                <span class="card-title">插件使用</span>
+                            </div>
+                        </a>
+                        <div class="card-content article-content">
+                            <div class="summary block-with-text">
+                                
+                                    插件流程https://www.yuque.com/easy-team/egg-vue/build插件介绍egg-webpack 用于在 egg 项目中启动 Webpack 编译服务，具体流程请见 构建流程 。 该插件只在本地启用。 该插件除了深度结合 easywebpack 体系使用， 也可...
+                                
+                            </div>
+                            <div class="publish-info">
+                                <span class="publish-date">
+                                    <i class="far fa-clock fa-fw icon-date"></i>2019-10-20
+                                </span>
+                                <span class="publish-author">
+                                    
+                                    <i class="fas fa-user fa-fw"></i>
+                                    sky
+                                    
+                                </span>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+                </div>
+            </article>
+        </div>
+        
+        <div class="cd-timeline-block">
+
+            
+            
+
+            
+            
+
+            
+            <div class="cd-timeline-img day" data-aos="zoom-in-up">
+                <span>20</span>
+            </div>
+            <article class="cd-timeline-content" data-aos="fade-up">
+                <div class="article col s12 m6">
+                    <div class="card">
+                        <a href="/egg-vue/online/">
+                            <div class="card-image">
+                                
+                                
+                                <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="部署流程">
+                                
+                                <span class="card-title">部署流程</span>
+                            </div>
+                        </a>
+                        <div class="card-content article-content">
+                            <div class="summary block-with-text">
+                                
+                                    项目开发在 egg-vue-webpack-boilerplate 骨架项目中, 提供了一些demo, 如果要进行新项目开发，可以删除部分文件：app/web/page 是页面目录。下面的每个目录都是一个单独的页面，其中 app 目录是一个单页面服务端渲染例子，其他是简单的 Vue 服务端渲染...
+                                
+                            </div>
+                            <div class="publish-info">
+                                <span class="publish-date">
+                                    <i class="far fa-clock fa-fw icon-date"></i>2019-10-20
+                                </span>
+                                <span class="publish-author">
+                                    
+                                    <i class="fas fa-user fa-fw"></i>
+                                    sky
+                                    
+                                </span>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+                </div>
+            </article>
+        </div>
+        
+        <div class="cd-timeline-block">
+
+            
+            
+
+            
+            
+
+            
+            <div class="cd-timeline-img day" data-aos="zoom-in-up">
+                <span>20</span>
+            </div>
+            <article class="cd-timeline-content" data-aos="fade-up">
+                <div class="article col s12 m6">
+                    <div class="card">
+                        <a href="/egg-vue/html/">
+                            <div class="card-image">
+                                
+                                
+                                <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="HTML前端渲染">
+                                
+                                <span class="card-title">HTML前端渲染</span>
+                            </div>
+                        </a>
+                        <div class="card-content article-content">
+                            <div class="summary block-with-text">
+                                
+                                    背景在 前端渲染模式 和 asset 渲染模式 章节讲到了基于 React 的前端渲染模式，但都依赖  egg-view-react-ssr 插件，那如何基于已有 egg 模板引擎 (egg-view-nunjucks 或 egg-view-ejs) + Webpack 完全自定义前端方案呢？...
+                                
+                            </div>
+                            <div class="publish-info">
+                                <span class="publish-date">
+                                    <i class="far fa-clock fa-fw icon-date"></i>2019-10-20
+                                </span>
+                                <span class="publish-author">
+                                    
+                                    <i class="fas fa-user fa-fw"></i>
+                                    sky
+                                    
+                                </span>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+                </div>
+            </article>
+        </div>
+        
+        <div class="cd-timeline-block">
+
+            
+            
+
+            
+            
+
+            
+            <div class="cd-timeline-img day" data-aos="zoom-in-up">
+                <span>20</span>
+            </div>
+            <article class="cd-timeline-content" data-aos="fade-up">
+                <div class="article col s12 m6">
+                    <div class="card">
+                        <a href="/egg-vue/about/">
+                            <div class="card-image">
+                                
+                                
+                                <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="相关问题">
+                                
+                                <span class="card-title">相关问题</span>
+                            </div>
+                        </a>
+                        <div class="card-content article-content">
+                            <div class="summary block-with-text">
+                                
+                                    常见问题 issue 汇总服务端 SEO 设置问题 文件打包部署问题Server Side Render 时，$mount节点重新渲染问题see issue：https://github.com/easy-team/egg-vue-webpack-boilerplate/issues/125a...
+                                
+                            </div>
+                            <div class="publish-info">
+                                <span class="publish-date">
+                                    <i class="far fa-clock fa-fw icon-date"></i>2019-10-20
+                                </span>
+                                <span class="publish-author">
+                                    
+                                    <i class="fas fa-user fa-fw"></i>
+                                    sky
+                                    
+                                </span>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+                </div>
+            </article>
+        </div>
+        
+    </div>
+
+</main>
+
+
+<div class="container paging">
+    <div class="row">
+        <div class="col s6 m4 l4">
+            
+            <a href="/archives/2019/10/page/6/"
+               class="left btn-floating btn-large waves-effect waves-light bg-color">
+                <i class="fas fa-angle-left"></i>
+            </a>
+            
+        </div>
+        <div class="page-info col m4 l4 hide-on-small-only">
+            <div class="center-align b-text-gray">7 / 13</div>
+        </div>
+        <div class="col s6 m4 l4">
+            
+            <a href="/archives/2019/10/page/8/"
+               class="right btn-floating btn-large waves-effect waves-light bg-color">
+                <i class="fas fa-angle-right"></i>
+            </a>
+            
+        </div>
+    </div>
+</div>
+
+
+
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">年份</span>
+            <a href="https://easy-team.github.io" target="_blank">sky</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/easy-team" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">92.8k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    window.setTimeout("siteTime()", 1000);
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2019";
+                    var startMonth = "10";
+                    var startDate = "20";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/hubcarl" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:hubcarl@126.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=433207205" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 433207205" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/hubcarl" class="tooltipped" target="_blank" data-tooltip="关注我的微博: https://weibo.com/hubcarl" data-position="top" data-delay="50">
+        <i class="fab fa-weibo"></i>
+    </a>
+
+
+
+    <a href="https://zhuanlan.zhihu.com/easywebpack" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: https://zhuanlan.zhihu.com/easywebpack" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <!-- Baidu Analytics -->
+
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i["DaoVoiceObject"] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            a.charset = "utf-8";
+            m.parentNode.insertBefore(a, m)
+        })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') +
+            "//widget.daovoice.io/widget/6984b559.js", "daovoice")
+        daovoice('init', {
+            app_id: ""
+        });
+        daovoice('update');
+    </script>
+    
+
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

@@ -1,0 +1,1434 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Egret  游戏开发, node, egg, webpack, ves, res, ssr">
+    <meta name="description" content="命令行
+egret build
+
+egret run -a   自动编译，浏览器不能自动刷新
+
+
+Stagepublic constructor() {
+   super();
+   this.once(egret.Event.ADDED_">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Egret  游戏开发 | easy-team</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper head-container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">easy-team</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Home</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/res" class="waves-effect waves-light">
+      
+      <i class="fas fa-forward" style="zoom: 0.6;"></i>
+      
+      <span>Res</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/ves" class="waves-effect waves-light">
+      
+      <i class="fas fa-forward" style="zoom: 0.6;"></i>
+      
+      <span>Ves</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>Egg</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/egg-react">
+          
+          <i class="fas fa-forward" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Egg+React</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/egg-vue">
+          
+          <i class="fas fa-forward" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Egg+Vue</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/easywebpack" class="waves-effect waves-light">
+      
+      <i class="fas fa-building" style="zoom: 0.6;"></i>
+      
+      <span>Webpack</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog" class="waves-effect waves-light">
+      
+      <i class="fas fa-hacker-news" style="zoom: 0.6;"></i>
+      
+      <span>Blog</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>Contact</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">easy-team</div>
+        <div class="logo-desc">
+            
+            前端工程化,Node开发,Webpack,Egg,React Server Side Render, Vue Server Side Render
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Home
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/res" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-forward"></i>
+			
+			Res
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/ves" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-forward"></i>
+			
+			Ves
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			Egg
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>   
+				
+                  <a href="/egg-react " style="margin-left:75px";>
+				  
+				   <i class="fa fas fa-forward" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Egg+React</span>
+                  </a>
+                </li>
+              
+                <li>   
+				
+                  <a href="/egg-vue " style="margin-left:75px";>
+				  
+				   <i class="fa fas fa-forward" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Egg+Vue</span>
+                  </a>
+                </li>
+               
+            </ul>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/easywebpack" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-building"></i>
+			
+			Webpack
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-hacker-news"></i>
+			
+			Blog
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/easy-team" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/easy-team" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    <div class="bg-cover pd-header" style="height: 9vh">
+    <div class="container"></div>
+</div>
+
+
+    <script>
+        // 每天切换 banner 图.  Switch banner image every day.
+        $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
+    </script>
+    
+
+<div class="doc-content">
+    
+     <div class="doc-left-nav">
+        <div class="side-nav docsidenav">
+
+    <!-- <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">easy-team</div>
+        <div class="logo-desc">
+            
+            前端工程化,Node开发,Webpack,Egg,React Server Side Render, Vue Server Side Render
+            
+        </div>
+    </div> -->
+
+
+    <div class="doc-left-nav-title">blog</div>
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+            <a href="/blog/kiygy5" class="waves-effect waves-light" id="m-nav-item-blog-kiygy5">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Vue SSR 组件加载
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/ekvirc" class="waves-effect waves-light" id="m-nav-item-blog-ekvirc">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Webpack 构建流程解密
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/az519d" class="waves-effect waves-light" id="m-nav-item-blog-az519d">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                页面资源加载
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/dxrrhq" class="waves-effect waves-light" id="m-nav-item-blog-dxrrhq">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Webpack 4 编译内存泄漏
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/xcw19a" class="waves-effect waves-light" id="m-nav-item-blog-xcw19a">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native, Hybrid App, H5 简单对比分析
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/vzgcgb" class="waves-effect waves-light" id="m-nav-item-blog-vzgcgb">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native Android APK包大小分析
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/wk5ney" class="waves-effect waves-light" id="m-nav-item-blog-wk5ney">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native 自定义插件
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/kghphs" class="waves-effect waves-light" id="m-nav-item-blog-kghphs">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native代码执行跟踪和调试
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/qwywww" class="waves-effect waves-light" id="m-nav-item-blog-qwywww">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native 热更新实现
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/rh45zo" class="waves-effect waves-light" id="m-nav-item-blog-rh45zo">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native Android源码解读和交互原理分析
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/uhmdkg" class="waves-effect waves-light" id="m-nav-item-blog-uhmdkg">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Hybrid系列-phonegap android框架详解
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/sxys82" class="waves-effect waves-light" id="m-nav-item-blog-sxys82">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Hybrid系列-Cordova android框架详解
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/syh43v" class="waves-effect waves-light" id="m-nav-item-blog-syh43v">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                npm 常用命令
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/vfhw62" class="waves-effect waves-light" id="m-nav-item-blog-vfhw62">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Git 使用技巧
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/gayu0o" class="waves-effect waves-light" id="m-nav-item-blog-gayu0o">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Docker 随记
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/egret" class="waves-effect waves-light" id="m-nav-item-blog-egret">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Egret  游戏开发
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/og9ogk" class="waves-effect waves-light" id="m-nav-item-blog-og9ogk">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                vscode 插件开发
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/qz7n03" class="waves-effect waves-light" id="m-nav-item-blog-qz7n03">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Mac PHP 环境
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/qwr449" class="waves-effect waves-light" id="m-nav-item-blog-qwr449">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Webpack 热更新实现原理分析
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/ruv09m" class="waves-effect waves-light" id="m-nav-item-blog-ruv09m">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Egg SSR Webpack 内存编译热更新实现
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/sg8avg" class="waves-effect waves-light" id="m-nav-item-blog-sg8avg">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Babel 构建优化
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/zfri65" class="waves-effect waves-light" id="m-nav-item-blog-zfri65">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Webpack 构建大小分析与优化
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/xriz8a" class="waves-effect waves-light" id="m-nav-item-blog-xriz8a">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Egg + Vue/Nunjucks 服务端渲染性能测试
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/lsrssy" class="waves-effect waves-light" id="m-nav-item-blog-lsrssy">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Flutter  Android  混合工程实践
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/zs3hog" class="waves-effect waves-light" id="m-nav-item-blog-zs3hog">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Flutter iOS 混合工程实践
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/nrswgq" class="waves-effect waves-light" id="m-nav-item-blog-nrswgq">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Android 与 Flutter 入门开发实践指引
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/wydpi1" class="waves-effect waves-light" id="m-nav-item-blog-wydpi1">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Flutter 动态更新
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/cdal6o" class="waves-effect waves-light" id="m-nav-item-blog-cdal6o">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Egg + Web 自定义前端渲染
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/easy-team" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+     </div>
+    
+    <div class="doc-right-nav">
+        <div class="card" class="doc-right-card">
+            <div class="card-content article-info">
+                <h1 style="margin-top: 12px;">Egret  游戏开发</h1>
+                <div class="row">
+                    <div class="col s5 right-align">
+                        
+                    </div>
+                </div>
+                
+                <div class="post-info">
+                    <div class="post-date info-break-policy">
+                        <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                        2019-10-20
+                    </div>
+    
+                    
+                        
+                        <div class="info-break-policy">
+                            <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
+                            1k
+                        </div>
+                        
+    
+                        
+                        <div class="info-break-policy">
+                            <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
+                            4 Min
+                        </div>
+                        
+                    
+                    
+                    
+                        <div id="busuanzi_container_page_pv" class="info-break-policy">
+                            <i class="far fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                            <span id="busuanzi_value_page_pv"></span>
+                        </div>
+                    
+                </div>
+            </div>
+            <hr class="clearfix">
+            <div class="card-content article-card-content" style="padding-top: 0px;">
+                <div id="articleContent">
+                    <h2 id="命令行"><a href="#命令行" class="headerlink" title="命令行"></a>命令行</h2><ul>
+<li><p>egret build</p>
+</li>
+<li><p>egret run -a   自动编译，浏览器不能自动刷新</p>
+</li>
+</ul>
+<h2 id="Stage"><a href="#Stage" class="headerlink" title="Stage"></a>Stage</h2><pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">public</span> <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">once</span><span class="token punctuation">(</span>egret<span class="token punctuation">.</span>Event<span class="token punctuation">.</span>ADDED_TO_STAGE<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>onAddToStage<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">private</span> <span class="token function">onAddToStage</span><span class="token punctuation">(</span>event<span class="token punctuation">:</span>egret<span class="token punctuation">.</span>Event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>stage<span class="token punctuation">.</span>frameRate <span class="token operator">=</span> <span class="token number">50</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><p>通过 addEventListener 注册监听事件，可以是系统和自定义事件， 通过 dispatchEventWith 和 dispatchEventWith 触发事件， 另外可以通过 removeEventListener 移除监听事件</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">this</span><span class="token punctuation">.</span>fireTimer<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span>egret<span class="token punctuation">.</span>TimerEvent<span class="token punctuation">.</span>TIMER<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>createBullet<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">dispatchEventWith</span><span class="token punctuation">(</span><span class="token string">"createBullet"</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span>egret<span class="token punctuation">.</span>Event<span class="token punctuation">.</span>ENTER_FRAME<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>gameViewUpdate<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>常用系统事件</p>
+<ul>
+<li><p>egret.TouchEvent.TOUCH_MOVE</p>
+</li>
+<li><p>egret.TimerEvent.TIMER</p>
+</li>
+<li><p>egret.TouchEvent.TOUCH_MOVE</p>
+</li>
+</ul>
+<h2 id="拖动"><a href="#拖动" class="headerlink" title="拖动"></a>拖动</h2><blockquote>
+<p><a href="http://developer.egret.com/cn/example/egret2d/index.html#060-interact-drag-drop" target="_blank" rel="noopener">http://developer.egret.com/cn/example/egret2d/index.html#060-interact-drag-drop</a></p>
+</blockquote>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// 鼠标点击时，鼠标全局坐标与e的位置差</span>
+<span class="token keyword">private</span> _distance<span class="token punctuation">:</span>egret<span class="token punctuation">.</span>Point <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">egret<span class="token punctuation">.</span>Point</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+<span class="token keyword">this</span><span class="token punctuation">.</span>e<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span>egret<span class="token punctuation">.</span>TouchEvent<span class="token punctuation">.</span>TOUCH_BEGIN<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>mouseDown<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>e<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span>egret<span class="token punctuation">.</span>TouchEvent<span class="token punctuation">.</span>TOUCH_END<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>mouseUp<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">private</span> <span class="token function">mouseDown</span><span class="token punctuation">(</span>evt<span class="token punctuation">:</span>egret<span class="token punctuation">.</span>TouchEvent<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>_touchStatus <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>_distance<span class="token punctuation">.</span>x <span class="token operator">=</span> evt<span class="token punctuation">.</span>stageX <span class="token operator">-</span> <span class="token keyword">this</span><span class="token punctuation">.</span>e<span class="token punctuation">.</span>x<span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>_distance<span class="token punctuation">.</span>y <span class="token operator">=</span> evt<span class="token punctuation">.</span>stageY <span class="token operator">-</span> <span class="token keyword">this</span><span class="token punctuation">.</span>e<span class="token punctuation">.</span>y<span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>stage<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span>egret<span class="token punctuation">.</span>TouchEvent<span class="token punctuation">.</span>TOUCH_MOVE<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>mouseMove<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">private</span> <span class="token function">mouseMove</span><span class="token punctuation">(</span>evt<span class="token punctuation">:</span>egret<span class="token punctuation">.</span>TouchEvent<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_touchStatus <span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>e<span class="token punctuation">.</span>x <span class="token operator">=</span> evt<span class="token punctuation">.</span>stageX <span class="token operator">-</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_distance<span class="token punctuation">.</span>x<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>e<span class="token punctuation">.</span>y <span class="token operator">=</span> evt<span class="token punctuation">.</span>stageY <span class="token operator">-</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_distance<span class="token punctuation">.</span>y<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<ul>
+<li>egret.TouchEvent.TOUCH_BEGIN</li>
+</ul>
+<h2 id="锚点"><a href="#锚点" class="headerlink" title="锚点"></a>锚点</h2><blockquote>
+<p>anchoroffsetX  和  anchoroffsetX 可以用来作为虚拟的中心点或者参考点</p>
+</blockquote>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">this</span><span class="token punctuation">.</span>fire<span class="token punctuation">.</span>x <span class="token operator">=</span> <span class="token number">200</span><span class="token punctuation">;</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>fire<span class="token punctuation">.</span>y <span class="token operator">=</span> <span class="token number">200</span><span class="token punctuation">;</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>fire<span class="token punctuation">.</span>scaleX <span class="token operator">=</span> <span class="token number">0.7</span><span class="token punctuation">;</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>fire<span class="token punctuation">.</span>scaleY <span class="token operator">=</span> <span class="token number">0.7</span><span class="token punctuation">;</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>fire<span class="token punctuation">.</span>anchorOffsetX <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>fire<span class="token punctuation">.</span>width <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>fire<span class="token punctuation">.</span>anchorOffsetY <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>fire<span class="token punctuation">.</span>height <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span></code></pre>
+<h2 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h2><blockquote>
+<p>监听 <code>ENTER_FRAME</code> 将会按照帧频进行回调</p>
+</blockquote>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span> egret<span class="token punctuation">.</span>Event<span class="token punctuation">.</span>ENTER_FRAME<span class="token punctuation">,</span> <span class="token punctuation">(</span> evt<span class="token punctuation">:</span>egret<span class="token punctuation">.</span>Event <span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>
+  e<span class="token punctuation">.</span>rotation <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">this</span> <span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<ul>
+<li><p>e.rotation<a href="http://developer.egret.com/cn/example/egret2d/index.html#010-disp-anchor-rota-scale" target="_blank" rel="noopener"> 旋转</a></p>
+</li>
+<li><p>e.scaleX (0-1) <a href="http://developer.egret.com/cn/example/egret2d/index.html#010-disp-anchor-rota-scale" target="_blank" rel="noopener">缩放 </a></p>
+</li>
+</ul>
+<h2 id="富文本"><a href="#富文本" class="headerlink" title="富文本"></a>富文本</h2><blockquote>
+<p><a href="http://developer.egret.com/cn/example/egret2d/index.html#110-text-text-flow-2" target="_blank" rel="noopener">http://developer.egret.com/cn/example/egret2d/index.html#110-text-text-flow-2</a></p>
+</blockquote>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">const</span> html<span class="token punctuation">:</span>egret<span class="token punctuation">.</span>TextField <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">egret<span class="token punctuation">.</span>TextField</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+html<span class="token punctuation">.</span>textFlow <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">egret<span class="token punctuation">.</span>HtmlTextParser</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">parser</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">addChild</span><span class="token punctuation">(</span>html<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h2 id="粒子-particle"><a href="#粒子-particle" class="headerlink" title="粒子 particle"></a>粒子 particle</h2><pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+ <span class="token property">"modules"</span><span class="token operator">:</span><span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+   <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"particle"</span><span class="token punctuation">,</span>
+   <span class="token property">"path"</span><span class="token operator">:</span> <span class="token string">"../particle/libsrc"</span>
+  <span class="token punctuation">}</span>
+ <span class="token punctuation">]</span>
+<span class="token punctuation">}</span></code></pre>
+<blockquote>
+<p><a href="http://developer.egret.com/cn/github/egret-docs/extension/threes/instructions/index.html" target="_blank" rel="noopener">http://developer.egret.com/cn/github/egret-docs/extension/threes/instructions/index.html</a></p>
+</blockquote>
+<p>下载地址：<a href="https://github.com/egret-labs/egret-game-library/tree/master/particle" target="_blank" rel="noopener">https://github.com/egret-labs/egret-game-library/tree/master/particle</a><br />教程文档：<a href="http://developer.egret.com/cn/github/egret-docs/extension/particle/introduction/index.html" target="_blank" rel="noopener">http://developer.egret.com/cn/github/egret-docs/extension/particle/introduction/index.html</a></p>
+<p>粒子编辑器： <a href="http://developer.egret.com/cn/github/egret-docs/tools/Feather/manual/index.html" target="_blank" rel="noopener">http://developer.egret.com/cn/github/egret-docs/tools/Feather/manual/index.html</a><br /><a href="https://www.yuque.com/attachments/yuque/0/2018/zip/116733/1543482819156-6fa0dc2b-73aa-40a3-bc3b-dad8c6542eff.zip?_lake_card=%7B%22src%22%3A%22https%3A%2F%2Fwww.yuque.com%2Fattachments%2Fyuque%2F0%2F2018%2Fzip%2F116733%2F1543482819156-6fa0dc2b-73aa-40a3-bc3b-dad8c6542eff.zip%22%2C%22name%22%3A%22silver.zip%22%2C%22size%22%3A3621%2C%22ext%22%3A%22zip%22%2C%22type%22%3A%22application%2Fzip%22%2C%22card%22%3A%22file%22%7D" target="_blank" rel="noopener">silver.zip</a><br /><img src="https://cdn.nlark.com/yuque/0/2018/png/116733/1543482690971-4bc964a4-b29c-4fd3-a6b4-93bbe379b839.png#width=827" alt=""></p>
+<h2 id="资源加载"><a href="#资源加载" class="headerlink" title="资源加载"></a>资源加载</h2><blockquote>
+<p><a href="http://edn.egret.com/cn/article/index/id/123" target="_blank" rel="noopener">http://edn.egret.com/cn/article/index/id/123</a></p>
+</blockquote>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// 同步加载资源，这种方式只能获取已经缓存过的资源，例如之前调用过loadGroup()被预加载的资源</span>
+<span class="token comment" spellcheck="true">// 可以在 resource/default.res.json 配置</span>
+<span class="token keyword">const</span> res <span class="token operator">=</span> RES<span class="token punctuation">.</span><span class="token function">getRes</span><span class="token punctuation">(</span><span class="token string">"red_icon_png"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 异步获取资源，这种方式可以获取配置中含有的所有资源项。如果缓存中存在，直接调用回调函数返回，若不存在，就启动网络加载文件并解析后回调。</span>
+<span class="token keyword">const</span> res <span class="token operator">=</span> RES<span class="token punctuation">.</span><span class="token function">getResAsync</span><span class="token punctuation">(</span>name<span class="token punctuation">:</span>string<span class="token punctuation">,</span>compFunc<span class="token punctuation">:</span>Function<span class="token punctuation">,</span>thisObject<span class="token punctuation">:</span>any<span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token keyword">void</span></code></pre>
+<h2 id="纹理集"><a href="#纹理集" class="headerlink" title="纹理集"></a>纹理集</h2><ul>
+<li>纹理集实际上就是将一些零碎的小图放到一张大图当中, 可以用 <a href="http://edn.egret.com/cn/index.php?g=portal&amp;m=article&amp;a=index&amp;id=238" target="_blank" rel="noopener">Texture Merger</a> 工具制作<a href="http://edn.egret.com/cn/article/index/id/135" target="_blank" rel="noopener">http://edn.egret.com/cn/article/index/id/135</a></li>
+</ul>
+<ul>
+<li>可以通过 <code>markman</code>  软件获取已有纹理图元素坐标，用于编写 纹理图 json 文件,  需要先安装 AdobeAIR</li>
+</ul>
+<p><a href="https://www.yuque.com/attachments/yuque/0/2018/zip/116733/1544149398492-7070a934-fc8f-4a2c-989b-39b895996db7.zip?_lake_card=%7B%22src%22%3A%22https%3A%2F%2Fwww.yuque.com%2Fattachments%2Fyuque%2F0%2F2018%2Fzip%2F116733%2F1544149398492-7070a934-fc8f-4a2c-989b-39b895996db7.zip%22%2C%22name%22%3A%22MarkMan.air.zip%22%2C%22size%22%3A1644801%2C%22ext%22%3A%22zip%22%2C%22type%22%3A%22application%2Fzip%22%2C%22card%22%3A%22file%22%7D" target="_blank" rel="noopener">MarkMan.air.zip</a></p>
+<h2 id="飞机大战"><a href="#飞机大战" class="headerlink" title="飞机大战"></a>飞机大战</h2><p><a href="https://www.yuque.com/attachments/yuque/0/2019/zip/116733/1546414664425-5010a57a-e7e2-4c7f-bac5-663daa4e4648.zip?_lake_card=%7B%22src%22%3A%22https%3A%2F%2Fwww.yuque.com%2Fattachments%2Fyuque%2F0%2F2019%2Fzip%2F116733%2F1546414664425-5010a57a-e7e2-4c7f-bac5-663daa4e4648.zip%22%2C%22name%22%3A%22egret-air-fight.zip%22%2C%22size%22%3A10981593%2C%22ext%22%3A%22zip%22%2C%22type%22%3A%22application%2Fzip%22%2C%22card%22%3A%22file%22%7D" target="_blank" rel="noopener">egret-air-fight.zip</a></p>
+<h3 id="游戏逻辑"><a href="#游戏逻辑" class="headerlink" title="游戏逻辑"></a>游戏逻辑</h3><ol>
+<li><p>创建默认背景图和启动按钮，同时创建可滚动背景图。飞机不动， 利用负坐标，背景向下移动，背景图循环滚动，循环利用</p>
+</li>
+<li><p>点击启动按钮启动游戏，开始创建飞机和发射子弹</p>
+</li>
+<li><p>监听 egret.Event.ENTER_FRAME 事件，更新飞机和子弹位置，通过不停的更改飞机和子弹的 y 坐标实现子弹发射效果， 通过 hitTestPoint 进行我的子弹与敌机， 敌机子弹与我的飞机进行碰撞检测，进行相应的扣血</p>
+</li>
+<li><p>创建我的飞机和发射子弹，监听创建子弹事件，监听我的飞机 egret.TouchEvent.TOUCH_MOVE 事件，同时调整飞机和子弹坐标</p>
+</li>
+<li><p>定时创建不同类型的敌机，同时开火，监听创建子弹事件</p>
+</li>
+<li><p>增加护卫机子弹发射，滚石场景，BOSS 场景，能量，爆炸，音乐等场景</p>
+</li>
+</ol>
+<h3 id="开发技巧"><a href="#开发技巧" class="headerlink" title="开发技巧"></a>开发技巧</h3><ul>
+<li><p>飞机不动， 背景向下移动，背景图循环滚动，循环利用 </p>
+</li>
+<li><p>通过 egret.TimerEvent.TIMER 事件执行重复操作，比如创建飞机，滚石，发射子弹等</p>
+</li>
+<li><p>敌机，子弹，滚石，道具都需要进行回收（超出屏幕）和重复利用，同时停止发射等事件</p>
+</li>
+<li><p>通过设置 子弹的 scaleX 和 scaleY 改变子弹的发射角度和方向， 可以使用坐标递增，递减或 egret.Tween.get 动画实现子弹发射效果</p>
+</li>
+<li><p>游戏结束，清理现场，包括 TIMER，ENTER_FRAME以及自定义事件</p>
+</li>
+</ul>
+
+                </div>
+                <hr/>
+    
+                
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://easy-team.github.io" rel="external nofollow noreferrer">sky</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://easy-team.github.io/blog/egret/">https://easy-team.github.io/blog/egret/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="https://easy-team.github.io" target="_blank">sky</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+    
+                <div class="tag_share" style="display: block;">
+                    <div class="post-meta__tag-list" style="display: inline-block;">
+                        
+                            <div class="article-tag">
+                                <span class="chip bg-color">No tag</span>
+                            </div>
+                        
+                    </div>
+                    <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                        <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    
+    <div class="social-share" data-sites="qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                    </div>
+                </div>
+                
+                    <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+                
+            </div>
+        </div>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/blog/qwr449/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="Webpack 热更新实现原理分析">
+                        
+                        <span class="card-title">Webpack 热更新实现原理分析</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            概述在使用 Webpack 构建开发期时，Webpack 提供热更新功能为开发带来良好的体验和开发效率。Webpack 热更新可以做到页面无刷新局部更新能力。Webpack 热更新机制相比传统的直接自动刷新浏览器，可以保持元素当前状态，特别是在编写 css 样式调整布局的时候优势明显，不用反复...
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2019-10-20
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            sky
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/blog/zfri65/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Webpack 构建大小分析与优化">
+                        
+                        <span class="card-title">Webpack 构建大小分析与优化</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            在项目开发时， 当页面构建的文件太大, 我们可以直接通过 easywebpack-cli 提供功能进行构建大小分析通过 -s 参数启动构建大小分析工具, 支持 analyzer(webpack-bundle-analyzer) 和 stats(stats-webpack-plugin) , 默...
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-10-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            sky
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+     </div>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('50')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + 'From: easy-team<br />'
+            + 'Author: sky<br />'
+            + 'Link: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+    
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+<!-- menu-selected -->
+<script>
+    var pathname = location.pathname.replace(/^\//, '').replace(/\/$/, '').replace(/\//g, '-');
+    $('#m-nav-item-' + pathname).addClass('doc-left-nav-mene-selected');
+</script>
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">年份</span>
+            <a href="https://easy-team.github.io" target="_blank">sky</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/easy-team" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">92.8k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    window.setTimeout("siteTime()", 1000);
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2019";
+                    var startMonth = "10";
+                    var startDate = "20";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/hubcarl" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:hubcarl@126.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=433207205" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 433207205" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/hubcarl" class="tooltipped" target="_blank" data-tooltip="关注我的微博: https://weibo.com/hubcarl" data-position="top" data-delay="50">
+        <i class="fab fa-weibo"></i>
+    </a>
+
+
+
+    <a href="https://zhuanlan.zhihu.com/easywebpack" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: https://zhuanlan.zhihu.com/easywebpack" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <!-- Baidu Analytics -->
+
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i["DaoVoiceObject"] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            a.charset = "utf-8";
+            m.parentNode.insertBefore(a, m)
+        })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') +
+            "//widget.daovoice.io/widget/6984b559.js", "daovoice")
+        daovoice('init', {
+            app_id: ""
+        });
+        daovoice('update');
+    </script>
+    
+
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

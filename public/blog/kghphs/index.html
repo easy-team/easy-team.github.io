@@ -1,0 +1,1649 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="React Native代码执行跟踪和调试, node, egg, webpack, ves, res, ssr">
+    <meta name="description" content="
+原文 http://hubcarl.github.io/blog/2016/09/04/react-native-debug/
+
+在本地开发时, React Native 是加载本地Node服务, 可以通过npm start 启动， pa">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>React Native代码执行跟踪和调试 | easy-team</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper head-container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">easy-team</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Home</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/res" class="waves-effect waves-light">
+      
+      <i class="fas fa-forward" style="zoom: 0.6;"></i>
+      
+      <span>Res</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/ves" class="waves-effect waves-light">
+      
+      <i class="fas fa-forward" style="zoom: 0.6;"></i>
+      
+      <span>Ves</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>Egg</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/egg-react">
+          
+          <i class="fas fa-forward" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Egg+React</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/egg-vue">
+          
+          <i class="fas fa-forward" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Egg+Vue</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/easywebpack" class="waves-effect waves-light">
+      
+      <i class="fas fa-building" style="zoom: 0.6;"></i>
+      
+      <span>Webpack</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog" class="waves-effect waves-light">
+      
+      <i class="fas fa-hacker-news" style="zoom: 0.6;"></i>
+      
+      <span>Blog</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>Contact</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">easy-team</div>
+        <div class="logo-desc">
+            
+            前端工程化,Node开发,Webpack,Egg,React Server Side Render, Vue Server Side Render
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Home
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/res" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-forward"></i>
+			
+			Res
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/ves" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-forward"></i>
+			
+			Ves
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			Egg
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>   
+				
+                  <a href="/egg-react " style="margin-left:75px";>
+				  
+				   <i class="fa fas fa-forward" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Egg+React</span>
+                  </a>
+                </li>
+              
+                <li>   
+				
+                  <a href="/egg-vue " style="margin-left:75px";>
+				  
+				   <i class="fa fas fa-forward" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Egg+Vue</span>
+                  </a>
+                </li>
+               
+            </ul>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/easywebpack" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-building"></i>
+			
+			Webpack
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-hacker-news"></i>
+			
+			Blog
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/easy-team" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/easy-team" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    <div class="bg-cover pd-header" style="height: 9vh">
+    <div class="container"></div>
+</div>
+
+
+    <script>
+        // 每天切换 banner 图.  Switch banner image every day.
+        $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
+    </script>
+    
+
+<div class="doc-content">
+    
+     <div class="doc-left-nav">
+        <div class="side-nav docsidenav">
+
+    <!-- <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">easy-team</div>
+        <div class="logo-desc">
+            
+            前端工程化,Node开发,Webpack,Egg,React Server Side Render, Vue Server Side Render
+            
+        </div>
+    </div> -->
+
+
+    <div class="doc-left-nav-title">blog</div>
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+            <a href="/blog/kiygy5" class="waves-effect waves-light" id="m-nav-item-blog-kiygy5">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Vue SSR 组件加载
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/ekvirc" class="waves-effect waves-light" id="m-nav-item-blog-ekvirc">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Webpack 构建流程解密
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/az519d" class="waves-effect waves-light" id="m-nav-item-blog-az519d">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                页面资源加载
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/dxrrhq" class="waves-effect waves-light" id="m-nav-item-blog-dxrrhq">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Webpack 4 编译内存泄漏
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/xcw19a" class="waves-effect waves-light" id="m-nav-item-blog-xcw19a">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native, Hybrid App, H5 简单对比分析
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/vzgcgb" class="waves-effect waves-light" id="m-nav-item-blog-vzgcgb">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native Android APK包大小分析
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/wk5ney" class="waves-effect waves-light" id="m-nav-item-blog-wk5ney">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native 自定义插件
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/kghphs" class="waves-effect waves-light" id="m-nav-item-blog-kghphs">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native代码执行跟踪和调试
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/qwywww" class="waves-effect waves-light" id="m-nav-item-blog-qwywww">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native 热更新实现
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/rh45zo" class="waves-effect waves-light" id="m-nav-item-blog-rh45zo">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native Android源码解读和交互原理分析
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/uhmdkg" class="waves-effect waves-light" id="m-nav-item-blog-uhmdkg">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Hybrid系列-phonegap android框架详解
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/sxys82" class="waves-effect waves-light" id="m-nav-item-blog-sxys82">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Hybrid系列-Cordova android框架详解
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/syh43v" class="waves-effect waves-light" id="m-nav-item-blog-syh43v">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                npm 常用命令
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/vfhw62" class="waves-effect waves-light" id="m-nav-item-blog-vfhw62">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Git 使用技巧
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/gayu0o" class="waves-effect waves-light" id="m-nav-item-blog-gayu0o">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Docker 随记
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/egret" class="waves-effect waves-light" id="m-nav-item-blog-egret">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Egret  游戏开发
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/og9ogk" class="waves-effect waves-light" id="m-nav-item-blog-og9ogk">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                vscode 插件开发
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/qz7n03" class="waves-effect waves-light" id="m-nav-item-blog-qz7n03">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Mac PHP 环境
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/qwr449" class="waves-effect waves-light" id="m-nav-item-blog-qwr449">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Webpack 热更新实现原理分析
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/ruv09m" class="waves-effect waves-light" id="m-nav-item-blog-ruv09m">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Egg SSR Webpack 内存编译热更新实现
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/sg8avg" class="waves-effect waves-light" id="m-nav-item-blog-sg8avg">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Babel 构建优化
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/zfri65" class="waves-effect waves-light" id="m-nav-item-blog-zfri65">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Webpack 构建大小分析与优化
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/xriz8a" class="waves-effect waves-light" id="m-nav-item-blog-xriz8a">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Egg + Vue/Nunjucks 服务端渲染性能测试
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/lsrssy" class="waves-effect waves-light" id="m-nav-item-blog-lsrssy">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Flutter  Android  混合工程实践
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/zs3hog" class="waves-effect waves-light" id="m-nav-item-blog-zs3hog">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Flutter iOS 混合工程实践
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/nrswgq" class="waves-effect waves-light" id="m-nav-item-blog-nrswgq">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Android 与 Flutter 入门开发实践指引
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/wydpi1" class="waves-effect waves-light" id="m-nav-item-blog-wydpi1">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Flutter 动态更新
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/cdal6o" class="waves-effect waves-light" id="m-nav-item-blog-cdal6o">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Egg + Web 自定义前端渲染
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/easy-team" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+     </div>
+    
+    <div class="doc-right-nav">
+        <div class="card" class="doc-right-card">
+            <div class="card-content article-info">
+                <h1 style="margin-top: 12px;">React Native代码执行跟踪和调试</h1>
+                <div class="row">
+                    <div class="col s5 right-align">
+                        
+                    </div>
+                </div>
+                
+                <div class="post-info">
+                    <div class="post-date info-break-policy">
+                        <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                        2019-10-20
+                    </div>
+    
+                    
+                        
+                        <div class="info-break-policy">
+                            <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
+                            4.7k
+                        </div>
+                        
+    
+                        
+                        <div class="info-break-policy">
+                            <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
+                            25 Min
+                        </div>
+                        
+                    
+                    
+                    
+                        <div id="busuanzi_container_page_pv" class="info-break-policy">
+                            <i class="far fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                            <span id="busuanzi_value_page_pv"></span>
+                        </div>
+                    
+                </div>
+            </div>
+            <hr class="clearfix">
+            <div class="card-content article-card-content" style="padding-top: 0px;">
+                <div id="articleContent">
+                    <blockquote>
+<p>原文 <a href="http://hubcarl.github.io/blog/2016/09/04/react-native-debug/" target="_blank" rel="noopener">http://hubcarl.github.io/blog/2016/09/04/react-native-debug/</a></p>
+</blockquote>
+<p>在本地开发时, React Native 是加载本地Node服务, 可以通过npm start 启动， package.json 代码如下：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token string">"scripts"</span><span class="token keyword">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"start"</span><span class="token keyword">:</span> <span class="token string">"node node_modules/react-native/local-cli/cli.js start"</span>
+<span class="token punctuation">}</span></code></pre>
+<p>加载的地址为：<a href="http://localhost:8081/debug.android.bundle?platform=android&dev=true&hot=false&minify=false" target="_blank" rel="noopener">http://localhost:8081/debug.android.bundle?platform=android&amp;dev=true&amp;hot=false&amp;minify=false</a></p>
+<p>首次在电脑上面打开该地址，被庞大的源代码吓一跳。一个简单的HelloWorld App 足足有5万多行JS代码(开发模式)。仔细分析和梳理调用流程后，也没有那么的恐怖。代码主要包括React源码, 所有初始化定义的Native组件定义，Bridge层调用相关的MessageQueue，NativeModules，原生JS常用方法polyfill等代码定义实现。</p>
+<p>如果是正式发布包，在应用运行时，是不存在本地nodejs服务器这个概念的，所以JS整合文件都是预先打包到asset资源文件里的，减少网络下载JS耗时。当然也可以从网络下载JSBundle，这时就需要考虑首次启动下载JSBundle的网络耗时和下载失败的情况处理。在项目开发时，其实可以在打包时内置一份JSBundle文件，然后启动后异步去下载最新JSBundle，下次启动时就可以加载新的JSBundle。</p>
+<p>针对如此庞大的JSBundle文件，首次启动加载和解析的性能如何呢？</p>
+<h3 id="一-远程本地调试"><a href="#一-远程本地调试" class="headerlink" title="一.远程本地调试"></a>一.远程本地调试</h3><p>通过创建ReactInstanceManager.builder 设置setUseDeveloperSupport(true)支持远程本地调试。<br />远程调试时，如果是通过Android studio 打包时，可以先通过npm start启动启动本地服务，启动后服务地址：</p>
+<p><a href="http://localhost:8081/debug.android.bundle?platform=android&dev=true&hot=false&minify=false" target="_blank" rel="noopener">http://localhost:8081/debug.android.bundle?platform=android&amp;dev=true&amp;hot=false&amp;minify=false</a></p>
+<p>如果想加载asset下的JSBundle文件，需要先把JSBundle打到本地assets目录下面，可以通过react-native bundle实现。命令自动会分析图片依赖，然后拷贝到res目录下面。</p>
+<pre class=" language-bash"><code class="language-bash">react-native bundle --entry-file ./index.android.js  --bundle-output ./app/src/main/assets/index.android.jsbundle --platform android --assets-dest ./app/src/main/res/ --dev <span class="token boolean">false</span></code></pre>
+<p>然后setUseDeveloperSupport(false)，之后重新打包即可。</p>
+<h3 id="二-远程加载JSBundle文件"><a href="#二-远程加载JSBundle文件" class="headerlink" title="二.远程加载JSBundle文件"></a>二.远程加载JSBundle文件</h3><p>在<code>ReactInstanceManager</code> 类里面提供了<code>setJSBundleFile</code>方法,这个就是动态更新的入口.</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> Builder <span class="token function">setJSBundleFile</span><span class="token punctuation">(</span>String jsBundleFile<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      mJSBundleFile <span class="token operator">=</span> jsBundleFile<span class="token punctuation">;</span>
+      <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span></code></pre>
+<p>由于React Native加载的js文件都打包在bundle中，通过这个方法，可以设置app加载的bundle来源。若检测到远端存在更新的bundle文件，下载好后重新加载即可。</p>
+<p>在<code>ReactInstanceManager</code> 类里面提供了<code>recreateReactContextInBackground</code>方法, 可以通过调用该方法重新加载JSBundle文件.</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">recreateReactContextInBackground</span><span class="token punctuation">(</span>JavaScriptExecutor jsExecutor<span class="token punctuation">,</span> JSBundleLoader jsBundleLoader<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    UiThreadUtil<span class="token punctuation">.</span><span class="token function">assertOnUiThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    ReactContextInitParams initParams <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ReactContextInitParams</span><span class="token punctuation">(</span>jsExecutor<span class="token punctuation">,</span> jsBundleLoader<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>mIsContextInitAsyncTaskRunning<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment" spellcheck="true">// No background task to create react context is currently running, create and execute one.</span>
+      ReactContextInitAsyncTask initTask <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ReactContextInitAsyncTask</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      initTask<span class="token punctuation">.</span><span class="token function">execute</span><span class="token punctuation">(</span>initParams<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      mIsContextInitAsyncTaskRunning <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token comment" spellcheck="true">// Background task is currently running, queue up most recent init params to recreate context</span>
+      <span class="token comment" spellcheck="true">// once task completes.</span>
+      mPendingReactContextInitParams <span class="token operator">=</span> initParams<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span></code></pre>
+<p>目前该方法访问权限上private,需要通过反射才能调用, 希望未来 React Native 能够从官方支持. 代码如下:</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">onJSBundleLoadedFromServer</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            Class<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> RIManagerClazz <span class="token operator">=</span> mReactInstanceManager<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Method method <span class="token operator">=</span> RIManagerClazz<span class="token punctuation">.</span><span class="token function">getDeclaredMethod</span><span class="token punctuation">(</span><span class="token string">"recreateReactContextInBackground"</span><span class="token punctuation">,</span> JavaScriptExecutor<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> JSBundleLoader<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            method<span class="token punctuation">.</span><span class="token function">setAccessible</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            method<span class="token punctuation">.</span><span class="token function">invoke</span><span class="token punctuation">(</span>mReactInstanceManager<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">JSCJavaScriptExecutor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                    JSBundleLoader<span class="token punctuation">.</span><span class="token function">createFileLoader</span><span class="token punctuation">(</span><span class="token function">getApplicationContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> JS_BUNDLE_LOCAL_PATH<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">NoSuchMethodException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IllegalAccessException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InvocationTargetException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IllegalArgumentException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span></code></pre>
+<h3 id="三-开启ReactNative日志打印"><a href="#三-开启ReactNative日志打印" class="headerlink" title="三.开启ReactNative日志打印"></a>三.开启ReactNative日志打印</h3><p>React Native 增加了关键日志自定义listener回调接口MarkerListener，只要在React Activity onCreate设置ReactMarker.setMarkerListener方法，<br />实现MarkerListener接口logMarker方法，即可实现控制台日志打印。我们可以记录下每个关键路径的当前时间，即可计算出每个关键路径的执行时间。</p>
+<pre class=" language-java"><code class="language-java">ReactMarker<span class="token punctuation">.</span><span class="token function">setMarkerListener</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ReactMarker<span class="token punctuation">.</span>MarkerListener</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">logMarker</span><span class="token punctuation">(</span>String name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Log<span class="token punctuation">.</span><span class="token function">i</span><span class="token punctuation">(</span><span class="token string">"ReactNativeJS"</span><span class="token punctuation">,</span> name<span class="token punctuation">.</span><span class="token function">toLowerCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" cost:"</span> <span class="token operator">+</span> System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre><code>09-03 20:33:47.637 I/ReactNativeJS: process_packages_end cost:1472387627637
+
+09-03 20:33:47.637 I/ReactNativeJS: build_native_module_registry_start cost:1472387627637
+
+09-03 20:33:47.639 I/ReactNativeJS: build_native_module_registry_end cost:1472387627639
+
+09-03 20:33:47.646 I/ReactNativeJS: create_catalyst_instance_start cost:1472387627646
+
+09-03 20:33:47.688 I/ReactNativeJS: create_catalyst_instance_end cost:1472387627688
+
+09-03 20:33:47.688 I/ReactNativeJS: run_js_bundle_start cost:1472387627688
+
+09-03 20:33:47.717 I/ReactNativeJS: loadapplicationscript_startstringconvert cost:1472387627717
+
+09-03 20:33:47.833 I/ReactNativeJS: loadapplicationscript_endstringconvert cost:1472387627832
+
+09-03 20:33:48.787 I/ReactNativeJS: create_react_context_end cost:1472387628786
+
+09-03 20:33:48.787 I/ReactNativeJS: run_js_bundle_end cost:1472387628787</code></pre><h3 id="四-简单的React-Native-View创建流程"><a href="#四-简单的React-Native-View创建流程" class="headerlink" title="四.简单的React Native View创建流程"></a>四.简单的React Native View创建流程</h3><p><img src="https://raw.githubusercontent.com/hubcarl/hubcarl.github.io/master/_posts/images/react/rn-simple-view.jpg#width=" alt=""></p>
+<h4 id="1-React-View源码"><a href="#1-React-View源码" class="headerlink" title="1.React View源码"></a>1.React View源码</h4><pre><code>render() {
+    return (
+        &lt;View style={styles.container}&gt;
+            &lt;Text style={styles.welcome}&gt;
+                {this.state.text}
+            &lt;/Text&gt;
+            &lt;TouchableOpacity activeOpacity={0.8} onPress={this._getJSNativeCost}&gt;
+                &lt;Text style={styles.instructions}&gt;
+                    点击我，测试JS调用Native性能
+                &lt;/Text&gt;
+            &lt;/TouchableOpacity&gt;
+             &lt;TouchableOpacity activeOpacity={0.8} onPress={this._setCache}&gt;
+                &lt;Text style={styles.instructions}&gt;
+                    点击我，设置缓存测试
+                &lt;/Text&gt;
+              &lt;/TouchableOpacity&gt;
+             &lt;TouchableOpacity activeOpacity={0.8} onPress={this._getCache}&gt;
+              &lt;Text style={styles.instructions}&gt;
+                  点击我，获取缓存值
+              &lt;/Text&gt;
+             &lt;/TouchableOpacity&gt;
+            &lt;TouchableOpacity activeOpacity={0.8} onPress={this._secondActivity}&gt;
+                &lt;Text style={styles.instructions}&gt;
+                    点击我，打开Android Native Activity页面
+                &lt;/Text&gt;
+            &lt;/TouchableOpacity&gt;
+            &lt;TouchableOpacity activeOpacity={0.8} onPress={this._secondReactActivity}&gt;
+                &lt;Text style={styles.instructions}&gt;
+                    点击我，打开Android Second React Activity页面
+                &lt;/Text&gt;
+            &lt;/TouchableOpacity&gt;
+            &lt;Text style={styles.instructions}&gt;
+                Shake or press menu button for dev menu
+            &lt;/Text&gt;
+        &lt;/View&gt;
+    );
+}</code></pre><h4 id="2-React-bundle-js-打包构建后"><a href="#2-React-bundle-js-打包构建后" class="headerlink" title="2.React bundle.js 打包构建后"></a>2.React bundle.js 打包构建后</h4><pre><code>{key:&#39;render&#39;,value:function render()
+
+{
+return(
+_react2.default.createElement(_reactNative.View,{style:styles.container},
+_react2.default.createElement(_reactNative.Text,{style:styles.welcome},
+this.state.text),
+
+_react2.default.createElement(_reactNative.TouchableOpacity,{activeOpacity:0.8,onPress:this._getJSNativeCost},
+_react2.default.createElement(_reactNative.Text,{style:styles.instructions},&#39;点击我，测试JS调用Native性能&#39;)),
+
+_react2.default.createElement(_reactNative.TouchableOpacity,{activeOpacity:0.8,onPress:this._setCache},
+_react2.default.createElement(_reactNative.Text,{style:styles.instructions},&#39;点击我，设置缓存测试&#39;)),
+
+_react2.default.createElement(_reactNative.TouchableOpacity,{activeOpacity:0.8,onPress:this._getCache},
+_react2.default.createElement(_reactNative.Text,{style:styles.instructions},&#39;点击我，获取缓存值&#39;)),
+
+_react2.default.createElement(_reactNative.TouchableOpacity,{activeOpacity:0.8,onPress:this._secondActivity},
+_react2.default.createElement(_reactNative.Text,{style:styles.instructions},&#39;点击我，打开Android Native Activity页面&#39;)),
+
+_react2.default.createElement(_reactNative.TouchableOpacity,{activeOpacity:0.8,onPress:this._secondReactActivity},
+_react2.default.createElement(_reactNative.Text,{style:styles.instructions},&#39;点击我，打开Android Second React Activity页面&#39;)),
+
+_react2.default.createElement(_reactNative.Text,{style:styles.instructions},&#39;Shake or press menu button for dev menu&#39;)));
+}}</code></pre><h4 id="3-Native-View创建之JS调用Native"><a href="#3-Native-View创建之JS调用Native" class="headerlink" title="3.Native View创建之JS调用Native"></a>3.Native View创建之JS调用Native</h4><pre><code>09-03 20:19:19.462  Running application &quot;SmartDebugReactApp&quot; with appParams: {&quot;initialProps&quot;:{},&quot;rootTag&quot;:1}. __DEV__ === true, development-level warning are ON, performance optimizations are OFF
+
+09-03 20:19:19.526  &#39;JS-&gt;N : &#39;, 8, 18, &#39;NaN.createView([2,&quot;RCTView&quot;,1,{&quot;flex&quot;:1}])&#39;
+
+09-03 20:19:19.545  &#39;JS-&gt;N : &#39;, 8, 18, &#39;NaN.createView([3,&quot;RCTView&quot;,1,{&quot;collapsable&quot;:true,&quot;flex&quot;:1}])&#39;
+
+09-03 20:19:19.584  &#39;JS-&gt;N : &#39;, 28, 1, &#39;NaN.createTimer([2,1,1472386759583,false])&#39;
+
+09-03 20:19:19.706  &#39;JS-&gt;N : &#39;, 8, 18, &#39;NaN.createView([4,&quot;RCTView&quot;,1,{&quot;flex&quot;:1,&quot;justifyContent&quot;:&quot;center&quot;,&quot;alignItems&quot;:&quot;center&quot;,&quot;backgroundColor&quot;:-656129}])&#39;
+
+09-03 20:19:19.721  &#39;JS-&gt;N : &#39;, 8, 18, &#39;NaN.createView([5,&quot;RCTText&quot;,1,{&quot;fontSize&quot;:20,&quot;textAlign&quot;:&quot;center&quot;,&quot;margin&quot;:10,&quot;color&quot;:-65536,&quot;accessible&quot;:true,&quot;allowFontScaling&quot;:true,&quot;ellipsizeMode&quot;:&quot;tail&quot;}])&#39;
+
+09-03 20:19:19.732  &#39;JS-&gt;N : &#39;, 8, 18, &#39;NaN.createView([6,&quot;RCTRawText&quot;,1,{&quot;text&quot;:&quot;Welcome to React Native!&quot;}])&#39;
+
+09-03 20:19:19.738  &#39;JS-&gt;N : &#39;, 8, 9, &#39;NaN.setChildren([5,[6]])&#39;
+
+09-03 20:19:19.768  &#39;JS-&gt;N : &#39;, 8, 18, &#39;NaN.createView([7,&quot;RCTView&quot;,1,{&quot;accessible&quot;:true,&quot;opacity&quot;:1}])&#39;
+
+09-03 20:19:19.777  &#39;JS-&gt;N : &#39;, 8, 18, &#39;NaN.createView([8,&quot;RCTText&quot;,1,{&quot;textAlign&quot;:&quot;center&quot;,&quot;color&quot;:-13421773,&quot;marginTop&quot;:15,&quot;marginBottom&quot;:5,&quot;fontSize&quot;:14,&quot;accessible&quot;:true,&quot;allowFontScaling&quot;:true,&quot;ellipsizeMode&quot;:&quot;tail&quot;}])&#39;
+
+09-03 20:19:19.779  &#39;JS-&gt;N : &#39;, 8, 18, &#39;NaN.createView([9,&quot;RCTRawText&quot;,1,{&quot;text&quot;:&quot;点击我，测试JS调用Native性能&quot;}])&#39;
+
+09-03 20:19:19.782  &#39;JS-&gt;N : &#39;, 8, 9, &#39;NaN.setChildren([8,[9]])&#39;
+
+09-03 20:19:19.783  &#39;JS-&gt;N : &#39;, 8, 9, &#39;NaN.setChildren([7,[8]])&#39;
+
+09-03 20:19:19.801  &#39;JS-&gt;N : &#39;, 8, 18, &#39;NaN.createView([10,&quot;RCTView&quot;,1,{&quot;accessible&quot;:true,&quot;opacity&quot;:1}])&#39;
+
+09-03 20:19:19.810  &#39;JS-&gt;N : &#39;, 8, 18, &#39;NaN.createView([12,&quot;RCTText&quot;,1,{&quot;textAlign&quot;:&quot;center&quot;,&quot;color&quot;:-13421773,&quot;marginTop&quot;:15,&quot;marginBottom&quot;:5,&quot;fontSize&quot;:14,&quot;accessible&quot;:true,&quot;allowFontScaling&quot;:true,&quot;ellipsizeMode&quot;:&quot;tail&quot;}])&#39;
+
+09-03 20:19:19.812  &#39;JS-&gt;N : &#39;, 8, 18, &#39;NaN.createView([13,&quot;RCTRawText&quot;,1,{&quot;text&quot;:&quot;点击我，设置缓存测试&quot;}])&#39;
+
+09-03 20:19:19.813  &#39;JS-&gt;N : &#39;, 8, 9, &#39;NaN.setChildren([12,[13]])&#39;
+
+
+09-03 20:19:19.814  &#39;JS-&gt;N : &#39;, 8, 9, &#39;NaN.setChildren([10,[12]])&#39;
+
+09-03 20:19:19.834  &#39;JS-&gt;N : &#39;, 8, 18, &#39;NaN.createView([14,&quot;RCTView&quot;,1,{&quot;accessible&quot;:true,&quot;opacity&quot;:1}])&#39;
+
+09-03 20:19:19.849  &#39;JS-&gt;N : &#39;, 8, 18, &#39;NaN.createView([15,&quot;RCTText&quot;,1,{&quot;textAlign&quot;:&quot;center&quot;,&quot;color&quot;:-13421773,&quot;marginTop&quot;:15,&quot;marginBottom&quot;:5,&quot;fontSize&quot;:14,&quot;accessible&quot;:true,&quot;allowFontScaling&quot;:true,&quot;ellipsizeMode&quot;:&quot;tail&quot;}])&#39;
+
+09-03 20:19:19.851  &#39;JS-&gt;N : &#39;, 8, 18, &#39;NaN.createView([16,&quot;RCTRawText&quot;,1,{&quot;text&quot;:&quot;点击我，获取缓存值&quot;}])&#39;
+
+09-03 20:19:19.851  &#39;JS-&gt;N : &#39;, 8, 9, &#39;NaN.setChildren([15,[16]])&#39;
+
+09-03 20:19:19.854  &#39;JS-&gt;N : &#39;, 8, 9, &#39;NaN.setChildren([14,[15]])&#39;
+
+09-03 20:19:19.881  &#39;JS-&gt;N : &#39;, 8, 18, &#39;NaN.createView([17,&quot;RCTView&quot;,1,{&quot;accessible&quot;:true,&quot;opacity&quot;:1}])&#39;
+
+09-03 20:19:19.890  &#39;JS-&gt;N : &#39;, 8, 18, &#39;NaN.createView([18,&quot;RCTText&quot;,1,{&quot;textAlign&quot;:&quot;center&quot;,&quot;color&quot;:-13421773,&quot;marginTop&quot;:15,&quot;marginBottom&quot;:5,&quot;fontSize&quot;:14,&quot;accessible&quot;:true,&quot;allowFontScaling&quot;:true,&quot;ellipsizeMode&quot;:&quot;tail&quot;}])&#39;
+
+09-03 20:19:19.894  &#39;JS-&gt;N : &#39;, 8, 18, &#39;NaN.createView([19,&quot;RCTRawText&quot;,1,{&quot;text&quot;:&quot;点击我，打开Android Native Activity页面&quot;}])&#39;
+
+09-03 20:19:19.895  &#39;JS-&gt;N : &#39;, 8, 9, &#39;NaN.setChildren([18,[19]])&#39;
+
+09-03 20:19:19.896  &#39;JS-&gt;N : &#39;, 8, 9, &#39;NaN.setChildren([17,[18]])&#39;
+
+09-03 20:19:19.914  &#39;JS-&gt;N : &#39;, 8, 18, &#39;NaN.createView([20,&quot;RCTView&quot;,1,{&quot;accessible&quot;:true,&quot;opacity&quot;:1}])&#39;
+
+09-03 20:19:19.924  &#39;JS-&gt;N : &#39;, 8, 18, &#39;NaN.createView([22,&quot;RCTText&quot;,1,{&quot;textAlign&quot;:&quot;center&quot;,&quot;color&quot;:-13421773,&quot;marginTop&quot;:15,&quot;marginBottom&quot;:5,&quot;fontSize&quot;:14,&quot;accessible&quot;:true,&quot;allowFontScaling&quot;:true,&quot;ellipsizeMode&quot;:&quot;tail&quot;}])&#39;
+
+09-03 20:19:19.927  &#39;JS-&gt;N : &#39;, 8, 18, &#39;NaN.createView([23,&quot;RCTRawText&quot;,1,{&quot;text&quot;:&quot;点击我，打开Android Second React Activity页面&quot;}])&#39;
+
+09-03 20:19:19.932  &#39;JS-&gt;N : &#39;, 8, 9, &#39;NaN.setChildren([22,[23]])&#39;
+
+09-03 20:19:19.935  &#39;JS-&gt;N : &#39;, 8, 9, &#39;NaN.setChildren([20,[22]])&#39;
+
+09-03 20:19:19.941  &#39;JS-&gt;N : &#39;, 8, 18, &#39;NaN.createView([24,&quot;RCTText&quot;,1,{&quot;textAlign&quot;:&quot;center&quot;,&quot;color&quot;:-13421773,&quot;marginTop&quot;:15,&quot;marginBottom&quot;:5,&quot;fontSize&quot;:14,&quot;accessible&quot;:true,&quot;allowFontScaling&quot;:true,&quot;ellipsizeMode&quot;:&quot;tail&quot;}])&#39;
+
+09-03 20:19:19.945  &#39;JS-&gt;N : &#39;, 8, 18, &#39;NaN.createView([25,&quot;RCTRawText&quot;,1,{&quot;text&quot;:&quot;Shake or press menu button for dev menu&quot;}])&#39;
+
+09-03 20:19:19.946  &#39;JS-&gt;N : &#39;, 8, 9, &#39;NaN.setChildren([24,[25]])&#39;
+
+09-03 20:19:19.950  &#39;JS-&gt;N : &#39;, 8, 9, &#39;NaN.setChildren([4,[5,7,10,14,17,20,24]])&#39;
+
+09-03 20:19:19.951  &#39;JS-&gt;N : &#39;, 8, 9, &#39;NaN.setChildren([3,[4]])&#39;
+
+09-03 20:19:19.962  &#39;JS-&gt;N : &#39;, 8, 18, &#39;NaN.createView([26,&quot;RCTView&quot;,1,{&quot;collapsable&quot;:true,&quot;position&quot;:&quot;absolute&quot;}])&#39;
+
+09-03 20:19:19.963  &#39;JS-&gt;N : &#39;, 8, 9, &#39;NaN.setChildren([2,[3,26]])&#39;
+
+09-03 20:19:19.964  &#39;JS-&gt;N : &#39;, 8, 9, &#39;NaN.setChildren([1,[2]])&#39;
+
+09-03 20:19:19.976  &#39;JS-&gt;N : &#39;, 24, 0, &#39;NaN.getDataFromIntent([0,1])&#39;
+
+09-03 20:19:19.978  &#39;JS-&gt;N : &#39;, 1, 1, &#39;NaN.show([&quot;Toast 是原生支持的!&quot;,3000])&#39;
+
+09-03 20:19:20.056  &#39;JS-&gt;N : &#39;, 8, 12, &#39;NaN.updateView([6,&quot;RCTRawText&quot;,{&quot;text&quot;:&quot;注意：数据为空！&quot;}])&#39;</code></pre><h3 id="五-性能测试"><a href="#五-性能测试" class="headerlink" title="五.性能测试"></a>五.性能测试</h3><h4 id="1-React-Native-简单测试JS调用Native接口性能"><a href="#1-React-Native-简单测试JS调用Native接口性能" class="headerlink" title="1.React Native 简单测试JS调用Native接口性能"></a>1.React Native 简单测试JS调用Native接口性能</h4><p>准备三组测试数据:</p>
+<p>第一组(简单):   key: 随机生成  value: 我是来自React Native缓存消息</p>
+<p>第二组(长字符): key: 随机生成  value: 我是来自React Native缓存消息(循环50遍)</p>
+<p>第二组(JSON):  key: 随机生成  value: 下面JSON字符串,循环10遍, 内容不重复</p>
+<p>{<br />“id”: 000001,<br />“title”: “React Native接口性能测试”,<br />“summary”: “炫斗不停，精彩不断，不要怂就是干的全武将萌化翻转扮演的新式三国策略养成手游《女神三国》邀您…”,<br />“category”: “React Native”,<br />“createTime”: “2016-09-09 17:48:38”,<br />“publicTime”: “2016-09-09 17:48:00”<br />}</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@ReactMethod</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setCache</span><span class="token punctuation">(</span>String key<span class="token punctuation">,</span> String value<span class="token punctuation">,</span> Callback successCallback<span class="token punctuation">,</span> Callback errorCallback<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        sharedPreference <span class="token operator">=</span> <span class="token function">getCurrentActivity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getSharedPreferences</span><span class="token punctuation">(</span><span class="token string">"rn_cache"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        sharedPreference<span class="token punctuation">.</span><span class="token function">edit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">putString</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">commit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        successCallback<span class="token punctuation">.</span><span class="token function">invoke</span><span class="token punctuation">(</span><span class="token string">"save success"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        errorCallback<span class="token punctuation">.</span><span class="token function">invoke</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">//Java中的方法需要导出才能给JS使用，要导出Java方法，需要使用@ReactMethod来注解，且方法的返回值只能是void。</span>
+<span class="token annotation punctuation">@ReactMethod</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">getCache</span><span class="token punctuation">(</span>String key<span class="token punctuation">,</span> Callback callback<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    callback<span class="token punctuation">.</span><span class="token function">invoke</span><span class="token punctuation">(</span>sharedPreference<span class="token punctuation">.</span><span class="token function">getString</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">const</span> start <span class="token operator">=</span> <span class="token operator">+</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+NativeModules<span class="token punctuation">.</span>IntentModule<span class="token punctuation">.</span><span class="token function">getCache</span><span class="token punctuation">(</span><span class="token string">'RN001'</span><span class="token punctuation">,</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>
+    <span class="token keyword">const</span> time <span class="token operator">=</span> <span class="token operator">+</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span>start<span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'>>>>cost[getCache]:'</span><span class="token punctuation">,</span> time<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    NativeModules<span class="token punctuation">.</span>ToastAndroid<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span>value<span class="token operator">+</span><span class="token string">' cost:'</span><span class="token operator">+</span> time<span class="token punctuation">,</span> <span class="token number">3000</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>Native收到JS传递过来的值直接返回给JS, 经过多次对三组进行测试（Nexus 5 Android 5.0, MX3 5.0），时间稳定在2-4ms, 偶尔会出现5ms, 数据的大小对接口调用耗时影响不大.</p>
+<h4 id="2-WebView-addJavascriptInterface-接口测试"><a href="#2-WebView-addJavascriptInterface-接口测试" class="headerlink" title="2.WebView addJavascriptInterface 接口测试"></a>2.WebView addJavascriptInterface 接口测试</h4><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@JavascriptInterface</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setCache</span><span class="token punctuation">(</span>String key<span class="token punctuation">,</span> String value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        sharedPreference <span class="token operator">=</span> context<span class="token punctuation">.</span><span class="token function">getSharedPreferences</span><span class="token punctuation">(</span><span class="token string">"rn_cache"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        sharedPreference<span class="token punctuation">.</span><span class="token function">edit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">putString</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">commit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token annotation punctuation">@JavascriptInterface</span>
+<span class="token keyword">public</span> String <span class="token function">getCache</span><span class="token punctuation">(</span>String key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> sharedPreference<span class="token punctuation">.</span><span class="token function">getString</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">getCache</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">var</span> start <span class="token operator">=</span> <span class="token operator">+</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">var</span> ret <span class="token operator">=</span> HybridApp<span class="token punctuation">.</span><span class="token function">getCache</span><span class="token punctuation">(</span><span class="token string">'RN001'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">var</span> end <span class="token operator">=</span> <span class="token operator">+</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">var</span> str <span class="token operator">=</span> <span class="token string">'>>>cost[getCache]:'</span> <span class="token operator">+</span> <span class="token punctuation">(</span>end <span class="token operator">-</span> start<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'  result:'</span> <span class="token operator">+</span> ret<span class="token punctuation">;</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>JS从Native获取数据, 经过多次进行三组数据测试（Nexus 5 Android 5.0），时间稳定在0-3ms, 多次点击后,时间更短,时间稳定范围0s-1s,说明Interface有缓存机制和数据的大小对接口调用耗时影响不大.</p>
+<h4 id="3-WebView-prompt-接口测试"><a href="#3-WebView-prompt-接口测试" class="headerlink" title="3.WebView prompt 接口测试"></a>3.WebView prompt 接口测试</h4><pre class=" language-javascript"><code class="language-javascript">@Override
+<span class="token keyword">public</span> boolean <span class="token function">onJsPrompt</span><span class="token punctuation">(</span>WebView view<span class="token punctuation">,</span> String url<span class="token punctuation">,</span> String message<span class="token punctuation">,</span> String defaultValue<span class="token punctuation">,</span> JsPromptResult result<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    result<span class="token punctuation">.</span><span class="token function">confirm</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>经过多次对三组进行数据进行测试（Nexus 5 Android 5.），时间稳定在1-2ms,数据的大小对接口调用耗时影响不大</p>
+<h4 id="4-三种方式耗时总结"><a href="#4-三种方式耗时总结" class="headerlink" title="4.三种方式耗时总结"></a>4.三种方式耗时总结</h4><ol>
+<li><p>从测试效果来看, 三种方式接口调用耗时都在1s-4s级别, 性能表现都非常不错. React Native因为进行了接口封装转换, 比addJavascriptInterface和prompt方式都是简单的数据透传返回要慢1ms-2ms是可以预期的.</p>
+</li>
+<li><p>说明: 这里只是简单的接口调用测试, 当前运行环境(Native线程切换,Native数据获取方式,数据回调方式等)都可能会影响实际的接口调用耗时.</p>
+</li>
+</ol>
+<h4 id="2-React-Native-首次加载性能测试"><a href="#2-React-Native-首次加载性能测试" class="headerlink" title="2.React Native 首次加载性能测试"></a>2.React Native 首次加载性能测试</h4><h4 id="Nexus5-5-0系统测试"><a href="#Nexus5-5-0系统测试" class="headerlink" title="Nexus5 5.0系统测试"></a>Nexus5 5.0系统测试</h4><p><strong>第一次测试</strong></p>
+<pre><code>09-08 20:41:39.002  12023-12023/com.react.smart I/ReactNativeJS﹕ &gt;&gt;&gt;react performance react start:1473338499002
+09-08 20:41:39.081  12023-12023/com.react.smart I/ReactNativeJS﹕ &gt;&gt;&gt;react performance react end:1473338499081
+09-08 20:41:39.601  12023-12052/com.react.smart I/ReactNativeJS﹕ &gt;&gt;&gt;react[runApplication]:1473338499600
+09-08 20:41:39.618  12023-12052/com.react.smart I/ReactNativeJS﹕ &gt;&gt;&gt;react#constructor, 1473338499616
+09-08 20:41:39.618  12023-12052/com.react.smart I/ReactNativeJS﹕ &gt;&gt;&gt;react#componentWillMount, 1473338499618
+09-08 20:41:39.711  12023-12052/com.react.smart I/ReactNativeJS﹕ &gt;&gt;&gt;react#componentDidMount, 1473338499711</code></pre><p>cost:1473338499711-1473338499002=709ms</p>
+<p><strong>第二次测试</strong></p>
+<pre><code>09-08 20:45:42.774  14935-14935/com.react.smart I/ReactNativeJS﹕ &gt;&gt;&gt;react performance react start:1473338742774
+09-08 20:45:42.806  14935-14935/com.react.smart I/ReactNativeJS﹕ &gt;&gt;&gt;react performance react end:1473338742806
+09-08 20:45:43.300  14935-14965/com.react.smart I/ReactNativeJS﹕ &gt;&gt;&gt;react[runApplication]:1473338743299
+09-08 20:45:43.320  14935-14965/com.react.smart I/ReactNativeJS﹕ &gt;&gt;&gt;react#constructor, 1473338743319
+09-08 20:45:43.321  14935-14965/com.react.smart I/ReactNativeJS﹕ &gt;&gt;&gt;react#componentWillMount, 1473338743321
+09-08 20:45:43.471  14935-14965/com.react.smart I/ReactNativeJS﹕ &gt;&gt;&gt;react#componentDidMount, 1473338743471</code></pre><p>cost:1473338743471-1473338742774=697ms</p>
+<p><strong>第三次测试</strong></p>
+<pre><code>09-08 20:41:39.002  12023-12023/com.react.smart I/ReactNativeJS﹕ &gt;&gt;&gt;react performance react start:1473338499002
+09-08 20:41:39.081  12023-12023/com.react.smart I/ReactNativeJS﹕ &gt;&gt;&gt;react performance react end:1473338499081
+09-08 20:41:39.601  12023-12052/com.react.smart I/ReactNativeJS﹕ &gt;&gt;&gt;react[runApplication]:1473338499600
+09-08 20:41:39.618  12023-12052/com.react.smart I/ReactNativeJS﹕ &gt;&gt;&gt;react#constructor, 1473338499616
+09-08 20:41:39.618  12023-12052/com.react.smart I/ReactNativeJS﹕ &gt;&gt;&gt;react#componentWillMount, 1473338499618
+09-08 20:41:39.711  12023-12052/com.react.smart I/ReactNativeJS﹕ &gt;&gt;&gt;react#componentDidMount, 1473338499711</code></pre><p>cost:1473338499711-1473338499002=709ms</p>
+<p><strong>第四次测试</strong></p>
+<pre><code>09-08 20:50:46.781  14935-14935/com.react.smart I/ReactNativeJS﹕ &gt;&gt;&gt;react performance react start:1473339046781
+09-08 20:50:46.789  14935-14935/com.react.smart I/ReactNativeJS﹕ &gt;&gt;&gt;react performance react end:1473339046789
+09-08 20:50:47.213  14935-18051/com.react.smart I/ReactNativeJS﹕ &gt;&gt;&gt;react[runApplication]:1473339047213
+09-08 20:50:47.231  14935-18051/com.react.smart I/ReactNativeJS﹕ &gt;&gt;&gt;react#constructor, 1473339047229
+09-08 20:50:47.231  14935-18051/com.react.smart I/ReactNativeJS﹕ &gt;&gt;&gt;react#componentWillMount, 1473339047231
+09-08 20:50:47.327  14935-18051/com.react.smart I/ReactNativeJS﹕ &gt;&gt;&gt;react#componentDidMount, 1473339047327</code></pre><p>cost:1473339047327-1473339046781=546ms</p>
+<p>从测试结果来看, Nexus5 时间稳定在500ms-700ms之间, 时间可以接受.</p>
+<h4 id="MX3-5-0系统测试"><a href="#MX3-5-0系统测试" class="headerlink" title="MX3 5.0系统测试"></a>MX3 5.0系统测试</h4><p><strong>第一次测试</strong></p>
+<pre><code>09-11 16:51:36.967  10179-10179/com.react.smart I/ReactNativeJS﹕ &gt;&gt;&gt;react performance react start:1473583896967
+09-11 16:51:37.091  10179-10179/com.react.smart I/ReactNativeJS﹕ &gt;&gt;&gt;react performance react end:1473583897091
+09-11 16:51:38.349  10179-10209/com.react.smart I/ReactNativeJS﹕ &#39;&gt;&gt;&gt;react#constructor&#39;, 1473583898342
+09-11 16:51:38.350  10179-10209/com.react.smart I/ReactNativeJS﹕ &#39;&gt;&gt;&gt;react#componentWillMount&#39;, 1473583898349
+09-11 16:51:38.523  10179-10209/com.react.smart I/ReactNativeJS﹕ &#39;&gt;&gt;&gt;react#componentDidMount&#39;, 1473583898523
+09-11 16:51:38.528  10179-10209/com.react.smart I/ReactNativeJS﹕ &#39;&gt;&gt;&gt;react#componentDidMount#ToastAndroid.show&#39;, 1473583898527</code></pre><p>cost:1473583898527-1473583896967=1560ms</p>
+<p><strong>第二次测试</strong></p>
+<pre><code>09-11 16:53:48.688  11260-11260/com.react.smart I/ReactNativeJS﹕ &gt;&gt;&gt;react performance react start:1473584028688
+09-11 16:53:48.887  11260-11260/com.react.smart I/ReactNativeJS﹕ &gt;&gt;&gt;react performance react end:1473584028887
+09-11 16:53:50.345  11260-11292/com.react.smart I/ReactNativeJS﹕ &#39;&gt;&gt;&gt;react#constructor&#39;, 1473584030342
+09-11 16:53:50.346  11260-11292/com.react.smart I/ReactNativeJS﹕ &#39;&gt;&gt;&gt;react#componentWillMount&#39;, 1473584030345
+09-11 16:53:50.500  11260-11292/com.react.smart I/ReactNativeJS﹕ &#39;&gt;&gt;&gt;react#componentDidMount&#39;, 1473584030500
+09-11 16:53:50.504  11260-11292/com.react.smart I/ReactNativeJS﹕ &#39;&gt;&gt;&gt;react#componentDidMount#ToastAndroid.show&#39;, 1473584030503</code></pre><p>cost:1473584030503-1473584028688=1815ms</p>
+<p><strong>第三次测试</strong></p>
+<pre><code>09-11 17:10:20.694  18623-18623/com.react.smart I/ReactNativeJS﹕ &gt;&gt;&gt;react performance react start:1473585020694
+09-11 17:10:20.894  18623-18623/com.react.smart I/ReactNativeJS﹕ &gt;&gt;&gt;react performance react end:1473585020894
+09-11 17:10:22.225  18623-18657/com.react.smart I/ReactNativeJS﹕ &#39;&gt;&gt;&gt;react#constructor&#39;, 1473585022222
+09-11 17:10:22.226  18623-18657/com.react.smart I/ReactNativeJS﹕ &#39;&gt;&gt;&gt;react#componentWillMount&#39;, 1473585022225
+09-11 17:10:22.405  18623-18657/com.react.smart I/ReactNativeJS﹕ &#39;&gt;&gt;&gt;react#componentDidMount&#39;, 1473585022405
+09-11 17:10:22.409  18623-18657/com.react.smart I/ReactNativeJS﹕ &#39;&gt;&gt;&gt;react#componentDidMount#ToastAndroid.show&#39;, 1473585022408</code></pre><p>cost:1473585022408-1473585020694=1714ms</p>
+<p><strong>第四次测试</strong></p>
+<pre><code>09-11 17:11:25.690  19167-19167/com.react.smart I/ReactNativeJS﹕ &gt;&gt;&gt;react performance react start:1473585085690
+09-11 17:11:25.865  19167-19167/com.react.smart I/ReactNativeJS﹕ &gt;&gt;&gt;react performance react end:1473585085865
+09-11 17:11:27.173  19167-19199/com.react.smart I/ReactNativeJS﹕ &#39;&gt;&gt;&gt;react#constructor&#39;, 1473585087169
+09-11 17:11:27.173  19167-19199/com.react.smart I/ReactNativeJS﹕ &#39;&gt;&gt;&gt;react#componentWillMount&#39;, 1473585087173
+09-11 17:11:27.336  19167-19199/com.react.smart I/ReactNativeJS﹕ &#39;&gt;&gt;&gt;react#componentDidMount&#39;, 1473585087335
+09-11 17:11:27.340  19167-19199/com.react.smart I/ReactNativeJS﹕ &#39;&gt;&gt;&gt;react#componentDidMount#ToastAndroid.show&#39;, 1473585087339</code></pre><p>cost: 1473585087339-1473585085690=1649ms</p>
+<p>从测试结果来看, MX3 时间稳定在1500ms-1800ms之间, 明显比Nexus5要慢.</p>
+<h4 id="3-MX3-内存占用和cpu消耗"><a href="#3-MX3-内存占用和cpu消耗" class="headerlink" title="3.MX3 内存占用和cpu消耗"></a>3.MX3 内存占用和cpu消耗</h4><p><strong>内存占用曲线图</strong></p>
+<p><img src="https://raw.githubusercontent.com/hubcarl/hubcarl.github.io/master/_posts/images/react/rn-memory.png#width=" alt=""></p>
+<p>从曲线图看出内存占用非常稳定, 一个HellWord的React Native App占用内存大概在20M</p>
+<p><strong>cpu曲线图</strong></p>
+<p><img src="https://raw.githubusercontent.com/hubcarl/hubcarl.github.io/master/_posts/images/react/rn-cpu.png#width=" alt=""></p>
+<p>从曲线图看出启动的时候cpu瞬间飙到40%, 原因是因为启动时涉及Android和React Native JS与Native的大量调用,这个可以从上面View的绘制的过程可以看出.</p>
+<p>第二个cpu波动是我这边频繁的点击[点击我]相关测试, 停止点击后, cpu马上就降落下来.</p>
+
+                </div>
+                <hr/>
+    
+                
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://easy-team.github.io" rel="external nofollow noreferrer">sky</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://easy-team.github.io/blog/kghphs/">https://easy-team.github.io/blog/kghphs/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="https://easy-team.github.io" target="_blank">sky</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+    
+                <div class="tag_share" style="display: block;">
+                    <div class="post-meta__tag-list" style="display: inline-block;">
+                        
+                            <div class="article-tag">
+                                <span class="chip bg-color">No tag</span>
+                            </div>
+                        
+                    </div>
+                    <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                        <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    
+    <div class="social-share" data-sites="qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                    </div>
+                </div>
+                
+                    <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+                
+            </div>
+        </div>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/blog/lsrssy/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="Flutter  Android  混合工程实践">
+                        
+                        <span class="card-title">Flutter  Android  混合工程实践</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            在 Flutter 混合工程体系 一文中，阐述了Flutter 三种开发模式，在实际业务中搭建持续集成时，我们更希望发本地开发使用混合模式，持续集成使用解耦模式， 主要是解决以下两个问题： 混合模式：开发调试方便，包括热更新， Native 与 Flutter 开发源码断点调试 解耦模式：不侵...
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2019-10-20
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            sky
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/blog/ekvirc/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Webpack 构建流程解密">
+                        
+                        <span class="card-title">Webpack 构建流程解密</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            通过 Webpack 工具，可以很方便完成各种框架的构建打包支持。使用 Webpack 一段事件后，各种配置也都非常熟悉， 但只停留使用节点，对内部原理极致不是非常清新，常常带着这些疑问：Webpack 启动流程是怎么样的？Webpack 插件是怎么使用的，怎么保证调用顺序？Webpack 事件机制是怎么样的？接下来我将通过从 Webpack 启动流程， 事件机制， 插件机制， 热更新等几方面深入的讲述一下构建 Webpack 内部构建流程。启动流程首先我们来看看webpack的 webpack.js...
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-10-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            sky
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+     </div>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('50')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + 'From: easy-team<br />'
+            + 'Author: sky<br />'
+            + 'Link: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+    
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+<!-- menu-selected -->
+<script>
+    var pathname = location.pathname.replace(/^\//, '').replace(/\/$/, '').replace(/\//g, '-');
+    $('#m-nav-item-' + pathname).addClass('doc-left-nav-mene-selected');
+</script>
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">年份</span>
+            <a href="https://easy-team.github.io" target="_blank">sky</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/easy-team" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">92.8k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    window.setTimeout("siteTime()", 1000);
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2019";
+                    var startMonth = "10";
+                    var startDate = "20";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/hubcarl" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:hubcarl@126.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=433207205" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 433207205" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/hubcarl" class="tooltipped" target="_blank" data-tooltip="关注我的微博: https://weibo.com/hubcarl" data-position="top" data-delay="50">
+        <i class="fab fa-weibo"></i>
+    </a>
+
+
+
+    <a href="https://zhuanlan.zhihu.com/easywebpack" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: https://zhuanlan.zhihu.com/easywebpack" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <!-- Baidu Analytics -->
+
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i["DaoVoiceObject"] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            a.charset = "utf-8";
+            m.parentNode.insertBefore(a, m)
+        })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') +
+            "//widget.daovoice.io/widget/6984b559.js", "daovoice")
+        daovoice('init', {
+            app_id: ""
+        });
+        daovoice('update');
+    </script>
+    
+
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

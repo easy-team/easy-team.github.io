@@ -1,0 +1,1865 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Webpack 构建流程解密, node, egg, webpack, ves, res, ssr">
+    <meta name="description" content="通过 Webpack 工具，可以很方便完成各种框架的构建打包支持。使用 Webpack 一段事件后，各种配置也都非常熟悉， 但只停留使用节点，对内部原理极致不是非常清新，常常带着这些疑问：
+
+Webpack 启动流程是怎么样的？
+
+Webp">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Webpack 构建流程解密 | easy-team</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper head-container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">easy-team</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Home</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/res" class="waves-effect waves-light">
+      
+      <i class="fas fa-forward" style="zoom: 0.6;"></i>
+      
+      <span>Res</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/ves" class="waves-effect waves-light">
+      
+      <i class="fas fa-forward" style="zoom: 0.6;"></i>
+      
+      <span>Ves</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>Egg</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/egg-react">
+          
+          <i class="fas fa-forward" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Egg+React</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/egg-vue">
+          
+          <i class="fas fa-forward" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Egg+Vue</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/easywebpack" class="waves-effect waves-light">
+      
+      <i class="fas fa-building" style="zoom: 0.6;"></i>
+      
+      <span>Webpack</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog" class="waves-effect waves-light">
+      
+      <i class="fas fa-hacker-news" style="zoom: 0.6;"></i>
+      
+      <span>Blog</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>Contact</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">easy-team</div>
+        <div class="logo-desc">
+            
+            前端工程化,Node开发,Webpack,Egg,React Server Side Render, Vue Server Side Render
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Home
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/res" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-forward"></i>
+			
+			Res
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/ves" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-forward"></i>
+			
+			Ves
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			Egg
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>   
+				
+                  <a href="/egg-react " style="margin-left:75px";>
+				  
+				   <i class="fa fas fa-forward" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Egg+React</span>
+                  </a>
+                </li>
+              
+                <li>   
+				
+                  <a href="/egg-vue " style="margin-left:75px";>
+				  
+				   <i class="fa fas fa-forward" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Egg+Vue</span>
+                  </a>
+                </li>
+               
+            </ul>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/easywebpack" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-building"></i>
+			
+			Webpack
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-hacker-news"></i>
+			
+			Blog
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/easy-team" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/easy-team" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    <div class="bg-cover pd-header" style="height: 9vh">
+    <div class="container"></div>
+</div>
+
+
+    <script>
+        // 每天切换 banner 图.  Switch banner image every day.
+        $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
+    </script>
+    
+
+<div class="doc-content">
+    
+     <div class="doc-left-nav">
+        <div class="side-nav docsidenav">
+
+    <!-- <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">easy-team</div>
+        <div class="logo-desc">
+            
+            前端工程化,Node开发,Webpack,Egg,React Server Side Render, Vue Server Side Render
+            
+        </div>
+    </div> -->
+
+
+    <div class="doc-left-nav-title">blog</div>
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+            <a href="/blog/kiygy5" class="waves-effect waves-light" id="m-nav-item-blog-kiygy5">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Vue SSR 组件加载
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/ekvirc" class="waves-effect waves-light" id="m-nav-item-blog-ekvirc">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Webpack 构建流程解密
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/az519d" class="waves-effect waves-light" id="m-nav-item-blog-az519d">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                页面资源加载
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/dxrrhq" class="waves-effect waves-light" id="m-nav-item-blog-dxrrhq">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Webpack 4 编译内存泄漏
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/xcw19a" class="waves-effect waves-light" id="m-nav-item-blog-xcw19a">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native, Hybrid App, H5 简单对比分析
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/vzgcgb" class="waves-effect waves-light" id="m-nav-item-blog-vzgcgb">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native Android APK包大小分析
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/wk5ney" class="waves-effect waves-light" id="m-nav-item-blog-wk5ney">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native 自定义插件
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/kghphs" class="waves-effect waves-light" id="m-nav-item-blog-kghphs">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native代码执行跟踪和调试
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/qwywww" class="waves-effect waves-light" id="m-nav-item-blog-qwywww">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native 热更新实现
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/rh45zo" class="waves-effect waves-light" id="m-nav-item-blog-rh45zo">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native Android源码解读和交互原理分析
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/uhmdkg" class="waves-effect waves-light" id="m-nav-item-blog-uhmdkg">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Hybrid系列-phonegap android框架详解
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/sxys82" class="waves-effect waves-light" id="m-nav-item-blog-sxys82">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Hybrid系列-Cordova android框架详解
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/syh43v" class="waves-effect waves-light" id="m-nav-item-blog-syh43v">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                npm 常用命令
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/vfhw62" class="waves-effect waves-light" id="m-nav-item-blog-vfhw62">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Git 使用技巧
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/gayu0o" class="waves-effect waves-light" id="m-nav-item-blog-gayu0o">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Docker 随记
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/egret" class="waves-effect waves-light" id="m-nav-item-blog-egret">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Egret  游戏开发
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/og9ogk" class="waves-effect waves-light" id="m-nav-item-blog-og9ogk">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                vscode 插件开发
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/qz7n03" class="waves-effect waves-light" id="m-nav-item-blog-qz7n03">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Mac PHP 环境
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/qwr449" class="waves-effect waves-light" id="m-nav-item-blog-qwr449">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Webpack 热更新实现原理分析
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/ruv09m" class="waves-effect waves-light" id="m-nav-item-blog-ruv09m">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Egg SSR Webpack 内存编译热更新实现
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/sg8avg" class="waves-effect waves-light" id="m-nav-item-blog-sg8avg">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Babel 构建优化
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/zfri65" class="waves-effect waves-light" id="m-nav-item-blog-zfri65">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Webpack 构建大小分析与优化
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/xriz8a" class="waves-effect waves-light" id="m-nav-item-blog-xriz8a">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Egg + Vue/Nunjucks 服务端渲染性能测试
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/lsrssy" class="waves-effect waves-light" id="m-nav-item-blog-lsrssy">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Flutter  Android  混合工程实践
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/zs3hog" class="waves-effect waves-light" id="m-nav-item-blog-zs3hog">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Flutter iOS 混合工程实践
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/nrswgq" class="waves-effect waves-light" id="m-nav-item-blog-nrswgq">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Android 与 Flutter 入门开发实践指引
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/wydpi1" class="waves-effect waves-light" id="m-nav-item-blog-wydpi1">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Flutter 动态更新
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/cdal6o" class="waves-effect waves-light" id="m-nav-item-blog-cdal6o">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Egg + Web 自定义前端渲染
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/easy-team" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+     </div>
+    
+    <div class="doc-right-nav">
+        <div class="card" class="doc-right-card">
+            <div class="card-content article-info">
+                <h1 style="margin-top: 12px;">Webpack 构建流程解密</h1>
+                <div class="row">
+                    <div class="col s5 right-align">
+                        
+                    </div>
+                </div>
+                
+                <div class="post-info">
+                    <div class="post-date info-break-policy">
+                        <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                        2019-10-20
+                    </div>
+    
+                    
+                        
+                        <div class="info-break-policy">
+                            <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
+                            2k
+                        </div>
+                        
+    
+                        
+                        <div class="info-break-policy">
+                            <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
+                            10 Min
+                        </div>
+                        
+                    
+                    
+                    
+                        <div id="busuanzi_container_page_pv" class="info-break-policy">
+                            <i class="far fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                            <span id="busuanzi_value_page_pv"></span>
+                        </div>
+                    
+                </div>
+            </div>
+            <hr class="clearfix">
+            <div class="card-content article-card-content" style="padding-top: 0px;">
+                <div id="articleContent">
+                    <p>通过 Webpack 工具，可以很方便完成各种框架的构建打包支持。使用 Webpack 一段事件后，各种配置也都非常熟悉， 但只停留使用节点，对内部原理极致不是非常清新，常常带着这些疑问：</p>
+<ul>
+<li><p>Webpack 启动流程是怎么样的？</p>
+</li>
+<li><p>Webpack 插件是怎么使用的，怎么保证调用顺序？</p>
+</li>
+<li><p>Webpack 事件机制是怎么样的？</p>
+</li>
+</ul>
+<p>接下来我将通过从 Webpack 启动流程， 事件机制， 插件机制， 热更新等几方面深入的讲述一下构建 Webpack 内部构建流程。</p>
+<h2 id="启动流程"><a href="#启动流程" class="headerlink" title="启动流程"></a>启动流程</h2><p>首先我们来看看webpack的 <a href="https://github.com/webpack/webpack/tree/master/lib/webpack.js" target="_blank" rel="noopener">webpack.js</a>入口定义：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">webpack</span><span class="token punctuation">(</span>options<span class="token punctuation">,</span> callback<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token operator">...</span><span class="token operator">...</span>
+  <span class="token comment" spellcheck="true">// 初始化所有plugin, 包括自定义事件, 事件回调定义</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span>options<span class="token punctuation">.</span>plugins <span class="token operator">&amp;&amp;</span> Array<span class="token punctuation">.</span><span class="token function">isArray</span><span class="token punctuation">(</span>options<span class="token punctuation">.</span>plugins<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    compiler<span class="token punctuation">.</span>apply<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>compiler<span class="token punctuation">,</span> options<span class="token punctuation">.</span>plugins<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">var</span> compiler <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Compiler</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment" spellcheck="true">// 这里比较关键，如果有提供回调函数，直接启动编译，这个是用于发布构建使用，</span>
+  <span class="token comment" spellcheck="true">// 构建文件落地磁盘，需要提供callback进入构建流程；当使用 webpack-dev-middlerware </span>
+  <span class="token comment" spellcheck="true">// 和 webpack-hot-middleware 时，不需要提供callback函数， 由 触发。</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span>callback<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 启动 webpack 编译</span>
+       compiler<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span>callback<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> compiler<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p><img src="https://cdn.yuque.com/yuque/0/2018/png/116733/1531218906866-6357a41d-3295-43ef-bdb7-9ea2a2b09e54.png#width=576" alt=""></p>
+<p>以上图片来自<a href="https://fengmiaosen.github.io/2017/03/21/webpack-core-code/" target="_blank" rel="noopener">冯淼森的博客</a></p>
+<h2 id="事件机制"><a href="#事件机制" class="headerlink" title="事件机制"></a>事件机制</h2><h3 id="关键事件"><a href="#关键事件" class="headerlink" title="关键事件"></a>关键事件</h3><h4 id="before-run"><a href="#before-run" class="headerlink" title="before-run"></a>before-run</h4><ul>
+<li>NodeEnvironmentPlugin</li>
+</ul>
+<h4 id="run"><a href="#run" class="headerlink" title="run"></a>run</h4><ul>
+<li>CachePlugin</li>
+</ul>
+<h4 id="watch-run"><a href="#watch-run" class="headerlink" title="watch-run"></a>watch-run</h4><ul>
+<li>CachePlugin</li>
+</ul>
+<h4 id="before-compile"><a href="#before-compile" class="headerlink" title="before-compile"></a>before-compile</h4><h4 id="compile"><a href="#compile" class="headerlink" title="compile"></a>compile</h4><h4 id="entry-option"><a href="#entry-option" class="headerlink" title="entry-option"></a>entry-option</h4><ul>
+<li>EntryOptionPlugin</li>
+</ul>
+<h4 id="make"><a href="#make" class="headerlink" title="make"></a>make</h4><ul>
+<li>SingleEntryPlugin</li>
+</ul>
+<h4 id="after-compile"><a href="#after-compile" class="headerlink" title="after-compile"></a>after-compile</h4><ul>
+<li>CachePlugin</li>
+</ul>
+<h4 id="after-emit"><a href="#after-emit" class="headerlink" title="after-emit"></a>after-emit</h4><ul>
+<li>SizeLimitsPlugin</li>
+</ul>
+<h4 id="after-resolvers"><a href="#after-resolvers" class="headerlink" title="after-resolvers"></a>after-resolvers</h4><ul>
+<li><p>AMDPlugin</p>
+</li>
+<li><p>NodeSourcePlugin</p>
+</li>
+</ul>
+<h4 id="compilation"><a href="#compilation" class="headerlink" title="compilation"></a>compilation</h4><ul>
+<li><p>FunctionModulePlugin</p>
+</li>
+<li><p>NodeSourcePlugin</p>
+</li>
+<li><p>LoaderTargetPlugin</p>
+</li>
+<li><p>EvalSourceMapDevToolPlugin</p>
+</li>
+<li><p>CompatibilityPlugin</p>
+</li>
+<li><p>HarmonyModulesPlugin</p>
+</li>
+<li><p>AMDPlugin</p>
+</li>
+<li><p>CommonJsPlugin</p>
+</li>
+<li><p>LoaderPlugin</p>
+</li>
+<li><p>NodeStuffPlugin</p>
+</li>
+<li><p>RequireJsStuffPlugin</p>
+</li>
+<li><p>APIPlugin</p>
+</li>
+<li><p>ConstPlugin</p>
+</li>
+<li><p>UseStrictPlugin</p>
+</li>
+<li><p>RequireIncludePlugin</p>
+</li>
+<li><p>RequireEnsurePlugin</p>
+</li>
+<li><p>RequireContextPlugin</p>
+</li>
+<li><p>ImportPlugin</p>
+</li>
+<li><p>SystemPlugin</p>
+</li>
+<li><p>EnsureChunkConditionsPlugin</p>
+</li>
+<li><p>RemoveParentModulesPlugin</p>
+</li>
+<li><p>RemoveEmptyChunksPlugin</p>
+</li>
+<li><p>MergeDuplicateChunksPlugin</p>
+</li>
+<li><p>FlagIncludedChunksPlugin</p>
+</li>
+<li><p>OccurrenceOrderPlugin</p>
+</li>
+<li><p>FlagDependencyExportsPlugin</p>
+</li>
+<li><p>FlagDependencyUsagePlugin</p>
+</li>
+<li><p>TemplatedPathPlugin</p>
+</li>
+<li><p>RecordIdsPlugin</p>
+</li>
+<li><p>WarnCaseSensitiveModulesPlugin</p>
+</li>
+</ul>
+<h4 id="this-compilation"><a href="#this-compilation" class="headerlink" title="this-compilation"></a>this-compilation</h4><ul>
+<li><p>CachePlugin</p>
+</li>
+<li><p>JsonpTemplatePlugin</p>
+</li>
+</ul>
+<h4 id="done"><a href="#done" class="headerlink" title="done"></a>done</h4><p>上面是列举的几个重要的事件名，通过打日志发现，你还会发现还有很多自定义事件, 更多事件请参考官网<a href="https://webpack.js.org/api/compiler/" target="_blank" rel="noopener">Event Hooks</a>。你可以通过 compiler.plugin(‘事件名’, callback) 的方式监听这些事件，并提供回调函数。通过Webpack构建提供的生命周期事件，你可以控制 Webpack 编译流程的每个环节，从而实现对 Webpack 的自定义扩展功能。</p>
+<h3 id="事件定义"><a href="#事件定义" class="headerlink" title="事件定义"></a>事件定义</h3><ul>
+<li>全局事件容器定义</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// Tapable.prototype.plugin 定义事件， 一个事件可以多个回调函数</span>
+compiler<span class="token punctuation">.</span>plugin <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token function">plugin</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> fn<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span>Array<span class="token punctuation">.</span><span class="token function">isArray</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        name<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">plugin</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> fn<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+   <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>_plugins<span class="token punctuation">[</span>name<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_plugins<span class="token punctuation">[</span>name<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span>fn<span class="token punctuation">]</span><span class="token punctuation">;</span>
+   <span class="token keyword">else</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_plugins<span class="token punctuation">[</span>name<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>fn<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<ul>
+<li>Webpack 启动入口组件初始化</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// node_modules/webpack/lib/webpack.js</span>
+<span class="token keyword">function</span> <span class="token function">webpack</span><span class="token punctuation">(</span>options<span class="token punctuation">,</span> callback<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token operator">...</span><span class="token operator">...</span>
+  <span class="token comment" spellcheck="true">// 初始化所有plugin, 同时注册自定义事件和定义事件回调</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span>options<span class="token punctuation">.</span>plugins <span class="token operator">&amp;&amp;</span> Array<span class="token punctuation">.</span><span class="token function">isArray</span><span class="token punctuation">(</span>options<span class="token punctuation">.</span>plugins<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// apply 是每个plugin必须实现的方法</span>
+    compiler<span class="token punctuation">.</span>apply<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>compiler<span class="token punctuation">,</span> options<span class="token punctuation">.</span>plugins<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token operator">...</span><span class="token operator">...</span>
+<span class="token punctuation">}</span></code></pre>
+<ul>
+<li>插件内部事件注册</li>
+</ul>
+<p>查阅代码 Webpack 插件代码你会发现， 很多插件会在 <code>apply</code> 里面监听关键事件，然后处理相关逻辑</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">apply</span><span class="token punctuation">(</span>compiler<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  compiler<span class="token punctuation">.</span><span class="token function">plugin</span><span class="token punctuation">(</span><span class="token string">"compilation"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>compilation<span class="token punctuation">,</span> params<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+   <span class="token operator">...</span><span class="token operator">...</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  compiler<span class="token punctuation">.</span><span class="token function">plugin</span><span class="token punctuation">(</span><span class="token string">"make"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>compilation<span class="token punctuation">,</span> callback<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+   <span class="token operator">...</span><span class="token operator">...</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="触发事件"><a href="#触发事件" class="headerlink" title="触发事件"></a>触发事件</h3><p>在 <code>node_modules/tapable/lib/Tapable.js</code> 文件中提供很多触发事件的方法(方法命名好多，1，2，3，4这种命名，怀疑是版本兼容时不停增加导致的)，下面介绍一下主要的两个。</p>
+<ul>
+<li>applyPlugins</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript">compiler<span class="token punctuation">.</span><span class="token function">applyPlugins</span><span class="token punctuation">(</span><span class="token string">"compile"</span><span class="token punctuation">,</span> params<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<ul>
+<li>applyPluginsAsync</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript">compiler<span class="token punctuation">.</span><span class="token function">applyPluginsAsync</span><span class="token punctuation">(</span><span class="token string">"before-compile"</span><span class="token punctuation">,</span> params<span class="token punctuation">,</span> err <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>applyPluginsAsyncSeries [ Compiler {<br />_plugins:<br />{ ‘before-run’: [Array],<br />‘this-compilation’: [Array],<br />compilation: [Array],<br />‘after-resolvers’: [Array],<br />‘entry-option’: [Array],<br />make: [Array],<br />‘after-emit’: [Array],<br />‘watch-run’: [Array],<br />run: [Array],<br />‘after-compile’: [Array] },</p>
+<h2 id="代码执行流程"><a href="#代码执行流程" class="headerlink" title="代码执行流程"></a>代码执行流程</h2><h2 id="webpack-js"><a href="#webpack-js" class="headerlink" title="webpack.js"></a>webpack.js</h2><h4 id="WebpackOptionsDefaulter-初始化-webpack-默认配置"><a href="#WebpackOptionsDefaulter-初始化-webpack-默认配置" class="headerlink" title="WebpackOptionsDefaulter 初始化 webpack 默认配置"></a>WebpackOptionsDefaulter 初始化 webpack 默认配置</h4><h4 id="NodeEnvironmentPlugin-apply-before-run"><a href="#NodeEnvironmentPlugin-apply-before-run" class="headerlink" title="NodeEnvironmentPlugin.apply(before-run)"></a>NodeEnvironmentPlugin.apply(before-run)</h4><p>初始化 inputFileSystem/outputFileSystem/watchFileSystem</p>
+<h4 id="compiler-applyPlugins-“environment”"><a href="#compiler-applyPlugins-“environment”" class="headerlink" title="compiler.applyPlugins(“environment”);"></a>compiler.applyPlugins(“environment”);</h4><h4 id="compiler-applyPlugins-“after-environment”"><a href="#compiler-applyPlugins-“after-environment”" class="headerlink" title="compiler.applyPlugins(“after-environment”);"></a>compiler.applyPlugins(“after-environment”);</h4><h4 id="WebpackOptionsApply"><a href="#WebpackOptionsApply" class="headerlink" title="WebpackOptionsApply"></a>WebpackOptionsApply</h4><p>根据 webpack 配置 target 初始化 对应 Webpack plugin,  同时初始化文件查找<br />ResolverFactory.createResolver</p>
+<h5 id="web"><a href="#web" class="headerlink" title="web"></a>web</h5><pre class=" language-javascript"><code class="language-javascript">compiler<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>
+    <span class="token comment" spellcheck="true">// jsonp-script, require-ensure, bootstrap 脚本注入</span>
+    <span class="token keyword">new</span> <span class="token class-name">JsonpTemplatePlugin</span><span class="token punctuation">(</span>options<span class="token punctuation">.</span>output<span class="token punctuation">)</span><span class="token punctuation">,</span> 
+    <span class="token comment" spellcheck="true">// __webpack_require__ 定义</span>
+    <span class="token keyword">new</span> <span class="token class-name">FunctionModulePlugin</span><span class="token punctuation">(</span>options<span class="token punctuation">.</span>output<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token keyword">new</span> <span class="token class-name">NodeSourcePlugin</span><span class="token punctuation">(</span>options<span class="token punctuation">.</span>node<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token keyword">new</span> <span class="token class-name">LoaderTargetPlugin</span><span class="token punctuation">(</span>options<span class="token punctuation">.</span>target<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h5 id="node"><a href="#node" class="headerlink" title="node"></a>node</h5><pre class=" language-javascript"><code class="language-javascript">compiler<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>
+  <span class="token keyword">new</span> <span class="token class-name">NodeTemplatePlugin</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    asyncChunkLoading<span class="token punctuation">:</span> options<span class="token punctuation">.</span>target <span class="token operator">===</span> <span class="token string">"async-node"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token keyword">new</span> <span class="token class-name">FunctionModulePlugin</span><span class="token punctuation">(</span>options<span class="token punctuation">.</span>output<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token keyword">new</span> <span class="token class-name">NodeTargetPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token keyword">new</span> <span class="token class-name">LoaderTargetPlugin</span><span class="token punctuation">(</span><span class="token string">"node"</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre class=" language-javascript"><code class="language-javascript">compiler<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">EntryOptionPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    compiler<span class="token punctuation">.</span><span class="token function">applyPluginsBailResult</span><span class="token punctuation">(</span><span class="token string">"entry-option"</span><span class="token punctuation">,</span> options<span class="token punctuation">.</span>context<span class="token punctuation">,</span> options<span class="token punctuation">.</span>entry<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    compiler<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>
+      <span class="token keyword">new</span> <span class="token class-name">CompatibilityPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token keyword">new</span> <span class="token class-name">HarmonyModulesPlugin</span><span class="token punctuation">(</span>options<span class="token punctuation">.</span>module<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token keyword">new</span> <span class="token class-name">AMDPlugin</span><span class="token punctuation">(</span>options<span class="token punctuation">.</span>module<span class="token punctuation">,</span> options<span class="token punctuation">.</span>amd <span class="token operator">||</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token keyword">new</span> <span class="token class-name">CommonJsPlugin</span><span class="token punctuation">(</span>options<span class="token punctuation">.</span>module<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token keyword">new</span> <span class="token class-name">LoaderPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token keyword">new</span> <span class="token class-name">NodeStuffPlugin</span><span class="token punctuation">(</span>options<span class="token punctuation">.</span>node<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token keyword">new</span> <span class="token class-name">RequireJsStuffPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token keyword">new</span> <span class="token class-name">APIPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token keyword">new</span> <span class="token class-name">ConstPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token keyword">new</span> <span class="token class-name">UseStrictPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token keyword">new</span> <span class="token class-name">RequireIncludePlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token keyword">new</span> <span class="token class-name">RequireEnsurePlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token keyword">new</span> <span class="token class-name">RequireContextPlugin</span><span class="token punctuation">(</span>options<span class="token punctuation">.</span>resolve<span class="token punctuation">.</span>modules<span class="token punctuation">,</span> options<span class="token punctuation">.</span>resolve<span class="token punctuation">.</span>extensions<span class="token punctuation">,</span> options<span class="token punctuation">.</span>resolve<span class="token punctuation">.</span>mainFiles<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token keyword">new</span> <span class="token class-name">ImportPlugin</span><span class="token punctuation">(</span>options<span class="token punctuation">.</span>module<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token keyword">new</span> <span class="token class-name">SystemPlugin</span><span class="token punctuation">(</span>options<span class="token punctuation">.</span>module<span class="token punctuation">)</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre class=" language-javascript"><code class="language-javascript">compiler<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>
+      <span class="token keyword">new</span> <span class="token class-name">EnsureChunkConditionsPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token keyword">new</span> <span class="token class-name">RemoveParentModulesPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token keyword">new</span> <span class="token class-name">RemoveEmptyChunksPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token keyword">new</span> <span class="token class-name">MergeDuplicateChunksPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token keyword">new</span> <span class="token class-name">FlagIncludedChunksPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token keyword">new</span> <span class="token class-name">OccurrenceOrderPlugin</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token keyword">new</span> <span class="token class-name">FlagDependencyExportsPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token keyword">new</span> <span class="token class-name">FlagDependencyUsagePlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>options<span class="token punctuation">.</span>performance<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      compiler<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">SizeLimitsPlugin</span><span class="token punctuation">(</span>options<span class="token punctuation">.</span>performance<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    compiler<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">TemplatedPathPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    compiler<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">RecordIdsPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    compiler<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">WarnCaseSensitiveModulesPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>options<span class="token punctuation">.</span>cache<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">let</span> CachePlugin <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"./CachePlugin"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      compiler<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">CachePlugin</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> options<span class="token punctuation">.</span>cache <span class="token operator">===</span> <span class="token string">"object"</span> <span class="token operator">?</span> options<span class="token punctuation">.</span>cache <span class="token punctuation">:</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span></code></pre>
+<h4 id="compiler-run-callback-进入run流程"><a href="#compiler-run-callback-进入run流程" class="headerlink" title="compiler.run(callback) 进入run流程"></a>compiler.run(callback) 进入run流程</h4><h2 id="Compiler-extends-Tapable"><a href="#Compiler-extends-Tapable" class="headerlink" title="Compiler extends Tapable"></a>Compiler extends Tapable</h2><h4 id="compiler-run-callback-进入编译流程"><a href="#compiler-run-callback-进入编译流程" class="headerlink" title="compiler.run(callback) 进入编译流程"></a>compiler.run(callback) 进入编译流程</h4><pre class=" language-javascript"><code class="language-javascript"><span class="token function">run</span><span class="token punctuation">(</span>callback<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> startTime <span class="token operator">=</span> Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">const</span> onCompiled <span class="token operator">=</span> <span class="token punctuation">(</span>err<span class="token punctuation">,</span> compilation<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">//console.log('---run:onCompiled');</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token function">callback</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">applyPluginsBailResult</span><span class="token punctuation">(</span><span class="token string">"should-emit"</span><span class="token punctuation">,</span> compilation<span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token boolean">false</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">applyPlugins</span><span class="token punctuation">(</span><span class="token string">"done"</span><span class="token punctuation">,</span> stats<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">return</span> <span class="token function">callback</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> stats<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+
+            <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">emitAssets</span><span class="token punctuation">(</span>compilation<span class="token punctuation">,</span> err <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token function">callback</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span>compilation<span class="token punctuation">.</span><span class="token function">applyPluginsBailResult</span><span class="token punctuation">(</span><span class="token string">"need-additional-pass"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">applyPlugins</span><span class="token punctuation">(</span><span class="token string">"done"</span><span class="token punctuation">,</span> stats<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">applyPluginsAsync</span><span class="token punctuation">(</span><span class="token string">"additional-pass"</span><span class="token punctuation">,</span> err <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+                        <span class="token keyword">if</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token function">callback</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">compile</span><span class="token punctuation">(</span>onCompiled<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token keyword">return</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">emitRecords</span><span class="token punctuation">(</span>err <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+                    <span class="token keyword">if</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token function">callback</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">applyPlugins</span><span class="token punctuation">(</span><span class="token string">"done"</span><span class="token punctuation">,</span> stats<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token keyword">return</span> <span class="token function">callback</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> stats<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">applyPluginsAsync</span><span class="token punctuation">(</span><span class="token string">"before-run"</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">,</span> err <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token function">callback</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">applyPluginsAsync</span><span class="token punctuation">(</span><span class="token string">"run"</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">,</span> err <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token function">callback</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token comment" spellcheck="true">//console.log('---applyPluginsAsync:run');</span>
+                <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">readRecords</span><span class="token punctuation">(</span>err <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+                    <span class="token keyword">if</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token function">callback</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">compile</span><span class="token punctuation">(</span>onCompiled<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span></code></pre>
+<h4 id="Webpack-Loader-处理初始化-NormalModuleFactory"><a href="#Webpack-Loader-处理初始化-NormalModuleFactory" class="headerlink" title="Webpack Loader 处理初始化 NormalModuleFactory"></a>Webpack Loader 处理初始化 NormalModuleFactory</h4><p><strong>NormalModuleFactory: /node_modules/webpack/lib/NormalModuleFactory.js</strong></p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">createNormalModuleFactory</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+       <span class="token comment" spellcheck="true">// /node_modules/webpack/lib/NormalModuleFactory.js</span>
+        <span class="token keyword">const</span> normalModuleFactory <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">NormalModuleFactory</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>options<span class="token punctuation">.</span>context<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>resolvers<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>options<span class="token punctuation">.</span>module <span class="token operator">||</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">applyPlugins</span><span class="token punctuation">(</span><span class="token string">"normal-module-factory"</span><span class="token punctuation">,</span> normalModuleFactory<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> normalModuleFactory<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token function">createContextModuleFactory</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> contextModuleFactory <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ContextModuleFactory</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>resolvers<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>inputFileSystem<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">applyPlugins</span><span class="token punctuation">(</span><span class="token string">"context-module-factory"</span><span class="token punctuation">,</span> contextModuleFactory<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> contextModuleFactory<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token function">newCompilationParams</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> params <span class="token operator">=</span> <span class="token punctuation">{</span>
+            normalModuleFactory<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">createNormalModuleFactory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            contextModuleFactory<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">createContextModuleFactory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            compilationDependencies<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> params<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span></code></pre>
+<h4 id="compiler-compile-onCompiled-进入编译流程"><a href="#compiler-compile-onCompiled-进入编译流程" class="headerlink" title="compiler.compile(onCompiled) 进入编译流程"></a>compiler.compile(onCompiled) 进入编译流程</h4><pre class=" language-javascript"><code class="language-javascript"><span class="token function">compile</span><span class="token punctuation">(</span>callback<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> params <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">newCompilationParams</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">applyPluginsAsync</span><span class="token punctuation">(</span><span class="token string">"before-compile"</span><span class="token punctuation">,</span> params<span class="token punctuation">,</span> err <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token function">callback</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">applyPlugins</span><span class="token punctuation">(</span><span class="token string">"compile"</span><span class="token punctuation">,</span> params<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">const</span> compilation <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">newCompilation</span><span class="token punctuation">(</span>params<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">applyPluginsParallel</span><span class="token punctuation">(</span><span class="token string">"make"</span><span class="token punctuation">,</span> compilation<span class="token punctuation">,</span> err <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token function">callback</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                compilation<span class="token punctuation">.</span><span class="token function">finish</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                compilation<span class="token punctuation">.</span><span class="token function">seal</span><span class="token punctuation">(</span>err <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+                    <span class="token keyword">if</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token function">callback</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">applyPluginsAsync</span><span class="token punctuation">(</span><span class="token string">"after-compile"</span><span class="token punctuation">,</span> compilation<span class="token punctuation">,</span> err <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+                        <span class="token keyword">if</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token function">callback</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token keyword">return</span> <span class="token function">callback</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> compilation<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id=""><a href="#" class="headerlink" title=""></a></h4><h2 id="Entry"><a href="#Entry" class="headerlink" title="Entry"></a>Entry</h2><h4 id="entry-option-EntryOptionPlugin"><a href="#entry-option-EntryOptionPlugin" class="headerlink" title="entry-option:EntryOptionPlugin"></a>entry-option:EntryOptionPlugin</h4><h4 id="make-SingleEntryPlugin"><a href="#make-SingleEntryPlugin" class="headerlink" title="make:SingleEntryPlugin"></a>make:SingleEntryPlugin</h4><p>// Compilation: node_modules/webpack/lib/Compilation.js</p>
+<pre><code>Compilation.addEntry(context, entry, name, callback)</code></pre><h2 id="关键代码"><a href="#关键代码" class="headerlink" title="关键代码"></a>关键代码</h2><h3 id="Webpack-js"><a href="#Webpack-js" class="headerlink" title="Webpack.js"></a>Webpack.js</h3><ul>
+<li><p>function webpack(options)</p>
+<ul>
+<li><p>new WebpackOptionsDefaulter().process(options);</p>
+</li>
+<li><p>compiler.apply.apply(compiler, options.plugins);</p>
+</li>
+<li><p>new NodeEnvironmentPlugin().apply(compiler);</p>
+</li>
+<li><p>NodeEnvironmentPlugin.js: compiler.plugin(“before-run”)</p>
+</li>
+<li><p>compiler.applyPlugins(“environment”);</p>
+</li>
+<li><p>compiler.applyPlugins(“after-environment”);</p>
+</li>
+<li><p>compiler.options = new WebpackOptionsApply().process(options, compiler);</p>
+</li>
+<li><p>WebpackOptionsApply.js </p>
+<ul>
+<li><p>EntryOptionPlugin: “entry-option”</p>
+</li>
+<li><p>SingleEntryPlugin: “make” or MultiEntryPlugin: “make”</p>
+</li>
+<li><p>若干组件初始化</p>
+</li>
+<li><p>compiler.resolvers.context = ResolverFactory.createResolver(options.resolve)</p>
+</li>
+<li><p>compiler.resolvers.loader = ResolverFactory.createResolver(options.resolveLoader);</p>
+</li>
+</ul>
+</li>
+<li><p>compiler.run(callback)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Compiler-js"><a href="#Compiler-js" class="headerlink" title="Compiler.js"></a>Compiler.js</h3><ul>
+<li><p>compiler.run(callback)</p>
+<ul>
+<li><p>this.applyPluginsAsync(“before-run”)</p>
+</li>
+<li><p>this.applyPluginsAsync(“run”)</p>
+</li>
+</ul>
+</li>
+<li><p>this.compile(onCompiled);</p>
+<ul>
+<li><p>new NormalModuleFactory(this.options.context, this.resolvers, this.options.module || {})</p>
+</li>
+<li><p>this.applyPluginsAsync(“before-compile”)</p>
+</li>
+<li><p>this.applyPlugins(“compile”)</p>
+</li>
+<li><p>this.applyPluginsParallel(“make”)</p>
+</li>
+<li><p>this.applyPluginsAsync(“after-compile”)</p>
+</li>
+<li><p>callback(null, compilation)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="WebpackOptionsApply-js"><a href="#WebpackOptionsApply-js" class="headerlink" title="WebpackOptionsApply.js"></a>WebpackOptionsApply.js</h3><ul>
+<li><p>new EntryOptionPlugin: ‘entry-option’</p>
+</li>
+<li><p>compiler.apply(‘entry-option’)</p>
+</li>
+<li><p>compiler.apply(new SingleEntryPlugin: “make” or MultiEntryPlugin: “make”);</p>
+</li>
+<li><p>SingleEntryPlugin</p>
+<ul>
+<li>compiler.plugin(“make”, (compilation, callback) =&gt; {<br />     const dep = SingleEntryPlugin.createDependency(this.entry, this.name);<br />     compilation.addEntry(this.context, dep, this.name, callback);</li>
+</ul>
+</li>
+</ul>
+<pre><code>});</code></pre><ul>
+<li><p>若干组件初始化</p>
+</li>
+<li><p>compiler.resolvers.context = ResolverFactory.createResolver(options.resolve)</p>
+</li>
+<li><p>compiler.resolvers.loader = ResolverFactory.createResolver(options.resolveLoader);</p>
+</li>
+</ul>
+<h3 id="Compilation-js"><a href="#Compilation-js" class="headerlink" title="Compilation.js"></a>Compilation.js</h3><ul>
+<li><p>addEntry</p>
+</li>
+<li><p>_addModuleChain</p>
+</li>
+<li><p>NormalModuleFactory.create</p>
+</li>
+<li><p>buildModule:build-module</p>
+</li>
+<li><p>NormalModule.js: build</p>
+</li>
+<li><p>loader-runner:runLoaders</p>
+</li>
+<li><p>NormalModule.js: parser.parse HarmonyImportDependency 文件依赖</p>
+</li>
+<li><p>processModuleDependencies( 递归解析文件和处理文件依赖 )</p>
+</li>
+</ul>
+<h4 id="Dependencies"><a href="#Dependencies" class="headerlink" title="Dependencies"></a>Dependencies</h4><ul>
+<li>factory: NullFactory &amp; NormalModuleFactory</li>
+</ul>
+<pre class=" language-json"><code class="language-json"><span class="token punctuation">[</span> HarmonyCompatibilityDependency <span class="token punctuation">{</span> module<span class="token operator">:</span> <span class="token null">null</span><span class="token punctuation">,</span> originModule<span class="token operator">:</span> <span class="token punctuation">[</span>Object<span class="token punctuation">]</span><span class="token punctuation">,</span> loc<span class="token operator">:</span> <span class="token punctuation">[</span>Object<span class="token punctuation">]</span> <span class="token punctuation">}</span> <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">[</span> HarmonyImportDependency <span class="token punctuation">{</span>
+      module<span class="token operator">:</span> <span class="token null">null</span><span class="token punctuation">,</span>
+      request<span class="token operator">:</span> 'vue'<span class="token punctuation">,</span>
+      userRequest<span class="token operator">:</span> 'vue'<span class="token punctuation">,</span>
+      range<span class="token operator">:</span> <span class="token punctuation">[</span>Array<span class="token punctuation">]</span><span class="token punctuation">,</span>
+      importedVar<span class="token operator">:</span> '__WEBPACK_IMPORTED_MODULE_0_vue__'<span class="token punctuation">,</span>
+      loc<span class="token operator">:</span> <span class="token punctuation">[</span>Object<span class="token punctuation">]</span> <span class="token punctuation">}</span> <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">[</span> HarmonyImportDependency <span class="token punctuation">{</span>
+      module<span class="token operator">:</span> <span class="token null">null</span><span class="token punctuation">,</span>
+      request<span class="token operator">:</span> './components/Hello.vue'<span class="token punctuation">,</span>
+      userRequest<span class="token operator">:</span> './components/Hello.vue'<span class="token punctuation">,</span>
+      range<span class="token operator">:</span> <span class="token punctuation">[</span>Array<span class="token punctuation">]</span><span class="token punctuation">,</span>
+      importedVar<span class="token operator">:</span> '__WEBPACK_IMPORTED_MODULE_1__components_Hello_vue__'<span class="token punctuation">,</span>
+      loc<span class="token operator">:</span> <span class="token punctuation">[</span>Object<span class="token punctuation">]</span> <span class="token punctuation">}</span> <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">[</span> HarmonyImportDependency <span class="token punctuation">{</span>
+      module<span class="token operator">:</span> <span class="token null">null</span><span class="token punctuation">,</span>
+      request<span class="token operator">:</span> './components/HelloDecorator.vue'<span class="token punctuation">,</span>
+      userRequest<span class="token operator">:</span> './components/HelloDecorator.vue'<span class="token punctuation">,</span>
+      range<span class="token operator">:</span> <span class="token punctuation">[</span>Array<span class="token punctuation">]</span><span class="token punctuation">,</span>
+      importedVar<span class="token operator">:</span> '__WEBPACK_IMPORTED_MODULE_2__components_HelloDecorator_vue__'<span class="token punctuation">,</span>
+      loc<span class="token operator">:</span> <span class="token punctuation">[</span>Object<span class="token punctuation">]</span> <span class="token punctuation">}</span> <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">[</span> HarmonyImportSpecifierDependency <span class="token punctuation">{</span>
+      module<span class="token operator">:</span> <span class="token null">null</span><span class="token punctuation">,</span>
+      importDependency<span class="token operator">:</span> <span class="token punctuation">[</span>Object<span class="token punctuation">]</span><span class="token punctuation">,</span>
+      importedVar<span class="token operator">:</span> '__WEBPACK_IMPORTED_MODULE_0_vue__'<span class="token punctuation">,</span>
+      id<span class="token operator">:</span> 'default'<span class="token punctuation">,</span>
+      name<span class="token operator">:</span> 'Vue'<span class="token punctuation">,</span>
+      range<span class="token operator">:</span> <span class="token punctuation">[</span>Array<span class="token punctuation">]</span><span class="token punctuation">,</span>
+      strictExportPresence<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+      namespaceObjectAsContext<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+      callArgs<span class="token operator">:</span> undefined<span class="token punctuation">,</span>
+      call<span class="token operator">:</span> undefined<span class="token punctuation">,</span>
+      directImport<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      shorthand<span class="token operator">:</span> undefined<span class="token punctuation">,</span>
+      loc<span class="token operator">:</span> <span class="token punctuation">[</span>Object<span class="token punctuation">]</span> <span class="token punctuation">}</span> <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">[</span> HarmonyImportSpecifierDependency <span class="token punctuation">{</span>
+      module<span class="token operator">:</span> <span class="token null">null</span><span class="token punctuation">,</span>
+      importDependency<span class="token operator">:</span> <span class="token punctuation">[</span>Object<span class="token punctuation">]</span><span class="token punctuation">,</span>
+      importedVar<span class="token operator">:</span> '__WEBPACK_IMPORTED_MODULE_1__components_Hello_vue__'<span class="token punctuation">,</span>
+      id<span class="token operator">:</span> 'default'<span class="token punctuation">,</span>
+      name<span class="token operator">:</span> 'HelloComponent'<span class="token punctuation">,</span>
+      range<span class="token operator">:</span> <span class="token punctuation">[</span>Array<span class="token punctuation">]</span><span class="token punctuation">,</span>
+      strictExportPresence<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+      namespaceObjectAsContext<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+      callArgs<span class="token operator">:</span> undefined<span class="token punctuation">,</span>
+      call<span class="token operator">:</span> undefined<span class="token punctuation">,</span>
+      directImport<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      shorthand<span class="token operator">:</span> undefined<span class="token punctuation">,</span>
+      loc<span class="token operator">:</span> <span class="token punctuation">[</span>Object<span class="token punctuation">]</span> <span class="token punctuation">}</span> <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">[</span> HarmonyImportSpecifierDependency <span class="token punctuation">{</span>
+      module<span class="token operator">:</span> <span class="token null">null</span><span class="token punctuation">,</span>
+      importDependency<span class="token operator">:</span> <span class="token punctuation">[</span>Object<span class="token punctuation">]</span><span class="token punctuation">,</span>
+      importedVar<span class="token operator">:</span> '__WEBPACK_IMPORTED_MODULE_2__components_HelloDecorator_vue__'<span class="token punctuation">,</span>
+      id<span class="token operator">:</span> 'default'<span class="token punctuation">,</span>
+      name<span class="token operator">:</span> 'HelloDecoratorComponent'<span class="token punctuation">,</span>
+      range<span class="token operator">:</span> <span class="token punctuation">[</span>Array<span class="token punctuation">]</span><span class="token punctuation">,</span>
+      strictExportPresence<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+      namespaceObjectAsContext<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+      callArgs<span class="token operator">:</span> undefined<span class="token punctuation">,</span>
+      call<span class="token operator">:</span> undefined<span class="token punctuation">,</span>
+      directImport<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      shorthand<span class="token operator">:</span> undefined<span class="token punctuation">,</span>
+      loc<span class="token operator">:</span> <span class="token punctuation">[</span>Object<span class="token punctuation">]</span> <span class="token punctuation">}</span> <span class="token punctuation">]</span> <span class="token punctuation">]</span></code></pre>
+<h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><h4 id="NormalModuleFactory-js"><a href="#NormalModuleFactory-js" class="headerlink" title="NormalModuleFactory.js"></a>NormalModuleFactory.js</h4><ul>
+<li><p>this.plugin(“factory”)</p>
+</li>
+<li><p>this.plugin(“resolver”)</p>
+</li>
+<li><p>create(data, callback)</p>
+</li>
+</ul>
+<p>创建模块：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">new</span> <span class="token class-name">NormalModule</span><span class="token punctuation">(</span>
+ result<span class="token punctuation">.</span>request<span class="token punctuation">,</span> <span class="token comment" spellcheck="true">///TypeScript-Vue-Starter/node_modules/_ts-loader@3.2.0@ts-loader/index.js??ref--1!/TypeScript-Vue-Starter/src/index.ts</span>
+ result<span class="token punctuation">.</span>userRequest<span class="token punctuation">,</span> <span class="token comment" spellcheck="true">//'/TypeScript-Vue-Starter/src/index.ts',</span>
+ result<span class="token punctuation">.</span>rawRequest<span class="token punctuation">,</span> <span class="token comment" spellcheck="true">//'./src/index.ts'</span>
+ result<span class="token punctuation">.</span>loaders<span class="token punctuation">,</span>
+ result<span class="token punctuation">.</span>resource<span class="token punctuation">,</span>
+ result<span class="token punctuation">.</span>parser
+<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p><a href="https://github.com/webpack/enhanced-resolve/tree/master/lib" target="_blank" rel="noopener">https://github.com/webpack/enhanced-resolve/tree/master/lib</a><br /><a href="https://doc.webpack-china.org/concepts/module-resolution/" target="_blank" rel="noopener">https://doc.webpack-china.org/concepts/module-resolution/</a></p>
+<p>TypeScript-Vue-Starter/node_modules/enhanced-resolve/lib/ResolverFactory.js</p>
+<p>TypeScript-Vue-Starter/node_modules/enhanced-resolve/lib/Resolver.js</p>
+<p>TypeScript-Vue-Starter/node_modules/webpack/lib/NormalModuleFactory.js</p>
+<h4 id="ResolverFactory"><a href="#ResolverFactory" class="headerlink" title="ResolverFactory"></a>ResolverFactory</h4><ul>
+<li>TypeScript-Vue-Starter/node_modules/<a href="mailto:_enhanced-resolve@3.4.1" target="_blank" rel="noopener">_enhanced-resolve@3.4.1</a>@enhanced-resolve/lib/ResolverFactory.js</li>
+</ul>
+<ul>
+<li>TypeScript-Vue-Starter/node_modules/enhanced-resolve/lib/node.js</li>
+</ul>
+<ul>
+<li>TypeScript-Vue-Starter/node_modules/webpack/lib/WebpackOptionsApply.js</li>
+</ul>
+<ul>
+<li>TypeScript-Vue-Starter/node_modules/<a href="mailto:_webpack@3.10.0" target="_blank" rel="noopener">_webpack@3.10.0</a>@webpack/lib/webpack.js</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">new</span> <span class="token class-name">WebpackOptionsDefaulter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">process</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+compiler<span class="token punctuation">.</span>options <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WebpackOptionsApply</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">process</span><span class="token punctuation">(</span>options<span class="token punctuation">,</span> compiler<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h3 id="插件初始化"><a href="#插件初始化" class="headerlink" title="插件初始化"></a>插件初始化</h3><p>class Compiler extends Tapable</p>
+<ul>
+<li><ol>
+<li>执行plugin 的apply方法</li>
+</ol>
+</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript">Tapable<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>apply <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token function">apply</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> arguments<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Tapable#apply'</span><span class="token punctuation">,</span> arguments<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>constructor<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        arguments<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<ul>
+<li><ol>
+<li>注册事件回调函数</li>
+</ol>
+</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// name  hook 事件名称</span>
+<span class="token comment" spellcheck="true">// fn: function (request, callback) {</span>
+<span class="token comment" spellcheck="true">//    resolver.doResolve(target, obj, appending, callback);</span>
+<span class="token comment" spellcheck="true">// }</span>
+Tapable<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>plugin <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token function">plugin</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> fn<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>Array<span class="token punctuation">.</span><span class="token function">isArray</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        name<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">plugin</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> fn<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">// 一个事件名可以注册多个回调函数</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>_plugins<span class="token punctuation">[</span>name<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_plugins<span class="token punctuation">[</span>name<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span>fn<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">else</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_plugins<span class="token punctuation">[</span>name<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>fn<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<h4 id="插件执行循序"><a href="#插件执行循序" class="headerlink" title="插件执行循序"></a>插件执行循序</h4><ul>
+<li>SingleEntryPlugin</li>
+</ul>
+<ul>
+<li><p><a href="https://github.com/webpack/webpack/tree/master/lib/webpack.js" target="_blank" rel="noopener">webpack.js</a></p>
+</li>
+<li><p><a href="https://github.com/webpack/webpack/tree/master/lib/Tabable.js" target="_blank" rel="noopener">Tabable.js</a></p>
+</li>
+<li><p><a href="https://github.com/webpack/webpack/tree/master/lib/Compiler.js" target="_blank" rel="noopener">Compiler.js</a></p>
+</li>
+<li><p><a href="https://github.com/webpack/webpack/tree/master/lib/node/NodeEnvironmentPlugin.js" target="_blank" rel="noopener">NodeEnvironmentPlugin.js</a></p>
+</li>
+</ul>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
+<li><p><a href="https://fengmiaosen.github.io/2017/03/21/webpack-core-code/" target="_blank" rel="noopener">webpack之plugin内部运行机制</a></p>
+</li>
+<li><p><a href="https://www.jianshu.com/p/223bb6edc0eb" target="_blank" rel="noopener">Webpack Module Resolution</a></p>
+</li>
+</ul>
+
+                </div>
+                <hr/>
+    
+                
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://easy-team.github.io" rel="external nofollow noreferrer">sky</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://easy-team.github.io/blog/ekvirc/">https://easy-team.github.io/blog/ekvirc/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="https://easy-team.github.io" target="_blank">sky</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+    
+                <div class="tag_share" style="display: block;">
+                    <div class="post-meta__tag-list" style="display: inline-block;">
+                        
+                            <div class="article-tag">
+                                <span class="chip bg-color">No tag</span>
+                            </div>
+                        
+                    </div>
+                    <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                        <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    
+    <div class="social-share" data-sites="qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                    </div>
+                </div>
+                
+                    <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+                
+            </div>
+        </div>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/blog/kghphs/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="React Native代码执行跟踪和调试">
+                        
+                        <span class="card-title">React Native代码执行跟踪和调试</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            原文 http://hubcarl.github.io/blog/2016/09/04/react-native-debug/在本地开发时, React Native 是加载本地Node服务, 可以通过npm start 启动， package.json 代码如下：&quot;scripts&...
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2019-10-20
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            sky
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/blog/xriz8a/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="Egg + Vue/Nunjucks 服务端渲染性能测试">
+                        
+                        <span class="card-title">Egg + Vue/Nunjucks 服务端渲染性能测试</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            知乎专栏：https://zhuanlan.zhihu.com/p/30683070在用Vue做服务端渲染时，大家对Vue服务端渲染的性能持怀疑态度，业界也有一些尝试，不过完整的产品项目和数据分析比较少。结合线上和本地压测，我们对 Vue 和 Nunjucks 针对模板渲染Render时间，C...
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-10-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            sky
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+     </div>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('50')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + 'From: easy-team<br />'
+            + 'Author: sky<br />'
+            + 'Link: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+    
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+<!-- menu-selected -->
+<script>
+    var pathname = location.pathname.replace(/^\//, '').replace(/\/$/, '').replace(/\//g, '-');
+    $('#m-nav-item-' + pathname).addClass('doc-left-nav-mene-selected');
+</script>
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">年份</span>
+            <a href="https://easy-team.github.io" target="_blank">sky</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/easy-team" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">92.8k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    window.setTimeout("siteTime()", 1000);
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2019";
+                    var startMonth = "10";
+                    var startDate = "20";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/hubcarl" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:hubcarl@126.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=433207205" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 433207205" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/hubcarl" class="tooltipped" target="_blank" data-tooltip="关注我的微博: https://weibo.com/hubcarl" data-position="top" data-delay="50">
+        <i class="fab fa-weibo"></i>
+    </a>
+
+
+
+    <a href="https://zhuanlan.zhihu.com/easywebpack" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: https://zhuanlan.zhihu.com/easywebpack" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <!-- Baidu Analytics -->
+
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i["DaoVoiceObject"] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            a.charset = "utf-8";
+            m.parentNode.insertBefore(a, m)
+        })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') +
+            "//widget.daovoice.io/widget/6984b559.js", "daovoice")
+        daovoice('init', {
+            app_id: ""
+        });
+        daovoice('update');
+    </script>
+    
+
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

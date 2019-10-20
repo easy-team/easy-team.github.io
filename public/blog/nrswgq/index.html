@@ -1,0 +1,1925 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Android 与 Flutter 入门开发实践指引, node, egg, webpack, ves, res, ssr">
+    <meta name="description" content="项目集成Android 集成 Flutter 项目
+通过 Android Studio 创建 Andriod 原生应用 AndroidApp
+通过 Android Studio 创建 New Flutter Project, 选择 Flut">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Android 与 Flutter 入门开发实践指引 | easy-team</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper head-container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">easy-team</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Home</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/res" class="waves-effect waves-light">
+      
+      <i class="fas fa-forward" style="zoom: 0.6;"></i>
+      
+      <span>Res</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/ves" class="waves-effect waves-light">
+      
+      <i class="fas fa-forward" style="zoom: 0.6;"></i>
+      
+      <span>Ves</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>Egg</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/egg-react">
+          
+          <i class="fas fa-forward" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Egg+React</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/egg-vue">
+          
+          <i class="fas fa-forward" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Egg+Vue</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/easywebpack" class="waves-effect waves-light">
+      
+      <i class="fas fa-building" style="zoom: 0.6;"></i>
+      
+      <span>Webpack</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog" class="waves-effect waves-light">
+      
+      <i class="fas fa-hacker-news" style="zoom: 0.6;"></i>
+      
+      <span>Blog</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>Contact</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">easy-team</div>
+        <div class="logo-desc">
+            
+            前端工程化,Node开发,Webpack,Egg,React Server Side Render, Vue Server Side Render
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Home
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/res" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-forward"></i>
+			
+			Res
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/ves" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-forward"></i>
+			
+			Ves
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			Egg
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>   
+				
+                  <a href="/egg-react " style="margin-left:75px";>
+				  
+				   <i class="fa fas fa-forward" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Egg+React</span>
+                  </a>
+                </li>
+              
+                <li>   
+				
+                  <a href="/egg-vue " style="margin-left:75px";>
+				  
+				   <i class="fa fas fa-forward" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Egg+Vue</span>
+                  </a>
+                </li>
+               
+            </ul>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/easywebpack" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-building"></i>
+			
+			Webpack
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-hacker-news"></i>
+			
+			Blog
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/easy-team" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/easy-team" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    <div class="bg-cover pd-header" style="height: 9vh">
+    <div class="container"></div>
+</div>
+
+
+    <script>
+        // 每天切换 banner 图.  Switch banner image every day.
+        $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
+    </script>
+    
+
+<div class="doc-content">
+    
+     <div class="doc-left-nav">
+        <div class="side-nav docsidenav">
+
+    <!-- <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">easy-team</div>
+        <div class="logo-desc">
+            
+            前端工程化,Node开发,Webpack,Egg,React Server Side Render, Vue Server Side Render
+            
+        </div>
+    </div> -->
+
+
+    <div class="doc-left-nav-title">blog</div>
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+            <a href="/blog/kiygy5" class="waves-effect waves-light" id="m-nav-item-blog-kiygy5">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Vue SSR 组件加载
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/ekvirc" class="waves-effect waves-light" id="m-nav-item-blog-ekvirc">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Webpack 构建流程解密
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/az519d" class="waves-effect waves-light" id="m-nav-item-blog-az519d">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                页面资源加载
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/dxrrhq" class="waves-effect waves-light" id="m-nav-item-blog-dxrrhq">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Webpack 4 编译内存泄漏
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/xcw19a" class="waves-effect waves-light" id="m-nav-item-blog-xcw19a">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native, Hybrid App, H5 简单对比分析
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/vzgcgb" class="waves-effect waves-light" id="m-nav-item-blog-vzgcgb">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native Android APK包大小分析
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/wk5ney" class="waves-effect waves-light" id="m-nav-item-blog-wk5ney">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native 自定义插件
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/kghphs" class="waves-effect waves-light" id="m-nav-item-blog-kghphs">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native代码执行跟踪和调试
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/qwywww" class="waves-effect waves-light" id="m-nav-item-blog-qwywww">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native 热更新实现
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/rh45zo" class="waves-effect waves-light" id="m-nav-item-blog-rh45zo">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native Android源码解读和交互原理分析
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/uhmdkg" class="waves-effect waves-light" id="m-nav-item-blog-uhmdkg">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Hybrid系列-phonegap android框架详解
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/sxys82" class="waves-effect waves-light" id="m-nav-item-blog-sxys82">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Hybrid系列-Cordova android框架详解
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/syh43v" class="waves-effect waves-light" id="m-nav-item-blog-syh43v">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                npm 常用命令
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/vfhw62" class="waves-effect waves-light" id="m-nav-item-blog-vfhw62">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Git 使用技巧
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/gayu0o" class="waves-effect waves-light" id="m-nav-item-blog-gayu0o">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Docker 随记
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/egret" class="waves-effect waves-light" id="m-nav-item-blog-egret">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Egret  游戏开发
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/og9ogk" class="waves-effect waves-light" id="m-nav-item-blog-og9ogk">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                vscode 插件开发
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/qz7n03" class="waves-effect waves-light" id="m-nav-item-blog-qz7n03">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Mac PHP 环境
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/qwr449" class="waves-effect waves-light" id="m-nav-item-blog-qwr449">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Webpack 热更新实现原理分析
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/ruv09m" class="waves-effect waves-light" id="m-nav-item-blog-ruv09m">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Egg SSR Webpack 内存编译热更新实现
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/sg8avg" class="waves-effect waves-light" id="m-nav-item-blog-sg8avg">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Babel 构建优化
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/zfri65" class="waves-effect waves-light" id="m-nav-item-blog-zfri65">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Webpack 构建大小分析与优化
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/xriz8a" class="waves-effect waves-light" id="m-nav-item-blog-xriz8a">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Egg + Vue/Nunjucks 服务端渲染性能测试
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/lsrssy" class="waves-effect waves-light" id="m-nav-item-blog-lsrssy">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Flutter  Android  混合工程实践
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/zs3hog" class="waves-effect waves-light" id="m-nav-item-blog-zs3hog">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Flutter iOS 混合工程实践
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/nrswgq" class="waves-effect waves-light" id="m-nav-item-blog-nrswgq">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Android 与 Flutter 入门开发实践指引
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/wydpi1" class="waves-effect waves-light" id="m-nav-item-blog-wydpi1">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Flutter 动态更新
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/cdal6o" class="waves-effect waves-light" id="m-nav-item-blog-cdal6o">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Egg + Web 自定义前端渲染
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/easy-team" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+     </div>
+    
+    <div class="doc-right-nav">
+        <div class="card" class="doc-right-card">
+            <div class="card-content article-info">
+                <h1 style="margin-top: 12px;">Android 与 Flutter 入门开发实践指引</h1>
+                <div class="row">
+                    <div class="col s5 right-align">
+                        
+                    </div>
+                </div>
+                
+                <div class="post-info">
+                    <div class="post-date info-break-policy">
+                        <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                        2019-10-20
+                    </div>
+    
+                    
+                        
+                        <div class="info-break-policy">
+                            <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
+                            3.3k
+                        </div>
+                        
+    
+                        
+                        <div class="info-break-policy">
+                            <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
+                            16 Min
+                        </div>
+                        
+                    
+                    
+                    
+                        <div id="busuanzi_container_page_pv" class="info-break-policy">
+                            <i class="far fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                            <span id="busuanzi_value_page_pv"></span>
+                        </div>
+                    
+                </div>
+            </div>
+            <hr class="clearfix">
+            <div class="card-content article-card-content" style="padding-top: 0px;">
+                <div id="articleContent">
+                    <h3 id="项目集成"><a href="#项目集成" class="headerlink" title="项目集成"></a>项目集成</h3><h4 id="Android-集成-Flutter-项目"><a href="#Android-集成-Flutter-项目" class="headerlink" title="Android 集成 Flutter 项目"></a>Android 集成 Flutter 项目</h4><ul>
+<li>通过 Android Studio 创建 Andriod 原生应用 <strong>AndroidApp</strong></li>
+<li>通过 Android Studio 创建 New Flutter Project, 选择 Flutter Module，创建 Flutter Module <strong>FlutterApp</strong></li>
+<li>Android Studio 打开 <strong>AndroidApp</strong> 项目，然后 New -&gt; Module-&gt; Import Flutter Module 添加 Flutter Module  <strong>FlutterApp</strong> 依赖 </li>
+</ul>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h3 id="开发调试"><a href="#开发调试" class="headerlink" title="开发调试"></a>开发调试</h3><h4 id="纯-Flutter-项目开发调试"><a href="#纯-Flutter-项目开发调试" class="headerlink" title="纯 Flutter 项目开发调试"></a>纯 Flutter 项目开发调试</h4><ul>
+<li>方式一： vscode 打开 Flutter 项目， 按 F5 进 DEBUG，CTRL+F5 进行 HOT RESTART  可以实现 Hot Reload （如果是 flutter run， 修改文件后，需要安 r）</li>
+<li>方式二：Android Studio 打开 Flutter 项目，<img src="https://cdn.nlark.com/yuque/0/2019/png/116733/1556162064648-3c53b7c6-65fe-461e-a86e-b1bd9f884ce7.png#align=left&display=inline&height=40&name=image.png&originHeight=40&originWidth=343&size=13523&status=done&width=343" alt="image.png"></li>
+</ul>
+<h4 id="Android-集成-Flutter-开发调试"><a href="#Android-集成-Flutter-开发调试" class="headerlink" title="Android 集成 Flutter 开发调试"></a>Android 集成 Flutter 开发调试</h4><blockquote>
+<p>Android 与 Flutter 混合模式： Android 项目集成 Flutter Module</p>
+</blockquote>
+<ul>
+<li>首先，进入 Flutter Module 目录， 命令行执行 <code>flutter attach</code>  修改代码后，press “r”  即可实现 Hot Reload </li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2019/png/116733/1556162090887-9bd1806c-7706-4c56-b89f-cffa0e0ddac2.png#align=left&display=inline&height=257&name=image.png&originHeight=257&originWidth=586&size=109554&status=done&width=586" alt="image.png"></p>
+<ul>
+<li>Andorid Studio 打开 Android 项目，点击绿色三角按钮 <img src="https://cdn.nlark.com/yuque/0/2019/png/116733/1556162090886-15695c60-4081-43e2-832c-a0eece2d0420.png#align=left&display=inline&height=35&name=image.png&originHeight=35&originWidth=155&size=7055&status=done&width=154" alt="image.png"> 进入 原生 App Debug 模式</li>
+</ul>
+<h3 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h3><p>安装第三方依赖需要在 pubspec.yaml 的 *<em>dependencies *</em>节点添加插件配置，类似与 npm</p>
+<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">dependencies</span><span class="token punctuation">:</span>
+  <span class="token key atrule">flutter</span><span class="token punctuation">:</span>
+    <span class="token key atrule">sdk</span><span class="token punctuation">:</span> flutter
+  <span class="token key atrule">cupertino_icons</span><span class="token punctuation">:</span> ^0.1.2
+  <span class="token comment" spellcheck="true"># flutter webview 插件</span>
+  <span class="token key atrule">flutter_webview_plugin</span><span class="token punctuation">:</span> 0.3.3
+  <span class="token comment" spellcheck="true"># sqlite 数据库</span>
+  <span class="token key atrule">sqflite</span><span class="token punctuation">:</span> ^1.1.0</code></pre>
+<p>添加好以后，点击 AS 右上方的 Packages get 安装依赖或者进入项目根目录执行 *<em>flutter packages get *</em>安装依赖</p>
+<h3 id="入口函数"><a href="#入口函数" class="headerlink" title="入口函数"></a>入口函数</h3><ul>
+<li>pubspec.yaml文件中，将<code>flutter</code>的值设置为：<code>uses-material-design: true</code>。这允许我们可以使用一组预定义<a href="https://design.google.com/icons/" target="_blank" rel="noopener">Material icons</a></li>
+<li>为了继承主题数据，widget需要位于<a href="https://docs.flutter.io/flutter/material/MaterialApp-class.html" target="_blank" rel="noopener"><code>MaterialApp</code></a>内才能正常显示， 因此我们使用<a href="https://docs.flutter.io/flutter/material/MaterialApp-class.html" target="_blank" rel="noopener"><code>MaterialApp</code></a>来运行该应用。</li>
+</ul>
+<pre class=" language-dart"><code class="language-dart"><span class="token keyword">import</span> <span class="token string">'package:flutter/material.dart'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">App</span> <span class="token keyword">extends</span> <span class="token class-name">StatelessWidget</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// This widget is the root of your application.</span>
+  <span class="token metadata symbol">@override</span>
+  Widget <span class="token function">build</span><span class="token punctuation">(</span>BuildContext context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">MaterialApp</span><span class="token punctuation">(</span>
+      title<span class="token punctuation">:</span> <span class="token string">'Flutter Demo'</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">runApp</span><span class="token punctuation">(</span><span class="token function">App</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="Widget"><a href="#Widget" class="headerlink" title="Widget"></a>Widget</h3><blockquote>
+<p>一切 VIew 都为 Widget：Widget 分是无状态的<a href="https://docs.flutter.io/flutter/widgets/StatelessWidget-class.html" target="_blank" rel="noopener"><code>StatelessWidget</code></a>或者是有状态的<a href="https://docs.flutter.io/flutter/widgets/StatefulWidget-class.html" target="_blank" rel="noopener"><code>StatefulWidget</code></a></p>
+</blockquote>
+<h4 id="实现自定义-widget"><a href="#实现自定义-widget" class="headerlink" title="实现自定义 widget"></a>实现自定义 widget</h4><ul>
+<li>实现继承自StatefulWidget的类来表示你要自定义的可变控件</li>
+<li>实现继承自 State 的类来处理可变控件的状态和样式（build方法)</li>
+<li>当用户交互发生(onPressed), 可以调用setState方法告诉组件需要重绘</li>
+</ul>
+<pre class=" language-dart"><code class="language-dart"><span class="token keyword">class</span> <span class="token class-name">MyStatefulWidget</span> <span class="token keyword">extends</span> <span class="token class-name">MyStatefulWidget</span> <span class="token punctuation">{</span>
+   <span class="token keyword">final</span> String title<span class="token punctuation">;</span>
+   <span class="token keyword">final</span> String content<span class="token punctuation">;</span>
+   <span class="token metadata symbol">@override</span>
+  _MyStatefulState <span class="token function">createState</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">_MyStatefulState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">_MyStatefulState</span> <span class="token keyword">extends</span> <span class="token class-name">State</span><span class="token operator">&lt;</span>MyStatefulWidget<span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token metadata symbol">@override</span>
+  Widget <span class="token function">build</span><span class="token punctuation">(</span>BuildContext context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token function">Scaffold</span><span class="token punctuation">(</span>
+     appBar<span class="token punctuation">:</span> <span class="token function">AppBar</span><span class="token punctuation">(</span>
+        title<span class="token punctuation">:</span> <span class="token function">Text</span><span class="token punctuation">(</span>widget<span class="token punctuation">.</span>title<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        centerTitle<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      <span class="token punctuation">)</span><span class="token punctuation">,</span>
+      body<span class="token punctuation">:</span> <span class="token function">Center</span><span class="token punctuation">(</span>
+        child<span class="token punctuation">:</span> <span class="token function">Text</span><span class="token punctuation">(</span>widget<span class="token punctuation">.</span>content<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="常用布局-https-flutterchina-club-widgets-material"><a href="#常用布局-https-flutterchina-club-widgets-material" class="headerlink" title="常用布局 https://flutterchina.club/widgets/material/"></a>常用布局 <a href="https://flutterchina.club/widgets/material/" target="_blank" rel="noopener">https://flutterchina.club/widgets/material/</a></h4><h2 id="-1"><a href="#-1" class="headerlink" title=""></a></h2><h4 id="MaterialApp-Widget"><a href="#MaterialApp-Widget" class="headerlink" title="MaterialApp Widget"></a>MaterialApp Widget</h4><p>Material Design 风格应用，封装了 MD 应用常用的组件。MaterialApp 一般作为顶层的 Widget 使用，可以用于应用主题配置<br /></p>
+<pre class=" language-dart"><code class="language-dart"><span class="token keyword">new</span> <span class="token class-name">MaterialApp</span><span class="token punctuation">(</span>
+    title<span class="token punctuation">:</span> <span class="token string">'Flutter应用'</span><span class="token punctuation">,</span>
+    theme<span class="token punctuation">:</span> <span class="token keyword">new</span> <span class="token class-name">ThemeData</span><span class="token punctuation">(</span>
+      <span class="token comment" spellcheck="true">//主题色</span>
+         primarySwatch<span class="token punctuation">:</span> Colors<span class="token punctuation">.</span>blue<span class="token punctuation">,</span>
+    <span class="token punctuation">)</span><span class="token punctuation">,</span>
+     routes<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+       <span class="token string">'/home'</span><span class="token punctuation">:</span><span class="token punctuation">(</span>BuildContext context<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">HomePage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+       <span class="token string">'/category'</span><span class="token punctuation">:</span><span class="token punctuation">(</span>BuildContext context<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">CategoryPage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+       <span class="token comment" spellcheck="true">//....</span>
+     <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    initialRoute<span class="token punctuation">:</span> <span class="token string">'/home'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+ <span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h4 id="Scaffold-Widget"><a href="#Scaffold-Widget" class="headerlink" title="Scaffold Widget"></a>Scaffold Widget</h4><p>Scaffold是 Material Design 布局结构的基本实现， 定义好了基本的页面结构(appBar, body, bottomNavigationBard等），只需要配置相关信息即可快速实现一个框架页面。</p>
+<pre class=" language-dart"><code class="language-dart"><span class="token metadata symbol">@override</span>
+Widget <span class="token function">build</span><span class="token punctuation">(</span>BuildContext context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">Scaffold</span><span class="token punctuation">(</span>
+      appBar<span class="token punctuation">:</span> <span class="token function">AppBar</span><span class="token punctuation">(</span>
+        title<span class="token punctuation">:</span> <span class="token function">Text</span><span class="token punctuation">(</span>widget<span class="token punctuation">.</span>title<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        centerTitle<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      <span class="token punctuation">)</span><span class="token punctuation">,</span>
+      body<span class="token punctuation">:</span> <span class="token function">Center</span><span class="token punctuation">(</span>
+        child<span class="token punctuation">:</span> _widgetOptions<span class="token punctuation">.</span><span class="token function">elementAt</span><span class="token punctuation">(</span>_selectedIndex<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token punctuation">)</span><span class="token punctuation">,</span>
+      bottomNavigationBar<span class="token punctuation">:</span> <span class="token function">BottomNavigationBar</span><span class="token punctuation">(</span> <span class="token comment" spellcheck="true">// 典型的底部 Tab 模式</span>
+        items<span class="token punctuation">:</span> <span class="token operator">&lt;</span>BottomNavigationBarItem<span class="token operator">></span><span class="token punctuation">[</span> 
+          <span class="token function">BottomNavigationBarItem</span><span class="token punctuation">(</span>icon<span class="token punctuation">:</span> <span class="token function">Icon</span><span class="token punctuation">(</span>Icons<span class="token punctuation">.</span>home<span class="token punctuation">)</span><span class="token punctuation">,</span> title<span class="token punctuation">:</span> <span class="token function">Text</span><span class="token punctuation">(</span><span class="token string">'Home'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+          <span class="token function">BottomNavigationBarItem</span><span class="token punctuation">(</span>icon<span class="token punctuation">:</span> <span class="token function">Icon</span><span class="token punctuation">(</span>Icons<span class="token punctuation">.</span>category<span class="token punctuation">)</span><span class="token punctuation">,</span> title<span class="token punctuation">:</span> <span class="token function">Text</span><span class="token punctuation">(</span><span class="token string">'Category'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+          <span class="token function">BottomNavigationBarItem</span><span class="token punctuation">(</span>icon<span class="token punctuation">:</span> <span class="token function">Icon</span><span class="token punctuation">(</span>Icons<span class="token punctuation">.</span>person<span class="token punctuation">)</span><span class="token punctuation">,</span> title<span class="token punctuation">:</span> <span class="token function">Text</span><span class="token punctuation">(</span><span class="token string">'Profile'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        currentIndex<span class="token punctuation">:</span> _selectedIndex<span class="token punctuation">,</span>
+        fixedColor<span class="token punctuation">:</span> Colors<span class="token punctuation">.</span>deepPurple<span class="token punctuation">,</span>
+        onTap<span class="token punctuation">:</span> _onItemTapped<span class="token punctuation">,</span>
+      <span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="Material-主题常用-Widget"><a href="#Material-主题常用-Widget" class="headerlink" title="Material 主题常用 Widget"></a>Material 主题常用 Widget</h3><h4 id="Scaffold-标准的页面骨架"><a href="#Scaffold-标准的页面骨架" class="headerlink" title="Scaffold 标准的页面骨架"></a>Scaffold 标准的页面骨架</h4><blockquote>
+<p>提供 appBar, body, bottomNavigationBar 等配置入口</p>
+</blockquote>
+<pre class=" language-dart"><code class="language-dart"><span class="token keyword">class</span> <span class="token class-name">About</span> <span class="token keyword">extends</span> <span class="token class-name">StatelessWidget</span> <span class="token punctuation">{</span>
+  <span class="token metadata symbol">@override</span>
+  Widget <span class="token function">build</span><span class="token punctuation">(</span>BuildContext context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Scaffold</span><span class="token punctuation">(</span>
+      appBar<span class="token punctuation">:</span> <span class="token keyword">new</span> <span class="token class-name">AppBar</span><span class="token punctuation">(</span>
+        title<span class="token punctuation">:</span> <span class="token keyword">new</span> <span class="token class-name">Text</span><span class="token punctuation">(</span><span class="token string">"关于"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        centerTitle<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        leading<span class="token punctuation">:</span> <span class="token keyword">new</span> <span class="token class-name">IconButton</span><span class="token punctuation">(</span>
+            icon<span class="token punctuation">:</span> <span class="token keyword">new</span> <span class="token class-name">Icon</span><span class="token punctuation">(</span>Icons<span class="token punctuation">.</span>arrow_back<span class="token punctuation">)</span><span class="token punctuation">,</span>
+            onPressed<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              SystemNavigator<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// remove this activity from the stack</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">)</span>
+      <span class="token punctuation">)</span><span class="token punctuation">,</span>
+      body<span class="token punctuation">:</span> <span class="token keyword">new</span> <span class="token class-name">Center</span><span class="token punctuation">(</span>
+        child<span class="token punctuation">:</span> <span class="token keyword">new</span> <span class="token class-name">Text</span><span class="token punctuation">(</span><span class="token string">"Flutter About Page"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="刷新与分页"><a href="#刷新与分页" class="headerlink" title="刷新与分页"></a>刷新与分页</h4><ul>
+<li>结合 RefreshIndicator，通过 onRefresh 实现下拉刷新</li>
+<li>结合 RefreshIndicator，通过 controller （ScrollController）实现上拉分页加载</li>
+<li>通过  ListView.builder 和 ListTile 构建列表</li>
+</ul>
+<pre class=" language-dart"><code class="language-dart"> <span class="token metadata symbol">@override</span>
+  Widget <span class="token function">build</span><span class="token punctuation">(</span>BuildContext context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">Scaffold</span><span class="token punctuation">(</span>
+      appBar<span class="token punctuation">:</span> <span class="token function">AppBar</span><span class="token punctuation">(</span>
+        title<span class="token punctuation">:</span> <span class="token function">Text</span><span class="token punctuation">(</span><span class="token string">"列表加载测试"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        centerTitle<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        leading<span class="token punctuation">:</span> <span class="token keyword">new</span> <span class="token class-name">IconButton</span><span class="token punctuation">(</span>
+          icon<span class="token punctuation">:</span> <span class="token keyword">new</span> <span class="token class-name">Icon</span><span class="token punctuation">(</span>Icons<span class="token punctuation">.</span>arrow_back<span class="token punctuation">)</span><span class="token punctuation">,</span>
+          onPressed<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            SystemNavigator<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// remove this activity from the stack</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">)</span>
+      <span class="token punctuation">)</span><span class="token punctuation">,</span>
+      body<span class="token punctuation">:</span> <span class="token keyword">new</span> <span class="token class-name">RefreshIndicator</span><span class="token punctuation">(</span>
+        child<span class="token punctuation">:</span> ListView<span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span>
+          itemCount<span class="token punctuation">:</span> listItems<span class="token punctuation">.</span>length<span class="token punctuation">,</span>
+          itemBuilder<span class="token punctuation">:</span> <span class="token punctuation">(</span>context<span class="token punctuation">,</span> index<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token function">ListTile</span><span class="token punctuation">(</span>
+              leading<span class="token punctuation">:</span> <span class="token keyword">new</span> <span class="token class-name">Icon</span><span class="token punctuation">(</span>Icons<span class="token punctuation">.</span>list<span class="token punctuation">)</span><span class="token punctuation">,</span>
+              title<span class="token punctuation">:</span> <span class="token function">Text</span><span class="token punctuation">(</span><span class="token string">"列表加载测试-$index"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+              onTap<span class="token punctuation">:</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+            <span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          controller<span class="token punctuation">:</span> _scrollController<span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 使用 ScrollController 组件实现 上拉分页</span>
+        <span class="token punctuation">)</span><span class="token punctuation">,</span>
+        onRefresh<span class="token punctuation">:</span> _pullRefresh<span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 下拉刷新回掉，默认是转圈loading</span>
+      <span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span></code></pre>
+<h3 id="页面跳转"><a href="#页面跳转" class="headerlink" title="页面跳转"></a>页面跳转</h3><h4 id="静态路由"><a href="#静态路由" class="headerlink" title="静态路由"></a>静态路由</h4><blockquote>
+<p>在 main.dart 文件 app 启动入口通过 routes 配置静态路由或者 onGenerateRoute 动态处理路由。<br>注意：默认路由是 /，不支持参数参数， 支持 home/list 模式，但不能使用 /home/list 模式，这样会导致匹配到  / 路由</p>
+</blockquote>
+<ul>
+<li>静态路由定义</li>
+</ul>
+<pre class=" language-dart"><code class="language-dart"><span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">runApp</span><span class="token punctuation">(</span><span class="token function">App</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">class</span> <span class="token class-name">App</span> <span class="token keyword">extends</span> <span class="token class-name">StatelessWidget</span> <span class="token punctuation">{</span>
+  <span class="token metadata symbol">@override</span>
+  Widget <span class="token function">build</span><span class="token punctuation">(</span>BuildContext context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">MaterialApp</span><span class="token punctuation">(</span>
+      theme<span class="token punctuation">:</span> <span class="token function">ThemeData</span><span class="token punctuation">(</span>
+      <span class="token punctuation">)</span><span class="token punctuation">,</span>
+      home<span class="token punctuation">:</span> <span class="token function">MyHomePage</span><span class="token punctuation">(</span>title<span class="token punctuation">:</span> <span class="token string">'HappyFlutter'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      routes<span class="token punctuation">:</span> <span class="token operator">&lt;</span>String<span class="token punctuation">,</span> WidgetBuilder<span class="token operator">></span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 定义静态路由，不能传递参数</span>
+        <span class="token string">'home'</span><span class="token punctuation">:</span> <span class="token punctuation">(</span>BuildContext context<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">new</span> <span class="token class-name">Home</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token string">'profile'</span><span class="token punctuation">:</span> <span class="token punctuation">(</span>BuildContext context<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">new</span> <span class="token class-name">Profile</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      onGenerateRoute<span class="token punctuation">:</span> <span class="token punctuation">(</span>settings<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">'--name'</span> <span class="token operator">+</span> settings<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">print</span><span class="token punctuation">(</span>settings<span class="token punctuation">.</span>arguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<ul>
+<li>静态路由跳转</li>
+</ul>
+<blockquote>
+<p>通过 Navigator.of(context).pushNamed 方式进行静态路由跳转</p>
+</blockquote>
+<pre class=" language-dart"><code class="language-dart">Navigator<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span>context<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">pushNamed</span><span class="token punctuation">(</span><span class="token string">'home'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Navigator<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span>context<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">pushNamed</span><span class="token punctuation">(</span><span class="token string">'home/dialog'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 获取 view 返回值</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<h4 id="-2"><a href="#-2" class="headerlink" title=""></a></h4><h4 id="动态路由"><a href="#动态路由" class="headerlink" title="动态路由"></a>动态路由</h4><pre class=" language-dart"><code class="language-dart">Navigator<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span>context<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">PageRouteBuilder</span><span class="token punctuation">(</span>pageBuilder<span class="token punctuation">:</span><span class="token punctuation">(</span>BuildContext context<span class="token punctuation">,</span> 
+        Animation<span class="token operator">&lt;</span>double<span class="token operator">></span> animation<span class="token punctuation">,</span>Animation<span class="token operator">&lt;</span>double<span class="token operator">></span> secondaryAnimation<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 可以通过构造函数传递参数</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Home</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h4 id="Native-跳转-Flutter-传递参数"><a href="#Native-跳转-Flutter-传递参数" class="headerlink" title="Native 跳转 Flutter 传递参数"></a>Native 跳转 Flutter 传递参数</h4><blockquote>
+<p>目前在 Native 中直接打开 FlutterActivity 是不支持直接传递参数的(唯一的参数就是 route) , 不过可以把 route  以 url 的形式传递参数是可行的， 然后在 Flutter 的 onGenerateRoute 函数对 url 进行解析，就能变相实现参数传递。</p>
+</blockquote>
+<ul>
+<li>Android 代码</li>
+</ul>
+<pre class=" language-java"><code class="language-java">Intent intent <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Intent</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> NativeFlutterActivity<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+intent<span class="token punctuation">.</span><span class="token function">setAction</span><span class="token punctuation">(</span>Intent<span class="token punctuation">.</span>ACTION_RUN<span class="token punctuation">)</span><span class="token punctuation">;</span>
+intent<span class="token punctuation">.</span><span class="token function">putExtra</span><span class="token punctuation">(</span><span class="token string">"route"</span><span class="token punctuation">,</span> <span class="token string">"test?msg=Native跳转Flutter参数测试&amp;id=111111"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">startActivity</span><span class="token punctuation">(</span>intent<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<ul>
+<li>Flutter 代码</li>
+</ul>
+<pre class=" language-dart"><code class="language-dart"><span class="token comment" spellcheck="true">// This widget is the root of your application.</span>
+<span class="token keyword">class</span> <span class="token class-name">App</span> <span class="token keyword">extends</span> <span class="token class-name">StatelessWidget</span> <span class="token punctuation">{</span>
+  <span class="token metadata symbol">@override</span>
+  Widget <span class="token function">build</span><span class="token punctuation">(</span>BuildContext context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">MaterialApp</span><span class="token punctuation">(</span>
+      theme<span class="token punctuation">:</span> <span class="token function">ThemeData</span><span class="token punctuation">(</span>
+        primaryColor<span class="token punctuation">:</span> <span class="token function">Color</span><span class="token punctuation">(</span><span class="token number">0xFF008577</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token punctuation">)</span><span class="token punctuation">,</span>
+      home<span class="token punctuation">:</span> <span class="token function">MyHomePage</span><span class="token punctuation">(</span>title<span class="token punctuation">:</span> <span class="token string">'HappyFlutter'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      routes<span class="token punctuation">:</span> <span class="token operator">&lt;</span>String<span class="token punctuation">,</span> WidgetBuilder<span class="token operator">></span> <span class="token punctuation">{</span>
+        <span class="token string">'home'</span><span class="token punctuation">:</span> <span class="token punctuation">(</span>BuildContext context<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">new</span> <span class="token class-name">Home</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      onGenerateRoute<span class="token punctuation">:</span> <span class="token punctuation">(</span>settings<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Uri uri <span class="token operator">=</span> Uri<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>settings<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        String route <span class="token operator">=</span> uri<span class="token punctuation">.</span>path<span class="token punctuation">;</span>
+        Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> String<span class="token operator">></span> params <span class="token operator">=</span> uri<span class="token punctuation">.</span>queryParameters<span class="token punctuation">;</span>
+        <span class="token keyword">switch</span><span class="token punctuation">(</span>route<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">case</span> <span class="token string">'test'</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token function">MaterialPageRoute</span><span class="token punctuation">(</span>builder<span class="token punctuation">:</span> <span class="token punctuation">(</span>context<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span> <span class="token function">Detail</span><span class="token punctuation">(</span>params<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="导航栏"><a href="#导航栏" class="headerlink" title="导航栏"></a>导航栏</h3><blockquote>
+<p>Navigator.pop(context) 关闭当前 FlutterView<br>SystemNavigator.pop() 关闭当前Flutter 所在的 Activity</p>
+</blockquote>
+<pre class=" language-dart"><code class="language-dart">  <span class="token keyword">import</span> <span class="token string">'package:flutter/services.dart'</span><span class="token punctuation">;</span>
+
+    <span class="token metadata symbol">@override</span>
+  Widget <span class="token function">build</span><span class="token punctuation">(</span>BuildContext context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">Scaffold</span><span class="token punctuation">(</span>
+      appBar<span class="token punctuation">:</span> <span class="token function">AppBar</span><span class="token punctuation">(</span>
+        title<span class="token punctuation">:</span> <span class="token function">Text</span><span class="token punctuation">(</span><span class="token string">"导航栏标题"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        centerTitle<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 标题居中</span>
+        leading<span class="token punctuation">:</span> <span class="token keyword">new</span> <span class="token class-name">IconButton</span><span class="token punctuation">(</span>  <span class="token comment" spellcheck="true">// 顶部导航栏右边返回箭头图片</span>
+          icon<span class="token punctuation">:</span> <span class="token keyword">new</span> <span class="token class-name">Icon</span><span class="token punctuation">(</span>Icons<span class="token punctuation">.</span>arrow_back<span class="token punctuation">)</span><span class="token punctuation">,</span>
+          onPressed<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// </span>
+            SystemNavigator<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// remove this activity from the stack</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">)</span><span class="token punctuation">,</span>
+       actions<span class="token punctuation">:</span><span class="token punctuation">[</span>  <span class="token comment" spellcheck="true">// 右边菜单</span>
+                    <span class="token keyword">new</span> <span class="token class-name">IconButton</span><span class="token punctuation">(</span>
+                        icon<span class="token punctuation">:</span> <span class="token keyword">new</span> <span class="token class-name">Icon</span><span class="token punctuation">(</span>Icons<span class="token punctuation">.</span>settings<span class="token punctuation">)</span><span class="token punctuation">,</span>    
+            onPressed<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              Scaffold<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span>context<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">showSnackBar</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">SnackBar</span><span class="token punctuation">(</span>content<span class="token punctuation">:</span> <span class="token keyword">new</span> <span class="token class-name">Text</span><span class="token punctuation">(</span><span class="token string">"设置"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    
+            <span class="token punctuation">}</span>
+          <span class="token punctuation">)</span>
+       <span class="token punctuation">]</span>
+      <span class="token punctuation">)</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span></code></pre>
+<h3 id="异步请求"><a href="#异步请求" class="headerlink" title="异步请求"></a>异步请求</h3><p>Dart 语言中使用 Future (类比Promise) 实现异步操作，一般配合 async和 await 使用。</p>
+<pre class=" language-dart"><code class="language-dart"><span class="token comment" spellcheck="true">// 多个 Future 执行，注意不是顺序执行</span>
+Future<span class="token punctuation">.</span><span class="token function">wait</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token function">f1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">f2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span>List responses<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">catchError</span><span class="token punctuation">(</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 延迟 2s</span>
+Future<span class="token punctuation">.</span><span class="token function">delayed</span><span class="token punctuation">(</span><span class="token function">Duration</span><span class="token punctuation">(</span>seconds<span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<ul>
+<li>从数据库查询用户信息<pre class=" language-dart"><code class="language-dart"><span class="token comment" spellcheck="true">// 定义返回值 Future 函数 </span>
+Future<span class="token operator">&lt;</span>List<span class="token operator">&lt;</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> <span class="token keyword">dynamic</span><span class="token operator">>></span><span class="token operator">></span> <span class="token function">getFavoriteList</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">async</span> <span class="token punctuation">{</span>
+  Database dbClient <span class="token operator">=</span> <span class="token keyword">await</span> db<span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token keyword">await</span> dbClient<span class="token punctuation">.</span><span class="token function">rawQuery</span><span class="token punctuation">(</span><span class="token string">'SELECT * FROM user_info'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+</li>
+</ul>
+<p>// 调用<br>//直接调用</p>
+<p>getFavoriteList().then(((rows){</p>
+<p>});</p>
+<p>// async 函数内部调用<br>void getFavoriteListTest() async {<br>  List&lt;Map&lt;String, dynamic&gt;&gt; list = await getFavoriteList();<br>  ……<br>}</p>
+<pre><code>
+
+
+
+### 数据请求
+&gt; 可以通过 **FutureBuilder** 异步数据请求与UI数据绑定
+
+
+```dart
+
+  Future&lt;List&lt;Map&lt;String, dynamic&gt;&gt;&gt; getFavoriteList() async {
+    return [];
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: FutureBuilder&lt;List&lt;Map&lt;String, dynamic&gt;&gt;&gt;(
+          future: favoriteDB.getFavoriteList(),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) print(snapshot.error);
+            List&lt;Map&lt;String, dynamic&gt;&gt; list = snapshot.data;
+            return ListView.builder(
+              itemCount: snapshot.data.length,
+              itemBuilder: (_, int position) {
+                Map item = list[position];
+                return Card(
+                  child: ListTile(
+                    title: Text(item[&#39;title&#39;]),
+                    onTap: () {
+                      NavigationChannel.pushWebRoute({&quot;title&quot;: item[&#39;title&#39;].toString(), &quot;url&quot;: item[&#39;url&#39;].toString()});
+                    },
+                  ),
+                );
+              },
+            );
+          },
+        ),
+      ),
+  };</code></pre><h3 id="平台通信"><a href="#平台通信" class="headerlink" title="平台通信"></a>平台通信</h3><blockquote>
+<p><a href="https://flutterchina.club/platform-channels/" target="_blank" rel="noopener">https://flutterchina.club/platform-channels/</a></p>
+<p>Flutter平台特定的API支持不依赖于代码生成，而是依赖于灵活的消息传递的方式：</p>
+<ul>
+<li>应用的Flutter部分通过平台通道（platform channel）将消息发送到其应用程序的所在的宿主（iOS或Android）。</li>
+<li>宿主监听的平台通道，并接收该消息。然后它会调用特定于该平台的API（使用原生编程语言） - 并将响应发送回客户端，即应用程序的Flutter部分。</li>
+</ul>
+</blockquote>
+<p>在客户端，<code>MethodChannel</code> (<a href="https://docs.flutter.io/flutter/services/MethodChannel-class.html" target="_blank" rel="noopener">API</a>)可以发送与方法调用相对应的消息。 在宿主平台上，<code>MethodChannel</code> 在Android（(<a href="https://docs.flutter.io/javadoc/io/flutter/plugin/common/MethodChannel.html" target="_blank" rel="noopener">API</a>) 和 FlutterMethodChannel iOS (<a href="https://docs.flutter.io/objcdoc/Classes/FlutterMethodChannel.html" target="_blank" rel="noopener">API</a>) 可以接收方法调用并返回结果。这些类允许您用很少的“脚手架”代码开发平台插件。</p>
+<h4 id="Flutter-调用-Native"><a href="#Flutter-调用-Native" class="headerlink" title="Flutter 调用 Native"></a>Flutter 调用 Native</h4><ul>
+<li>Dart 发起信道调用</li>
+</ul>
+<pre class=" language-dart"><code class="language-dart">
+<span class="token keyword">import</span> <span class="token string">'package:flutter/services.dart'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">static</span> <span class="token keyword">const</span> MethodChannel methodChannel <span class="token operator">=</span> <span class="token function">MethodChannel</span><span class="token punctuation">(</span><span class="token string">'samples.flutter.io/battery'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+Future<span class="token operator">&lt;</span><span class="token keyword">void</span><span class="token operator">></span> <span class="token function">_getBatteryLevel</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">async</span> <span class="token punctuation">{</span>
+    String batteryLevel<span class="token punctuation">;</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+      <span class="token keyword">final</span> int result <span class="token operator">=</span> <span class="token keyword">await</span> methodChannel<span class="token punctuation">.</span><span class="token function">invokeMethod</span><span class="token punctuation">(</span><span class="token string">'getBatteryLevel'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      batteryLevel <span class="token operator">=</span> <span class="token string">'Battery level: $result%.'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> on PlatformException <span class="token punctuation">{</span>
+      batteryLevel <span class="token operator">=</span> <span class="token string">'Failed to get battery level.'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre>
+<ul>
+<li>Java 注册信道</li>
+</ul>
+<blockquote>
+<ol>
+<li>直接继承 FlutterActivity 可以快速建立 Native 与 Flutter 的通信桥梁</li>
+<li>非 FlutterActivity 时，需要自己处理 FlutterView 的应用，可以在创建 FlutterView 时，创建在 Android Application 里面</li>
+</ol>
+</blockquote>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">NativeFlutterActivity</span> <span class="token keyword">extends</span> <span class="token class-name">FlutterActivity</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">onCreate</span><span class="token punctuation">(</span>Bundle savedInstanceState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">onCreate</span><span class="token punctuation">(</span>savedInstanceState<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        GeneratedPluginRegistrant<span class="token punctuation">.</span><span class="token function">registerWith</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token comment" spellcheck="true">// Native 与 Flutter 通信依赖 FlutterView</span>
+        <span class="token keyword">new</span> <span class="token class-name">MethodChannel</span><span class="token punctuation">(</span><span class="token function">getFlutterView</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'samples.flutter.io/battery'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setMethodCallHandler</span><span class="token punctuation">(</span>
+              <span class="token keyword">new</span> <span class="token class-name">MethodCallHandler</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token annotation punctuation">@Override</span>
+                <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onMethodCall</span><span class="token punctuation">(</span>MethodCall call<span class="token punctuation">,</span> Result result<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                  <span class="token keyword">if</span> <span class="token punctuation">(</span>call<span class="token punctuation">.</span>method<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span><span class="token string">"getBatteryLevel"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">int</span> batteryLevel <span class="token operator">=</span> <span class="token function">getBatteryLevel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token keyword">if</span> <span class="token punctuation">(</span>batteryLevel <span class="token operator">!=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                      result<span class="token punctuation">.</span><span class="token function">success</span><span class="token punctuation">(</span>batteryLevel<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                      result<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"UNAVAILABLE"</span><span class="token punctuation">,</span> <span class="token string">"Battery level not available."</span><span class="token punctuation">,</span> null<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span>
+                  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                    result<span class="token punctuation">.</span><span class="token function">notImplemented</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                  <span class="token punctuation">}</span>
+                <span class="token punctuation">}</span>
+             <span class="token punctuation">}</span>
+        <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>see code: <a href="https://github.com/flutter/flutter/examples/platform_channel" target="_blank" rel="noopener">https://github.com/flutter/flutter</a><a href="https://github.com/flutter/flutter/examples/platform_channel" target="_blank" rel="noopener">/examples/platform_channel</a></p>
+<h4 id="Native-调用-Flutter"><a href="#Native-调用-Flutter" class="headerlink" title="Native 调用 Flutter"></a>Native 调用 Flutter</h4><blockquote>
+<p>通过 MethodChannel.invokeMethod 可以主动调用 Flutter 通信</p>
+</blockquote>
+<ul>
+<li>java 代码</li>
+<li><br />
+```java
+package com.easy.team.module;
+
+</li>
+</ul>
+<p>import android.app.AlertDialog;<br>import android.content.DialogInterface;<br>import android.os.Bundle;<br>import android.support.annotation.Nullable;<br>import android.util.Log;<br>import java.util.HashMap;<br>import java.util.Map;<br>import io.flutter.plugin.common.MethodCall;<br>import io.flutter.plugin.common.MethodChannel;</p>
+<p>public class NativeActivity extends Activity {</p>
+<pre><code>public static String CHANNEL = &quot;com.happy.message/notify&quot;;
+
+private MethodChannel channel;
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_native);
+    channel = new MethodChannel(MessageChannel.getFlutterView(), CHANNEL);
+
+      // Native 主动调用 Flutter
+    Map&lt;String,String&gt; map = new HashMap&lt;String, String&gt;();
+    map.put(&quot;from&quot;, &quot;native&quot;);
+    notifyFlutter(&quot;getFlutterVersion&quot;, map);
+}
+
+protected void notifyFlutter(String method, Object args) {
+    channel.invokeMethod(method, args, new MethodChannel.Result() {
+        @Override
+        public void success(@Nullable Object o) {
+            Toast.makeText(NativeActivity.this, &quot;message:&quot; + o.toString(), Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void error(String s, @Nullable String s1, @Nullable Object o) {
+            Log.d(&quot;--NativeActivity:error--&quot;, s1);
+        }
+
+        @Override
+        public void notImplemented() {
+            Log.d(&quot;--NativeActivity:notImplemented--&quot;,&quot;&quot;);
+        }
+    });
+}</code></pre><p>}</p>
+<pre><code>
+- Flutter 代码
+- &lt;br /&gt;
+```dart
+static const MethodChannel methodChannel = MethodChannel(&#39;com.happy.message/notify&#39;);
+
+Future&lt;dynamic&gt; settingChannelHandler(MethodCall methodCall) async {
+  switch (methodCall.method) {
+    case &#39;getFlutterVersion&#39;:
+      return &#39;1.0.0&#39;;
+    default:
+  }
+}
+
+
+@override
+void initState() {
+  super.initState();
+  methodChannel.setMethodCallHandler(this.settingChannelHandler);
+}</code></pre><h3 id="Native-集成-Flutter"><a href="#Native-集成-Flutter" class="headerlink" title="Native 集成 Flutter"></a>Native 集成 Flutter</h3><h4 id="Native-Activity-模式"><a href="#Native-Activity-模式" class="headerlink" title="Native Activity  模式"></a>Native Activity  模式</h4><blockquote>
+<p>Native 继承 FlutterActivity 就可以快速与 Flutter 建立通道。Flutter 中通过消息通知 Native 用 Activity 的方式打开 Flutter View，这种方式可以解决Native 和 Flutter 返回键问题，也就是统一交给 Native 处理。</p>
+</blockquote>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 自定义 FlutterActivity</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">NativeFlutterActivity</span> <span class="token keyword">extends</span> <span class="token class-name">FlutterActivity</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">onCreate</span><span class="token punctuation">(</span>Bundle savedInstanceState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">onCreate</span><span class="token punctuation">(</span>savedInstanceState<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        GeneratedPluginRegistrant<span class="token punctuation">.</span><span class="token function">registerWith</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// Native 使用 FlutterActivity 打开指定 Flutter View</span>
+Intent intent <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Intent</span><span class="token punctuation">(</span><span class="token function">getActivity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> NativeFlutterActivity<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 需要指定 ACTION_RUN，FlutterActiviy 底层处理</span>
+intent<span class="token punctuation">.</span><span class="token function">setAction</span><span class="token punctuation">(</span>Intent<span class="token punctuation">.</span>ACTION_RUN<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token comment" spellcheck="true">// FlutterActiviy 会 从Intent 里面取 route 参数,目前不支持直接传递参数</span>
+intent<span class="token punctuation">.</span><span class="token function">putExtra</span><span class="token punctuation">(</span><span class="token string">"route"</span><span class="token punctuation">,</span> route<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token function">startActivity</span><span class="token punctuation">(</span>intent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h4 id="Native-Fragment-模式"><a href="#Native-Fragment-模式" class="headerlink" title="Native Fragment  模式"></a>Native Fragment  模式</h4><blockquote>
+<p>在 Native 中 Fragment 根据 Flutter 路由动态创建 Fragment</p>
+</blockquote>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">NativeFlutterFragment</span> <span class="token keyword">extends</span> <span class="token class-name">Fragment</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">private</span> FlutterView flutterView<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> Fragment <span class="token function">newInstance</span><span class="token punctuation">(</span>String route<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        NativeFlutterFragment fragment <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">NativeFlutterFragment</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Bundle bundle <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Bundle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        bundle<span class="token punctuation">.</span><span class="token function">putString</span><span class="token punctuation">(</span><span class="token string">"route"</span><span class="token punctuation">,</span> route<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        fragment<span class="token punctuation">.</span><span class="token function">setArguments</span><span class="token punctuation">(</span>bundle<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> fragment<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> Fragment <span class="token function">newInstance</span><span class="token punctuation">(</span>String route<span class="token punctuation">,</span> Bundle bundle<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        NativeFlutterFragment fragment <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">NativeFlutterFragment</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>bundle <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            bundle <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Bundle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        bundle<span class="token punctuation">.</span><span class="token function">putString</span><span class="token punctuation">(</span><span class="token string">"route"</span><span class="token punctuation">,</span> route<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        fragment<span class="token punctuation">.</span><span class="token function">setArguments</span><span class="token punctuation">(</span>bundle<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> fragment<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> View <span class="token function">onCreateView</span><span class="token punctuation">(</span><span class="token annotation punctuation">@NonNull</span> LayoutInflater inflater<span class="token punctuation">,</span> <span class="token annotation punctuation">@Nullable</span> ViewGroup container<span class="token punctuation">,</span> <span class="token annotation punctuation">@Nullable</span> Bundle savedInstanceState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getFlutterView</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onActivityCreated</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Nullable</span> Bundle savedInstanceState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">onActivityCreated</span><span class="token punctuation">(</span>savedInstanceState<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">registerMethodChannel</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getFlutterView</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 保存当前活动窗口 FlutterView 实例引用，Activity 可以通过 MessageChannel.getFlutterView() 与 Flutter 通信</span>
+        MessageChannel<span class="token punctuation">.</span><span class="token function">setFlutterView</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>flutterView<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onHiddenChanged</span><span class="token punctuation">(</span><span class="token keyword">boolean</span> hidden<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Log<span class="token punctuation">.</span><span class="token function">d</span><span class="token punctuation">(</span><span class="token string">"--onHiddenChanged--"</span><span class="token punctuation">,</span> String<span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span>hidden<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">onHiddenChanged</span><span class="token punctuation">(</span>hidden<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>hidden<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            MessageChannel<span class="token punctuation">.</span><span class="token function">setFlutterView</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>flutterView<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">registerMethodChannel</span><span class="token punctuation">(</span>FlutterView flutterView<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">new</span> <span class="token class-name">MethodChannel</span><span class="token punctuation">(</span>flutterView<span class="token punctuation">,</span> <span class="token string">"com.happy/navigation"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setMethodCallHandler</span><span class="token punctuation">(</span>
+                <span class="token keyword">new</span> <span class="token class-name">MethodChannel<span class="token punctuation">.</span>MethodCallHandler</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token annotation punctuation">@Override</span>
+                    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onMethodCall</span><span class="token punctuation">(</span>MethodCall call<span class="token punctuation">,</span> MethodChannel<span class="token punctuation">.</span>Result result<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        Log<span class="token punctuation">.</span><span class="token function">i</span><span class="token punctuation">(</span><span class="token string">"--MethodChannel--"</span><span class="token punctuation">,</span> <span class="token string">"method:"</span>  <span class="token operator">+</span> call<span class="token punctuation">.</span>method<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token keyword">if</span> <span class="token punctuation">(</span>call<span class="token punctuation">.</span>method<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span><span class="token string">"pushRoute"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                            String route <span class="token operator">=</span> call<span class="token punctuation">.</span><span class="token function">argument</span><span class="token punctuation">(</span><span class="token string">"route"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                            HashMap args <span class="token operator">=</span> <span class="token punctuation">(</span>HashMap<span class="token punctuation">)</span>call<span class="token punctuation">.</span>arguments<span class="token punctuation">;</span>
+                            Log<span class="token punctuation">.</span><span class="token function">i</span><span class="token punctuation">(</span><span class="token string">"--MethodChannel--"</span><span class="token punctuation">,</span> <span class="token string">"route:"</span>  <span class="token operator">+</span> route<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">"native"</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>route<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                                Intent intent <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Intent</span><span class="token punctuation">(</span><span class="token function">getActivity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> NativeActivity<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                intent<span class="token punctuation">.</span><span class="token function">putExtra</span><span class="token punctuation">(</span><span class="token string">"args"</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                <span class="token function">startActivity</span><span class="token punctuation">(</span>intent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">"web"</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>route<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                                Intent intent <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Intent</span><span class="token punctuation">(</span><span class="token function">getActivity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> NativeWebViewActivity<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                intent<span class="token punctuation">.</span><span class="token function">putExtra</span><span class="token punctuation">(</span><span class="token string">"title"</span><span class="token punctuation">,</span> args<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"title"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                intent<span class="token punctuation">.</span><span class="token function">putExtra</span><span class="token punctuation">(</span><span class="token string">"url"</span><span class="token punctuation">,</span> args<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"url"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                <span class="token function">startActivity</span><span class="token punctuation">(</span>intent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// 每个 Flutter View 使用一个 Native Activity 方式打开页面</span>
+                                Intent intent <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Intent</span><span class="token punctuation">(</span><span class="token function">getActivity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> NativeFlutterActivity<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                intent<span class="token punctuation">.</span><span class="token function">setAction</span><span class="token punctuation">(</span>Intent<span class="token punctuation">.</span>ACTION_RUN<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                intent<span class="token punctuation">.</span><span class="token function">putExtra</span><span class="token punctuation">(</span><span class="token string">"route"</span><span class="token punctuation">,</span> route<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                <span class="token function">startActivity</span><span class="token punctuation">(</span>intent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                            <span class="token punctuation">}</span>
+                            result<span class="token punctuation">.</span><span class="token function">success</span><span class="token punctuation">(</span><span class="token string">"success"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>call<span class="token punctuation">.</span>method<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span><span class="token string">"pop"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                            result<span class="token punctuation">.</span><span class="token function">success</span><span class="token punctuation">(</span><span class="token string">"success"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                            result<span class="token punctuation">.</span><span class="token function">notImplemented</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token punctuation">}</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">}</span>
+        <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> FlutterView <span class="token function">getFlutterView</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>flutterView <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            String route <span class="token operator">=</span> <span class="token function">getArguments</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getString</span><span class="token punctuation">(</span><span class="token string">"route"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>flutterView <span class="token operator">=</span> Flutter<span class="token punctuation">.</span><span class="token function">createView</span><span class="token punctuation">(</span><span class="token function">getActivity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">getLifecycle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> route<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">// 解决 Flutter 加载黑屏问题</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>flutterView<span class="token punctuation">.</span><span class="token function">setZOrderOnTop</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">// this.flutterView.setZOrderMediaOverlay(true);</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>flutterView<span class="token punctuation">.</span><span class="token function">getHolder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setFormat</span><span class="token punctuation">(</span>PixelFormat<span class="token punctuation">.</span>TRANSLUCENT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>flutterView<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="-3"><a href="#-3" class="headerlink" title=""></a></h4><h3 id="数据存储"><a href="#数据存储" class="headerlink" title="数据存储"></a>数据存储</h3><h4 id="sqfite-数据库"><a href="#sqfite-数据库" class="headerlink" title="sqfite 数据库"></a>sqfite 数据库</h4><blockquote>
+<p>通过 sqflite 插件可以完成 sqlite  数据库操作。 经过测试，如果 Native 已经创建的数据库，通过如下方式是可以直接链接 Native 的数据库，也就是 Native 和 Flutter 数据库是可以互通操作。</p>
+</blockquote>
+<pre class=" language-dart"><code class="language-dart"><span class="token keyword">import</span> <span class="token string">'package:sqflite/sqflite.dart'</span><span class="token punctuation">;</span>
+
+<span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">async</span> <span class="token punctuation">{</span> 
+  String databasesPath <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">getDatabasesPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    String path <span class="token operator">=</span> <span class="token function">join</span><span class="token punctuation">(</span>databasesPath<span class="token punctuation">,</span> <span class="token string">"app_data"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token keyword">await</span> <span class="token function">openDatabase</span><span class="token punctuation">(</span>path<span class="token punctuation">,</span> version<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> onCreate<span class="token punctuation">:</span> _onCreate<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+ Future<span class="token operator">&lt;</span>Database<span class="token operator">></span> <span class="token keyword">get</span> db <span class="token keyword">async</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>_db <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token keyword">return</span> _db<span class="token punctuation">;</span>
+    _db <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> _db<span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+
+
+<span class="token comment" spellcheck="true">// 使用</span>
+Future<span class="token operator">&lt;</span>List<span class="token operator">&lt;</span>Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> <span class="token keyword">dynamic</span><span class="token operator">>></span><span class="token operator">></span> <span class="token function">getList</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">async</span> <span class="token punctuation">{</span>
+    Database client <span class="token operator">=</span> <span class="token keyword">await</span> db<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token keyword">await</span> client<span class="token punctuation">.</span><span class="token function">rawQuery</span><span class="token punctuation">(</span><span class="token string">'SELECT * FROM user_info'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+Future<span class="token operator">&lt;</span>int<span class="token operator">></span> <span class="token function">delete</span><span class="token punctuation">(</span>int id<span class="token punctuation">)</span> <span class="token keyword">async</span> <span class="token punctuation">{</span>
+   Database dbClient <span class="token operator">=</span> <span class="token keyword">await</span> db<span class="token punctuation">;</span>
+   <span class="token keyword">return</span> <span class="token keyword">await</span> client<span class="token punctuation">.</span><span class="token function">rawDelete</span><span class="token punctuation">(</span><span class="token string">'DELETE FROM user_info WHERE id = ?'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>id<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+</code></pre>
+<h3 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h3><ul>
+<li>静态路由路径匹配问题</li>
+</ul>
+<p>静态路由定义时，不能以  /home/test  多级 / 方式定义，否则出现如下错误，最终默认会指向 / 路由。 </p>
+<h5 id="One-or-more-of-those-objects-was-null-and-therefore-the-initial-route-specified-will-be-ignored-and-“-“-will-be-used-instead-see-https-stackoverflow-com-questions-54556381-flutter-error-could-not-navigate-to-initial-route"><a href="#One-or-more-of-those-objects-was-null-and-therefore-the-initial-route-specified-will-be-ignored-and-“-“-will-be-used-instead-see-https-stackoverflow-com-questions-54556381-flutter-error-could-not-navigate-to-initial-route" class="headerlink" title="One or more of those objects was null, and therefore the initial route specified will be ignored and “/“ will be used instead. see https://stackoverflow.com/questions/54556381/flutter-error-could-not-navigate-to-initial-route"></a>One or more of those objects was null, and therefore the initial route specified will be ignored and “/“ will be used instead. see <a href="https://stackoverflow.com/questions/54556381/flutter-error-could-not-navigate-to-initial-route" target="_blank" rel="noopener">https://stackoverflow.com/questions/54556381/flutter-error-could-not-navigate-to-initial-route</a></h5><ul>
+<li>Android项目中嵌入Flutter工程时，切换 FlutterFragment页面时会出现黑屏问题</li>
+</ul>
+<p><br />解决方案见：<a href="https://github.com/alibaba/flutter_boost/issues/105" target="_blank" rel="noopener">https://github.com/alibaba/flutter_boost/issues/105</a><br /><br><br /></p>
+<ul>
+<li>Android Native 页面如何给 Flutter 页面发送消息？</li>
+</ul>
+<p>Native 与 Flutter 通信，可以通过 MethodChannel 实现，而 MethodChannel 是依赖 FlutterView，但 Native Activity 并没有 FlutterView 的实例。目前是采用如下思路处理：在 Native FlutterView 创建时，保存当前最顶部的 FlutterView 全局引用，然后 Native Activity 拿到 FlutterView 全局引用后就可以进行通信了。</p>
+<ul>
+<li><p>Native 与 混合栈以及返回键问题</p>
+<p><br />我们知道，默认 FlutterView 所有页面切换都是通过  View 实现的，而且都在一个 Activity 上，这样导致点击返回键时，导致所有页面都退出了，当然这里可以通过判断是拦截返回键解决。当遇到 Native -&gt;Flutter-&gt;Native 这种交替时，整个堆栈的管理还是比较复杂的。目前是在创建 FlutterView 时，都通过一个  Activity 方式去承载，从而解决堆栈问题。当然这样处理也有不好的地方，会占用过多的内存，这一块需要继续研究一些，比如闲鱼提到的 FlutterView 重用机制。</p>
+</li>
+</ul>
+
+                </div>
+                <hr/>
+    
+                
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://easy-team.github.io" rel="external nofollow noreferrer">sky</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://easy-team.github.io/blog/nrswgq/">https://easy-team.github.io/blog/nrswgq/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="https://easy-team.github.io" target="_blank">sky</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+    
+                <div class="tag_share" style="display: block;">
+                    <div class="post-meta__tag-list" style="display: inline-block;">
+                        
+                            <div class="article-tag">
+                                <span class="chip bg-color">No tag</span>
+                            </div>
+                        
+                    </div>
+                    <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                        <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    
+    <div class="social-share" data-sites="qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                    </div>
+                </div>
+                
+                    <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+                
+            </div>
+        </div>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/blog/rh45zo/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="React Native Android源码解读和交互原理分析">
+                        
+                        <span class="card-title">React Native Android源码解读和交互原理分析</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            原文：http://hubcarl.github.io/blog/2016/08/28/react-native-js/首先来看一下一张完整Native与JavaScript交互原理图:在 React Native App中，在应用启动时根据 ReactPackage 会自动生成 JavaSc...
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2019-10-20
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            sky
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/blog/vfhw62/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="Git 使用技巧">
+                        
+                        <span class="card-title">Git 使用技巧</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            原文： http://hubcarl.github.io/blog/2017/09/23/git/Git保存用户名密码git config credential.helper storeGit分支批量清理本地分支git branch | grep -E feature\/(1\.|activi...
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-10-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            sky
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+     </div>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('50')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + 'From: easy-team<br />'
+            + 'Author: sky<br />'
+            + 'Link: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+    
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+<!-- menu-selected -->
+<script>
+    var pathname = location.pathname.replace(/^\//, '').replace(/\/$/, '').replace(/\//g, '-');
+    $('#m-nav-item-' + pathname).addClass('doc-left-nav-mene-selected');
+</script>
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">年份</span>
+            <a href="https://easy-team.github.io" target="_blank">sky</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/easy-team" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">92.8k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    window.setTimeout("siteTime()", 1000);
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2019";
+                    var startMonth = "10";
+                    var startDate = "20";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/hubcarl" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:hubcarl@126.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=433207205" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 433207205" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/hubcarl" class="tooltipped" target="_blank" data-tooltip="关注我的微博: https://weibo.com/hubcarl" data-position="top" data-delay="50">
+        <i class="fab fa-weibo"></i>
+    </a>
+
+
+
+    <a href="https://zhuanlan.zhihu.com/easywebpack" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: https://zhuanlan.zhihu.com/easywebpack" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <!-- Baidu Analytics -->
+
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i["DaoVoiceObject"] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            a.charset = "utf-8";
+            m.parentNode.insertBefore(a, m)
+        })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') +
+            "//widget.daovoice.io/widget/6984b559.js", "daovoice")
+        daovoice('init', {
+            app_id: ""
+        });
+        daovoice('update');
+    </script>
+    
+
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

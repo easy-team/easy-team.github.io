@@ -1,0 +1,68 @@
+{
+  "res":{
+    "title": "res",
+    "description": "Node React Web Framework",
+    "cover": "/medias/featureimages/0.jpg",
+    "btn": {
+      "name": "Github",
+      "icon": "fab fa-github-alt",
+      "url": "https://github.com/easy-team/res",
+      "doc": "https://yuque.com/easy-team/res"
+    }
+  },
+  "ves":{
+    "title": "ves",
+    "description": "Node Vue Web Framework",
+    "cover": "/medias/featureimages/1.jpg",
+    "btn": {
+      "name": "Github",
+      "icon": "fab fa-github-alt",
+      "url": "https://github.com/easy-team/ves",
+      "doc": "https://yuque.com/easy-team/ves"
+    }
+  },
+  "egg-react":{
+    "title": "Egg + React 工程化方案",
+    "description": "Egg + React + Webpack 一体化工程方案",
+    "cover": "/medias/featureimages/2.jpg",
+    "btn": {
+      "name": "Github",
+      "icon": "fab fa-github-alt",
+      "url": "https://github.com/easy-team/egg-react-webpack-boilerplate",
+      "doc": "https://yuque.com/easy-team/egg-react"
+    }
+  },
+  "egg-vue":{
+    "title": "Egg + Vue 工程化方案",
+    "description": "Egg + Vue + Webpack 一体化工程方案",
+    "cover": "/medias/featureimages/3.jpg",
+    "btn": {
+      "name": "Github",
+      "icon": "fab fa-github-alt",
+      "url": "https://github.com/easy-team/egg-vue-webpack-boilerplate",
+      "doc": "https://yuque.com/easy-team/egg-vue"
+    }
+  },
+  "easywebpack":{
+    "title": "easywebpack",
+    "description": "基于 Webpack 前端工程构建方案",
+    "cover": "/medias/featureimages/4.jpg",
+    "btn": {
+      "name": "Github",
+      "icon": "fab fa-github-alt",
+      "url": "https://github.com/easy-team/easywebpack",
+      "doc": "https://yuque.com/easy-team/easywebpack"
+    }
+  },
+  "blog":{
+    "title": "博客",
+    "description": "",
+    "cover": "/medias/featureimages/5.jpg",
+    "btn": {
+      "name": "Github",
+      "icon": "fab fa-github-alt",
+      "url": "https://github.com/hubcarl",
+      "doc": "https://yuque.com/hubcarl"
+    }
+  }
+}

@@ -1,0 +1,1966 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="React Native Android源码解读和交互原理分析, node, egg, webpack, ves, res, ssr">
+    <meta name="description" content="
+原文：http://hubcarl.github.io/blog/2016/08/28/react-native-js/
+
+首先来看一下一张完整Native与JavaScript交互原理图:
+
+在 React Native App中，在应">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>React Native Android源码解读和交互原理分析 | easy-team</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper head-container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">easy-team</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Home</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/res" class="waves-effect waves-light">
+      
+      <i class="fas fa-forward" style="zoom: 0.6;"></i>
+      
+      <span>Res</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/ves" class="waves-effect waves-light">
+      
+      <i class="fas fa-forward" style="zoom: 0.6;"></i>
+      
+      <span>Ves</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>Egg</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/egg-react">
+          
+          <i class="fas fa-forward" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Egg+React</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/egg-vue">
+          
+          <i class="fas fa-forward" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Egg+Vue</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/easywebpack" class="waves-effect waves-light">
+      
+      <i class="fas fa-building" style="zoom: 0.6;"></i>
+      
+      <span>Webpack</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog" class="waves-effect waves-light">
+      
+      <i class="fas fa-hacker-news" style="zoom: 0.6;"></i>
+      
+      <span>Blog</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>Contact</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">easy-team</div>
+        <div class="logo-desc">
+            
+            前端工程化,Node开发,Webpack,Egg,React Server Side Render, Vue Server Side Render
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Home
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/res" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-forward"></i>
+			
+			Res
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/ves" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-forward"></i>
+			
+			Ves
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			Egg
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>   
+				
+                  <a href="/egg-react " style="margin-left:75px";>
+				  
+				   <i class="fa fas fa-forward" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Egg+React</span>
+                  </a>
+                </li>
+              
+                <li>   
+				
+                  <a href="/egg-vue " style="margin-left:75px";>
+				  
+				   <i class="fa fas fa-forward" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Egg+Vue</span>
+                  </a>
+                </li>
+               
+            </ul>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/easywebpack" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-building"></i>
+			
+			Webpack
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-hacker-news"></i>
+			
+			Blog
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/easy-team" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/easy-team" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    <div class="bg-cover pd-header" style="height: 9vh">
+    <div class="container"></div>
+</div>
+
+
+    <script>
+        // 每天切换 banner 图.  Switch banner image every day.
+        $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
+    </script>
+    
+
+<div class="doc-content">
+    
+     <div class="doc-left-nav">
+        <div class="side-nav docsidenav">
+
+    <!-- <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">easy-team</div>
+        <div class="logo-desc">
+            
+            前端工程化,Node开发,Webpack,Egg,React Server Side Render, Vue Server Side Render
+            
+        </div>
+    </div> -->
+
+
+    <div class="doc-left-nav-title">blog</div>
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+            <a href="/blog/kiygy5" class="waves-effect waves-light" id="m-nav-item-blog-kiygy5">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Vue SSR 组件加载
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/ekvirc" class="waves-effect waves-light" id="m-nav-item-blog-ekvirc">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Webpack 构建流程解密
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/az519d" class="waves-effect waves-light" id="m-nav-item-blog-az519d">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                页面资源加载
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/dxrrhq" class="waves-effect waves-light" id="m-nav-item-blog-dxrrhq">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Webpack 4 编译内存泄漏
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/xcw19a" class="waves-effect waves-light" id="m-nav-item-blog-xcw19a">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native, Hybrid App, H5 简单对比分析
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/vzgcgb" class="waves-effect waves-light" id="m-nav-item-blog-vzgcgb">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native Android APK包大小分析
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/wk5ney" class="waves-effect waves-light" id="m-nav-item-blog-wk5ney">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native 自定义插件
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/kghphs" class="waves-effect waves-light" id="m-nav-item-blog-kghphs">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native代码执行跟踪和调试
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/qwywww" class="waves-effect waves-light" id="m-nav-item-blog-qwywww">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native 热更新实现
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/rh45zo" class="waves-effect waves-light" id="m-nav-item-blog-rh45zo">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native Android源码解读和交互原理分析
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/uhmdkg" class="waves-effect waves-light" id="m-nav-item-blog-uhmdkg">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Hybrid系列-phonegap android框架详解
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/sxys82" class="waves-effect waves-light" id="m-nav-item-blog-sxys82">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Hybrid系列-Cordova android框架详解
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/syh43v" class="waves-effect waves-light" id="m-nav-item-blog-syh43v">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                npm 常用命令
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/vfhw62" class="waves-effect waves-light" id="m-nav-item-blog-vfhw62">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Git 使用技巧
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/gayu0o" class="waves-effect waves-light" id="m-nav-item-blog-gayu0o">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Docker 随记
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/egret" class="waves-effect waves-light" id="m-nav-item-blog-egret">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Egret  游戏开发
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/og9ogk" class="waves-effect waves-light" id="m-nav-item-blog-og9ogk">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                vscode 插件开发
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/qz7n03" class="waves-effect waves-light" id="m-nav-item-blog-qz7n03">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Mac PHP 环境
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/qwr449" class="waves-effect waves-light" id="m-nav-item-blog-qwr449">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Webpack 热更新实现原理分析
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/ruv09m" class="waves-effect waves-light" id="m-nav-item-blog-ruv09m">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Egg SSR Webpack 内存编译热更新实现
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/sg8avg" class="waves-effect waves-light" id="m-nav-item-blog-sg8avg">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Babel 构建优化
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/zfri65" class="waves-effect waves-light" id="m-nav-item-blog-zfri65">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Webpack 构建大小分析与优化
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/xriz8a" class="waves-effect waves-light" id="m-nav-item-blog-xriz8a">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Egg + Vue/Nunjucks 服务端渲染性能测试
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/lsrssy" class="waves-effect waves-light" id="m-nav-item-blog-lsrssy">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Flutter  Android  混合工程实践
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/zs3hog" class="waves-effect waves-light" id="m-nav-item-blog-zs3hog">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Flutter iOS 混合工程实践
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/nrswgq" class="waves-effect waves-light" id="m-nav-item-blog-nrswgq">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Android 与 Flutter 入门开发实践指引
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/wydpi1" class="waves-effect waves-light" id="m-nav-item-blog-wydpi1">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Flutter 动态更新
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/cdal6o" class="waves-effect waves-light" id="m-nav-item-blog-cdal6o">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Egg + Web 自定义前端渲染
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/easy-team" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+     </div>
+    
+    <div class="doc-right-nav">
+        <div class="card" class="doc-right-card">
+            <div class="card-content article-info">
+                <h1 style="margin-top: 12px;">React Native Android源码解读和交互原理分析</h1>
+                <div class="row">
+                    <div class="col s5 right-align">
+                        
+                    </div>
+                </div>
+                
+                <div class="post-info">
+                    <div class="post-date info-break-policy">
+                        <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                        2019-10-20
+                    </div>
+    
+                    
+                        
+                        <div class="info-break-policy">
+                            <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
+                            3.1k
+                        </div>
+                        
+    
+                        
+                        <div class="info-break-policy">
+                            <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
+                            16 Min
+                        </div>
+                        
+                    
+                    
+                    
+                        <div id="busuanzi_container_page_pv" class="info-break-policy">
+                            <i class="far fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                            <span id="busuanzi_value_page_pv"></span>
+                        </div>
+                    
+                </div>
+            </div>
+            <hr class="clearfix">
+            <div class="card-content article-card-content" style="padding-top: 0px;">
+                <div id="articleContent">
+                    <blockquote>
+<p>原文：<a href="http://hubcarl.github.io/blog/2016/08/28/react-native-js/" target="_blank" rel="noopener">http://hubcarl.github.io/blog/2016/08/28/react-native-js/</a></p>
+</blockquote>
+<p>首先来看一下一张完整Native与JavaScript交互原理图:</p>
+<p><img src="https://raw.githubusercontent.com/hubcarl/hubcarl.github.io/master/_posts/images/react/rn-bridge.png#width=" alt=""></p>
+<p>在 React Native App中，在应用启动时根据 ReactPackage 会自动生成 JavaScriptModuleRegistry和NativeModuleRegistry两份模块配置表，包含系统CoreModulesPackage, 基础模块MainReactPackage以及自定义模块。Java端与JavaScript端持有相同的模块配置表，标识为可识别为Native模块或JavaScript模块都是通过实现相应接口，并将实例添加ReactPackage的CreactModules方法即可。</p>
+<h2 id="一-Native启动React-Application"><a href="#一-Native启动React-Application" class="headerlink" title="一. Native启动React Application"></a>一. Native启动React Application</h2><p><img src="https://raw.githubusercontent.com/hubcarl/hubcarl.github.io/master/_posts/images/react/RN-Native-Start.png#width=" alt=""></p>
+<p>JavaScript模块extends JavascriptModule, JavaScript模块通过java动态代理实现调用Js模块。下例 AppRegistry.java 为在加载完 Jsbundle 后，Native 去启动 React Application 的总入口，appkey 为应用的 ID。映射每个 JavascriptModule 的信息保存在 JavaScriptModuleRegistration 中，统一由 JavaScriptModuleRegistry统一管理。</p>
+<h3 id="1-setupReactContext"><a href="#1-setupReactContext" class="headerlink" title="1. setupReactContext"></a>1. setupReactContext</h3><p>ReactInstanceManagerImpl.java 中 ReactContextInitAsyncTask.setupReactContext() 方法中如下调用：</p>
+<pre class=" language-java"><code class="language-java"><span class="token punctuation">(</span><span class="token punctuation">(</span>AppRegistry<span class="token punctuation">)</span>catalystInstance<span class="token punctuation">.</span><span class="token function">getJSModule</span><span class="token punctuation">(</span>AppRegistry<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">runApplication</span><span class="token punctuation">(</span>appkey<span class="token punctuation">,</span> appParams<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h3 id="2-Java动态代理"><a href="#2-Java动态代理" class="headerlink" title="2. Java动态代理"></a>2. Java动态代理</h3><p>JS模块通过java动态代理实现调用JS方法,java动态代理通过实现InvocationHandler接口，然后通过Proxy.newProxyInstance()实现. 方法有三个参数：</p>
+<ul>
+<li><p>类加载器(Class Loader)</p>
+</li>
+<li><p>需要实现的接口数组</p>
+</li>
+<li><p>所有动态代理类的方法调用，都会交由InvocationHandler接口实现类里的invoke()方法去处理。这是动态代理的关键所在。</p>
+</li>
+</ul>
+<pre class=" language-java"><code class="language-java"><span class="token punctuation">(</span>JavaScriptModule<span class="token punctuation">)</span>Proxy<span class="token punctuation">.</span><span class="token function">newProxyInstance</span><span class="token punctuation">(</span>moduleInterface<span class="token punctuation">.</span><span class="token function">getClassLoader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">Class</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span>moduleInterface<span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token keyword">new</span> <span class="token class-name">JavaScriptModuleRegistry<span class="token punctuation">.</span>JavaScriptModuleInvocationHandler</span><span class="token punctuation">(</span>executorToken<span class="token punctuation">,</span> instance<span class="token punctuation">,</span> registration<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h3 id="3-JavaScript模块-继承JavascriptModule实现自定义JavaScript模块。"><a href="#3-JavaScript模块-继承JavascriptModule实现自定义JavaScript模块。" class="headerlink" title="3.JavaScript模块:继承JavascriptModule实现自定义JavaScript模块。"></a>3.JavaScript模块:继承JavascriptModule实现自定义JavaScript模块。</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">AppRegistry</span> <span class="token keyword">extends</span> <span class="token class-name">JavaScriptModule</span> <span class="token punctuation">{</span>
+  <span class="token keyword">void</span> <span class="token function">runApplication</span><span class="token punctuation">(</span>String appKey<span class="token punctuation">,</span> WritableMap appParameters<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">void</span> <span class="token function">unmountApplicationComponentAtRootTag</span><span class="token punctuation">(</span><span class="token keyword">int</span> rootNodeTag<span class="token punctuation">)</span><span class="token punctuation">;</span>   
+<span class="token punctuation">}</span></code></pre>
+<h3 id="4-实现-InvocationHandler接口，实现invoke方法，invoke-调用-callFunction实现js的调用。"><a href="#4-实现-InvocationHandler接口，实现invoke方法，invoke-调用-callFunction实现js的调用。" class="headerlink" title="4.实现 InvocationHandler接口，实现invoke方法，invoke 调用 callFunction实现js的调用。"></a>4.实现 InvocationHandler接口，实现invoke方法，invoke 调用 callFunction实现js的调用。</h3><pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">JavaScriptModuleInvocationHandler</span> <span class="token keyword">implements</span> <span class="token class-name">InvocationHandler</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Nullable</span>
+    <span class="token keyword">public</span> Object <span class="token function">invoke</span><span class="token punctuation">(</span>Object proxy<span class="token punctuation">,</span> Method method<span class="token punctuation">,</span> <span class="token annotation punctuation">@Nullable</span> Object<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> Throwable <span class="token punctuation">{</span>
+        ExecutorToken executorToken <span class="token operator">=</span> <span class="token punctuation">(</span>ExecutorToken<span class="token punctuation">)</span><span class="token keyword">this</span><span class="token punctuation">.</span>mExecutorToken<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>executorToken <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            FLog<span class="token punctuation">.</span><span class="token function">w</span><span class="token punctuation">(</span><span class="token string">"React"</span><span class="token punctuation">,</span> <span class="token string">"Dropping JS call, ExecutorToken went away..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            String tracingName <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>mModuleRegistration<span class="token punctuation">.</span><span class="token function">getTracingName</span><span class="token punctuation">(</span>method<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            WritableNativeArray jsArgs <span class="token operator">=</span> args <span class="token operator">!=</span> null<span class="token operator">?</span>Arguments<span class="token punctuation">.</span><span class="token function">fromJavaArgs</span><span class="token punctuation">(</span>args<span class="token punctuation">)</span><span class="token operator">:</span><span class="token keyword">new</span> <span class="token class-name">WritableNativeArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>mCatalystInstance<span class="token punctuation">.</span><span class="token function">callFunction</span><span class="token punctuation">(</span>executorToken<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>mModuleRegistration<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> method<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> jsArgs<span class="token punctuation">,</span> tracingName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="5-callFunction-JNI调用流程详细流程"><a href="#5-callFunction-JNI调用流程详细流程" class="headerlink" title="5.callFunction JNI调用流程详细流程:"></a>5.callFunction JNI调用流程详细流程:</h3><h4 id="1-OnLoad-cpp"><a href="#1-OnLoad-cpp" class="headerlink" title="1.OnLoad.cpp:"></a>1.OnLoad.cpp:</h4><pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">callFunction</span><span class="token punctuation">(</span>JNIEnv<span class="token operator">*</span> env<span class="token punctuation">,</span> jobject obj<span class="token punctuation">,</span> JExecutorToken<span class="token operator">::</span>jhybridobject jExecutorToken<span class="token punctuation">,</span> jstring module<span class="token punctuation">,</span> jstring method<span class="token punctuation">,</span></code></pre>
+<h4 id="2-Bridge-cpp"><a href="#2-Bridge-cpp" class="headerlink" title="2.Bridge.cpp"></a>2.Bridge.cpp</h4><pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">void</span> Bridge<span class="token operator">::</span><span class="token function">callFunction</span><span class="token punctuation">(</span>ExecutorToken executorToken<span class="token punctuation">,</span><span class="token keyword">const</span> std<span class="token operator">::</span>string<span class="token operator">&amp;</span> moduleId<span class="token punctuation">,</span><span class="token keyword">const</span> std<span class="token operator">::</span>string<span class="token operator">&amp;</span> methodId<span class="token punctuation">,</span><span class="token keyword">const</span> folly<span class="token operator">::</span>dynamic<span class="token operator">&amp;</span> arguments<span class="token punctuation">,</span><span class="token keyword">const</span> std<span class="token operator">::</span>string<span class="token operator">&amp;</span> tracingName<span class="token punctuation">)</span></code></pre>
+<h4 id="3-JSCExecutor-cpp"><a href="#3-JSCExecutor-cpp" class="headerlink" title="3.JSCExecutor.cpp"></a>3.JSCExecutor.cpp</h4><pre class=" language-cpp"><code class="language-cpp"><span class="token number">1</span><span class="token punctuation">.</span> <span class="token keyword">void</span> JSCExecutor<span class="token operator">::</span><span class="token function">callFunction</span><span class="token punctuation">(</span><span class="token keyword">const</span> std<span class="token operator">::</span>string<span class="token operator">&amp;</span> moduleId<span class="token punctuation">,</span> <span class="token keyword">const</span> std<span class="token operator">::</span>string<span class="token operator">&amp;</span> methodId<span class="token punctuation">,</span> <span class="token keyword">const</span> folly<span class="token operator">::</span>dynamic<span class="token operator">&amp;</span> arguments<span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true">// 确保fbBatchedBridge 有定义</span>
+
+    <span class="token number">2</span><span class="token punctuation">.</span> <span class="token keyword">bool</span> JSCExecutor<span class="token operator">::</span><span class="token function">ensureBatchedBridgeObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true">// 执行fbBatchedBridge中js方法</span>
+
+    <span class="token number">3</span><span class="token punctuation">.</span> <span class="token keyword">void</span> JSCExecutor<span class="token operator">::</span><span class="token function">callFunction</span><span class="token punctuation">(</span><span class="token keyword">const</span> std<span class="token operator">::</span>string<span class="token operator">&amp;</span> moduleId<span class="token punctuation">,</span> <span class="token keyword">const</span> std<span class="token operator">::</span>string<span class="token operator">&amp;</span> methodId<span class="token punctuation">,</span> <span class="token keyword">const</span> folly<span class="token operator">::</span>dynamic<span class="token operator">&amp;</span> arguments<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token number">4</span><span class="token punctuation">.</span> 执行js  fbBatchedBridge<span class="token punctuation">.</span>callFunctionReturnFlushedQueue 返回queue队列
+
+    <span class="token number">5</span><span class="token punctuation">.</span> 执行Bridge<span class="token punctuation">.</span>cpp <span class="token operator">:</span> <span class="token keyword">void</span> Bridge<span class="token operator">::</span><span class="token function">callNativeModules</span><span class="token punctuation">(</span>JSExecutor<span class="token operator">&amp;</span> executor<span class="token punctuation">,</span> <span class="token keyword">const</span> std<span class="token operator">::</span>string<span class="token operator">&amp;</span> callJSON<span class="token punctuation">,</span> <span class="token keyword">bool</span> isEndOfBatch<span class="token punctuation">)</span>
+
+    <span class="token number">6</span><span class="token punctuation">.</span> 执行 m_callback<span class="token operator">-</span><span class="token operator">></span><span class="token function">onCallNativeModules</span><span class="token punctuation">(</span><span class="token function">getTokenForExecutor</span><span class="token punctuation">(</span>executor<span class="token punctuation">)</span><span class="token punctuation">,</span> callJSON<span class="token punctuation">,</span> isEndOfBatch<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        m_callback 为OnLoad<span class="token punctuation">.</span>cpp 中的 <span class="token keyword">class</span> <span class="token class-name">PlatformBridgeCallback</span> <span class="token operator">:</span> <span class="token keyword">public</span> BridgeCallback
+
+        相当于执行 PlatformBridgeCallback<span class="token punctuation">.</span>onCallNativeModules
+
+    <span class="token number">7</span><span class="token punctuation">.</span> 最后调用 makeJavaCall方法调用java方法
+
+    <span class="token number">8</span><span class="token punctuation">.</span> OnLoad<span class="token punctuation">.</span>cpp 中 makeJavaCall 定义<span class="token punctuation">,</span>  c<span class="token operator">++</span>通过CallVoidMethod调用java非静态方法：
+
+    gCallbackMethod 定义：
+
+    jclass <span class="token class-name">callbackClass</span> <span class="token operator">=</span> env<span class="token operator">-</span><span class="token operator">></span><span class="token function">FindClass</span><span class="token punctuation">(</span><span class="token string">"com/facebook/react/bridge/ReactCallback"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    bridge<span class="token operator">::</span>gCallbackMethod <span class="token operator">=</span> env<span class="token operator">-</span><span class="token operator">></span><span class="token function">GetMethodID</span><span class="token punctuation">(</span>callbackClass<span class="token punctuation">,</span> <span class="token string">"call"</span><span class="token punctuation">,</span> <span class="token string">"(Lcom/facebook/react/bridge/ExecutorToken;IILcom/facebook/react/bridge/ReadableNativeArray;)V"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+    <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">makeJavaCall</span><span class="token punctuation">(</span>JNIEnv<span class="token operator">*</span> env<span class="token punctuation">,</span> ExecutorToken executorToken<span class="token punctuation">,</span> jobject callback<span class="token punctuation">,</span> <span class="token keyword">const</span> MethodCall<span class="token operator">&amp;</span> call<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+      <span class="token keyword">auto</span> newArray <span class="token operator">=</span> ReadableNativeArray<span class="token operator">::</span><span class="token function">newObjectCxxArgs</span><span class="token punctuation">(</span>std<span class="token operator">::</span><span class="token function">move</span><span class="token punctuation">(</span>call<span class="token punctuation">.</span>arguments<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      env<span class="token operator">-</span><span class="token operator">></span><span class="token function">CallVoidMethod</span><span class="token punctuation">(</span>
+          callback<span class="token punctuation">,</span>
+          gCallbackMethod<span class="token punctuation">,</span>
+          <span class="token keyword">static_cast</span><span class="token operator">&lt;</span>JExecutorTokenHolder<span class="token operator">*</span><span class="token operator">></span><span class="token punctuation">(</span>executorToken<span class="token punctuation">.</span><span class="token function">getPlatformExecutorToken</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">getJobj</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+          call<span class="token punctuation">.</span>moduleId<span class="token punctuation">,</span>
+          call<span class="token punctuation">.</span>methodId<span class="token punctuation">,</span>
+          newArray<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span></code></pre>
+<h2 id="二-JavaScript启动流程"><a href="#二-JavaScript启动流程" class="headerlink" title="二. JavaScript启动流程"></a>二. JavaScript启动流程</h2><p><img src="https://raw.githubusercontent.com/hubcarl/hubcarl.github.io/master/_posts/images/react/RN-JS-Start.png#width=" alt=""></p>
+<h3 id="JavaScript初始化"><a href="#JavaScript初始化" class="headerlink" title="JavaScript初始化"></a>JavaScript初始化</h3><p>在JSBundle.js文件底部有两个require调用：</p>
+<p>require(191); // require(‘InitializeJavaScriptAppEngine’)</p>
+<pre><code>InitializeJavaScriptAppEngine 初始化，主要包括Map,Set,XHR, Timer, Log,Fetch,WebSocket PolyfillRCTDeviceEventEmitter,RCTNativeAppEventEmitter,PerformanceLogger初始化</code></pre><p>require(0); // require(‘SmartRectNativeApp/debug.android.js’)</p>
+<pre><code>JS启动入口,其中会引用require(&#39;react&#39;) 和 require(&#39;react－native&#39;)
+
+ReactNative.AppRegistry.registerComponent(&#39;SmartDebugReactApp&#39;, function () {
+    return SmartRectNativeApp;
+});</code></pre><p>下面具体梳理一下require(0)后启动流程</p>
+<h4 id="1-BatchedBridge-MessageQueue-NativeModules初始化"><a href="#1-BatchedBridge-MessageQueue-NativeModules初始化" class="headerlink" title="1. BatchedBridge, MessageQueue, NativeModules初始化"></a>1. BatchedBridge, MessageQueue, NativeModules初始化</h4><p>通过MessageQueue定义RemoteModules对象</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">MessageQueue</span><span class="token punctuation">(</span>configProvider<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">lazyProperty</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token string">'RemoteModules'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> _configProvider <span class="token operator">=</span><span class="token function">configProvider</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">var</span> remoteModuleConfig <span class="token operator">=</span> _configProvider<span class="token punctuation">.</span>remoteModuleConfig<span class="token punctuation">;</span>
+      <span class="token keyword">var</span> modulesConfig <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_genModulesConfig</span><span class="token punctuation">(</span>remoteModuleConfig<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment" spellcheck="true">// 初始化所有JS调用Native模块</span>
+      <span class="token keyword">var</span> modules <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_genModules</span><span class="token punctuation">(</span>modulesConfig<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> modules<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span></code></pre>
+<h4 id="2-Bridge全局配置表"><a href="#2-Bridge全局配置表" class="headerlink" title="2. Bridge全局配置表"></a>2. Bridge全局配置表</h4><p>__fbBatchedBridgeConfig 由Native层注入的全局对象，数据格式如下,包含remoteModuleConfig节点。节点信息包括：moduleName, methodId,  methodName,  args。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> BatchedBridge <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MessageQueue</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token keyword">return</span> global<span class="token punctuation">.</span>__fbBatchedBridgeConfig<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token punctuation">{</span>
+    <span class="token string">"remoteModuleConfig"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"FrescoModule"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      <span class="token string">"moduleID"</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+        <span class="token string">"supportsWebWorkers"</span><span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+        <span class="token string">"methods"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token string">"RNIntentModule"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      <span class="token string">"moduleID"</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+        <span class="token string">"supportsWebWorkers"</span><span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+        <span class="token string">"methods"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token string">"openThirdReactActivity"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+          <span class="token string">"methodID"</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+            <span class="token string">"type"</span><span class="token punctuation">:</span> <span class="token string">"remote"</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token string">"openSecondReactActivity"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+          <span class="token string">"methodID"</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+            <span class="token string">"type"</span><span class="token punctuation">:</span> <span class="token string">"remote"</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token string">"getDataFromIntent"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+          <span class="token string">"methodID"</span><span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+            <span class="token string">"type"</span><span class="token punctuation">:</span> <span class="token string">"remote"</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token string">"finishActivity"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+          <span class="token string">"methodID"</span><span class="token punctuation">:</span> <span class="token number">3</span><span class="token punctuation">,</span>
+            <span class="token string">"type"</span><span class="token punctuation">:</span> <span class="token string">"remote"</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token string">"backActivity"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+          <span class="token string">"methodID"</span><span class="token punctuation">:</span> <span class="token number">4</span><span class="token punctuation">,</span>
+            <span class="token string">"type"</span><span class="token punctuation">:</span> <span class="token string">"remote"</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token string">"openSecondActivity"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+          <span class="token string">"methodID"</span><span class="token punctuation">:</span> <span class="token number">5</span><span class="token punctuation">,</span>
+            <span class="token string">"type"</span><span class="token punctuation">:</span> <span class="token string">"remote"</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span></code></pre>
+<h4 id="3-NativeModules实现"><a href="#3-NativeModules实现" class="headerlink" title="3. NativeModules实现"></a>3. NativeModules实现</h4><pre class=" language-javascript"><code class="language-javascript"><span class="token function">define</span><span class="token punctuation">(</span><span class="token number">60</span> <span class="token comment" spellcheck="true">/* NativeModules */</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>global<span class="token punctuation">,</span> require<span class="token punctuation">,</span> module<span class="token punctuation">,</span> exports<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token string">'use strict'</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">var</span> BatchedBridge <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token number">61</span> <span class="token comment" spellcheck="true">/* BatchedBridge */</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> RemoteModules <span class="token operator">=</span> BatchedBridge<span class="token punctuation">.</span>RemoteModules<span class="token punctuation">;</span>
+
+    <span class="token keyword">function</span> <span class="token function">normalizePrefix</span><span class="token punctuation">(</span>moduleName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> moduleName<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/^(RCT|RK)/</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>RemoteModules<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span>moduleName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> strippedName <span class="token operator">=</span> <span class="token function">normalizePrefix</span><span class="token punctuation">(</span>moduleName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>RemoteModules<span class="token punctuation">[</span><span class="token string">'RCT'</span> <span class="token operator">+</span> strippedName<span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> RemoteModules<span class="token punctuation">[</span><span class="token string">'RK'</span> <span class="token operator">+</span> strippedName<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span>
+          <span class="token string">'Module cannot be registered as both RCT and RK: '</span> <span class="token operator">+</span> moduleName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token punctuation">}</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>strippedName <span class="token operator">!==</span> moduleName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        RemoteModules<span class="token punctuation">[</span>strippedName<span class="token punctuation">]</span> <span class="token operator">=</span> RemoteModules<span class="token punctuation">[</span>moduleName<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">delete</span> RemoteModules<span class="token punctuation">[</span>moduleName<span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+    <span class="token keyword">var</span> NativeModules <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>RemoteModules<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span>moduleName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>NativeModules<span class="token punctuation">,</span> moduleName<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+        configurable<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        enumerable<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        <span class="token keyword">get</span><span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token keyword">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">var</span> module <span class="token operator">=</span> RemoteModules<span class="token punctuation">[</span>moduleName<span class="token punctuation">]</span><span class="token punctuation">;</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>module <span class="token operator">&amp;&amp;</span> <span class="token keyword">typeof</span> module<span class="token punctuation">.</span>moduleID <span class="token operator">===</span> <span class="token string">'number'</span> <span class="token operator">&amp;&amp;</span> global<span class="token punctuation">.</span>nativeRequireModuleConfig<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">var</span> json <span class="token operator">=</span> global<span class="token punctuation">.</span><span class="token function">nativeRequireModuleConfig</span><span class="token punctuation">(</span>moduleName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">var</span> config <span class="token operator">=</span> json <span class="token operator">&amp;&amp;</span> JSON<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>json<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            module <span class="token operator">=</span> config <span class="token operator">&amp;&amp;</span> BatchedBridge<span class="token punctuation">.</span><span class="token function">processModuleConfig</span><span class="token punctuation">(</span>config<span class="token punctuation">,</span> module<span class="token punctuation">.</span>moduleID<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            RemoteModules<span class="token punctuation">[</span>moduleName<span class="token punctuation">]</span> <span class="token operator">=</span> module<span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+          Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>NativeModules<span class="token punctuation">,</span> moduleName<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+            configurable<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+            enumerable<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+            value<span class="token punctuation">:</span> module
+          <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+          <span class="token keyword">return</span> module<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    module<span class="token punctuation">.</span>exports <span class="token operator">=</span> NativeModules<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">"NativeModules"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h4 id="4-genModules-调用-genModule"><a href="#4-genModules-调用-genModule" class="headerlink" title="4. _genModules 调用 _genModule"></a>4. _genModules 调用 _genModule</h4><pre><code>function _genModules(remoteModules) {
+  var _this5 = this;
+  var modules = {};
+
+  remoteModules.forEach(function (config, moduleID) {
+    var info = _this5._genModule(config, moduleID);
+    if (info) {
+      modules[info.name] = info.module;
+    }
+  });
+
+  return modules;
+}</code></pre><h4 id="5-genModule-调用-genMethod"><a href="#5-genModule-调用-genMethod" class="headerlink" title="5. _genModule 调用 _genMethod"></a>5. _genModule 调用 _genMethod</h4><pre><code>function _genModule(config, moduleID) {
+    module[methodName] = _this6._genMethod(moduleID, methodID, methodType);
+    return { name: moduleName, module: module };
+}</code></pre><h4 id="6-genMethod-调用-nativeCall-返回-Promise或function"><a href="#6-genMethod-调用-nativeCall-返回-Promise或function" class="headerlink" title="6. _genMethod 调用  __nativeCall  返回 Promise或function"></a>6. _genMethod 调用  __nativeCall  返回 Promise或function</h4><pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> _genMethod 调用 <span class="token punctuation">(</span>module<span class="token punctuation">,</span> method<span class="token punctuation">,</span> type<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+  <span class="token keyword">var</span> fn <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> self <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>type <span class="token operator">===</span> MethodTypes<span class="token punctuation">.</span>remoteAsync<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    fn <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token function">fn</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> _len <span class="token operator">=</span> arguments<span class="token punctuation">.</span>length<span class="token punctuation">,</span> args <span class="token operator">=</span> <span class="token function">Array</span><span class="token punctuation">(</span>_len<span class="token punctuation">)</span><span class="token punctuation">,</span> _key <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> _key <span class="token operator">&lt;</span> _len<span class="token punctuation">;</span> _key<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        args<span class="token punctuation">[</span>_key<span class="token punctuation">]</span> <span class="token operator">=</span> arguments<span class="token punctuation">[</span>_key<span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span>resolve<span class="token punctuation">,</span> reject<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        self<span class="token punctuation">.</span><span class="token function">__nativeCall</span><span class="token punctuation">(</span>
+          module<span class="token punctuation">,</span>
+          method<span class="token punctuation">,</span>
+          args<span class="token punctuation">,</span>
+          <span class="token keyword">function</span> <span class="token punctuation">(</span>data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">resolve</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token keyword">function</span> <span class="token punctuation">(</span>errorData<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">var</span> error <span class="token operator">=</span> <span class="token function">createErrorFromErrorData</span><span class="token punctuation">(</span>errorData<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">reject</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>type <span class="token operator">===</span> MethodTypes<span class="token punctuation">.</span>syncHook<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> _len2 <span class="token operator">=</span> arguments<span class="token punctuation">.</span>length<span class="token punctuation">,</span> args <span class="token operator">=</span> <span class="token function">Array</span><span class="token punctuation">(</span>_len2<span class="token punctuation">)</span><span class="token punctuation">,</span> _key2 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> _key2 <span class="token operator">&lt;</span> _len2<span class="token punctuation">;</span> _key2<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        args<span class="token punctuation">[</span>_key2<span class="token punctuation">]</span> <span class="token operator">=</span> arguments<span class="token punctuation">[</span>_key2<span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">return</span> global<span class="token punctuation">.</span><span class="token function">nativeCallSyncHook</span><span class="token punctuation">(</span>module<span class="token punctuation">,</span> method<span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    fn <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token function">fn</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> _len3 <span class="token operator">=</span> arguments<span class="token punctuation">.</span>length<span class="token punctuation">,</span> args <span class="token operator">=</span> <span class="token function">Array</span><span class="token punctuation">(</span>_len3<span class="token punctuation">)</span><span class="token punctuation">,</span> _key3 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> _key3 <span class="token operator">&lt;</span> _len3<span class="token punctuation">;</span> _key3<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        args<span class="token punctuation">[</span>_key3<span class="token punctuation">]</span> <span class="token operator">=</span> arguments<span class="token punctuation">[</span>_key3<span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">var</span> lastArg <span class="token operator">=</span> args<span class="token punctuation">.</span>length <span class="token operator">></span> <span class="token number">0</span> <span class="token operator">?</span> args<span class="token punctuation">[</span>args<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token punctuation">:</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+      <span class="token keyword">var</span> secondLastArg <span class="token operator">=</span> args<span class="token punctuation">.</span>length <span class="token operator">></span> <span class="token number">1</span> <span class="token operator">?</span> args<span class="token punctuation">[</span>args<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">2</span><span class="token punctuation">]</span> <span class="token punctuation">:</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+      <span class="token keyword">var</span> hasSuccCB <span class="token operator">=</span> <span class="token keyword">typeof</span> lastArg <span class="token operator">===</span> <span class="token string">'function'</span><span class="token punctuation">;</span>
+      <span class="token keyword">var</span> hasErrorCB <span class="token operator">=</span> <span class="token keyword">typeof</span> secondLastArg <span class="token operator">===</span> <span class="token string">'function'</span><span class="token punctuation">;</span>
+      hasErrorCB <span class="token operator">&amp;&amp;</span> <span class="token function">invariant</span><span class="token punctuation">(</span>
+        hasSuccCB<span class="token punctuation">,</span>
+        <span class="token string">'Cannot have a non-function arg after a function arg.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">var</span> numCBs <span class="token operator">=</span> hasSuccCB <span class="token operator">+</span> hasErrorCB<span class="token punctuation">;</span>
+      <span class="token keyword">var</span> onSucc <span class="token operator">=</span> hasSuccCB <span class="token operator">?</span> lastArg <span class="token punctuation">:</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+      <span class="token keyword">var</span> onFail <span class="token operator">=</span> hasErrorCB <span class="token operator">?</span> secondLastArg <span class="token punctuation">:</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+      args <span class="token operator">=</span> args<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> args<span class="token punctuation">.</span>length <span class="token operator">-</span> numCBs<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> self<span class="token punctuation">.</span><span class="token function">__nativeCall</span><span class="token punctuation">(</span>module<span class="token punctuation">,</span> method<span class="token punctuation">,</span> args<span class="token punctuation">,</span> onFail<span class="token punctuation">,</span> onSucc<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  fn<span class="token punctuation">.</span>type <span class="token operator">=</span> type<span class="token punctuation">;</span>
+  <span class="token keyword">return</span> fn<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="7-nativeCall实现"><a href="#7-nativeCall实现" class="headerlink" title="7. __nativeCall实现"></a>7. __nativeCall实现</h4><pre class=" language-cpp"><code class="language-cpp">function <span class="token function">__nativeCall</span><span class="token punctuation">(</span>module<span class="token punctuation">,</span> method<span class="token punctuation">,</span> params<span class="token punctuation">,</span> onFail<span class="token punctuation">,</span> onSucc<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+  <span class="token keyword">this</span><span class="token punctuation">.</span>_queue<span class="token punctuation">[</span>MODULE_IDS<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>module<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>_queue<span class="token punctuation">[</span>METHOD_IDS<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>method<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>_queue<span class="token punctuation">[</span>PARAMS<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>params<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  var now <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>global<span class="token punctuation">.</span>nativeFlushQueueImmediate <span class="token operator">&amp;&amp;</span>
+  now <span class="token operator">-</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_lastFlush <span class="token operator">>=</span> MIN_TIME_BETWEEN_FLUSHES_MS<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      global<span class="token punctuation">.</span><span class="token function">nativeFlushQueueImmediate</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>_queue<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>_queue <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_callID<span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>_lastFlush <span class="token operator">=</span> now<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="8-JSCExecutor-cpp-通过installGlobalFunction-定义-nativeFlushQueueImmediate方法"><a href="#8-JSCExecutor-cpp-通过installGlobalFunction-定义-nativeFlushQueueImmediate方法" class="headerlink" title="8. JSCExecutor.cpp 通过installGlobalFunction 定义 nativeFlushQueueImmediate方法"></a>8. JSCExecutor.cpp 通过installGlobalFunction 定义 nativeFlushQueueImmediate方法</h4><pre class=" language-cpp"><code class="language-cpp">m_context <span class="token operator">=</span> <span class="token function">JSGlobalContextCreateInGroup</span><span class="token punctuation">(</span><span class="token keyword">nullptr</span><span class="token punctuation">,</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+s_globalContextRefToJSCExecutor<span class="token punctuation">[</span>m_context<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+<span class="token function">installGlobalFunction</span><span class="token punctuation">(</span>m_context<span class="token punctuation">,</span> <span class="token string">"nativeFlushQueueImmediate"</span><span class="token punctuation">,</span> nativeFlushQueueImmediate<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">installGlobalFunction</span><span class="token punctuation">(</span>m_context<span class="token punctuation">,</span> <span class="token string">"nativePerformanceNow"</span><span class="token punctuation">,</span> nativePerformanceNow<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">installGlobalFunction</span><span class="token punctuation">(</span>m_context<span class="token punctuation">,</span> <span class="token string">"nativeStartWorker"</span><span class="token punctuation">,</span> nativeStartWorker<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">installGlobalFunction</span><span class="token punctuation">(</span>m_context<span class="token punctuation">,</span> <span class="token string">"nativePostMessageToWorker"</span><span class="token punctuation">,</span> nativePostMessageToWorker<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">installGlobalFunction</span><span class="token punctuation">(</span>m_context<span class="token punctuation">,</span> <span class="token string">"nativeTerminateWorker"</span><span class="token punctuation">,</span> nativeTerminateWorker<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">installGlobalFunction</span><span class="token punctuation">(</span>m_context<span class="token punctuation">,</span> <span class="token string">"nativeInjectHMRUpdate"</span><span class="token punctuation">,</span> nativeInjectHMRUpdate<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h4 id="9-nativeFlushQueueImmediate-获取-JS队列数据执行Native调用："><a href="#9-nativeFlushQueueImmediate-获取-JS队列数据执行Native调用：" class="headerlink" title="9. nativeFlushQueueImmediate 获取 JS队列数据执行Native调用："></a>9. nativeFlushQueueImmediate 获取 JS队列数据执行Native调用：</h4><pre class=" language-cpp"><code class="language-cpp">JSValueRef JSCExecutor<span class="token operator">::</span><span class="token function">nativeFlushQueueImmediate</span><span class="token punctuation">(</span>
+    JSContextRef ctx<span class="token punctuation">,</span>
+    JSObjectRef function<span class="token punctuation">,</span>
+    JSObjectRef thisObject<span class="token punctuation">,</span>
+    size_t argumentCount<span class="token punctuation">,</span>
+    <span class="token keyword">const</span> JSValueRef arguments<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    JSValueRef <span class="token operator">*</span>exception<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+std<span class="token operator">::</span>string resStr <span class="token operator">=</span> <span class="token function">Value</span><span class="token punctuation">(</span>ctx<span class="token punctuation">,</span> arguments<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toJSONString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+executor<span class="token operator">-</span><span class="token operator">></span><span class="token function">flushQueueImmediate</span><span class="token punctuation">(</span>resStr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">return</span> <span class="token function">JSValueMakeUndefined</span><span class="token punctuation">(</span>ctx<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h4 id="10-flushQueueImmediate获取JS队列执行队列数据调用Native接口："><a href="#10-flushQueueImmediate获取JS队列执行队列数据调用Native接口：" class="headerlink" title="10. flushQueueImmediate获取JS队列执行队列数据调用Native接口："></a>10. flushQueueImmediate获取JS队列执行队列数据调用Native接口：</h4><pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">void</span> JSCExecutor<span class="token operator">::</span><span class="token function">flushQueueImmediate</span><span class="token punctuation">(</span>std<span class="token operator">::</span>string queueJSON<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  m_bridge<span class="token operator">-</span><span class="token operator">></span><span class="token function">callNativeModules</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token keyword">this</span><span class="token punctuation">,</span> queueJSON<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="11-callNativeModules-调用Native-java方法"><a href="#11-callNativeModules-调用Native-java方法" class="headerlink" title="11. callNativeModules 调用Native java方法"></a>11. callNativeModules 调用Native java方法</h4><pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">BridgeCallback</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span><span class="token operator">:</span>
+  <span class="token keyword">virtual</span> <span class="token operator">~</span><span class="token function">BridgeCallback</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">onCallNativeModules</span><span class="token punctuation">(</span>
+      ExecutorToken executorToken<span class="token punctuation">,</span>
+      <span class="token keyword">const</span> std<span class="token operator">::</span>string<span class="token operator">&amp;</span> callJSON<span class="token punctuation">,</span>
+      <span class="token keyword">bool</span> isEndOfBatch<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">onExecutorUnregistered</span><span class="token punctuation">(</span>ExecutorToken executorToken<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">void</span> Bridge<span class="token operator">::</span><span class="token function">callNativeModules</span><span class="token punctuation">(</span>JSExecutor<span class="token operator">&amp;</span> executor<span class="token punctuation">,</span> <span class="token keyword">const</span> std<span class="token operator">::</span>string<span class="token operator">&amp;</span> callJSON<span class="token punctuation">,</span> <span class="token keyword">bool</span> isEndOfBatch<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  m_callback<span class="token operator">-</span><span class="token operator">></span><span class="token function">onCallNativeModules</span><span class="token punctuation">(</span><span class="token function">getTokenForExecutor</span><span class="token punctuation">(</span>executor<span class="token punctuation">)</span><span class="token punctuation">,</span> callJSON<span class="token punctuation">,</span> isEndOfBatch<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+BridgeCallback<span class="token operator">::</span>m_callback 为OnLoad<span class="token punctuation">.</span>cpp 中的 <span class="token keyword">class</span> <span class="token class-name">PlatformBridgeCallback</span> <span class="token operator">:</span> <span class="token keyword">public</span> BridgeCallback
+
+<span class="token keyword">virtual</span> <span class="token keyword">void</span> <span class="token function">onCallNativeModules</span><span class="token punctuation">(</span>
+    ExecutorToken executorToken<span class="token punctuation">,</span>
+    <span class="token keyword">const</span> std<span class="token operator">::</span>string<span class="token operator">&amp;</span> callJSON<span class="token punctuation">,</span>
+    <span class="token keyword">bool</span> isEndOfBatch<span class="token punctuation">)</span> override <span class="token punctuation">{</span>
+  <span class="token function">executeCallbackOnCallbackQueueThread</span><span class="token punctuation">(</span><span class="token punctuation">[</span>executorToken<span class="token punctuation">,</span> callJSON<span class="token punctuation">,</span> isEndOfBatch<span class="token punctuation">]</span> <span class="token punctuation">(</span>ResolvedWeakReference<span class="token operator">&amp;</span> callback<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    JNIEnv<span class="token operator">*</span> env <span class="token operator">=</span> Environment<span class="token operator">::</span><span class="token function">current</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">auto</span><span class="token operator">&amp;</span> call <span class="token operator">:</span> react<span class="token operator">::</span><span class="token function">parseMethodCalls</span><span class="token punctuation">(</span>callJSON<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">makeJavaCall</span><span class="token punctuation">(</span>env<span class="token punctuation">,</span> executorToken<span class="token punctuation">,</span> callback<span class="token punctuation">,</span> call<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>env<span class="token operator">-</span><span class="token operator">></span><span class="token function">ExceptionCheck</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>isEndOfBatch<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">signalBatchComplete</span><span class="token punctuation">(</span>env<span class="token punctuation">,</span> callback<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>相当于执行 PlatformBridgeCallback.onCallNativeModules，最后调用 makeJavaCall方法调用java方法</p>
+<p>OnLoad.cpp 中 makeJavaCall 定义,  c++通过CallVoidMethod调用java非静态方法：</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">makeJavaCall</span><span class="token punctuation">(</span>JNIEnv<span class="token operator">*</span> env<span class="token punctuation">,</span> ExecutorToken executorToken<span class="token punctuation">,</span> jobject callback<span class="token punctuation">,</span> <span class="token keyword">const</span> MethodCall<span class="token operator">&amp;</span> call<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+  <span class="token keyword">auto</span> newArray <span class="token operator">=</span> ReadableNativeArray<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">newObjectCxxArgs</span><span class="token punctuation">(</span>std<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">move</span><span class="token punctuation">(</span>call<span class="token punctuation">.</span>arguments<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  env<span class="token operator">-></span><span class="token function">CallVoidMethod</span><span class="token punctuation">(</span>
+      callback<span class="token punctuation">,</span>
+      gCallbackMethod<span class="token punctuation">,</span>
+      static_cast<span class="token operator">&lt;</span>JExecutorTokenHolder<span class="token operator">*</span><span class="token operator">></span><span class="token punctuation">(</span>executorToken<span class="token punctuation">.</span><span class="token function">getPlatformExecutorToken</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">getJobj</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      call<span class="token punctuation">.</span>moduleId<span class="token punctuation">,</span>
+      call<span class="token punctuation">.</span>methodId<span class="token punctuation">,</span>
+      newArray<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h2 id="三-JavaScript调用Native回调和返回值"><a href="#三-JavaScript调用Native回调和返回值" class="headerlink" title="三. JavaScript调用Native回调和返回值"></a>三. JavaScript调用Native回调和返回值</h2><p><img src="https://raw.githubusercontent.com/hubcarl/hubcarl.github.io/master/_posts/images/react/rn-js-native.png#width=" alt=""></p>
+<p>从编写自定义插件中，我们知道了JS如何调用Native方法，但 @ReactMethod 注解的方法的返回值只能是void，现在JS端想从Native获取一些配置信息或者知道调用端是否成功的一些返回值信息，该如何实现呢？</p>
+<p>JavaScript调用Native获取Native返回值是通过异步Callback实现的. 在JS调用Native时，会判断方法的最后两个参数，如果是function，就会把函数放到callback数值中, key为自增的callbackId，同时把callbackId传递给Native。Native执行完以后，通过调用JS方法 __invokeCallback 进行回调。在react-native中定是通过Callback和Promise的接口，用来处理JavaScript调用Java方法的回调，Callback会作为ReactMethod注解方法的一个参数，Native调用JS就是通过这个Callback实现的，具体实现会在下面讲到。</p>
+<p>首先，我们看一下Callback和Promise具体实现，然后根据代码来剖析实现原理。</p>
+<h3 id="Callback实现"><a href="#Callback实现" class="headerlink" title="Callback实现"></a>Callback实现</h3><h4 id="1-java端实现一个需要获取执行结果的setCache和一个获取缓存接口getCache"><a href="#1-java端实现一个需要获取执行结果的setCache和一个获取缓存接口getCache" class="headerlink" title="1. java端实现一个需要获取执行结果的setCache和一个获取缓存接口getCache"></a>1. java端实现一个需要获取执行结果的setCache和一个获取缓存接口getCache</h4><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@ReactMethod</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setCache</span><span class="token punctuation">(</span>String key<span class="token punctuation">,</span> String value<span class="token punctuation">,</span> Callback successCallback<span class="token punctuation">,</span> Callback errorCallback<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">try</span> <span class="token punctuation">{</span>
+      sharedPreference <span class="token operator">=</span> <span class="token function">getCurrentActivity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getSharedPreferences</span><span class="token punctuation">(</span><span class="token string">"rn_cache"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      sharedPreference<span class="token punctuation">.</span><span class="token function">edit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">putString</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">commit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      successCallback<span class="token punctuation">.</span><span class="token function">invoke</span><span class="token punctuation">(</span><span class="token string">"save success"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      errorCallback<span class="token punctuation">.</span><span class="token function">invoke</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token annotation punctuation">@ReactMethod</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">getCache</span><span class="token punctuation">(</span>String key<span class="token punctuation">,</span> Callback callback<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  callback<span class="token punctuation">.</span><span class="token function">invoke</span><span class="token punctuation">(</span>sharedPreference<span class="token punctuation">.</span><span class="token function">getString</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="2-JS定义两个方法，一个设置缓存，一个获取缓存。在JavaScript中，调用这个带有Callback参数的方法如下："><a href="#2-JS定义两个方法，一个设置缓存，一个获取缓存。在JavaScript中，调用这个带有Callback参数的方法如下：" class="headerlink" title="2. JS定义两个方法，一个设置缓存，一个获取缓存。在JavaScript中，调用这个带有Callback参数的方法如下："></a>2. JS定义两个方法，一个设置缓存，一个获取缓存。在JavaScript中，调用这个带有Callback参数的方法如下：</h4><pre class=" language-javascript"><code class="language-javascript"><span class="token function">_setCacheClick</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  NativeModules<span class="token punctuation">.</span>IntentPackage<span class="token punctuation">.</span><span class="token function">setCache</span><span class="token punctuation">(</span><span class="token string">'ReactNative'</span><span class="token punctuation">,</span><span class="token string">'我是来自React Native缓存消息'</span><span class="token punctuation">,</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>
+      NativeModules<span class="token punctuation">.</span>ToastAndroid<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span>msg<span class="token punctuation">,</span> <span class="token number">3000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>
+      NativeModules<span class="token punctuation">.</span>ToastAndroid<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span>error<span class="token punctuation">,</span> <span class="token number">3000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">_getCacheClick</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+     NativeModules<span class="token punctuation">.</span>IntentPackage<span class="token punctuation">.</span><span class="token function">getCache</span><span class="token punctuation">(</span><span class="token string">'ReactNative'</span><span class="token punctuation">,</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>
+          NativeModules<span class="token punctuation">.</span>ToastAndroid<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span>value<span class="token punctuation">,</span> <span class="token number">3000</span><span class="token punctuation">)</span>
+     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="Promise实现"><a href="#Promise实现" class="headerlink" title="Promise实现"></a>Promise实现</h3><h4 id="1-同样java端实现一个需要获取执行结果的setCache和一个获取缓存接口getCache，Callback参数改为Promise"><a href="#1-同样java端实现一个需要获取执行结果的setCache和一个获取缓存接口getCache，Callback参数改为Promise" class="headerlink" title="1. 同样java端实现一个需要获取执行结果的setCache和一个获取缓存接口getCache，Callback参数改为Promise"></a>1. 同样java端实现一个需要获取执行结果的setCache和一个获取缓存接口getCache，Callback参数改为Promise</h4><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@ReactMethod</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setCachePromise</span><span class="token punctuation">(</span>String key<span class="token punctuation">,</span> String value<span class="token punctuation">,</span> Promise promise<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">try</span> <span class="token punctuation">{</span>
+      sharedPreference <span class="token operator">=</span> <span class="token function">getCurrentActivity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getSharedPreferences</span><span class="token punctuation">(</span><span class="token string">"rn_cache"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      sharedPreference<span class="token punctuation">.</span><span class="token function">edit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">putString</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">commit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      promise<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token string">"save success"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      promise<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token annotation punctuation">@ReactMethod</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">getCachePromise</span><span class="token punctuation">(</span>String key<span class="token punctuation">,</span> Promise promise<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  promise<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>sharedPreference<span class="token punctuation">.</span><span class="token function">getString</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="2-同样JS定义两个方法，一个设置缓存，一个获取缓存。在JavaScript中，调用这个带有Callback参数的方法如下："><a href="#2-同样JS定义两个方法，一个设置缓存，一个获取缓存。在JavaScript中，调用这个带有Callback参数的方法如下：" class="headerlink" title="2. 同样JS定义两个方法，一个设置缓存，一个获取缓存。在JavaScript中，调用这个带有Callback参数的方法如下："></a>2. 同样JS定义两个方法，一个设置缓存，一个获取缓存。在JavaScript中，调用这个带有Callback参数的方法如下：</h4><pre class=" language-javascript"><code class="language-javascript"><span class="token function">_setCachePromiseClick</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    NativeModules<span class="token punctuation">.</span>IntentPackage<span class="token punctuation">.</span><span class="token function">setCache</span><span class="token punctuation">(</span><span class="token string">'ReactNative'</span><span class="token punctuation">,</span><span class="token string">'我是来自React Native缓存消息'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>msg<span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>
+        NativeModules<span class="token punctuation">.</span>ToastAndroid<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span>msg<span class="token punctuation">,</span> <span class="token number">3000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>error<span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>
+      NativeModules<span class="token punctuation">.</span>ToastAndroid<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span>error<span class="token punctuation">,</span> <span class="token number">3000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">_getCachePromiseClick</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+       NativeModules<span class="token punctuation">.</span>IntentPackage<span class="token punctuation">.</span><span class="token function">getCache</span><span class="token punctuation">(</span><span class="token string">'ReactNative'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">{</span>
+       NativeModules<span class="token punctuation">.</span>ToastAndroid<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span>value<span class="token punctuation">,</span> <span class="token number">3000</span><span class="token punctuation">)</span>
+   <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="JavaScript调用Native-Callback实现原理"><a href="#JavaScript调用Native-Callback实现原理" class="headerlink" title="JavaScript调用Native Callback实现原理"></a>JavaScript调用Native Callback实现原理</h3><h4 id="1-NativeModulesReactCallback-初始化"><a href="#1-NativeModulesReactCallback-初始化" class="headerlink" title="1.NativeModulesReactCallback 初始化"></a>1.NativeModulesReactCallback 初始化</h4><pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> ReactBridge <span class="token function">initializeBridge</span><span class="token punctuation">(</span>JavaScriptExecutor jsExecutor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  bridge <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ReactBridge</span><span class="token punctuation">(</span>
+          jsExecutor<span class="token punctuation">,</span>
+          <span class="token keyword">new</span> <span class="token class-name">NativeModulesReactCallback</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+          mReactQueueConfiguration<span class="token punctuation">.</span><span class="token function">getNativeModulesQueueThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> bridge<span class="token punctuation">;</span>        
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token function">ReactBridge</span><span class="token punctuation">(</span>
+      JavaScriptExecutor jsExecutor<span class="token punctuation">,</span>
+      ReactCallback callback<span class="token punctuation">,</span>
+      MessageQueueThread nativeModulesQueueThread<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    mJSExecutor <span class="token operator">=</span> jsExecutor<span class="token punctuation">;</span>
+    mCallback <span class="token operator">=</span> callback<span class="token punctuation">;</span>
+    mNativeModulesQueueThread <span class="token operator">=</span> nativeModulesQueueThread<span class="token punctuation">;</span>
+    <span class="token function">initialize</span><span class="token punctuation">(</span>jsExecutor<span class="token punctuation">,</span> callback<span class="token punctuation">,</span> mNativeModulesQueueThread<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="2-ReactCallback源码实现："><a href="#2-ReactCallback源码实现：" class="headerlink" title="2.ReactCallback源码实现："></a>2.ReactCallback源码实现：</h4><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@DoNotStrip</span>
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">ReactCallback</span> <span class="token punctuation">{</span>
+  <span class="token annotation punctuation">@DoNotStrip</span>
+  <span class="token keyword">void</span> <span class="token function">call</span><span class="token punctuation">(</span>ExecutorToken executorToken<span class="token punctuation">,</span> <span class="token keyword">int</span> moduleId<span class="token punctuation">,</span> <span class="token keyword">int</span> methodId<span class="token punctuation">,</span> ReadableNativeArray parameters<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">private</span> <span class="token keyword">class</span> <span class="token class-name">NativeModulesReactCallback</span> <span class="token keyword">implements</span> <span class="token class-name">ReactCallback</span> <span class="token punctuation">{</span>
+     <span class="token annotation punctuation">@Override</span>
+     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">call</span><span class="token punctuation">(</span>ExecutorToken executorToken<span class="token punctuation">,</span> <span class="token keyword">int</span> moduleId<span class="token punctuation">,</span> <span class="token keyword">int</span> methodId<span class="token punctuation">,</span> ReadableNativeArray parameters<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+       <span class="token keyword">synchronized</span> <span class="token punctuation">(</span>mJSToJavaCallsTeardownLock<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+         <span class="token comment" spellcheck="true">// NativeModuleRegistry调用call</span>
+         nativeModuleRegistry<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>CatalystInstanceImpl<span class="token punctuation">.</span><span class="token keyword">this</span><span class="token punctuation">,</span> executorToken<span class="token punctuation">,</span> moduleId<span class="token punctuation">,</span> methodId<span class="token punctuation">,</span> parameters<span class="token punctuation">)</span><span class="token punctuation">;</span>
+       <span class="token punctuation">}</span>
+     <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="3-NativeModuleRegistry源码实现："><a href="#3-NativeModuleRegistry源码实现：" class="headerlink" title="3.NativeModuleRegistry源码实现："></a>3.NativeModuleRegistry源码实现：</h4><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">NativeModuleRegistry</span> <span class="token punctuation">{</span>
+
+  <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">MethodRegistration</span> <span class="token punctuation">{</span>
+      <span class="token keyword">public</span> <span class="token function">MethodRegistration</span><span class="token punctuation">(</span>String name<span class="token punctuation">,</span> String tracingName<span class="token punctuation">,</span> NativeModule<span class="token punctuation">.</span>NativeMethod method<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>tracingName <span class="token operator">=</span> tracingName<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>method <span class="token operator">=</span> method<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token keyword">public</span> String name<span class="token punctuation">;</span>
+      <span class="token keyword">public</span> String tracingName<span class="token punctuation">;</span>
+      <span class="token comment" spellcheck="true">// Native 模块必须实现的接口NativeModule</span>
+      <span class="token keyword">public</span> NativeModule<span class="token punctuation">.</span>NativeMethod method<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">ModuleDefinition</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">int</span> id<span class="token punctuation">;</span>
+        <span class="token keyword">public</span> <span class="token keyword">final</span> String name<span class="token punctuation">;</span>
+        <span class="token keyword">public</span> <span class="token keyword">final</span> NativeModule target<span class="token punctuation">;</span>
+        <span class="token keyword">public</span> <span class="token keyword">final</span> ArrayList<span class="token operator">&lt;</span>MethodRegistration<span class="token operator">></span> methods<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token function">ModuleDefinition</span><span class="token punctuation">(</span><span class="token keyword">int</span> id<span class="token punctuation">,</span> String name<span class="token punctuation">,</span> NativeModule target<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>id <span class="token operator">=</span> id<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>target <span class="token operator">=</span> target<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>methods <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>MethodRegistration<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// target.getMethods() 收集 @ReactMehtod 注解的方法</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>Map<span class="token punctuation">.</span>Entry<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> NativeModule<span class="token punctuation">.</span>NativeMethod<span class="token operator">></span> entry <span class="token operator">:</span> target<span class="token punctuation">.</span><span class="token function">getMethods</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">entrySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">this</span><span class="token punctuation">.</span>methods<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>
+            <span class="token keyword">new</span> <span class="token class-name">MethodRegistration</span><span class="token punctuation">(</span>
+              entry<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"NativeCall__"</span> <span class="token operator">+</span> target<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"_"</span> <span class="token operator">+</span> entry<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+              entry<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">call</span><span class="token punctuation">(</span>
+            CatalystInstance catalystInstance<span class="token punctuation">,</span>
+            ExecutorToken executorToken<span class="token punctuation">,</span>
+            <span class="token keyword">int</span> methodId<span class="token punctuation">,</span>
+            ReadableNativeArray parameters<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// this.methods.get(methodId).method == NativeModule.NativeMethod</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>methods<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>methodId<span class="token punctuation">)</span><span class="token punctuation">.</span>method<span class="token punctuation">.</span><span class="token function">invoke</span><span class="token punctuation">(</span>catalystInstance<span class="token punctuation">,</span> executorToken<span class="token punctuation">,</span> parameters<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="4-我们再来看一下Native自定义模块IntentModule实现"><a href="#4-我们再来看一下Native自定义模块IntentModule实现" class="headerlink" title="4.我们再来看一下Native自定义模块IntentModule实现"></a>4.我们再来看一下Native自定义模块IntentModule实现</h4><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">BaseJavaModule</span> <span class="token keyword">implements</span> <span class="token class-name">NativeModule</span> <span class="token punctuation">{</span>
+
+  <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">private</span> ArgumentExtractor<span class="token operator">&lt;</span>Callback<span class="token operator">></span> ARGUMENT_EXTRACTOR_CALLBACK <span class="token operator">=</span>
+      <span class="token keyword">new</span> <span class="token class-name">ArgumentExtractor</span><span class="token operator">&lt;</span>Callback<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token annotation punctuation">@Override</span>
+        <span class="token keyword">public</span> <span class="token annotation punctuation">@Nullable</span> Callback <span class="token function">extractArgument</span><span class="token punctuation">(</span>
+            CatalystInstance catalystInstance<span class="token punctuation">,</span> ExecutorToken executorToken<span class="token punctuation">,</span> ReadableNativeArray jsArguments<span class="token punctuation">,</span> <span class="token keyword">int</span> atIndex<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>jsArguments<span class="token punctuation">.</span><span class="token function">isNull</span><span class="token punctuation">(</span>atIndex<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+          <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">int</span> id <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span> jsArguments<span class="token punctuation">.</span><span class="token function">getDouble</span><span class="token punctuation">(</span>atIndex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">//CallbackImpl 实现 Callback接口</span>
+            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">CallbackImpl</span><span class="token punctuation">(</span>catalystInstance<span class="token punctuation">,</span> executorToken<span class="token punctuation">,</span> id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">private</span> ArgumentExtractor<span class="token operator">&lt;</span>Promise<span class="token operator">></span> ARGUMENT_EXTRACTOR_PROMISE <span class="token operator">=</span>
+      <span class="token keyword">new</span> <span class="token class-name">ArgumentExtractor</span><span class="token operator">&lt;</span>Promise<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token annotation punctuation">@Override</span>
+        <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getJSArgumentsNeeded</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">return</span> <span class="token number">2</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token annotation punctuation">@Override</span>
+        <span class="token keyword">public</span> Promise <span class="token function">extractArgument</span><span class="token punctuation">(</span>
+            CatalystInstance catalystInstance<span class="token punctuation">,</span> ExecutorToken executorToken<span class="token punctuation">,</span> ReadableNativeArray jsArguments<span class="token punctuation">,</span> <span class="token keyword">int</span> atIndex<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          Callback resolve <span class="token operator">=</span> ARGUMENT_EXTRACTOR_CALLBACK
+              <span class="token punctuation">.</span><span class="token function">extractArgument</span><span class="token punctuation">(</span>catalystInstance<span class="token punctuation">,</span> executorToken<span class="token punctuation">,</span> jsArguments<span class="token punctuation">,</span> atIndex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          Callback reject <span class="token operator">=</span> ARGUMENT_EXTRACTOR_CALLBACK
+              <span class="token punctuation">.</span><span class="token function">extractArgument</span><span class="token punctuation">(</span>catalystInstance<span class="token punctuation">,</span> executorToken<span class="token punctuation">,</span> jsArguments<span class="token punctuation">,</span> atIndex <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">PromiseImpl</span><span class="token punctuation">(</span>resolve<span class="token punctuation">,</span> reject<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">private</span> <span class="token annotation punctuation">@Nullable</span> Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> NativeMethod<span class="token operator">></span> mMethods<span class="token punctuation">;</span>
+  <span class="token keyword">private</span> <span class="token annotation punctuation">@Nullable</span> Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> SyncNativeHook<span class="token operator">></span> mHooks<span class="token punctuation">;</span>
+
+  <span class="token comment" spellcheck="true">// getMethods实现</span>
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">final</span> Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> NativeMethod<span class="token operator">></span> <span class="token function">getMethods</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Method<span class="token punctuation">[</span><span class="token punctuation">]</span> targetMethods <span class="token operator">=</span> <span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getDeclaredMethods</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token keyword">for</span> <span class="token punctuation">(</span>Method targetMethod <span class="token operator">:</span> targetMethods<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+       <span class="token keyword">if</span> <span class="token punctuation">(</span>targetMethod<span class="token punctuation">.</span><span class="token function">getAnnotation</span><span class="token punctuation">(</span>ReactMethod<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span> <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+         String methodName <span class="token operator">=</span> targetMethod<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+         mMethods<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>methodName<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">JavaMethod</span><span class="token punctuation">(</span>targetMethod<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+       <span class="token punctuation">}</span>
+       <span class="token keyword">if</span> <span class="token punctuation">(</span>targetMethod<span class="token punctuation">.</span><span class="token function">getAnnotation</span><span class="token punctuation">(</span>ReactSyncHook<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span> <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+         String methodName <span class="token operator">=</span> targetMethod<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+         mHooks<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>methodName<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">SyncJavaHook</span><span class="token punctuation">(</span>targetMethod<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+       <span class="token punctuation">}</span>
+     <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token function">assertNotNull</span><span class="token punctuation">(</span>mMethods<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">JavaMethod</span> <span class="token keyword">implements</span> <span class="token class-name">NativeMethod</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> Method mMethod<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token function">JavaMethod</span><span class="token punctuation">(</span>Method method<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      mMethod <span class="token operator">=</span> method<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">invoke</span><span class="token punctuation">(</span>CatalystInstance catalystInstance<span class="token punctuation">,</span> ExecutorToken executorToken<span class="token punctuation">,</span> ReadableNativeArray parameters<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      mMethod<span class="token punctuation">.</span><span class="token function">invoke</span><span class="token punctuation">(</span>BaseJavaModule<span class="token punctuation">.</span><span class="token keyword">this</span><span class="token punctuation">,</span> mArguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>  
+  <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">ReactContextBaseJavaModule</span> <span class="token keyword">extends</span> <span class="token class-name">BaseJavaModule</span> <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">IntentModule</span> <span class="token keyword">extends</span> <span class="token class-name">ReactContextBaseJavaModule</span> <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span></code></pre>
+<h4 id="5-Callback-实现"><a href="#5-Callback-实现" class="headerlink" title="5.Callback 实现"></a>5.Callback 实现</h4><pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">native</span> <span class="token keyword">void</span> <span class="token function">initialize</span><span class="token punctuation">(</span>
+      JavaScriptExecutor jsExecutor<span class="token punctuation">,</span>
+      ReactCallback callback<span class="token punctuation">,</span>
+      MessageQueueThread nativeModulesQueueThread<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+<span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">class</span> <span class="token class-name">CallbackImpl</span> <span class="token keyword">implements</span> <span class="token class-name">Callback</span> <span class="token punctuation">{</span>
+
+  <span class="token keyword">private</span> <span class="token keyword">final</span> CatalystInstance mCatalystInstance<span class="token punctuation">;</span>
+  <span class="token keyword">private</span> <span class="token keyword">final</span> ExecutorToken mExecutorToken<span class="token punctuation">;</span>
+  <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">int</span> mCallbackId<span class="token punctuation">;</span>
+
+  <span class="token keyword">public</span> <span class="token function">CallbackImpl</span><span class="token punctuation">(</span>CatalystInstancebridge <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ReactBridge</span><span class="token punctuation">(</span>
+          jsExecutor<span class="token punctuation">,</span>
+          <span class="token keyword">new</span> <span class="token class-name">NativeModulesReactCallback</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+          mReactQueueConfiguration<span class="token punctuation">.</span><span class="token function">getNativeModulesQueueThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> bridge<span class="token punctuation">,</span> ExecutorToken executorToken<span class="token punctuation">,</span> <span class="token keyword">int</span> callbackId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    mCatalystInstance <span class="token operator">=</span> bridge<span class="token punctuation">;</span>
+    mExecutorToken <span class="token operator">=</span> executorToken<span class="token punctuation">;</span>
+    mCallbackId <span class="token operator">=</span> callbackId<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">invoke</span><span class="token punctuation">(</span>Object<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    mCatalystInstance<span class="token punctuation">.</span><span class="token function">invokeCallback</span><span class="token punctuation">(</span>mExecutorToken<span class="token punctuation">,</span> mCallbackId<span class="token punctuation">,</span> Arguments<span class="token punctuation">.</span><span class="token function">fromJavaArgs</span><span class="token punctuation">(</span>args<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="6-CatalystInstanceImpl类中invokeCallback调用"><a href="#6-CatalystInstanceImpl类中invokeCallback调用" class="headerlink" title="6.CatalystInstanceImpl类中invokeCallback调用"></a>6.CatalystInstanceImpl类中invokeCallback调用</h4><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">invokeCallback</span><span class="token punctuation">(</span>ExecutorToken executorToken<span class="token punctuation">,</span> <span class="token keyword">int</span> callbackID<span class="token punctuation">,</span> NativeArray arguments<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>mIsBeingDestroyed<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  FLog<span class="token punctuation">.</span><span class="token function">w</span><span class="token punctuation">(</span>ReactConstants<span class="token punctuation">.</span>TAG<span class="token punctuation">,</span> <span class="token string">"Invoking JS callback after bridge has been destroyed."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">synchronized</span> <span class="token punctuation">(</span>mJavaToJSCallsTeardownLock<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>mDestroyed<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    FLog<span class="token punctuation">.</span><span class="token function">w</span><span class="token punctuation">(</span>ReactConstants<span class="token punctuation">.</span>TAG<span class="token punctuation">,</span> <span class="token string">"Invoking JS callback after bridge has been destroyed."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">incrementPendingJSCalls</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  Assertions<span class="token punctuation">.</span><span class="token function">assertNotNull</span><span class="token punctuation">(</span>mBridge<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">invokeCallback</span><span class="token punctuation">(</span>executorToken<span class="token punctuation">,</span> callbackID<span class="token punctuation">,</span> arguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="7-ReactBridge-java中invokeCallback调用"><a href="#7-ReactBridge-java中invokeCallback调用" class="headerlink" title="7.ReactBridge.java中invokeCallback调用"></a>7.ReactBridge.java中invokeCallback调用</h4><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">native</span> <span class="token keyword">void</span> <span class="token function">invokeCallback</span><span class="token punctuation">(</span>ExecutorToken executorToken<span class="token punctuation">,</span> <span class="token keyword">int</span> callbackID<span class="token punctuation">,</span> NativeArray arguments<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h4 id="8-OnLoad-cpp"><a href="#8-OnLoad-cpp" class="headerlink" title="8.OnLoad.cpp"></a>8.OnLoad.cpp</h4><pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">invokeCallback</span><span class="token punctuation">(</span>JNIEnv<span class="token operator">*</span> env<span class="token punctuation">,</span> jobject obj<span class="token punctuation">,</span> JExecutorToken<span class="token operator">::</span>jhybridobject jExecutorToken<span class="token punctuation">,</span> jint callbackId<span class="token punctuation">,</span>
+                           NativeArray<span class="token operator">::</span>jhybridobject args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">auto</span> bridge <span class="token operator">=</span> extractRefPtr<span class="token operator">&lt;</span>CountableBridge<span class="token operator">></span><span class="token punctuation">(</span>env<span class="token punctuation">,</span> obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">auto</span> arguments <span class="token operator">=</span> <span class="token function">cthis</span><span class="token punctuation">(</span><span class="token function">wrap_alias</span><span class="token punctuation">(</span>args<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">try</span> <span class="token punctuation">{</span>
+    bridge<span class="token operator">-</span><span class="token operator">></span><span class="token function">invokeCallback</span><span class="token punctuation">(</span>
+      <span class="token function">cthis</span><span class="token punctuation">(</span><span class="token function">wrap_alias</span><span class="token punctuation">(</span>jExecutorToken<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">getExecutorToken</span><span class="token punctuation">(</span><span class="token function">wrap_alias</span><span class="token punctuation">(</span>jExecutorToken<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token punctuation">(</span><span class="token keyword">double</span><span class="token punctuation">)</span> callbackId<span class="token punctuation">,</span>
+      std<span class="token operator">::</span><span class="token function">move</span><span class="token punctuation">(</span>arguments<span class="token operator">-</span><span class="token operator">></span>array<span class="token punctuation">)</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">translatePendingCppExceptionToJavaException</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="9-Bridge-cpp实现"><a href="#9-Bridge-cpp实现" class="headerlink" title="9.Bridge.cpp实现"></a>9.Bridge.cpp实现</h4><pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">void</span> Bridge<span class="token operator">::</span><span class="token function">invokeCallback</span><span class="token punctuation">(</span>ExecutorToken executorToken<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">double</span> callbackId<span class="token punctuation">,</span> <span class="token keyword">const</span> folly<span class="token operator">::</span>dynamic<span class="token operator">&amp;</span> arguments<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token macro property">#<span class="token directive keyword">ifdef</span> WITH_FBSYSTRACE</span>
+  <span class="token keyword">int</span> systraceCookie <span class="token operator">=</span> m_systraceCookie<span class="token operator">++</span><span class="token punctuation">;</span>
+  FbSystraceAsyncFlow<span class="token operator">::</span><span class="token function">begin</span><span class="token punctuation">(</span>
+      TRACE_TAG_REACT_CXX_BRIDGE<span class="token punctuation">,</span>
+      <span class="token string">"&lt;callback>"</span><span class="token punctuation">,</span>
+      systraceCookie<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token macro property">#<span class="token directive keyword">endif</span></span>
+
+  <span class="token macro property">#<span class="token directive keyword">ifdef</span> WITH_FBSYSTRACE</span>
+  <span class="token function">runOnExecutorQueue</span><span class="token punctuation">(</span>executorToken<span class="token punctuation">,</span> <span class="token punctuation">[</span>callbackId<span class="token punctuation">,</span> arguments<span class="token punctuation">,</span> systraceCookie<span class="token punctuation">]</span> <span class="token punctuation">(</span>JSExecutor<span class="token operator">*</span> executor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    FbSystraceAsyncFlow<span class="token operator">::</span><span class="token function">end</span><span class="token punctuation">(</span>
+        TRACE_TAG_REACT_CXX_BRIDGE<span class="token punctuation">,</span>
+        <span class="token string">"&lt;callback>"</span><span class="token punctuation">,</span>
+        systraceCookie<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    FbSystraceSection <span class="token function">s</span><span class="token punctuation">(</span>TRACE_TAG_REACT_CXX_BRIDGE<span class="token punctuation">,</span> <span class="token string">"Bridge.invokeCallback"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token macro property">#<span class="token directive keyword">else</span></span>
+  <span class="token function">runOnExecutorQueue</span><span class="token punctuation">(</span>executorToken<span class="token punctuation">,</span> <span class="token punctuation">[</span>callbackId<span class="token punctuation">,</span> arguments<span class="token punctuation">]</span> <span class="token punctuation">(</span>JSExecutor<span class="token operator">*</span> executor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token macro property">#<span class="token directive keyword">endif</span></span>
+    executor<span class="token operator">-</span><span class="token operator">></span><span class="token function">invokeCallback</span><span class="token punctuation">(</span>callbackId<span class="token punctuation">,</span> arguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="10-JSCExecutor-cpp-中invokeCallback实现"><a href="#10-JSCExecutor-cpp-中invokeCallback实现" class="headerlink" title="10.JSCExecutor.cpp 中invokeCallback实现"></a>10.JSCExecutor.cpp 中invokeCallback实现</h4><pre class=" language-cpp"><code class="language-cpp"><span class="token keyword">void</span> JSCExecutor<span class="token operator">::</span><span class="token function">invokeCallback</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">double</span> callbackId<span class="token punctuation">,</span> <span class="token keyword">const</span> folly<span class="token operator">::</span>dynamic<span class="token operator">&amp;</span> arguments<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  String argsString <span class="token operator">=</span> <span class="token function">String</span><span class="token punctuation">(</span>folly<span class="token operator">::</span><span class="token function">toJson</span><span class="token punctuation">(</span>std<span class="token operator">::</span><span class="token function">move</span><span class="token punctuation">(</span>arguments<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">c_str</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  JSValueRef args<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+      <span class="token function">JSValueMakeNumber</span><span class="token punctuation">(</span>m_context<span class="token punctuation">,</span> callbackId<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      Value<span class="token operator">::</span><span class="token function">fromJSON</span><span class="token punctuation">(</span>m_context<span class="token punctuation">,</span> argsString<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token comment" spellcheck="true">// m_invokeCallbackObj = folly::make_unique&lt;Object>(m_batchedBridge->getProperty("invokeCallbackAndReturnFlushedQueue").asObject());</span>
+  <span class="token comment" spellcheck="true">// 执行回调,返回待执行的队列</span>
+  <span class="token keyword">auto</span> result <span class="token operator">=</span> m_invokeCallbackObj<span class="token operator">-</span><span class="token operator">></span><span class="token function">callAsFunction</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment" spellcheck="true">// 调用java方法</span>
+  m_bridge<span class="token operator">-</span><span class="token operator">></span><span class="token function">callNativeModules</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token keyword">this</span><span class="token punctuation">,</span> result<span class="token punctuation">.</span><span class="token function">toJSONString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="11-JS端invokeCallbackAndReturnFlushedQueue实现"><a href="#11-JS端invokeCallbackAndReturnFlushedQueue实现" class="headerlink" title="11.JS端invokeCallbackAndReturnFlushedQueue实现"></a>11.JS端invokeCallbackAndReturnFlushedQueue实现</h4><pre class=" language-cpp"><code class="language-cpp">function <span class="token function">invokeCallbackAndReturnFlushedQueue</span><span class="token punctuation">(</span>cbID<span class="token punctuation">,</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  var _this3 <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+  <span class="token function">guard</span><span class="token punctuation">(</span><span class="token function">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 执行回调</span>
+    _this3<span class="token punctuation">.</span><span class="token function">__invokeCallback</span><span class="token punctuation">(</span>cbID<span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _this3<span class="token punctuation">.</span><span class="token function">__callImmediates</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment" spellcheck="true">//  返回JS调用Native的队列</span>
+  <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">flushedQueue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+
+                </div>
+                <hr/>
+    
+                
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://easy-team.github.io" rel="external nofollow noreferrer">sky</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://easy-team.github.io/blog/rh45zo/">https://easy-team.github.io/blog/rh45zo/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="https://easy-team.github.io" target="_blank">sky</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+    
+                <div class="tag_share" style="display: block;">
+                    <div class="post-meta__tag-list" style="display: inline-block;">
+                        
+                            <div class="article-tag">
+                                <span class="chip bg-color">No tag</span>
+                            </div>
+                        
+                    </div>
+                    <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                        <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    
+    <div class="social-share" data-sites="qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                    </div>
+                </div>
+                
+                    <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+                
+            </div>
+        </div>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
+            <div class="card">
+                <a href="/blog/rh45zo/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="React Native Android源码解读和交互原理分析">
+                        
+                        <span class="card-title">React Native Android源码解读和交互原理分析</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            原文：http://hubcarl.github.io/blog/2016/08/28/react-native-js/首先来看一下一张完整Native与JavaScript交互原理图:在 React Native App中，在应用启动时根据 ReactPackage 会自动生成 JavaSc...
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-10-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            sky
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/blog/nrswgq/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Android 与 Flutter 入门开发实践指引">
+                        
+                        <span class="card-title">Android 与 Flutter 入门开发实践指引</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            项目集成Android 集成 Flutter 项目通过 Android Studio 创建 Andriod 原生应用 AndroidApp通过 Android Studio 创建 New Flutter Project, 选择 Flutter Module，创建 Flutter Module ...
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-10-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            sky
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+     </div>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('50')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + 'From: easy-team<br />'
+            + 'Author: sky<br />'
+            + 'Link: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+    
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+<!-- menu-selected -->
+<script>
+    var pathname = location.pathname.replace(/^\//, '').replace(/\/$/, '').replace(/\//g, '-');
+    $('#m-nav-item-' + pathname).addClass('doc-left-nav-mene-selected');
+</script>
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">年份</span>
+            <a href="https://easy-team.github.io" target="_blank">sky</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/easy-team" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">92.8k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    window.setTimeout("siteTime()", 1000);
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2019";
+                    var startMonth = "10";
+                    var startDate = "20";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/hubcarl" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:hubcarl@126.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=433207205" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 433207205" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/hubcarl" class="tooltipped" target="_blank" data-tooltip="关注我的微博: https://weibo.com/hubcarl" data-position="top" data-delay="50">
+        <i class="fab fa-weibo"></i>
+    </a>
+
+
+
+    <a href="https://zhuanlan.zhihu.com/easywebpack" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: https://zhuanlan.zhihu.com/easywebpack" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <!-- Baidu Analytics -->
+
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i["DaoVoiceObject"] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            a.charset = "utf-8";
+            m.parentNode.insertBefore(a, m)
+        })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') +
+            "//widget.daovoice.io/widget/6984b559.js", "daovoice")
+        daovoice('init', {
+            app_id: ""
+        });
+        daovoice('update');
+    </script>
+    
+
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

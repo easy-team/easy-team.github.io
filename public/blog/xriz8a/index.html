@@ -1,0 +1,1492 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Egg + Vue/Nunjucks 服务端渲染性能测试, node, egg, webpack, ves, res, ssr">
+    <meta name="description" content="知乎专栏：https://zhuanlan.zhihu.com/p/30683070在用Vue做服务端渲染时，大家对Vue服务端渲染的性能持怀疑态度，业界也有一些尝试，不过完整的产品项目和数据分析比较少。结合线上和本地压测，我们对 Vue ">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Egg + Vue/Nunjucks 服务端渲染性能测试 | easy-team</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper head-container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">easy-team</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Home</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/res" class="waves-effect waves-light">
+      
+      <i class="fas fa-forward" style="zoom: 0.6;"></i>
+      
+      <span>Res</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/ves" class="waves-effect waves-light">
+      
+      <i class="fas fa-forward" style="zoom: 0.6;"></i>
+      
+      <span>Ves</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>Egg</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/egg-react">
+          
+          <i class="fas fa-forward" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Egg+React</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/egg-vue">
+          
+          <i class="fas fa-forward" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Egg+Vue</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/easywebpack" class="waves-effect waves-light">
+      
+      <i class="fas fa-building" style="zoom: 0.6;"></i>
+      
+      <span>Webpack</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog" class="waves-effect waves-light">
+      
+      <i class="fas fa-hacker-news" style="zoom: 0.6;"></i>
+      
+      <span>Blog</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>Contact</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">easy-team</div>
+        <div class="logo-desc">
+            
+            前端工程化,Node开发,Webpack,Egg,React Server Side Render, Vue Server Side Render
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Home
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/res" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-forward"></i>
+			
+			Res
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/ves" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-forward"></i>
+			
+			Ves
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			Egg
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>   
+				
+                  <a href="/egg-react " style="margin-left:75px";>
+				  
+				   <i class="fa fas fa-forward" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Egg+React</span>
+                  </a>
+                </li>
+              
+                <li>   
+				
+                  <a href="/egg-vue " style="margin-left:75px";>
+				  
+				   <i class="fa fas fa-forward" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Egg+Vue</span>
+                  </a>
+                </li>
+               
+            </ul>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/easywebpack" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-building"></i>
+			
+			Webpack
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-hacker-news"></i>
+			
+			Blog
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/easy-team" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/easy-team" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    <div class="bg-cover pd-header" style="height: 9vh">
+    <div class="container"></div>
+</div>
+
+
+    <script>
+        // 每天切换 banner 图.  Switch banner image every day.
+        $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
+    </script>
+    
+
+<div class="doc-content">
+    
+     <div class="doc-left-nav">
+        <div class="side-nav docsidenav">
+
+    <!-- <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">easy-team</div>
+        <div class="logo-desc">
+            
+            前端工程化,Node开发,Webpack,Egg,React Server Side Render, Vue Server Side Render
+            
+        </div>
+    </div> -->
+
+
+    <div class="doc-left-nav-title">blog</div>
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+            <a href="/blog/kiygy5" class="waves-effect waves-light" id="m-nav-item-blog-kiygy5">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Vue SSR 组件加载
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/ekvirc" class="waves-effect waves-light" id="m-nav-item-blog-ekvirc">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Webpack 构建流程解密
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/az519d" class="waves-effect waves-light" id="m-nav-item-blog-az519d">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                页面资源加载
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/dxrrhq" class="waves-effect waves-light" id="m-nav-item-blog-dxrrhq">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Webpack 4 编译内存泄漏
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/xcw19a" class="waves-effect waves-light" id="m-nav-item-blog-xcw19a">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native, Hybrid App, H5 简单对比分析
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/vzgcgb" class="waves-effect waves-light" id="m-nav-item-blog-vzgcgb">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native Android APK包大小分析
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/wk5ney" class="waves-effect waves-light" id="m-nav-item-blog-wk5ney">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native 自定义插件
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/kghphs" class="waves-effect waves-light" id="m-nav-item-blog-kghphs">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native代码执行跟踪和调试
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/qwywww" class="waves-effect waves-light" id="m-nav-item-blog-qwywww">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native 热更新实现
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/rh45zo" class="waves-effect waves-light" id="m-nav-item-blog-rh45zo">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                React Native Android源码解读和交互原理分析
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/uhmdkg" class="waves-effect waves-light" id="m-nav-item-blog-uhmdkg">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Hybrid系列-phonegap android框架详解
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/sxys82" class="waves-effect waves-light" id="m-nav-item-blog-sxys82">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Hybrid系列-Cordova android框架详解
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/syh43v" class="waves-effect waves-light" id="m-nav-item-blog-syh43v">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                npm 常用命令
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/vfhw62" class="waves-effect waves-light" id="m-nav-item-blog-vfhw62">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Git 使用技巧
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/gayu0o" class="waves-effect waves-light" id="m-nav-item-blog-gayu0o">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Docker 随记
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/egret" class="waves-effect waves-light" id="m-nav-item-blog-egret">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Egret  游戏开发
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/og9ogk" class="waves-effect waves-light" id="m-nav-item-blog-og9ogk">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                vscode 插件开发
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/qz7n03" class="waves-effect waves-light" id="m-nav-item-blog-qz7n03">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Mac PHP 环境
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/qwr449" class="waves-effect waves-light" id="m-nav-item-blog-qwr449">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Webpack 热更新实现原理分析
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/ruv09m" class="waves-effect waves-light" id="m-nav-item-blog-ruv09m">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Egg SSR Webpack 内存编译热更新实现
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/sg8avg" class="waves-effect waves-light" id="m-nav-item-blog-sg8avg">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Babel 构建优化
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/zfri65" class="waves-effect waves-light" id="m-nav-item-blog-zfri65">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Webpack 构建大小分析与优化
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/xriz8a" class="waves-effect waves-light" id="m-nav-item-blog-xriz8a">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Egg + Vue/Nunjucks 服务端渲染性能测试
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/lsrssy" class="waves-effect waves-light" id="m-nav-item-blog-lsrssy">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Flutter  Android  混合工程实践
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/zs3hog" class="waves-effect waves-light" id="m-nav-item-blog-zs3hog">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Flutter iOS 混合工程实践
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/nrswgq" class="waves-effect waves-light" id="m-nav-item-blog-nrswgq">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Android 与 Flutter 入门开发实践指引
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/wydpi1" class="waves-effect waves-light" id="m-nav-item-blog-wydpi1">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Flutter 动态更新
+            </a>
+        </li>
+        
+        <li class="m-nav-item">
+            <a href="/blog/cdal6o" class="waves-effect waves-light" id="m-nav-item-blog-cdal6o">
+                
+                  <i class="fas fa-fw fa-link"></i>
+                
+                Egg + Web 自定义前端渲染
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/easy-team" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+     </div>
+    
+    <div class="doc-right-nav">
+        <div class="card" class="doc-right-card">
+            <div class="card-content article-info">
+                <h1 style="margin-top: 12px;">Egg + Vue/Nunjucks 服务端渲染性能测试</h1>
+                <div class="row">
+                    <div class="col s5 right-align">
+                        
+                    </div>
+                </div>
+                
+                <div class="post-info">
+                    <div class="post-date info-break-policy">
+                        <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                        2019-10-20
+                    </div>
+    
+                    
+                        
+                        <div class="info-break-policy">
+                            <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
+                            3.2k
+                        </div>
+                        
+    
+                        
+                        <div class="info-break-policy">
+                            <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
+                            15 Min
+                        </div>
+                        
+                    
+                    
+                    
+                        <div id="busuanzi_container_page_pv" class="info-break-policy">
+                            <i class="far fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                            <span id="busuanzi_value_page_pv"></span>
+                        </div>
+                    
+                </div>
+            </div>
+            <hr class="clearfix">
+            <div class="card-content article-card-content" style="padding-top: 0px;">
+                <div id="articleContent">
+                    <p>知乎专栏：<a href="https://zhuanlan.zhihu.com/p/30683070" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/30683070</a><br /><br><br />在用Vue做服务端渲染时，大家对Vue服务端渲染的性能持怀疑态度，业界也有一些尝试，不过完整的产品项目和数据分析比较少。结合线上和本地压测，我们对 Vue 和 Nunjucks 针对模板渲染Render时间，CPU占用，内存占用进行全面的对比测试。<br /></p>
+<h2 id="渲染性能对比"><a href="#渲染性能对比" class="headerlink" title="渲染性能对比"></a>渲染性能对比</h2><p>通过实现相同的模板功能，分别针对无缓存和有缓存进行了对比测试. 测试方法，通过<code>ab</code>压测工具对页面进行测试，Node层收集页面render渲染时间, 然后进行汇总统计分析。<br /><br><br /><strong>Nunjucks 测试模板</strong><br />**</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">></span></span>h5GameList<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">></span></span>
+            {% for item in h5GameList.data.list %}
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{{item.downloadUrl}}<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>{{item.name}}-{{item.resume}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+            {% endfor %}
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">></span></span>recommendList<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">></span></span>
+        {% for item in recommendList.data %}
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{{item.downloadUrl}}<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>{{item.recommendBriefResume}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>{{item.recommendResume}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+        {% endfor %}
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">></span></span>bestList<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">></span></span>
+        {% for item in bestList.data.list %}
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{{item.downloadUrl}}<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>{{item.resume}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>{{item.packageName}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+        {% endfor %}
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">></span></span>bookingList<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">></span></span>
+        {% for item in bookingList.data %}
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{{item.logoUrl}}<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>{{item.name}}-{{item.categoryName}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>{{item.resume}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+        {% endfor %}
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<p><strong>Vue测试模板</strong><br />**</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">></span></span>h5GameList<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">></span></span>
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">></span></span>
+         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span>  <span class="token attr-name">v-for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>item in h5GameList.data.list<span class="token punctuation">"</span></span> <span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name"><span class="token namespace">v-bind:</span>href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>item.downloadUrl<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>{{item.name}}-{{item.resume}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">></span></span>recommendList<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">v-for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>item in recommendList.data<span class="token punctuation">"</span></span> <span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name"><span class="token namespace">v-bind:</span>href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>item.downloadUrl<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>{{item.recommendBriefResume}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>{{item.recommendResume}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">></span></span>bestList<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">v-for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>item in bestList.data.list<span class="token punctuation">"</span></span> <span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name"><span class="token namespace">v-bind:</span>href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>item.downloadUrl<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>{{item.resume}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>{{item.packageName}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">></span></span>bookingList<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">v-for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>item in bookingList.data<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name"><span class="token namespace">v-bind:</span>href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>item.logoUrl<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>{{item.name}}-{{item.categoryName}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>{{item.resume}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span></code></pre>
+<h2 id="测试脚本一："><a href="#测试脚本一：" class="headerlink" title="测试脚本一："></a>测试脚本一：</h2><p><code>ab -c 50 -n 1000 http://ip:port/perf/nunjucks/</code><br /><code>ab -c 50 -n 1000 http://ip:port/perf/vue/</code></p>
+<p>其中 -n 表示请求数，-c 表示并发数<br /><img src="https://cdn.nlark.com/yuque/0/2019/jpeg/116733/1561601246413-edfd6e6a-f84f-4f3f-b153-2f7e46d94727.jpeg#align=left&display=inline&height=175&originHeight=175&originWidth=620&size=0&status=done&width=620" alt=""></p>
+<h2 id="测试脚本二："><a href="#测试脚本二：" class="headerlink" title="测试脚本二："></a>测试脚本二：</h2><p><code>ab -c 50 -n 5000 http://ip:port/perf/nunjucks/</code><br /><code>ab -c 50 -n 5000 http://ip:port/perf/vue/</code></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2019/jpeg/116733/1561601246376-01c7842b-0d9e-4f7c-8b7a-0bb2cd17caf3.jpeg#align=left&display=inline&height=286&originHeight=210&originWidth=720&size=0&status=done&width=979" alt=""></p>
+<p>从上面统计来看可以得出如下结论：</p>
+<ul>
+<li>无缓存情况：nunjucks 平均时间比 vue 渲染要快1ms， 差距没想象的大。</li>
+<li>有缓存情况：nunjucks 平均时间是 vue 的3倍左右，但也都是毫秒级别的差异。在整理数据时，nunjucks的render时间都是0-1ms，而vue则要1-3ms。分析一下可知道，nunjucks是基于字符串正则编译的，可以做到预编译缓存，而vue目前的实现方式是通过webpack构建的jsbundle文件(查看构建文件可以看到每个元素和组件都是通过javascript动态创建组合的)，然后整个script丢给Node.js 原生vm模块(独立的沙箱运行空间)动态执行script。 目前Vue官方提供了基于Webpack构建Vue字符串的方案，宣传性能会有比较大的提升。这种方案前一段时间做个实践，每一个页面都需要独立构建一个manifest和vue-ssr-server-bundle.json 文件， 比较适合单页面应用，多页面应用构建有冲突，需要自己实现支持，待实践。从线上应用实践来看， render 时间在整个耗时链条里面是非常小的，性能问题大头部分在于网络( DNS,网络连接，网络传输)，接口耗时两部分。</li>
+<li>vm对比测试<pre class=" language-javascript"><code class="language-javascript">global<span class="token punctuation">.</span>num <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span> 
+</code></pre>
+</li>
+</ul>
+<p>const vm = require(‘vm’);<br>const code = ‘var ret = num * num * num;’;<br>const sandbox = { num : 1000};<br>const benchmark = (msg, fun) =&gt; {<br>  const start = new Date;<br>  for (let i = 0; i &lt; 10000; i++) {<br>    fun();<br>  }<br>  const end = new Date;<br>  console.log(msg + ‘: ‘ + (end - start) + ‘ms’);<br>};<br>const ctx = vm.createContext(sandbox); </p>
+<p>// runInThisContext 用于创建一个独立的沙箱运行空间，code内的代码可以访问外部的global对象，但是不能访问其他变量<br>benchmark(‘vm.runInThisContext’, () =&gt; {<br>  vm.runInThisContext(code);<br>}); </p>
+<p>// runInContext 创建一个独立的沙箱运行空间，sandBox将做为global的变量传入code内，但不存在global变量<br>benchmark(‘vm.runInContext’, () =&gt; {<br>  vm.runInContext(code, ctx);<br>}); </p>
+<p>// 与runInContext 一样, 这里可以直接传sandbox<br>benchmark(‘vm.runInNewContext’, () =&gt; {<br>  vm.runInNewContext(code, sandbox);<br>}); </p>
+<p>const script = vm.createScript(code); </p>
+<p>benchmark(‘script.runInThisContext’, () =&gt; {<br>  script.runInThisContext();<br>});<br>benchmark(‘script.runInNewContext’, () =&gt; {<br>  script.runInNewContext(sandbox);<br>});<br>benchmark(‘script.runInContext’, () =&gt; {<br>  script.runInContext(ctx);<br>});<br>benchmark(‘fn’, () =&gt; {<br>  new Function(‘num’, code)();<br>}); </p>
+<p>/*<br> vm.runInThisContext: 15ms<br> vm.runInContext: 71ms<br> vm.runInNewContext: 70ms<br> script.runInThisContext: 7ms<br> script.runInNewContext: 59ms<br> script.runInContext: 57ms<br> fn: 9ms </p>
+<p> script方式都比vm方式快<br> */</p>
+<pre><code>
+## 线上应用性能数据
+
+首页内容有5-6屏内容，一次性渲染，部分组件动态加载。下图是 Vue 服务端渲染 Render时间：&lt;br /&gt;![](https://cdn.nlark.com/yuque/0/2019/jpeg/116733/1561601246467-ab710c05-f821-41ba-acb9-1dbe0ed938dc.jpeg#align=left&amp;display=inline&amp;height=366&amp;originHeight=279&amp;originWidth=720&amp;size=0&amp;status=done&amp;width=944)
+
+从首页render-avg的统计来看，== 模板的编译时间非常的短，平均在24ms-27ms之间==，还有优化的空间。&lt;br /&gt;首页访问链路时间&lt;br /&gt;![](https://cdn.nlark.com/yuque/0/2019/jpeg/116733/1561601246446-06b9d7fb-e30e-40e5-b033-d5b64937c120.jpeg#align=left&amp;display=inline&amp;height=358&amp;originHeight=208&amp;originWidth=720&amp;size=0&amp;status=done&amp;width=1238)
+
+从整个链路时间来看rt(首屏时间) 可以看到， 平均首屏时间小于1s， 而render时间平均在30ms，在整个链路上面，**render的时间可以说是可以忽略的**，至少从上面图来看，**性能问题大头部分在于网络，接口耗时两部分**。
+
+## CPU和内存占用
+前提条件：
+
+- Mac 环境
+- Nunjucks 和 Vue 渲染都开启缓存
+- Vue 服务端渲染关闭 _runInNewContext_
+- 为保证测试的统计准确性，只启动一个工作worker，下面分析只统计 worker进程CPU和内存，排除了 Egg master 和 agent 进程。
+
+**Nunjucks CPU和内存占用**
+
+- 采集样本：`ab -c 100 -n 50000 http://ip:port/perf/nunjucks/`</code></pre><p>This is ApacheBench, Version 2.3 &lt;$Revision: 1663405 $&gt;<br>Copyright 1996 Adam Twiss, Zeus Technology Ltd, <a href="http://www.zeustech.net/" target="_blank" rel="noopener">http://www.zeustech.net/</a><br>Licensed to The Apache Software Foundation, <a href="http://www.apache.org/" target="_blank" rel="noopener">http://www.apache.org/</a><br>Benchmarking 100.84.250.56 (be patient)<br>Completed 5000 requests<br>Completed 10000 requests<br>Completed 15000 requests<br>Completed 20000 requests<br>Completed 25000 requests<br>Completed 30000 requests<br>Completed 35000 requests<br>Completed 40000 requests<br>Completed 45000 requests<br>Completed 50000 requests<br>Finished 50000 requests<br>Server Software:<br>Server Hostname:        100.84.250.56<br>Server Port:            7001<br>Document Path:          /perf/nunjucks/<br>Document Length:        13899 bytes<br>Concurrency Level:      100<br>Time taken for tests:   173.686 seconds<br>Complete requests:      50000<br>Failed requests:        48138<br>   (Connect: 0, Receive: 0, Length: 48138, Exceptions: 0)<br>Total transferred:      709284995 bytes<br>HTML transferred:       694684887 bytes<br>Requests per second:    287.88 [#/sec] (mean)<br>Time per request:       347.372 [ms] (mean)<br>Time per request:       3.474 [ms] (mean, across all concurrent requests)<br>Transfer rate:          3988.00 [Kbytes/sec] received<br>Connection Times (ms)<br>              min  mean[+/-sd] median   max<br>Connect:        0   10  38.1      2    3410<br>Processing:    22  336 313.5    241    3416<br>Waiting:       22  333 302.2    241    3398<br>Total:         56  347 311.6    247    3432<br>Percentage of the requests served within a certain time (ms)<br>  50%    247<br>  66%    280<br>  75%    332<br>  80%    367<br>  90%    645<br>  95%    877<br>  98%   1195<br>  99%   1460<br> 100%   3432 (longest request)</p>
+<pre><code>
+![](https://cdn.nlark.com/yuque/0/2019/jpeg/116733/1561601246463-9fc098a9-e48c-4d6a-b918-9e1392f31d82.jpeg#align=left&amp;display=inline&amp;height=835&amp;originHeight=580&amp;originWidth=720&amp;size=0&amp;status=done&amp;width=1036)&lt;br /&gt;**Vue CPU和内存占用**&lt;br /&gt;**
+
+- 采集样本：`ab -c 100 -n 50000 http://ip:port/perf/vue/`
+</code></pre><p>This is ApacheBench, Version 2.3 &lt;$Revision: 1663405 $&gt;<br>Copyright 1996 Adam Twiss, Zeus Technology Ltd, <a href="http://www.zeustech.net/" target="_blank" rel="noopener">http://www.zeustech.net/</a><br>Licensed to The Apache Software Foundation, <a href="http://www.apache.org/" target="_blank" rel="noopener">http://www.apache.org/</a><br>Benchmarking 100.84.250.56 (be patient)<br>Completed 5000 requests<br>Completed 10000 requests<br>Completed 15000 requests<br>Completed 20000 requests<br>Completed 25000 requests<br>Completed 30000 requests<br>Completed 35000 requests<br>Completed 40000 requests<br>Completed 45000 requests<br>Completed 50000 requests<br>Finished 50000 requests<br>Server Software:<br>Server Hostname:        100.84.250.56<br>Server Port:            7001<br>Document Path:          /perf/vue/<br>Document Length:        13840 bytes<br>Concurrency Level:      100<br>Time taken for tests:   193.524 seconds<br>Complete requests:      50000<br>Failed requests:        48989<br>   (Connect: 0, Receive: 0, Length: 48989, Exceptions: 0)<br>Total transferred:      707135621 bytes<br>HTML transferred:       692535158 bytes<br>Requests per second:    258.37 [#/sec] (mean)<br>Time per request:       387.048 [ms] (mean)<br>Time per request:       3.870 [ms] (mean, across all concurrent requests)<br>Transfer rate:          3568.35 [Kbytes/sec] received<br>Connection Times (ms)<br>              min  mean[+/-sd] median   max<br>Connect:        0   10  27.3      2    1384<br>Processing:    22  377 223.9    285    2236<br>Waiting:       22  373 217.7    285    2235<br>Total:         42  386 219.5    290    2239<br>Percentage of the requests served within a certain time (ms)<br>  50%    290<br>  66%    335<br>  75%    409<br>  80%    481<br>  90%    697<br>  95%    841<br>  98%   1030<br>  99%   1126<br> 100%   2239 (longest request)dou</p>
+<pre><code>
+![](https://cdn.nlark.com/yuque/0/2019/jpeg/116733/1561601246418-3c3945f3-6e70-4ddf-b696-3f042c0be529.jpeg#align=left&amp;display=inline&amp;height=838&amp;originHeight=582&amp;originWidth=720&amp;size=0&amp;status=done&amp;width=1037)
+
+两个图对比发现如下信息：
+
+- 压测前 egg 应用启动后，worker 进程内存稳定在 60MB， cpu 使用都小于1％，保证前提条件一致
+- 压测启动后，nunjucks 和 vue CPU使用迅速飙升到90％，曲线基本保持一样，没有很明显高低之分
+- 压测启动后，nunjucks 和 vue 内存也是迅速上升，整个压测期间，nunjucks 平均内存使用为 150 MB左右，vue 平均内存使用为 160 MB, vue 内存占用比较稳定。从这个数据可以看出， Vue 服务端渲染 内存占用略微比 nunjucks 高一些。
+- 压测结束好后，nunjucks 和 vue 的 CPU 使用 迅速降为小于 1%， 内存使用迅速降为 60 MB， 都恢复为压测前的状态，这也表面 nunjucks 和 vue 压测期间没有出现内存泄漏的情况。
+
+
+## Nunjucks与Vue对比分析
+
+**首先我们来看看 ab 执行结果的几个关键参数含义：**
+
+- Concurrency Level 并发请求数
+- Time taken for tests 整个测试持续的时间
+- Complete requests 完成的请求数
+- Failed requests 失败的请求数(指内容**大小**不一样,其实是成功的)
+- HTML transferred HTML内容传输量
+- Requests per second 每秒处理的请求数，**mean表示平均值**
+- Time per request 用户平均请求等待时间
+- Time per request(mean, across all concurrent requests) 服务器平均请求处理时间
+- Percentage Time 处理时间区间分布，我们关注80%－90%的区间。
+
+下面是 ab -c 100 -n 50000 针对 nunjucks 和 vue 数据对比：&lt;br /&gt;![](https://cdn.nlark.com/yuque/0/2019/jpeg/116733/1561601246423-46ba7620-693d-4f2c-b7fb-74784cd37017.jpeg#align=left&amp;display=inline&amp;height=206&amp;originHeight=145&amp;originWidth=720&amp;size=0&amp;status=done&amp;width=1021)&lt;br /&gt;从上图 ab 对比数据可以得出以下结论：
+
+- HTML transferred 内容传输量数据非常接近，保证了对比测试的客观性。
+- 50000个请求，vue 整体处理时间比 nunjucks 慢 20s， 平均每个相当于慢 0.4 ms，这个于 上面 render 数据对比是吻合的。
+- nunjucks 每秒处理的请求数比 vue 略微多 30 个， 用户平均请求等待时间少 0.4 ms
+- 从 percentage time 时间我们发现 nunjucks 和 vue 每个区间都是非常接近。
+
+总体上，nunjucks 和 vue 在 模板渲染，CPU使用，内存占用没有很明显的差异，各指标基本接近。 其中 nunjucks 在模板渲染方面略微快一点点(个位数毫秒级)， 内存占用方面 vue 比 nunjucks 占用略微多一点，但都在可接受范围内。
+
+
+## CPU和内存工具
+在进行 CPU 和 内存 监控统计分析时，也没有找到简单好用的火焰图工具。Alinode 平台统计粒度太大，数据也不是时时可以拿到，也不好使。找到一些成熟的工具比如 perf 和 FlameGraph 都比较复杂，而且一些资料都是 linux 上面的， 配置相当繁琐，只好放弃。另外找到 Mac 的一个小工具 iStat Menus 能显示电脑磁盘CPU，内存等占用情况不错，图也很小且不适合做具体分析，作为电脑监控工具还不错。最终也没有找到合适简单工具，只好简单撸一个，顺便玩了一把 [socket.io](https://link.zhihu.com/?target=http%3A//socket.io)和图表工具。上面 CPU 和 内存 统计是通过 Egg [egg-socket.io](https://link.zhihu.com/?target=https%3A//github.com/eggjs/egg-socket.io) 和 [egg-schedule](https://link.zhihu.com/?target=https%3A//github.com/eggjs/egg-schedule) 插件， [current-processes](https://link.zhihu.com/?target=https%3A//github.com/branneman/current-processes)， [socket.io.js](https://link.zhihu.com/?target=https%3A//github.com/socketio/socket.io-client) 以及图片库 Ignite UI 实现的。
+
+- Egg Node端 [egg-socket.io](https://link.zhihu.com/?target=https%3A//github.com/eggjs/egg-socket.io)和[egg-schedule](https://link.zhihu.com/?target=https%3A//github.com/eggjs/egg-schedule)[current-processes ](https://link.zhihu.com/?target=https%3A//github.com/branneman/current-processes)结合
+
+```javascript
+&#39;use strict&#39;;
+const ps = require(&#39;current-processes&#39;);
+const os = require(&#39;os&#39;);
+const totalMem = os.totalmem(); // bytes to MB
+module.exports = app =&gt; {
+  exports.schedule = {
+    interval: &#39;3s&#39;,
+    type: &#39;worker&#39;
+  };
+  exports.task = function* (ctx) {
+    ps.get((err, processes) =&gt; {
+      const proArr = processes.filter(pro =&gt; {
+        return pro.name === &#39;node&#39;;
+      }).sort((a, b) =&gt; {
+        return a.pid - b.pid;
+      });
+      proArr.shift();
+      proArr.shift();
+      const cpu_mem_info = proArr.map(pro =&gt; {
+        return {
+          pid: pro.pid,
+          cpuPercent: pro.cpu,
+          totalMemory: totalMem,
+          usedMemory: pro.mem.private, // RSS实际内存占用大小
+          memoryPercent: pro.mem.usage * 100, // 进程占用内存百分比
+          virtualMemory: pro.mem.virtual, // 虚拟内存占用大小
+        };
+      });
+      ctx.app.io.emit(&#39;monitor-memory-cpu&#39;, cpu_mem_info);
+    });
+  };
+  return exports;
+};</code></pre><ul>
+<li>客户端实现 socket 监听 monitor-memory-cpu 事件， 每 3s 中获取到一次 Node 数据，然后绘制图表。 图片绘制请参考例子：<a href="https://link.zhihu.com/?target=https%3A//www.igniteui.com/spline-charts/spline-area">igniteui.com/spline-charts/spline-area</a><pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> socket <span class="token operator">=</span> io<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span><span class="token string">"http://localhost:7001"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+socket<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">"monitor-memory-cpu"</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  data<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>info <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    info<span class="token punctuation">.</span>displayCPU <span class="token operator">=</span> info<span class="token punctuation">.</span>cpuPercent<span class="token punctuation">;</span>
+    info<span class="token punctuation">.</span>displayMem <span class="token operator">=</span> info<span class="token punctuation">.</span>usedMemory<span class="token punctuation">;</span>
+    info<span class="token punctuation">.</span>displayTime <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toLocaleTimeString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cpuData<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>info<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#cpuChart"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">igDataChart</span><span class="token punctuation">(</span><span class="token string">"notifyInsertItem"</span><span class="token punctuation">,</span> cpuData<span class="token punctuation">,</span> cpuData<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">,</span> info<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#memoryChart"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">igDataChart</span><span class="token punctuation">(</span><span class="token string">"notifyInsertItem"</span><span class="token punctuation">,</span> cpuData<span class="token punctuation">,</span> cpuData<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">,</span> info<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</li>
+</ul>
+
+                </div>
+                <hr/>
+    
+                
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://easy-team.github.io" rel="external nofollow noreferrer">sky</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://easy-team.github.io/blog/xriz8a/">https://easy-team.github.io/blog/xriz8a/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="https://easy-team.github.io" target="_blank">sky</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+    
+                <div class="tag_share" style="display: block;">
+                    <div class="post-meta__tag-list" style="display: inline-block;">
+                        
+                            <div class="article-tag">
+                                <span class="chip bg-color">No tag</span>
+                            </div>
+                        
+                    </div>
+                    <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                        <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    
+    <div class="social-share" data-sites="qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                    </div>
+                </div>
+                
+                    <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+                
+            </div>
+        </div>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/blog/ekvirc/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Webpack 构建流程解密">
+                        
+                        <span class="card-title">Webpack 构建流程解密</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            通过 Webpack 工具，可以很方便完成各种框架的构建打包支持。使用 Webpack 一段事件后，各种配置也都非常熟悉， 但只停留使用节点，对内部原理极致不是非常清新，常常带着这些疑问：Webpack 启动流程是怎么样的？Webpack 插件是怎么使用的，怎么保证调用顺序？Webpack 事件机制是怎么样的？接下来我将通过从 Webpack 启动流程， 事件机制， 插件机制， 热更新等几方面深入的讲述一下构建 Webpack 内部构建流程。启动流程首先我们来看看webpack的 webpack.js...
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2019-10-20
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            sky
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/blog/wydpi1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="Flutter 动态更新">
+                        
+                        <span class="card-title">Flutter 动态更新</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            关于动态更新Google 考虑自家 Android 应用安全和苹果策略， 本来在 2019 的 roadmap 里面有这样一项，roadmap公布后，过一段时间后面又移除了这一项，目前不是主航道。 Android 目前可以通过整包方式实现动态更新， iOS 目前还不支持。Android Flu...
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-10-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            sky
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+     </div>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('50')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + 'From: easy-team<br />'
+            + 'Author: sky<br />'
+            + 'Link: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+    
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+<!-- menu-selected -->
+<script>
+    var pathname = location.pathname.replace(/^\//, '').replace(/\/$/, '').replace(/\//g, '-');
+    $('#m-nav-item-' + pathname).addClass('doc-left-nav-mene-selected');
+</script>
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">年份</span>
+            <a href="https://easy-team.github.io" target="_blank">sky</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/easy-team" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">92.8k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    window.setTimeout("siteTime()", 1000);
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2019";
+                    var startMonth = "10";
+                    var startDate = "20";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/hubcarl" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:hubcarl@126.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=433207205" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 433207205" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/hubcarl" class="tooltipped" target="_blank" data-tooltip="关注我的微博: https://weibo.com/hubcarl" data-position="top" data-delay="50">
+        <i class="fab fa-weibo"></i>
+    </a>
+
+
+
+    <a href="https://zhuanlan.zhihu.com/easywebpack" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: https://zhuanlan.zhihu.com/easywebpack" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <!-- Baidu Analytics -->
+
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i["DaoVoiceObject"] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            a.charset = "utf-8";
+            m.parentNode.insertBefore(a, m)
+        })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') +
+            "//widget.daovoice.io/widget/6984b559.js", "daovoice")
+        daovoice('init', {
+            app_id: ""
+        });
+        daovoice('update');
+    </script>
+    
+
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
