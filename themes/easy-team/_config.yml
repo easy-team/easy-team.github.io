@@ -34,6 +34,9 @@ menu:
   Blog:
     url: /blog
     icon: fas fa-hacker-news
+  About:
+    url: /about
+    icon: fas fa-user-circle
   Contact:
     url: /contact
     icon: fas fa-comments
@@ -182,10 +185,10 @@ code:
 
 # 是否激活文章末尾的打赏功能，默认激活（你替换为的你自己的微信、支付宝二维码图片、或者使用网络图片也可以）.
 reward:
-  enable: true
+  enable: false
   title: 你的赏识是我前进的动力
-  wechat: /medias/reward/wechat.png
-  alipay: /medias/reward/alipay.jpg
+  wechat: /medias/reward/iwechat.png
+  alipay: /medias/reward/ialipay.jpg
 
 # Whether to activate the copyright information of the blog and author when copying the post content.
 # minCharNumber: Approve copyright information by copying at least how many characters.
@@ -218,13 +221,13 @@ wordCount:
 # Whether to activate the 'love' effect of clicking on the page.
 # 是否激活点击页面的'爱心'效果，默认激活.
 clicklove:
-  enable: true
+  enable: false
 
 # profile in about page, including avatars, career, and personal introductions.
 # 在”关于”页面中配置个人信息，包括头像、职业和个人介绍.
 profile:
-  avatar: /medias/avatar.jpg
-  career: Software Engineer
+  avatar: /medias/iavatar.jpg
+  career: Front-end Engineer
   introduction: If you wish to succeed, you should use persistence as your good friend, experience as your reference, prudence as your brother and hope as your sentry.
 
 # config my projects informations in about page.
@@ -233,21 +236,31 @@ profile:
 myProjects:
   enable: true
   data:
-    hexo-theme-matery:
+    easywebpack:
       icon: fas fa-file-alt
       iconBackground: 'linear-gradient(to bottom right, #66BB6A 0%, #81C784 100%)'
-      url: http://github.com/blinkfox/hexo-theme-matery
-      desc: This is a Hexo blog theme with 'Material Design' and responsive design.
-    zealt:
+      url: http://github.com/easy-team/easywebpack
+      desc: 基于 Webpack 的前端工程化构建方案
+    Res :
         icon: fas fa-database
         iconBackground: 'linear-gradient(to bottom right, #F06292 0%, #EF5350 100%)'
-        url: https://github.com/blinkfox/zealot
-        desc: 一个轻量级的SQL和参数动态生成工具库
-    typora-vue-theme:
-        icon: fas fa-file-alt
-        iconBackground: 'linear-gradient(to bottom right, #29B6F6 0%, #1E88E5 100%)'
-        url: https://github.com/blinkfox/typora-vue-theme
-        desc: This is a typora theme inspired by Vue document style.
+        url: https://github.com/easy-team/res
+        desc: Node React Server Side Render Framework
+    Vue :
+        icon: fas fa-database
+        iconBackground: 'linear-gradient(to bottom right, #F06292 0%, #EF5350 100%)'
+        url: https://github.com/ves-team/ves
+        desc: Node Vue Server Side Render Framework
+    Egg+Vue 工程方案 :
+        icon: fas fa-database
+        iconBackground: 'linear-gradient(to bottom right, #F06292 0%, #EF5350 100%)'
+        url: https://github.com/easy-team/egg-vue-webpack-boilerplate
+        desc: Egg Vue Server Side Render
+    Egg+React 工程方案 :
+        icon: fas fa-database
+        iconBackground: 'linear-gradient(to bottom right, #F06292 0%, #EF5350 100%)'
+        url: https://github.com/easy-team/egg-react-webpack-boilerplate
+        desc: Egg React Server Side Render Boilerplate
 
 # config my skills informations in about page.
 # If you don't want to display this `My Skills` content, you can deactivate or delete this configuration.
@@ -255,24 +268,21 @@ myProjects:
 mySkills:
   enable: true
   data:
-    Java:
-      background: 'linear-gradient(to right, #FF0066 0%, #FF00CC 100%)'
-      percent: 85%
     JavaScript:
       background: 'linear-gradient(to right, #9900FF 0%, #CC66FF 100%)'
-      percent: 80%
-    HTML5:
+      percent: 90%
+    Node:
       background: 'linear-gradient(to right, #2196F3 0%, #42A5F5 100%)'
       percent: 80%
+    Hybrid:
+      background: 'linear-gradient(to right, #4CAF50 0%, #81C784 100%)'
+      percent: 90%
+    Flutter:
+      background: 'linear-gradient(to right, #FFEB3B 0%, #FFF176 100%)'
+      percent: 60%
     CSS:
       background: 'linear-gradient(to right, #00BCD4 0%, #80DEEA 100%)'
       percent: 70%
-    SQL:
-      background: 'linear-gradient(to right, #4CAF50 0%, #81C784 100%)'
-      percent: 90%
-    程序设计:
-      background: 'linear-gradient(to right, #FFEB3B 0%, #FFF176 100%)'
-      percent: 75%
 
 # config gallery of my photos in about page.
 # If you don't want to display this `Gallery` content, you can deactivate or delete this configuration.
@@ -280,9 +290,9 @@ mySkills:
 myGallery:
   enable: true
   data:
-    - /medias/featureimages/0.jpg
-    - /medias/featureimages/1.jpg
-    - /medias/featureimages/2.jpg
+    - /medias/easy-team/egg-webpack.png
+    - /medias/easy-team/egg-react-webpack.png
+    - /medias/easy-team/easy-init.png
 
 # Whether to display post-calender in the `archive` page
 # 设置在归档页面中是否显示'文章日历'控件
@@ -466,7 +476,7 @@ reprint:
   
 # DaoVoice online contact 
 daovoice: 
-  enable: true
+  enable: false
   app_id:
   
 # Tidio online contact 

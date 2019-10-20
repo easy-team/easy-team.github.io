@@ -1,41 +1,45 @@
 <div class="side-nav docsidenav">
-
-    <!-- <div class="mobile-head bg-color">
-        <% if (theme.logo !== undefined && theme.logo.length > 0) { %>
-        <img src="<%= theme.logo %>" class="logo-img circle responsive-img">
-        <% } %>
-        <div class="logo-name"><%- config.title %></div>
-        <div class="logo-desc">
-            <% if (config.description && config.description.length > 0) { %>
-            <%= config.description %>
-            <% } else { %>
-            Never really desperate, only the lost of the soul.
-            <% } %>
-        </div>
-    </div> -->
-
-
     <div class="doc-left-nav-title"><%- page.space %></div>
     <ul class="menu-list mobile-menu-list">
         <% site.data[page.space].forEach(function(doc) { %>
-        <li class="m-nav-item">
-            <a href="<%- doc.url %>" class="waves-effect waves-light" id="m-nav-item-<%- doc.space %>-<%- doc.slug %>">
-                <% if (doc.icon) { %>
-                    <i class="fa-fw <%- doc.icon %>"></i>
-                <% } else { %>
-                  <i class="fas fa-fw fa-link"></i>
-                <% } %>
-                <%- doc.title %>
-            </a>
-        </li>
-        <% }); %>
-        <% if (theme.githubLink && theme.githubLink.enable) { %>
+            <% if(doc.children) { %>
+                <li class="m-nav-item m-nav-show">
+                    <a href="javascript:;">
+                        <i class="fas fa-fw fa-link"></i>
+                        <%- doc.title %>
+                        <span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+                    </a>
+                    <ul <%if(theme.navMenu&&theme.navMenu.bgColor){%> style="display:block; background: <%-theme.navMenu.bgColor%>;"<%}%> >
+                        <% for(let childrenDoc of doc.children){ %>
+                            <li>   
+                                <a id="m-nav-item-<%- childrenDoc.space %>-<%- childrenDoc.slug %>" href="<%- url_for(childrenDoc.url)%> " style="margin-left:<%if(theme.navMenu&&theme.navMenu.mleft){%>50px<%}else{%>75px<%}%>";>
+                                <% if (childrenDoc.icon && childrenDoc.icon.length > 0) { %>
+                                <i class="fa <%- childrenDoc.icon %>" style="position: absolute;left:<%if(theme.navMenu&&theme.navMenu.mleft){%>28px<%}else{%>50px<%}%>" ></i>
+                                <% } %>
+                                <span><%- childrenDoc.title %></span>
+                                </a>
+                            </li>
+                        <% } %> 
+                    </ul>
+                </li>
+            <% } else { %>
+                <li class="m-nav-item">
+                    <a href="<%- doc.url %>" class="waves-effect waves-light" id="m-nav-item-<%- doc.space %>-<%- doc.slug %>">
+                        <% if (doc.icon) { %>
+                            <i class="fa-fw <%- doc.icon %>"></i>
+                        <% } else { %>
+                        <i class="fas fa-fw fa-link"></i>
+                        <% } %>
+                        <%- doc.title %>
+                    </a>
+                </li>
+            <% } %>
+        <% }) %>
         <li><div class="divider"></div></li>
         <li>
             <a href="<%- theme.githubLink.url %>" class="waves-effect waves-light" target="_blank">
                 <i class="fab fa-github-square fa-fw"></i><%- theme.githubLink.title %>
             </a>
         </li>
-        <% } %>
     </ul>
 </div>

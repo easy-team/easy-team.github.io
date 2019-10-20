@@ -1,15 +1,15 @@
 [
   {
-    "id": 2865288,
+    "id": 2865291,
     "space": "res",
-    "slug": "txcemm",
-    "url": "/res/txcemm",
-    "title": "项目配置",
-    "summary": "应用项目规范遵循 Egg 项目开发规范，其中 app/web 目录为前端代码, config/res.config.js  为 webpack 配置文件本地开发 Webpack 内存构建，发布构建静态资源在 app/public  目录，服务端在 app/view  目录TypeScript ...",
+    "slug": "index",
+    "url": "/res/index",
+    "title": "框架介绍",
+    "summary": "res -- Node React Application  Web FrameworkGitHub:https://github.com/easy-team/res框架特性Node 端基于 Egg 开发，遵循 Egg 开发规范和 Egg 生态，支持 Egg 所有特性，比如插件机制，多进程机制...",
     "coverImage": null,
-    "createTime": "2019-10-16T14:10:20.000Z",
-    "updateTime": "2019-10-16T14:10:20.000Z",
-    "wordCount": 396
+    "createTime": "2019-10-15T12:42:44.000Z",
+    "updateTime": "2019-10-15T12:42:44.000Z",
+    "wordCount": 198
   },
   {
     "id": 2865289,
@@ -24,16 +24,16 @@
     "wordCount": 421
   },
   {
-    "id": 2865291,
+    "id": 2865288,
     "space": "res",
-    "slug": "index",
-    "url": "/res/index",
-    "title": "框架介绍",
-    "summary": "res -- Node React Application  Web FrameworkGitHub:https://github.com/easy-team/res框架特性Node 端基于 Egg 开发，遵循 Egg 开发规范和 Egg 生态，支持 Egg 所有特性，比如插件机制，多进程机制...",
+    "slug": "txcemm",
+    "url": "/res/txcemm",
+    "title": "项目配置",
+    "summary": "应用项目规范遵循 Egg 项目开发规范，其中 app/web 目录为前端代码, config/res.config.js  为 webpack 配置文件本地开发 Webpack 内存构建，发布构建静态资源在 app/public  目录，服务端在 app/view  目录TypeScript ...",
     "coverImage": null,
-    "createTime": "2019-10-15T12:42:44.000Z",
-    "updateTime": "2019-10-15T12:42:44.000Z",
-    "wordCount": 198
+    "createTime": "2019-10-16T14:10:20.000Z",
+    "updateTime": "2019-10-16T14:10:20.000Z",
+    "wordCount": 396
   },
   {
     "id": 2865292,
@@ -96,6 +96,18 @@
     "wordCount": 278
   },
   {
+    "id": 2865651,
+    "space": "res",
+    "slug": "csr",
+    "url": "/res/csr",
+    "title": "客户端渲染(CSR)",
+    "summary": "React Node 端代码实现服务端只渲染 HTML 的 HTML，HEAD，BODY 标签结构，具体 BODY 内容由 ctx.renderClient 进行 React 客户端渲染; 文件名为 webpack entry 的文件名，注入的页面 JS 文件为 app/public 文件。$...",
+    "coverImage": null,
+    "createTime": "2019-10-15T12:32:10.000Z",
+    "updateTime": "2019-10-15T12:32:10.000Z",
+    "wordCount": 198
+  },
+  {
     "id": 2865637,
     "space": "res",
     "slug": "html",
@@ -118,17 +130,5 @@
     "createTime": "2019-10-15T12:32:42.000Z",
     "updateTime": "2019-10-15T12:32:42.000Z",
     "wordCount": 265
-  },
-  {
-    "id": 2865651,
-    "space": "res",
-    "slug": "csr",
-    "url": "/res/csr",
-    "title": "客户端渲染(CSR)",
-    "summary": "React Node 端代码实现服务端只渲染 HTML 的 HTML，HEAD，BODY 标签结构，具体 BODY 内容由 ctx.renderClient 进行 React 客户端渲染; 文件名为 webpack entry 的文件名，注入的页面 JS 文件为 app/public 文件。$...",
-    "coverImage": null,
-    "createTime": "2019-10-15T12:32:10.000Z",
-    "updateTime": "2019-10-15T12:32:10.000Z",
-    "wordCount": 198
   }
 ]

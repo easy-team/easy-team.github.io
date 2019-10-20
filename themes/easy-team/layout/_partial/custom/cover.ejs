@@ -30,7 +30,7 @@
 </style>
 
 <div id="page" class="carousel carousel-slider center index-cover" data-indicators="true" style="margin-top: -64px;">
-   
+
     <div class="carousel-item red white-text bg-cover about-cover" 
         style="background-image: url('<%- site.data.config[page.space].cover %>');">
         <div class="container" style="right: 0px;left: 0px;">
@@ -64,10 +64,12 @@
 <script>
 $(function () {
     var coverSlider = $('.carousel');
-    coverSlider.carousel({
-        duration: Number('<%- theme.cover.duration %>'),
-        fullWidth: true,
-        indicators: '<%- theme.cover.showIndicators %>' === 'true'
-    });
+    if (coverSlider) {
+        coverSlider.carousel({
+            duration: Number('<%- theme.cover.duration %>'),
+            fullWidth: true,
+            indicators: '<%- theme.cover.showIndicators %>' === 'true'
+        });
+    } 
 });
 </script>

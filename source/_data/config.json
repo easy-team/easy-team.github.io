@@ -7,7 +7,8 @@
       "name": "Github",
       "icon": "fab fa-github-alt",
       "url": "https://github.com/easy-team/res",
-      "doc": "https://yuque.com/easy-team/res"
+      "yuque": "https://yuque.com/easy-team/res",
+      "doc": "/res/index"
     }
   },
   "ves":{
@@ -18,7 +19,8 @@
       "name": "Github",
       "icon": "fab fa-github-alt",
       "url": "https://github.com/easy-team/ves",
-      "doc": "https://yuque.com/easy-team/ves"
+      "yuque": "https://yuque.com/easy-team/ves",
+      "doc": "/ves/introduction/"
     }
   },
   "egg-react":{
@@ -29,7 +31,8 @@
       "name": "Github",
       "icon": "fab fa-github-alt",
       "url": "https://github.com/easy-team/egg-react-webpack-boilerplate",
-      "doc": "https://yuque.com/easy-team/egg-react"
+      "yueque": "https://yuque.com/easy-team/egg-react",
+      "doc": "/egg-react/init/"
     }
   },
   "egg-vue":{
@@ -40,7 +43,8 @@
       "name": "Github",
       "icon": "fab fa-github-alt",
       "url": "https://github.com/easy-team/egg-vue-webpack-boilerplate",
-      "doc": "https://yuque.com/easy-team/egg-vue"
+      "yuque": "https://yuque.com/easy-team/egg-vue",
+      "doc": "/egg-vue/init/"
     }
   },
   "easywebpack":{
@@ -51,7 +55,8 @@
       "name": "Github",
       "icon": "fab fa-github-alt",
       "url": "https://github.com/easy-team/easywebpack",
-      "doc": "https://yuque.com/easy-team/easywebpack"
+      "yuque": "https://yuque.com/easy-team/easywebpack",
+      "doc": "/easywebpack/index/"
     }
   },
   "blog":{
@@ -62,7 +67,8 @@
       "name": "Github",
       "icon": "fab fa-github-alt",
       "url": "https://github.com/hubcarl",
-      "doc": "https://yuque.com/hubcarl"
+      "yuque": "https://yuque.com/hubcarl",
+      "doc": "/blog/cdal6o/"
     }
   }
 }

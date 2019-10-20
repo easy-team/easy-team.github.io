@@ -41,7 +41,15 @@
     <article id="articles" class="container articles">
         <div class="row article-row">
             <%
-            var list = site.data[page.space]
+            var list = [];
+            site.data[page.space].forEach(function(doc){
+              if (doc.children) {
+                list = list.concat(doc.children);
+              } else {
+                list.push(doc);
+              }
+            });
+
             %>
             <% list.forEach(post => { %>
             <div class="article col s12 m6 l4" data-aos="zoom-in">
