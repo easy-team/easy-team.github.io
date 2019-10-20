@@ -5,7 +5,7 @@ space: egg-react
 slug: config
 url: /egg-react/config
 title: 配置说明
-summary: Webpack 标准配置// ${root}/webpack.config.js module.exports = {   entry: {     app: 'app/web/page/app/index.js',  // js 文件需要自己实现 react.render 逻辑     he...
+summary: Webpack 标准配置
 coverImage: null
 createTime: 2019-10-03T15:05:12.000Z 
 upateTime: 2019-10-03T15:05:12.000Z

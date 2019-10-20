@@ -5,7 +5,7 @@ space: easywebpack
 slug: in6n2r
 url: /easywebpack/in6n2r
 title: JS 文件打包
-summary: 我们经常会遇到单独对 JS 打包的场景，比如 es6 写的 npm 包需要构建成 es5 模式.  easywebpack 也提供了对应的解决方案： easywebpack-js基于 easywebpack-js 构建配置编写// build/index.js const easywebpack = require(&#x27;easywebpack-js&#x27;); const config = {   env: process.env.BUILD_ENV,   entry: {     &#x2...
+summary: 我们经常会遇到单独对 JS 打包的场景，比如 es6 写的 npm 包需要构建成 es5 模式. 
 coverImage: null
 createTime: 2018-06-09T07:20:07.000Z 
 upateTime: 2019-07-08T11:11:44.000Z

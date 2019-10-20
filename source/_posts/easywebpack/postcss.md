@@ -5,7 +5,7 @@ space: easywebpack
 slug: postcss
 url: /easywebpack/postcss
 title: PostCss
-summary: 默认配置// postcss.config.js module.exports = {   plugins: [     require('autoprefixer')({ overrideBrowserslist: ['iOS &gt;= 7', 'Android &gt;= 4.0'] }...
+summary: 默认配置postcss.config.js
 coverImage: null
 createTime: 2019-08-02T05:35:21.000Z 
 upateTime: 2019-08-02T05:35:22.000Z

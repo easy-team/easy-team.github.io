@@ -5,7 +5,7 @@ space: egg-react
 slug: antd
 url: /egg-react/antd
 title: AntD 配置
-summary: 项目示例： https://github.com/easy-team/egg-react-webpack-boilerplate/tree/antd-theme按需加载依赖配置// ${root}/package.json {  &quot;devDependencies&quot;: {    &...
+summary: 项目示例： https://github.com/easy-team/egg-react-webpack-boilerplate/tree/antd-theme按需加载依赖配置
 coverImage: null
 createTime: 2018-11-06T06:00:08.000Z 
 upateTime: 2019-05-27T06:11:57.000Z

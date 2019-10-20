@@ -5,7 +5,7 @@ space: easywebpack
 slug: entry
 url: /easywebpack/entry
 title: entry
-summary: entry 基本配置config.entry : {String|Object}  Webpack 构建入口文件配置这里的entry 对 Webpack 的 entry 进行了增强， 除了支持 webpack 原生 Object(key:value) 方式配置， 还对entry进行了增强。We...
+summary: 
 coverImage: null
 createTime: 2019-06-28T16:06:10.000Z 
 upateTime: 2019-06-28T16:06:10.000Z

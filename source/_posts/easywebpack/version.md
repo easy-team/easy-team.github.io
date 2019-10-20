@@ -5,7 +5,7 @@ space: easywebpack
 slug: version
 url: /easywebpack/version
 title: 版本历史
-summary: easywebpack 版本发布说明easywebpack4 -&gt; Webpack4支持 Webpack 4 插件版本easywebpack: ^4.x.xeasywebpack-cli: ^3.x.xeasywebpack-vue: ^4.x.xeasywebpack-react: ^4.x.xeasywebpack-html: ^4.x.xeasywebpack-js: ^4.x.xegg-webpack: ^4.x.xwebpack-tool: ^4.x.xwebpack-manifest...
+summary: easywebpack 版本发布说明
 coverImage: null
 createTime: 2018-08-21T11:50:56.000Z 
 upateTime: 2019-08-30T02:29:48.000Z

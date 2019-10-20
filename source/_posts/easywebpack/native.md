@@ -5,7 +5,7 @@ space: easywebpack
 slug: native
 url: /easywebpack/native
 title: 快速开始
-summary: easywebpack 获取原生 Webpack 配置easywebpack.getWebpackConfig(config)  这种获取方式是指通过解决方案获取配置, 参数 config 支持如下三种配置: config 为 null 或 undefined 时, 目前读取项目根目录下的 w...
+summary: easywebpack 获取原生 Webpack 配置
 coverImage: null
 createTime: 2019-10-05T07:49:14.000Z 
 upateTime: 2019-10-05T07:49:14.000Z

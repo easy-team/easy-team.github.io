@@ -5,7 +5,7 @@ space: egg-react
 slug: async
 url: /egg-react/async
 title: 组件异步加载
-summary: issue: react-loadable 怎么加入这个骨架中 #23安装依赖npm install react-loadable --save实现异步组件// async-image.jsx import React, { Component } from 'react'; import L...
+summary: 
 coverImage: null
 createTime: 2019-06-28T15:58:59.000Z 
 upateTime: 2019-06-28T15:58:59.000Z

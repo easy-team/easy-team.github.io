@@ -1,0 +1,1377 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Docker 随记, node, egg, webpack, ves, res, ssr">
+    <meta name="description" content="安装docker:
+Docker：https://download.docker.com/mac/stable/Docker.dmg
+
+Docker GUI： https://github.com/docker/kitematic/rele">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Docker 随记 | easy-team</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper head-container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">easy-team</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Home</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/res" class="waves-effect waves-light">
+      
+      <i class="fas fa-forward" style="zoom: 0.6;"></i>
+      
+      <span>Res</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/ves" class="waves-effect waves-light">
+      
+      <i class="fas fa-forward" style="zoom: 0.6;"></i>
+      
+      <span>Ves</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>Egg</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/egg-react">
+          
+          <i class="fas fa-forward" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Egg+React</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/egg-vue">
+          
+          <i class="fas fa-forward" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Egg+Vue</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/easywebpack" class="waves-effect waves-light">
+      
+      <i class="fas fa-building" style="zoom: 0.6;"></i>
+      
+      <span>Webpack</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog" class="waves-effect waves-light">
+      
+      <i class="fas fa-hacker-news" style="zoom: 0.6;"></i>
+      
+      <span>Blog</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>Contact</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">easy-team</div>
+        <div class="logo-desc">
+            
+            前端工程化,Node开发,Webpack,Egg,React Server Side Render, Vue Server Side Render
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Home
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/res" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-forward"></i>
+			
+			Res
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/ves" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-forward"></i>
+			
+			Ves
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			Egg
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>   
+				
+                  <a href="/egg-react " style="margin-left:75px";>
+				  
+				   <i class="fa fas fa-forward" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Egg+React</span>
+                  </a>
+                </li>
+              
+                <li>   
+				
+                  <a href="/egg-vue " style="margin-left:75px";>
+				  
+				   <i class="fa fas fa-forward" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Egg+Vue</span>
+                  </a>
+                </li>
+               
+            </ul>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/easywebpack" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-building"></i>
+			
+			Webpack
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-hacker-news"></i>
+			
+			Blog
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/easy-team" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/easy-team" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    <div class="bg-cover pd-header" style="height: 9vh">
+    <div class="container"></div>
+</div>
+
+
+    <script>
+        // 每天切换 banner 图.  Switch banner image every day.
+        $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
+    </script>
+    
+
+<div class="doc-content">
+    
+     <div class="doc-left-nav" style="width:400px">
+        <div class="side-nav docsidenav" style="width:400px">
+    <div class="doc-left-nav-title">blog</div>
+    <ul class="menu-list mobile-menu-list">
+        
+            
+                <li class="m-nav-item">
+                    <a href="/blog/cdal6o" class="waves-effect waves-light" id="m-nav-item-blog-cdal6o">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        Egg + Web 自定义前端渲染
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/blog/ruv09m" class="waves-effect waves-light" id="m-nav-item-blog-ruv09m">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        Egg SSR Webpack 内存编译热更新实现
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/blog/sg8avg" class="waves-effect waves-light" id="m-nav-item-blog-sg8avg">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        Webpack Babel SSR 构建优化
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/blog/zfri65" class="waves-effect waves-light" id="m-nav-item-blog-zfri65">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        Webpack 构建大小分析与优化
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/blog/xriz8a" class="waves-effect waves-light" id="m-nav-item-blog-xriz8a">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        Egg + Vue/Nunjucks 服务端渲染性能测试
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/blog/qwr449" class="waves-effect waves-light" id="m-nav-item-blog-qwr449">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        Webpack 热更新实现原理分析
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/blog/dxrrhq" class="waves-effect waves-light" id="m-nav-item-blog-dxrrhq">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        Webpack 4 编译内存泄漏
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/blog/lsrssy" class="waves-effect waves-light" id="m-nav-item-blog-lsrssy">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        Flutter  Android  混合工程实践
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/blog/zs3hog" class="waves-effect waves-light" id="m-nav-item-blog-zs3hog">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        Flutter iOS 混合工程实践
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/blog/nrswgq" class="waves-effect waves-light" id="m-nav-item-blog-nrswgq">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        Android 与 Flutter 入门开发实践指引
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/blog/wydpi1" class="waves-effect waves-light" id="m-nav-item-blog-wydpi1">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        Flutter 动态更新
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/blog/kiygy5" class="waves-effect waves-light" id="m-nav-item-blog-kiygy5">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        Vue SSR 组件加载
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/blog/ekvirc" class="waves-effect waves-light" id="m-nav-item-blog-ekvirc">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        Webpack 构建流程解密
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/blog/az519d" class="waves-effect waves-light" id="m-nav-item-blog-az519d">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        页面资源加载
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/blog/xcw19a" class="waves-effect waves-light" id="m-nav-item-blog-xcw19a">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        React Native, Hybrid App, H5 简单对比分析
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/blog/vzgcgb" class="waves-effect waves-light" id="m-nav-item-blog-vzgcgb">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        React Native Android APK包大小分析
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/blog/wk5ney" class="waves-effect waves-light" id="m-nav-item-blog-wk5ney">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        React Native 自定义插件
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/blog/kghphs" class="waves-effect waves-light" id="m-nav-item-blog-kghphs">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        React Native代码执行跟踪和调试
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/blog/qwywww" class="waves-effect waves-light" id="m-nav-item-blog-qwywww">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        React Native 热更新实现
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/blog/rh45zo" class="waves-effect waves-light" id="m-nav-item-blog-rh45zo">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        React Native Android源码解读和交互原理分析
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/blog/uhmdkg" class="waves-effect waves-light" id="m-nav-item-blog-uhmdkg">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        Hybrid系列-phonegap android框架详解
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/blog/sxys82" class="waves-effect waves-light" id="m-nav-item-blog-sxys82">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        Hybrid系列-Cordova android框架详解
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/blog/syh43v" class="waves-effect waves-light" id="m-nav-item-blog-syh43v">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        npm 常用命令
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/blog/vfhw62" class="waves-effect waves-light" id="m-nav-item-blog-vfhw62">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        Git 使用技巧
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/blog/gayu0o" class="waves-effect waves-light" id="m-nav-item-blog-gayu0o">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        Docker 随记
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/blog/egret" class="waves-effect waves-light" id="m-nav-item-blog-egret">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        Egret  游戏开发
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/blog/og9ogk" class="waves-effect waves-light" id="m-nav-item-blog-og9ogk">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        vscode 插件开发
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/blog/qz7n03" class="waves-effect waves-light" id="m-nav-item-blog-qz7n03">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        Mac PHP 环境
+                    </a>
+                </li>
+            
+        
+        <li><div class="divider"></div></li>
+        
+        <li>
+            <a href="https://yuque.com/hubcarl" class="waves-effect waves-light" target="_blank">
+                <i class="fas fa-fw fa-link"></i>语雀文档
+            </a>
+        </li>
+        <li>
+            <a href="https://github.com/hubcarl" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Github
+            </a>
+        </li>
+    </ul>
+</div>
+
+     </div>
+    
+    <div class="doc-right-nav">
+        <div class="card" class="doc-right-card">
+            <div class="card-content article-info">
+                <h1 style="margin-top: 12px;">Docker 随记</h1>
+                <div class="row">
+                    <div class="col s5 right-align">
+                        
+                    </div>
+                </div>
+                
+                <div class="post-info">
+                    <div class="post-date info-break-policy">
+                        <i class="far fa-calendar-minus fa-fw"></i>Date:&nbsp;&nbsp;
+                        2019-10-20
+                    </div>
+    
+                    
+                        
+                        <div class="info-break-policy">
+                            <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
+                            819
+                        </div>
+                        
+    
+                        
+                        <div class="info-break-policy">
+                            <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
+                            4 Min
+                        </div>
+                        
+                    
+                    
+                    
+                        <div id="busuanzi_container_page_pv" class="info-break-policy">
+                            <i class="far fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                            <span id="busuanzi_value_page_pv"></span>
+                        </div>
+                    
+                </div>
+            </div>
+            <hr class="clearfix">
+            <div class="card-content article-card-content" style="padding-top: 0px;">
+                <div id="articleContent">
+                    <h1 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker:"></a>安装docker:</h1><ul>
+<li><p>Docker：<a href="https://download.docker.com/mac/stable/Docker.dmg" target="_blank" rel="noopener">https://download.docker.com/mac/stable/Docker.dmg</a></p>
+</li>
+<li><p>Docker GUI： <a href="https://github.com/docker/kitematic/releases" target="_blank" rel="noopener">https://github.com/docker/kitematic/releases</a></p>
+</li>
+</ul>
+<h2 id="Docker-服务管理"><a href="#Docker-服务管理" class="headerlink" title="Docker 服务管理"></a>Docker 服务管理</h2><pre class=" language-bash"><code class="language-bash">docker run -d --name gitlab-runner --restart always -v /Users/sky/dev/docker/gitlab-runner/config:/etc/gitlab-runner gitlab/gitlab-runner:latest
+docker <span class="token function">exec</span> -it gitlab-runner gitlab-runner register</code></pre>
+<ul>
+<li>Pull the latest version:</li>
+</ul>
+<pre class=" language-bash"><code class="language-bash">docker pull gitlab/gitlab-runner:latest</code></pre>
+<ul>
+<li>Stop and remove the existing container:</li>
+</ul>
+<pre class=" language-bash"><code class="language-bash">docker stop gitlab-runner <span class="token operator">&amp;&amp;</span> docker <span class="token function">rm</span> gitlab-runner</code></pre>
+<ul>
+<li>要从 Docker Hub 取得最新的稳定版 CentOS 官方映像：</li>
+</ul>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> docker pull centos:latest
+<span class="token function">sudo</span> docker pull centos:centos6</code></pre>
+<ul>
+<li>测试centos是否可以运行成功：</li>
+</ul>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> docker images centos</code></pre>
+<ul>
+<li>要查看已下载至本地的映像：</li>
+</ul>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> docker images centos</code></pre>
+<ul>
+<li>要通过 docker 执行基本的 cat 指令：</li>
+</ul>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> docker run centos:latest <span class="token function">cat</span> /etc/centos-release
+<span class="token function">sudo</span> docker run -i -t centos7 /bin/bash</code></pre>
+<p>一切正常的话，你会看到一个终端提示符，然后你就可以像操作任何CentOS机器一样进行你的体验。</p>
+<h2 id="Run-a-Hello-world"><a href="#Run-a-Hello-world" class="headerlink" title="Run a Hello world"></a>Run a Hello world</h2><ul>
+<li>docker run runs a container.</li>
+</ul>
+<blockquote>
+<p>centos:centos7 is the image you run, for example the centos operating system image. When you specify an image, Docker looks first for the image on your Docker host. If the image does not exist locally, then the image is pulled from the public image registry Docker Hub. /bin/echo is the command to run inside the new container.</p>
+</blockquote>
+<pre class=" language-bash"><code class="language-bash">docker run centos:centos7  /bin/echo 'Hello world’</code></pre>
+<ul>
+<li>docker ps</li>
+</ul>
+<blockquote>
+<p>The docker ps command queries the Docker daemon for information about all the containers it knows about.</p>
+</blockquote>
+<pre class=" language-bash"><code class="language-bash">docker <span class="token function">ps</span></code></pre>
+<ul>
+<li>docker logs</li>
+</ul>
+<pre class=" language-bash"><code class="language-bash">docker logs CONTAINERID</code></pre>
+<ul>
+<li>Running a web application in Docker</li>
+</ul>
+<pre class=" language-bash"><code class="language-bash">docker run -d -P centos:centos7 python app.py</code></pre>
+<h2 id="查找docker-images"><a href="#查找docker-images" class="headerlink" title="查找docker images"></a>查找docker images</h2><blockquote>
+<p><a href="https://hub.docker.com/explore/" target="_blank" rel="noopener">https://hub.docker.com/explore/</a></p>
+</blockquote>
+<p>$ docker search</p>
+<h2 id="更新ubuntu-image"><a href="#更新ubuntu-image" class="headerlink" title="更新ubuntu image"></a>更新ubuntu image</h2><pre class=" language-bash"><code class="language-bash">docker run -t -i ubuntu  /bin/bash</code></pre>
+<pre class=" language-bash"><code class="language-bash">root@00ee3e6b6450:/<span class="token comment" spellcheck="true"># apt-get install -g nodejs</span>
+
+root@00ee3e6b6450:/<span class="token comment" spellcheck="true"># apt-get update</span>
+
+root@00ee3e6b6450:/<span class="token comment" spellcheck="true"># apt-get install -y nodejs npm git</span>
+
+root@00ee3e6b6450:/<span class="token comment" spellcheck="true"># exit</span></code></pre>
+<pre class=" language-bash"><code class="language-bash">docker commit -m <span class="token string">"apt-get node install"</span> -a <span class="token string">"sky"</span></code></pre>
+<h2 id="Building-an-image-from-a-Dockerfile"><a href="#Building-an-image-from-a-Dockerfile" class="headerlink" title="Building an image from a Dockerfile"></a>Building an image from a Dockerfile</h2><p>$ mkdir docker-sky-dev<br />$ cd docker-sky-dev</p>
+<pre class=" language-bash"><code class="language-bash">docker run -t -i centos:centos7  /bin/bash
+
+// 编译docker image
+docker build --rm -t  docker-sky-centos <span class="token keyword">.</span>
+
+
+gitlab-ci-multi-runner unregister --url http://gitlab.xxxx.com/ci --token xxxxxxx</code></pre>
+<h2 id="docker强制批量删除none的image镜像"><a href="#docker强制批量删除none的image镜像" class="headerlink" title="docker强制批量删除none的image镜像"></a>docker强制批量删除none的image镜像</h2><pre class=" language-bash"><code class="language-bash">docker <span class="token function">ps</span> -a <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">"Exited"</span> <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'{print <span class="token variable">$1</span> }'</span><span class="token operator">|</span><span class="token function">xargs</span> docker stop
+docker <span class="token function">ps</span> -a <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">"Exited"</span> <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'{print <span class="token variable">$1</span> }'</span><span class="token operator">|</span><span class="token function">xargs</span> docker <span class="token function">rm</span>
+docker images<span class="token operator">|</span><span class="token function">grep</span> none<span class="token operator">|</span><span class="token function">awk</span> <span class="token string">'{print <span class="token variable">$3</span> }'</span><span class="token operator">|</span><span class="token function">xargs</span> docker rmi -f</code></pre>
+<h2 id="install-node-js"><a href="#install-node-js" class="headerlink" title="install node.js"></a>install node.js</h2><pre class=" language-bash"><code class="language-bash"><span class="token function">wget</span> http://nodejs.org/dist/v6.7.0/node-v6.7.0-linux-x64.tar.gz
+
+<span class="token function">tar</span> --strip-components 1 -xzvf node-v* -C /usr/local
+
+node --version</code></pre>
+<h2 id="install-nvm"><a href="#install-nvm" class="headerlink" title="install nvm"></a>install nvm</h2><pre class=" language-bash"><code class="language-bash"><span class="token function">wget</span> https://github.com/cnpm/nvm/archive/v0.23.0.tar.gz  -P /opt/download
+
+<span class="token function">tar</span> --strip-components 1 -xzvf /opt/download/v0.23.0.tar.gz -C /opt/download
+
+<span class="token function">cd</span> /opt/download
+
+./install.sh
+
+<span class="token function">source</span> ~/.nvm/nvm.sh
+
+nvm <span class="token function">install</span> 8.13.0
+
+nvm <span class="token function">alias</span> default 8.13.0
+
+
+<span class="token comment" spellcheck="true">## install electron</span>
+
+
+yum <span class="token function">install</span> clang dbus-devel gtk2-devel libnotify-devel libgnome-keyring-devel \
+                   xorg-x11-server-utils libcap-devel cups-devel libXtst-devel \
+                   alsa-lib-devel libXrandr-devel GConf2-devel nss-devel libgtk-x11-2.0.so.0 libXss.so
+
+<span class="token function">npm</span> <span class="token function">install</span> electron -g
+
+
+<span class="token comment" spellcheck="true">## yum</span>
+
+<span class="token operator">></span> http://repository.it4i.cz/mirrors/repoforge/redhat/el6/en/x86_64/rpmforge/RPMS/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm
+
+yum whatprovides
+
+// 安装 example.rpm 包并在安装过程中显示正在安装的文件信息及安装进度；
+rpm -ivh example.rpm 
+
+yum groupinstall <span class="token string">"Development Tools"</span>
+dnf groupinstall <span class="token string">"Development Tools"</span></code></pre>
+<p><a href="https://www.centos.org/forums/viewtopic.php?t=52129" target="_blank" rel="noopener">https://www.centos.org/forums/viewtopic.php?t=52129</a></p>
+<h2 id="安装-bzip2"><a href="#安装-bzip2" class="headerlink" title="安装 bzip2"></a>安装 bzip2</h2><pre class=" language-bash"><code class="language-bash"><span class="token function">wget</span> http://www.bzip.org/1.0.6/bzip2-1.0.6.tar.gz
+<span class="token function">tar</span> xf bzip2-1.0.6.tar.gz
+<span class="token function">cd</span> bzip2-1.0.6
+<span class="token function">make</span>
+<span class="token function">make</span> <span class="token function">install</span>
+
+yum <span class="token function">install</span> rpm-devel
+yum <span class="token function">install</span> libxml2 libxslt</code></pre>
+<h2 id="DockerFile"><a href="#DockerFile" class="headerlink" title="DockerFile"></a>DockerFile</h2><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 设置基础镜像</span>
+FROM ubuntu:latest
+
+<span class="token comment" spellcheck="true"># 如果上个步骤已经更新软件源，这步可以忽略</span>
+RUN <span class="token function">apt-get</span> update
+
+<span class="token comment" spellcheck="true"># 安装 NodeJS 和 npm</span>
+RUN <span class="token function">apt-get</span> <span class="token function">install</span> -y nodejs <span class="token function">npm</span>
+
+<span class="token comment" spellcheck="true"># 将目录中的文件添加至镜像的 /srv/hello 目录中</span>
+ADD <span class="token keyword">.</span> /srv/hello
+
+<span class="token comment" spellcheck="true"># 设置工作目录</span>
+WORKDIR /srv/hello
+
+<span class="token comment" spellcheck="true"># 安装 Node 依赖库</span>
+RUN <span class="token function">npm</span> <span class="token function">install</span>
+
+<span class="token comment" spellcheck="true"># 暴露 3001 端口，便于访问</span>
+EXPOSE 3001
+
+<span class="token comment" spellcheck="true"># 设置启动时默认运行命令</span>
+CMD <span class="token punctuation">[</span><span class="token string">"nodejs”, “/srv/hello/index.js"</span><span class="token punctuation">]</span></code></pre>
+
+                </div>
+                <hr/>
+    
+                
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://easy-team.github.io" rel="external nofollow noreferrer">sky</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://easy-team.github.io/blog/gayu0o/">https://easy-team.github.io/blog/gayu0o/</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                    <span class="reprint-meta" style="font-weight: bold;">
+                        <i class="fas fa-link">
+                            yuque:
+                        </i>
+                    </span>
+                    <span class="reprint-info">
+                        <a href="https://yuque.com/easy-team/blog/gayu0o/" target="_blank" rel="noopener">https://yuque.com/easy-team/blog/gayu0o/</a>
+                    </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="https://easy-team.github.io" target="_blank">sky</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+    
+                <div class="tag_share" style="display: block; margin-top: 20px;">
+                    <div class="post-meta__tag-list" style="display: inline-block;">
+                        
+                            
+                        
+                    </div>
+                    <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                        <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    
+    <div class="social-share" data-sites="qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                    </div>
+
+                </div>
+                
+            </div>
+        </div>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/blog/ruv09m/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="Egg SSR Webpack 内存编译热更新实现">
+                        
+                        <span class="card-title">Egg SSR Webpack 内存编译热更新实现</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            1. 背景在用 Node.js + Webpack 构建的方式进行开发时, 我们希望能实现修改代码能实时刷新页面UI的效果. 这个特性 Webpack本身是支持的, 而且基于koa也有现成的 koa-webpack-hot-middleware 和 koa-webpack-dev-middle...
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2019-10-20
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            sky
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/blog/wk5ney/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="React Native 自定义插件">
+                        
+                        <span class="card-title">React Native 自定义插件</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            原文： http://hubcarl.github.io/blog/2016/08/13/react-native-plugin/编写自定义插件需要继承ReactContextBaseJavaModule和实现ReactPackage接口, 具体实现步骤如下：1. 继承ReactContext...
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-10-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            sky
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+     </div>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('50')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + 'From: easy-team<br />'
+            + 'Author: sky<br />'
+            + 'Link: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+    
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+<!-- menu-selected -->
+<script>
+    var pathname = location.pathname.replace(/^\//, '').replace(/\/$/, '').replace(/\//g, '-');
+    $('#m-nav-item-' + pathname).addClass('doc-left-nav-mene-selected');
+</script>
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">年份</span>
+            <a href="https://easy-team.github.io" target="_blank">sky</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/easy-team" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">106.5k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    window.setTimeout("siteTime()", 1000);
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2019";
+                    var startMonth = "10";
+                    var startDate = "20";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/hubcarl" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:hubcarl@126.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=433207205" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 433207205" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/hubcarl" class="tooltipped" target="_blank" data-tooltip="关注我的微博: https://weibo.com/hubcarl" data-position="top" data-delay="50">
+        <i class="fab fa-weibo"></i>
+    </a>
+
+
+
+    <a href="https://zhuanlan.zhihu.com/easywebpack" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: https://zhuanlan.zhihu.com/easywebpack" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <!-- Baidu Analytics -->
+
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        bp.async = true;
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

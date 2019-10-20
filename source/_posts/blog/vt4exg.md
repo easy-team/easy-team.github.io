@@ -5,7 +5,7 @@ space: blog
 slug: vt4exg
 url: /blog/vt4exg
 title: Webpack 4 构建内存泄漏
-summary: 问题：https://github.com/easy-team/easywebpack/issues/26 (已修复)一. 增加内存堆栈大小(只能缓解，不能根除)&quot;scripts&quot;: {   &quot;dev&quot;:  &quot;node --max_old_sp...
+summary: 问题：https://github.com/easy-team/easywebpack/issues/26 (已修复)一. 增加内存堆栈大小(只能缓解，不能根除)
 coverImage: 
 createTime: 2019-02-14T05:53:03.000Z 
 upateTime: 2019-06-05T09:26:27.000Z

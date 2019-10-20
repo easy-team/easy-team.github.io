@@ -1,0 +1,131 @@
+/* Here is your custom css styles. */
+
+/* hexo-filter-github-emojis */
+.github-emoji{
+    height: 2em;
+    width: 2em;
+    display: inline-block !important;
+    position: relative;
+    margin: 0 3px !important;
+    padding: 0;
+}
+.github-emoji:hover{
+    animation: emoji-face 5s infinite ease-in-out;
+}
+@keyframes emoji-face {
+    2% {
+        transform: translate(0, 1.5px) rotate(1.5deg);
+    }
+    4% {
+        transform: translate(0, -1.5px) rotate(-0.5deg);
+    }
+    6% {
+        transform: translate(0, 1.5px) rotate(-1.5deg);
+    }
+    8% {
+        transform: translate(0, -1.5px) rotate(-1.5deg);
+    }
+    10% {
+        transform: translate(0, 2.5px) rotate(1.5deg);
+    }
+    12% {
+        transform: translate(0, -0.5px) rotate(1.5deg);
+    }
+    14% {
+        transform: translate(0, -1.5px) rotate(1.5deg);
+    }
+    16% {
+        transform: translate(0, -0.5px) rotate(-1.5deg);
+    }
+    18% {
+        transform: translate(0, 0.5px) rotate(-1.5deg);
+    }
+    20% {
+        transform: translate(0, -1.5px) rotate(2.5deg);
+    }
+    22% {
+        transform: translate(0, 0.5px) rotate(-1.5deg);
+    }
+    24% {
+        transform: translate(0, 1.5px) rotate(1.5deg);
+    }
+    26% {
+        transform: translate(0, 0.5px) rotate(0.5deg);
+    }
+    28% {
+        transform: translate(0, 0.5px) rotate(1.5deg);
+    }
+}
+
+.doc-left-nav-title {
+    background-image: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%);font-size: 40px; 
+    font-weight: bolder; height: 60px; display: flex; align-items: center; justify-content: center; 
+    text-align: center; color: white;
+}
+.doc-left-nav-mene-selected {
+    color: #34495e !important;
+    background-color: lightgrey;
+}
+.docsidenav {
+    width: 300px;
+    margin: 0;
+    height: 100%;
+    padding-bottom: 60px;
+    background-color: #fff;
+    overflow-y: auto;
+    will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.docsidenav li {
+    float: none;
+    line-height: 48px;
+}
+.docsidenav li>a {
+    color: rgba(0,0,0,0.87);
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+    height: 48px;
+    line-height: 48px;
+    padding: 0 32px;
+}
+.docsidenav li>a>i, .docsidenav li>a>[class^="mdi-"], .docsidenav li>a li>a>[class*="mdi-"], .docsidenav li>a>i.material-icons {
+    float: left;
+    height: 48px;
+    line-height: 48px;
+    margin: 0 32px 0 0;
+    width: 24px;
+    color: rgba(0,0,0,0.54);
+}
+
+.docsidenav li >a:hover {
+    color: #34495e;
+    background-color: lightgrey;
+}
+
+pre {
+    width: 100%;
+    white-space: pre-wrap;
+}
+.doc-content {
+    display: flex;
+}
+.doc-left-nav {
+    width: 300px; 
+    margin: 24px 0px 24px 24px; 
+    box-sizing: border-box;
+}
+.doc-right-nav {
+    flex: 1; 
+    margin: 24px; 
+    box-sizing: border-box;
+}
+.doc-right-card {
+    margin: 0px 0px; 
+    border-radius: 0px
+}
+.card {
+    margin-top: 0px !important;
+}

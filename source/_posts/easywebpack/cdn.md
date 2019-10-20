@@ -5,7 +5,7 @@ space: easywebpack
 slug: cdn
 url: /easywebpack/cdn
 title: CDN 构建
-summary: 基本配置easywebpack 提供了 cdn 配置节点, 只需要配置 cdn 地址即可(cdn地址会覆盖publicPath地址).配置如下:easywebpack3 配置后 dev，test， prod 模式都会生效, 一般通过变量控制 cdn 节点的配置// ${app_root}/webpack.config.js module.exports = {   ......   cdn:UPLOAD_CDN ? { url: &#x27;http://xxx.cdn.com/public/&#x2...
+summary: 基本配置easywebpack 提供了 cdn 配置节点, 只需要配置 cdn 地址即可(cdn地址会覆盖publicPath地址).配置如下:easywebpack3 配置后 dev，test， prod 模式都会生效, 一般通过变量控制 cdn 节点的配置
 coverImage: null
 createTime: 2018-09-05T07:16:29.000Z 
 upateTime: 2019-05-19T05:52:27.000Z

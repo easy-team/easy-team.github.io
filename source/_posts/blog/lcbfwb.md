@@ -5,7 +5,7 @@ space: blog
 slug: lcbfwb
 url: /blog/lcbfwb
 title: Vue SSR 组件加载
-summary: Node 端渲染提示 window/document 没有定义业务场景首先来看一个简单的 Vue 组件test.vue&lt;template&gt;   &lt;div&gt;     &lt;h2&gt;clientHeight: {{ clientHeight }} px &lt;/h2...
+summary: Node 端渲染提示 window/document 没有定义业务场景首先来看一个简单的 Vue 组件
 coverImage: null
 createTime: 2019-07-26T10:31:23.000Z 
 upateTime: 2019-07-31T08:33:14.000Z

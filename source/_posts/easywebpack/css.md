@@ -5,7 +5,7 @@ space: easywebpack
 slug: css
 url: /easywebpack/css
 title: Css Style
-summary: 开启 Sass （默认禁用）webpack.config.js// ${app_root}/webpack.config.js module.exports = {   module:{      rules:[        {          scss: true        }   ...
+summary: 
 coverImage: null
 createTime: 2019-10-15T01:24:03.000Z 
 upateTime: 2019-10-15T01:24:03.000Z

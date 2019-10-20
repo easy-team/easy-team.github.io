@@ -5,7 +5,7 @@ space: easywebpack
 slug: abtuv0
 url: /easywebpack/abtuv0
 title: 基础配置
-summary: 在使用相关方案时, 请在项目中添加 babel  和 postcss  基础配置文件添加 ${app_root}/.babelrc 文件具体根据实际情况添加相关 babel 插件配置，以下仅仅是举例：{   &quot;presets&quot;: [[&quot;env&quot;,{ &quot;modules&quot;: false }]],   &quot;plugins&quot;: [     &quot;transform-object-rest-spread&quot...
+summary: 在使用相关方案时, 请在项目中添加 babel  和 postcss  基础配置文件添加
 coverImage: null
 createTime: 2018-06-09T03:44:02.000Z 
 upateTime: 2019-06-10T10:21:54.000Z

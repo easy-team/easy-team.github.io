@@ -5,7 +5,7 @@ space: egg-vue
 slug: babel
 url: https://easy-team.github.io/egg-vue/babel
 title: Babel 构建优化
-summary: 在进行 Egg + Vue 进行 SSR 模式开发时，运行 npm run dev  后你会看到如下界面， 启动了两个 Webpack 构建实例：Node 模式 和 Web 模式。SSR 运行需要 Webapck 单独构建 target: node   和 target: web  主要的差异...
+summary: 在进行 Egg + Vue 进行 SSR 模式开发时，运行 npm run dev  后你会看到如下界面， 启动了两个 Webpack 构建实例：Node 模式 和 Web 模式。
 coverImage: null
 createTime: 2019-01-11T09:42:54.000Z 
 upateTime: 2019-06-12T20:09:04.000Z

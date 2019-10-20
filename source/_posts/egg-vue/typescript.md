@@ -5,7 +5,7 @@ space: egg-vue
 slug: typescript
 url: https://easy-team.github.io/egg-vue/typescript
 title: TypeScript
-summary: TypeScript 构建支持Node 启用 typescript 编译 egg-bin dev -r egg-ts-helper/register 实现开发 tsc -p tsconfig.json 编译package.json 运行脚本{   &quot;scripts&quot;: { ...
+summary: TypeScript 构建支持Node 启用 typescript 编译 egg-bin dev -r egg-ts-helper/register 实现开发 tsc -p tsconfig.json 编译package.json 运行脚本
 coverImage: null
 createTime: 2018-11-15T08:23:50.000Z 
 upateTime: 2019-06-20T01:50:20.000Z

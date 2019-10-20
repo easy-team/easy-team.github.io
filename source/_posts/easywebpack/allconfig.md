@@ -5,7 +5,7 @@ space: easywebpack
 slug: allconfig
 url: /easywebpack/allconfig
 title: 全部配置项
-summary: webpack.config.js 参数配置说明// ${app_root}/webpack.config.js module.exports = {   framework: &#x27;html&#x27;   entry:{        }   ...... } 1. 环境配置config.env : 非必需, 目前支持 dev, test, prod 三种环境, 默认 dev使用条件: 使用 easywebpack-cli 构建时, 无需配置该参数.dev  : 开启热更新, image/css...
+summary: 
 coverImage: null
 createTime: 2018-09-20T01:30:00.000Z 
 upateTime: 2019-05-20T16:07:16.000Z

@@ -5,7 +5,7 @@ space: blog
 slug: kiygy5
 url: /blog/kiygy5
 title: Vue SSR 组件加载
-summary: Node 端渲染提示 window/document 没有定义业务场景首先来看一个简单的 Vue 组件test.vue&lt;template&gt;   &lt;div&gt;     &lt;h2&gt;clientHeight: {{ clientHeight }} px &lt;/h2&gt;   &lt;/div&gt; &lt;/template&gt;  &lt;script type=&quot;text/babel&quot;&gt;   export default...
+summary: Node 端渲染提示 window/document 没有定义业务场景首先来看一个简单的 Vue 组件
 coverImage: null
 createTime: 2018-04-28T08:22:27.000Z 
 upateTime: 2019-07-04T00:18:57.000Z

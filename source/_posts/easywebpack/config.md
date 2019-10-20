@@ -5,7 +5,7 @@ space: easywebpack
 slug: config
 url: /easywebpack/config
 title: webpack.config.js
-summary: webpack.config.js// ${app_root}/webpack.config.js module.exports = {   // framework 支持 `js`,`html`, `vue`, `react`, `weex`   framework: 'html'    e...
+summary: webpack.config.js
 coverImage: null
 createTime: 2019-06-28T15:07:00.000Z 
 upateTime: 2019-06-28T15:07:00.000Z

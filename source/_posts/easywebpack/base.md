@@ -5,7 +5,7 @@ space: easywebpack
 slug: base
 url: /easywebpack/base
 title: 扩展配置
-summary: webpack.config.js 常用配置1. Egg框架配置  (扩展简化配置)config.egg : {Boolean} 特殊参数,  Egg SSR 构建时使用。easywebpack 4.8.0 无需配置，已支持自动检测使用条件:只有在使用 Egg 框架进行 Server Side...
+summary: webpack.config.js 常用配置1. Egg框架配置
 coverImage: null
 createTime: 2018-11-21T08:32:07.000Z 
 upateTime: 2019-05-22T01:36:04.000Z

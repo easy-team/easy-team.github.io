@@ -5,7 +5,7 @@ space: blog
 slug: gayu0o
 url: /blog/gayu0o
 title: Docker 随记
-summary: 安装docker: Docker：https://download.docker.com/mac/stable/Docker.dmgDocker GUI： https://github.com/docker/kitematic/releasesDocker 服务管理docker run -d ...
+summary: 
 coverImage: null
 createTime: 2018-12-07T02:10:36.000Z 
 upateTime: 2019-06-15T16:43:26.000Z
