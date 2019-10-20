@@ -26,7 +26,7 @@ layout: doc
 
 > 骨架分支： master，版本 4.6.0
 
-- @easy-team/easywebpack 提供内置 [babel 7 升级方案](https://www.yuque.com/easy-team/easywebpack/babel7)，主要修改如下：
+- @easy-team/easywebpack 提供内置 [babel 7 升级方案](https://easy-team.github.io/easywebpack/babel7)，主要修改如下：
   - easywebpack-cli  >  @easy-team/easywebpack@^4.0.0
   - easywebpack-react  >  @easy-team/easywebpack-react@^4.0.0
   - .babelrc 配置升级为 babel 7 配置
@@ -39,7 +39,7 @@ layout: doc
 > 骨架分支： feature/green/html
 
 
-- 提供 egg 模板引擎 ([egg-view-nunjucks](https://github.com/eggjs/egg-view-nunjucks) 或 [egg-view-ejs](https://github.com/eggjs/egg-view-ejs)) + Webpack 完全自定义前端方案 [https://www.yuque.com/easy-team/egg-react/html](https://www.yuque.com/easy-team/egg-react/html)
+- 提供 egg 模板引擎 ([egg-view-nunjucks](https://github.com/eggjs/egg-view-nunjucks) 或 [egg-view-ejs](https://github.com/eggjs/egg-view-ejs)) + Webpack 完全自定义前端方案 [https://easy-team.github.io/egg-react/html](https://easy-team.github.io/egg-react/html)
 
 
   

@@ -137,7 +137,7 @@ module.exports = app => {
 - 添加 `easywebpack-cli` 配置文件 `${app_root}/webpack.config.js`
 
 
-> 关于 entry 配置，请务必先看这篇文档：[https://www.yuque.com/easy-team/egg-react/config](https://www.yuque.com/easy-team/egg-react/config)
+> 关于 entry 配置，请务必先看这篇文档：[https://easy-team.github.io/egg-react/config](https://easy-team.github.io/egg-react/config)
 
 
 ```javascript
@@ -265,7 +265,7 @@ export default class HomeIndex extends Component {
 
 #### 编写 Node 端代码
 
-通过 `egg-view-react-ssr` 插件 `render` 方法实现， 请看[服务端渲染](https://www.yuque.com/easy-team/egg-react/ssr)和[前端渲染模式](https://www.yuque.com/easy-team/egg-react/client)
+通过 `egg-view-react-ssr` 插件 `render` 方法实现， 请看[服务端渲染](https://easy-team.github.io/egg-react/ssr)和[前端渲染模式](https://easy-team.github.io/egg-react/client)
 
 - 创建 controller 文件 `${app_root}/app/controller/home.js`
 

@@ -126,7 +126,7 @@ npm run build
 
 #### 打包上传
 
-> 这里需要你自己实现把构建好的文件和项目问题一起打成 zip 或 tar 包，然后上传到部署平台进行部署。参数配置请见：[https://www.yuque.com/easy-team/easywebpack/build](https://www.yuque.com/easy-team/easywebpack/build)
+> 这里需要你自己实现把构建好的文件和项目问题一起打成 zip 或 tar 包，然后上传到部署平台进行部署。参数配置请见：[https://easy-team.github.io/easywebpack/build](https://easy-team.github.io/easywebpack/build)
 
 
 - 需要把构建后的文件(public目录，app/view 目录， config/manifest.json)与项目源代码一起打包部署，当然部分文件([README.md](http://README.md), eslint, gitignore等)可以不打进去。

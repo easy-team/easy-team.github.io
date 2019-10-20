@@ -121,7 +121,7 @@ layout: doc
 
 ## Babel 7 升级
 
-[https://www.yuque.com/easy-team/easywebpack/babel7](https://www.yuque.com/easy-team/easywebpack/babel7)
+[https://easy-team.github.io/easywebpack/babel7](https://easy-team.github.io/easywebpack/babel7)
 
 
   

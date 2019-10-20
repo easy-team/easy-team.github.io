@@ -10,7 +10,7 @@ friends: Friends
 startRead: Start
 recommendedPosts: Recommended Posts
 resRecommendedTitle: Recommended Reading
-publishDate: Publish Date
+publishDate: Date
 readCount: Read Count
 wordCount: Word Count
 readTimes: Read Times
@@ -44,6 +44,7 @@ from: From
 reprint: Reprint policy
 author: Author
 link: Link
+yuque: yuque
 use: All articles in this blog are used except for special statements
 licensed: reprint polocy. If reproduced, please indicate source
 cc_by_url: https://creativecommons.org/licenses/by/4.0/deed.zh

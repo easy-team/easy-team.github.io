@@ -3,7 +3,7 @@
 id: 685681
 space: egg-vue
 slug: about
-url: /egg-vue/about
+url: https://easy-team.github.io/egg-vue/about
 title: 相关问题
 summary: 常见问题 issue 汇总服务端 SEO 设置问题 文件打包部署问题Server Side Render 时，$mount节点重新渲染问题see issue：https://github.com/easy-team/egg-vue-webpack-boilerplate/issues/125a...
 coverImage: null

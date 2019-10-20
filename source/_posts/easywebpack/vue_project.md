@@ -5,7 +5,7 @@ space: easywebpack
 slug: vue_project
 url: /easywebpack/vue_project
 title: Vue 工程方案
-summary: 安装 easywebpack-cli 工具npm install easywebpack-cli -g添加 ${app_root}/.babelrc 文件具体根据实际情况添加相关 babel 插件配置，以下仅仅是举例. 详细配置见：https://www.yuque.com/easy-team...
+summary: 安装 easywebpack-cli 工具npm install easywebpack-cli -g添加 ${app_root}/.babelrc 文件具体根据实际情况添加相关 babel 插件配置，以下仅仅是举例. 详细配置见：https://easy-team.github.io...
 coverImage: null
 createTime: 2019-10-05T03:26:29.000Z 
 upateTime: 2019-10-05T03:26:30.000Z
@@ -24,7 +24,7 @@ npm install easywebpack-cli -g
 
 ### 添加 `${app_root}/.babelrc` 文件
 
-> 具体根据实际情况添加相关 babel 插件配置，以下仅仅是举例. 详细配置见：[https://www.yuque.com/easy-team/easywebpack/babel](https://www.yuque.com/easy-team/easywebpack/babel)
+> 具体根据实际情况添加相关 babel 插件配置，以下仅仅是举例. 详细配置见：[https://easy-team.github.io/easywebpack/babel](https://easy-team.github.io/easywebpack/babel)
 
 
 - babel 7 配置
@@ -241,13 +241,13 @@ npm i easywebpack-cli  -g
 
 ### Sass/Less/Stylus 配置
 
-[https://www.yuque.com/easy-team/easywebpack/css](https://www.yuque.com/easy-team/easywebpack/css)
+[https://easy-team.github.io/easywebpack/css](https://easy-team.github.io/easywebpack/css)
 
 ### 
 
 ### 热更新实现
 
-[https://www.yuque.com/easy-team/easywebpack/hot](https://www.yuque.com/easy-team/easywebpack/hot)
+[https://easy-team.github.io/easywebpack/hot](https://easy-team.github.io/easywebpack/hot)
 
 
   

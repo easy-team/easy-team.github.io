@@ -24,12 +24,12 @@ easywebpack 体系目前内置 Babel 为 6 ，因涉及底层改动以及兼容�
   - @easy-team/easywebpack-cli: ^4.0.0 替换  easywebpack-cli
   - @easy-team/easywebpack-react: ^4.0.0 替换  easywebpack-react
   - @easy-team/easywebpack-vue: ^4.0.0 替换  easywebpack-vue
-  - .babelrc 依赖的插件修改为  @babel 模式， 插件对应关系见 [babel 升级](https://www.yuque.com/easy-team/easywebpack/babel7)
+  - .babelrc 依赖的插件修改为  @babel 模式， 插件对应关系见 [babel 升级](https://easy-team.github.io/easywebpack/babel7)
 
 - **方式二：覆盖内置 babel 依赖和配置  **
 
 
-<br />[https://www.yuque.com/easy-team/easywebpack/babel7](https://www.yuque.com/easy-team/easywebpack/babel7)
+<br />[https://easy-team.github.io/easywebpack/babel7](https://easy-team.github.io/easywebpack/babel7)
 
 ### 
 
@@ -101,15 +101,15 @@ easywebpack 体系目前内置 Babel 为 6 ，因涉及底层改动以及兼容�
 
 #### 解决方案
 
-- Egg + Vue 配置优化：[https://www.yuque.com/easy-team/egg-vue/babel](https://www.yuque.com/easy-team/egg-vue/babel)
+- Egg + Vue 配置优化：[/egg-vue/babel](/egg-vue/babel)
 
-- Egg + React 配置优化：[https://www.yuque.com/easy-team/egg-react/babel](https://www.yuque.com/easy-team/egg-react/babel)
+- Egg + React 配置优化：[https://easy-team.github.io/egg-react/babel](https://easy-team.github.io/egg-react/babel)
 
 
 
 ## babel 升级
 
-- [https://www.yuque.com/easy-team/easywebpack/babel7](https://www.yuque.com/easy-team/easywebpack/babel7)
+- [https://easy-team.github.io/easywebpack/babel7](https://easy-team.github.io/easywebpack/babel7)
 
 
   

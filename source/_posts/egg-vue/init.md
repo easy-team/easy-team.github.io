@@ -3,7 +3,7 @@
 id: 685667
 space: egg-vue
 slug: init
-url: /egg-vue/init
+url: https://easy-team.github.io/egg-vue/init
 title: 快速开始
 summary: 基于 Egg + Vue + Webpack 服务端渲染开发指南1. 项目初始化1.1 easywebpack-cli 脚手架初始化项目安装脚手架 npm install easywebpack-cli -g 命令行，然后就可以使用 easywebpack 或 easy 命令命令行运行 eas...
 coverImage: null
@@ -102,7 +102,7 @@ npm start  // egg-scripts start
 
 - 通过 `easywebpack-cli` 统一构建，支持 dev，test，prod 模式构建
 
-- `easywebpack-cli` 通过项目根目录下的 `webpack.config.js` 配置文件构造出 Webpack 实际的配置文件，配置项请见 [webpack.config.js](https://www.yuque.com/easy-team/easywebpack/config)
+- `easywebpack-cli` 通过项目根目录下的 `webpack.config.js` 配置文件构造出 Webpack 实际的配置文件，配置项请见 [webpack.config.js](https://easy-team.github.io/easywebpack/config)
 
 - 获取 Webpack 实际的配置文件, [egg-webpack](https://github.com/easy-team/egg-webpack) 会使用到该功能。构建会根据 `webpackConfigList.length` 启动对应个数的 Webpack 编译实例，这里会同时启动两个 Webpack 构建服务, 客户端jsbundle构建，端口9000, 服务端jsbundle构建端口9001。默认端口为9000, 端口依次递增。
 
@@ -161,7 +161,7 @@ module.exports = {
 
 #### 5.1.1 多页面前端页面实现
 
-在app/web/page 目录下面创建home目录, home.vue 文件, Webpack自动根据.vue文件创建entry入口, 具体实现请见[webpack.config.js](https://www.yuque.com/easy-team/easywebpack/config)
+在app/web/page 目录下面创建home目录, home.vue 文件, Webpack自动根据.vue文件创建entry入口, 具体实现请见[webpack.config.js](https://easy-team.github.io/easywebpack/config)
 
 - home.vue 编写界面逻辑, 根元素为layout(自定义组件, 全局注册, 统一的html, meta, header, body, 你可以自定义 title，description，keywords SEO信息，更多信息请扩展layout).
 

@@ -3,7 +3,7 @@
 id: 685668
 space: egg-vue
 slug: start
-url: /egg-vue/start
+url: https://easy-team.github.io/egg-vue/start
 title: 从零开始
 summary: 从零开始搭建 Egg + Vue + Webpack 服务端渲染项目1. 初始化环境安装 Node LST (8.x.x) 环境： https://nodejs.org/zh-cn2. 初始化 egg 项目https://github.com/eggjs/egg-init/blob/maste...
 coverImage: null

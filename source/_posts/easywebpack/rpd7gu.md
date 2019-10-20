@@ -66,7 +66,7 @@ module.exports = {
 
 ## Egg SSR Babel 构建优化
 
-[https://www.yuque.com/easy-team/ves/babel](https://www.yuque.com/easy-team/ves/babel)
+[https://easy-team.github.io/ves/babel](https://easy-team.github.io/ves/babel)
 
 
   

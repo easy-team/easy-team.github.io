@@ -3,7 +3,7 @@
 id: 880830
 space: egg-vue
 slug: config
-url: /egg-vue/config
+url: https://easy-team.github.io/egg-vue/config
 title: 配置说明
 summary: webpack.config.jseasywebpack@4.8.0 开始支持，因为有了默认配置，所以最新的骨架项目中，webpack.config.js 文件为非必须配置。使用 node-glob 遍历文件。下面配置会自动遍历 app/web/page  目录的所有 .vue 文件作为 en...
 coverImage: null
@@ -45,7 +45,7 @@ module.exports = {
 - 自定义 entry 代码模板
 
 
-[https://www.yuque.com/easy-team/easywebpack/entry](https://www.yuque.com/easy-team/easywebpack/entry)
+[https://easy-team.github.io/easywebpack/entry](https://easy-team.github.io/easywebpack/entry)
 
 
   

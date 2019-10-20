@@ -16,7 +16,7 @@ layout: doc
 
 
 
-首先来看一下一张完整Native与JavaScript交互原理图:
+首先来看一下一张完整Native与JavaScript交互原理图(来自网络，现找不到原地址了):
 
 ![](https://raw.githubusercontent.com/hubcarl/hubcarl.github.io/master/_posts/images/react/rn-bridge.png#width=)
 

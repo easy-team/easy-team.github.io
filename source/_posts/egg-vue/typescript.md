@@ -3,7 +3,7 @@
 id: 685676
 space: egg-vue
 slug: typescript
-url: /egg-vue/typescript
+url: https://easy-team.github.io/egg-vue/typescript
 title: TypeScript
 summary: TypeScript 构建支持Node 启用 typescript 编译 egg-bin dev -r egg-ts-helper/register 实现开发 tsc -p tsconfig.json 编译package.json 运行脚本{   &quot;scripts&quot;: { ...
 coverImage: null
@@ -83,9 +83,9 @@ module.exports = {
 
 ## 注意事项
 
-- [https://www.yuque.com/easy-team/easywebpack/typescript](https://www.yuque.com/easy-team/easywebpack/typescript)
+- [https://easy-team.github.io/easywebpack/typescript](https://easy-team.github.io/easywebpack/typescript)
 
-- [https://www.yuque.com/easy-team/easywebpack/problem](https://www.yuque.com/easy-team/easywebpack/problem)
+- [https://easy-team.github.io/easywebpack/problem](https://easy-team.github.io/easywebpack/problem)
 
 
 

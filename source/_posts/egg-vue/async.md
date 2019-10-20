@@ -3,7 +3,7 @@
 id: 685674
 space: egg-vue
 slug: async
-url: /egg-vue/async
+url: https://easy-team.github.io/egg-vue/async
 title: 异步加载
 summary: Component Async Load Render / 组件异步加载渲染1. JavaScript File Code Spliting 代码分离Webpack打包是把所有js代码打成一个js文件，我们可以通过 CommonsChunkPlugin 分离出公共组件，但这远远不够。 实际业务...
 coverImage: null

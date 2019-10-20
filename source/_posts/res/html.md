@@ -15,7 +15,7 @@ layout: doc
 
 ## React + Nunjucks 静态页面前端渲染
 
-> Webpack 根据 HTML 模板 直接构建成静态 HTML 页面，然后通过 [Nunjucks 执行页面渲染.](https://www.yuque.com/easy-team/egg-react/web)
+> Webpack 根据 HTML 模板 直接构建成静态 HTML 页面，然后通过 [Nunjucks 执行页面渲染.](https://easy-team.github.io/egg-react/web)
 
 
 - ${root}/app/controller/render.ts
@@ -36,7 +36,7 @@ export default class ReactController extends Controller {
 - config/res.config.js
 
 ```typescript
-// https://www.yuque.com/easy-team/egg-react/config
+// https://easy-team.github.io/egg-react/config
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const resolve = (filepath) => path.resolve(__dirname, '..', filepath);

@@ -131,7 +131,7 @@ app.use(require("koa-webpack-hot-middleware")(compiler));
 
 ## 相关文档
 
-- [easywebpack devServer实现](https://www.yuque.com/easy-team/easywebpack/ed847g)
+- [easywebpack devServer实现](https://easy-team.github.io/easywebpack/ed847g)
 - [Webpack 热更新实现原理分析](https://zhuanlan.zhihu.com/p/30623057)
 
   

@@ -3,7 +3,7 @@
 id: 2787947
 space: egg-vue
 slug: html
-url: /egg-vue/html
+url: https://easy-team.github.io/egg-vue/html
 title: HTML前端渲染
 summary: 背景在 前端渲染模式 和 asset 渲染模式 章节讲到了基于 React 的前端渲染模式，但都依赖  egg-view-react-ssr 插件，那如何基于已有 egg 模板引擎 (egg-view-nunjucks 或 egg-view-ejs) + Webpack 完全自定义前端方案呢？...
 coverImage: null
@@ -15,12 +15,12 @@ layout: doc
 
 ## 背景
 
-在 [前端渲染模式](https://www.yuque.com/easy-team/egg-vue/web) 和 [asset 渲染模式](https://www.yuque.com/easy-team/egg-vue/web) 章节讲到了基于 React 的前端渲染模式，但都依赖  [egg-view-react-ssr](https://github.com/easy-team/egg-view-vue-ssr) 插件，那如何基于已有 egg 模板引擎 ([egg-view-nunjucks](https://github.com/eggjs/egg-view-nunjucks) 或 [egg-view-ejs](https://github.com/eggjs/egg-view-ejs)) + Webpack 完全自定义前端方案呢？
+在 [前端渲染模式](https://easy-team.github.io/egg-vue/web) 和 [asset 渲染模式](https://easy-team.github.io/egg-vue/web) 章节讲到了基于 React 的前端渲染模式，但都依赖  [egg-view-react-ssr](https://github.com/easy-team/egg-view-vue-ssr) 插件，那如何基于已有 egg 模板引擎 ([egg-view-nunjucks](https://github.com/eggjs/egg-view-nunjucks) 或 [egg-view-ejs](https://github.com/eggjs/egg-view-ejs)) + Webpack 完全自定义前端方案呢？
 
 
 ## 关键问题
 
-- 本地开发 Webpack 与 Egg 集成，可以直接使用 [egg-webpack](https://www.yuque.com/easy-team/blog/wumyiw)， 该插件可以独立使用, 当然你可以实现。
+- 本地开发 Webpack 与 Egg 集成，可以直接使用 [egg-webpack](https://easy-team.github.io/blog/wumyiw)， 该插件可以独立使用, 当然你可以实现。
 - 通过 [egg-view-nunjucks](https://github.com/eggjs/egg-view-nunjucks) 或 [egg-view-ejs](https://github.com/eggjs/egg-view-ejs) 插件进行数据绑定
 - 通过 `html-webpack-plugin`  插件生成 HTML 文件，并自动注入 JS/CSS 依赖
 - 本地开发时，需要通过 `write-file-webpack-plugin`  插件把 Webpack HTML 文件写到本地。Webpack 默认是在内存里面，无法直接读取。
@@ -125,7 +125,7 @@ module.exports = class AppController extends egg.Controller {
 ```
 
 - webpack.config.js 配置 
-> 该配置基于 easywebpack 配置，如果要用原生 webpack 请参考：[https://www.yuque.com/easy-team/blog/wumyiw](https://www.yuque.com/easy-team/blog/wumyiw)
+> 该配置基于 easywebpack 配置，如果要用原生 webpack 请参考：[https://easy-team.github.io/blog/wumyiw](https://easy-team.github.io/blog/wumyiw)
 
 
 ```javascript
@@ -153,7 +153,7 @@ module.exports = {
 
 ## 依赖插件
 
-- [egg-webpack](https://www.yuque.com/easy-team/blog/wumyiw)
+- [egg-webpack](https://easy-team.github.io/blog/wumyiw)
 - [egg-view-nunjucks](https://github.com/eggjs/egg-view-nunjucks) 
 - [write-file-webpack-plugin](https://github.com/gajus/write-file-webpack-plugin)
 - [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin)

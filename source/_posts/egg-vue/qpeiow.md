@@ -3,7 +3,7 @@
 id: 1231914
 space: egg-vue
 slug: qpeiow
-url: /egg-vue/qpeiow
+url: https://easy-team.github.io/egg-vue/qpeiow
 title: 入口实现
 summary: 服务端渲染模式需要对同一份 vue 文件构建出两份 JSBundle 文件出来，一份给 Node 渲染使用，一份给浏览器渲染使用，但 Node 和浏览器文件初始化代码是不一样的，这就需要我们针对入口代码进行分别实现。这里提供三种实现方案，请根据项目需要选择合适的方案。方案一： 完全自定义入口代...
 coverImage: null
@@ -122,7 +122,7 @@ export default new App({
 
 ## 方案二： 自定义入口代码模板化
 
-> easywebpack 提供了通过 配置 [entry.loader 实现入口代码模板化](https://www.yuque.com/easy-team/easywebpack/entry)，并且代码模板完全有项目自己实现. 项目只需要实现对应的 loader 即可。这里仅提供代码基本实现，请根据实际项目情况进行修改。
+> easywebpack 提供了通过 配置 [entry.loader 实现入口代码模板化](https://easy-team.github.io/easywebpack/entry)，并且代码模板完全有项目自己实现. 项目只需要实现对应的 loader 即可。这里仅提供代码基本实现，请根据实际项目情况进行修改。
 
 
 - 编写 webpack 服务端模式构建 loader 代码 `${app_root}/app/web/framework/vue/entry/server-loader.js`
@@ -263,6 +263,6 @@ module.exports = {
 
 ### entry 更多配置
 
-[https://www.yuque.com/easy-team/easywebpack/entry](https://www.yuque.com/easy-team/easywebpack/entry)
+[https://easy-team.github.io/easywebpack/entry](https://easy-team.github.io/easywebpack/entry)
 
   

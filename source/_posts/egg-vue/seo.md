@@ -3,7 +3,7 @@
 id: 685675
 space: egg-vue
 slug: seo
-url: /egg-vue/seo
+url: https://easy-team.github.io/egg-vue/seo
 title: SEO实现
 summary: Egg + Vue SSR SEO 实现MVVM 服务端渲染相比前端渲染，支持SEO，更快的首屏渲染，相比传统的模板引擎，更好的组件化，前后端模板共用。在 Egg + Vue 的方案里面, HTML head 里面 meta 信息也作为 Vue 服务端渲染的一部分, 和普通的数据绑定没有什么差别。在实现上面, 考虑到页面有统一的 HTML, header, footer, body 骨架, 可以结合 Vue 的 slot 封装成一个统一的 layout 组件。一. layout...
 coverImage: null

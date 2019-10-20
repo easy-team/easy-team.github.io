@@ -5,7 +5,7 @@ space: blog
 slug: dxrrhq
 url: /blog/dxrrhq
 title: Webpack 4 编译内存泄漏
-summary: 增加内存堆栈大小(只能缓解，不能根除) &quot;scripts&quot;: {   &quot;dev&quot;:  &quot;node --max_old_space_size=4096 index.js&quot; } 通过  node-heapdump 获取内存堆栈信息const f...
+summary: 增加内存堆栈大小(只能缓解，不能根除) node --max_old_space_size=4096 index.js 通过  node-heapdump 获取内存堆栈信息
 coverImage: null
 createTime: 2018-11-05T08:16:33.000Z 
 upateTime: 2019-05-31T02:11:15.000Z

@@ -3,7 +3,7 @@
 id: 685678
 space: egg-vue
 slug: pwa
-url: /egg-vue/pwa
+url: https://easy-team.github.io/egg-vue/pwa
 title: Service Worker
 summary: Egg + Vue/React SSR 使用 service workereasywebpack 默认生成的 service-worker.js 是在 ${app_root}/public/service-worker.js这里. 这样 service-worker.js 访问路径是 http://127.0.0.1:7001/public/service-worker.js。将 service worker 文件注册为 /public/service-worker.js，那么，service...
 coverImage: null

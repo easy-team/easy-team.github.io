@@ -28,7 +28,7 @@ layout: doc
 
 
 ## React 服务端渲染
-> [https://www.yuque.com/easy-team/egg-react/node](https://www.yuque.com/easy-team/egg-react/node)
+> [https://easy-team.github.io/egg-react/node](https://easy-team.github.io/egg-react/node)
 > - 在 Node 服务端运行 jsbundle，并渲染成完整的 HTML 内容返回给客户端
 
 > - 使用 ctx.render 进行 React 服务端渲染，文件名为 Webpack entry 文件名，对应文件为 `app/view` 目录
@@ -69,7 +69,7 @@ export default class AdminController extends Controller {
 
 ## React + Nunjucks 静态页面前端渲染
 
-Webpack 根据 HTML 模板 直接构建成静态 HTML 页面，然后通过 [Nunjucks 执行页面渲染.](https://www.yuque.com/easy-team/egg-react/web)<br />
+Webpack 根据 HTML 模板 直接构建成静态 HTML 页面，然后通过 [Nunjucks 执行页面渲染.](https://easy-team.github.io/egg-react/web)<br />
 
 - ${root}/app/controller/render.ts
 
@@ -89,7 +89,7 @@ export default class ReactController extends Controller {
 - config/res.config.js
 
 ```typescript
-// https://www.yuque.com/easy-team/egg-react/config
+// https://easy-team.github.io/egg-react/config
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const resolve = (filepath) => path.resolve(__dirname, '..', filepath);
@@ -111,7 +111,7 @@ module.exports = {
 
 ## React + Nunjucks Asset前端渲染
 
-> [https://www.yuque.com/easy-team/egg-react/asset](https://www.yuque.com/easy-team/egg-react/asset)  
+> [https://easy-team.github.io/egg-react/asset](https://easy-team.github.io/egg-react/asset)  
 
 
 - ${root}/app/controller/render.ts

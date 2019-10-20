@@ -3,7 +3,7 @@
 id: 685673
 space: egg-vue
 slug: online
-url: /egg-vue/online
+url: https://easy-team.github.io/egg-vue/online
 title: 部署流程
 summary: 项目开发在 egg-vue-webpack-boilerplate 骨架项目中, 提供了一些demo, 如果要进行新项目开发，可以删除部分文件：app/web/page 是页面目录。下面的每个目录都是一个单独的页面，其中 app 目录是一个单页面服务端渲染例子，其他是简单的 Vue 服务端渲染...
 coverImage: null
@@ -124,7 +124,7 @@ npm run build
 
 #### 打包上传
 
-> 这里需要你自己实现把构建好的文件和项目文件一起打成 zip 或 tar 包，然后上传到部署平台进行部署。参数配置请见：[https://www.yuque.com/easy-team/easywebpack/build](https://www.yuque.com/easy-team/easywebpack/build)
+> 这里需要你自己实现把构建好的文件和项目文件一起打成 zip 或 tar 包，然后上传到部署平台进行部署。参数配置请见：[https://easy-team.github.io/easywebpack/build](https://easy-team.github.io/easywebpack/build)
 
 
 - Node 端项目源代码需要打包上传，包括 config,  app 目录 以及app/web/view（app/web 目录除外）

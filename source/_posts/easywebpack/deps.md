@@ -56,7 +56,7 @@ easywebpack 3.5.0 新增自定义插件 webpack-manifest-resource-plugin 替换 
 ```
 
 
-- manifest CDN 支持，请见 [https://www.yuque.com/easy-team/easywebpack/cdn](https://www.yuque.com/easy-team/easywebpack/cdn)
+- manifest CDN 支持，请见 [https://easy-team.github.io/easywebpack/cdn](https://easy-team.github.io/easywebpack/cdn)
 
 
 

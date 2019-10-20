@@ -5,7 +5,7 @@ space: res
 slug: asset
 url: /res/asset
 title: Asset 渲染模式
-summary: React + Nunjucks Asset前端渲染https://www.yuque.com/easy-team/egg-react/asset  ${root}/app/controller/render.tsimport { Controller, Context } from '@ea...
+summary: React + Nunjucks Asset前端渲染https://easy-team.github.io/egg-react/asset  ${root}/app/controller/render.tsimport { Controller, Context } from '@ea...
 coverImage: null
 createTime: 2019-10-15T12:32:42.000Z 
 upateTime: 2019-10-15T12:32:42.000Z
@@ -15,7 +15,7 @@ layout: doc
 
 ## React + Nunjucks Asset前端渲染
 
-> [https://www.yuque.com/easy-team/egg-react/asset](https://www.yuque.com/easy-team/egg-react/asset)  
+> [https://easy-team.github.io/egg-react/asset](https://easy-team.github.io/egg-react/asset)  
 
 
 

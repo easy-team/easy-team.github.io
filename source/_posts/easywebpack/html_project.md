@@ -84,9 +84,9 @@ npm build
 > 你可以在[easy-cli](https://github.com/easy-team/easywebpack-cli)生成的骨架项目中看到这样的配置内容。
 
 
-基础配置含义可以参考，通用的[基础配置介绍](https://www.yuque.com/easy-team/frontend/config)。
+基础配置含义可以参考，通用的[基础配置介绍](https://easy-team.github.io/frontend/config)。
 
-（注：有时我们需要获得webpack的原生能力。我们可以借助[额外配置](https://www.yuque.com/easy-team/frontend/oy1dub#2853zo)的方式直接和webpack沟通。）
+（注：有时我们需要获得webpack的原生能力。我们可以借助[额外配置](https://easy-team.github.io/frontend/oy1dub#2853zo)的方式直接和webpack沟通。）
 
 ```javascript
 const path = require('path');

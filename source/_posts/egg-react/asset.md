@@ -15,7 +15,7 @@ layout: doc
 
 ## 背景
 
-在 [前端渲染模式](https://www.yuque.com/easy-team/egg-react/web) 章节讲到了基于 React 的一体化的前端渲染模式，好处是不需要借助第三方模板引擎且无效关注静态资源注入问题，但有两个小的功能限制：
+在 [前端渲染模式](https://easy-team.github.io/egg-react/web) 章节讲到了基于 React 的一体化的前端渲染模式，好处是不需要借助第三方模板引擎且无效关注静态资源注入问题，但有两个小的功能限制：
 
 - layout 模板数据绑定能力较弱
 
@@ -63,7 +63,7 @@ exports.nunjucks = {
 
     **渲染上下文暴露全局 asset 对象，参数如下：**
 
-**asset.js** { Array } 页面依赖的静态 JS 资源 URL 列表， 来自 `config/manifest.json` 具体见 [资源依赖](https://www.yuque.com/easy-team/easywebpack/deps)<br />**asset.css** { Array } 页面依赖的静态 JS 资源 URL 列表，来自`config/manifest.json`具体见 [资源依赖](https://www.yuque.com/easy-team/easywebpack/deps)<br />**asset.state** { Object } 页面渲染原始数据，用于 MV 框架初始化 state
+**asset.js** { Array } 页面依赖的静态 JS 资源 URL 列表， 来自 `config/manifest.json` 具体见 [资源依赖](https://easy-team.github.io/easywebpack/deps)<br />**asset.css** { Array } 页面依赖的静态 JS 资源 URL 列表，来自`config/manifest.json`具体见 [资源依赖](https://easy-team.github.io/easywebpack/deps)<br />**asset.state** { Object } 页面渲染原始数据，用于 MV 框架初始化 state
 
 以下就是基于 nunjucks 的语法的 layout 模板配置, 你可以根据指定渲染引擎编写 layout 文件。
 

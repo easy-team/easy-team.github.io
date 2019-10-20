@@ -5,7 +5,7 @@ space: res
 slug: ssr
 url: /res/ssr
 title: 服务端渲染(SSR)
-summary: Node 代码实现https://www.yuque.com/easy-team/egg-react/node在 Node 服务端运行 jsbundle，并渲染成完整的 HTML 内容返回给客户端使用 ctx.render 进行 React 服务端渲染，文件名为 Webpack entry 文...
+summary: Node 代码实现https://easy-team.github.io/egg-react/node在 Node 服务端运行 jsbundle，并渲染成完整的 HTML 内容返回给客户端使用 ctx.render 进行 React 服务端渲染，文件名为 Webpack entry 文...
 coverImage: null
 createTime: 2019-10-15T12:31:54.000Z 
 upateTime: 2019-10-15T12:31:54.000Z
@@ -15,7 +15,7 @@ layout: doc
 
 ## Node 代码实现
 
-[https://www.yuque.com/easy-team/egg-react/node](https://www.yuque.com/easy-team/egg-react/node)
+[https://easy-team.github.io/egg-react/node](https://easy-team.github.io/egg-react/node)
 
 - 在 Node 服务端运行 jsbundle，并渲染成完整的 HTML 内容返回给客户端<br />
 - 使用 ctx.render 进行 React 服务端渲染，文件名为 Webpack entry 文件名，对应文件为 `app/view` 目录<br />

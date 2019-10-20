@@ -3,7 +3,7 @@
 id: 951475
 space: egg-vue
 slug: open
-url: /egg-vue/open
+url: https://easy-team.github.io/egg-vue/open
 title: 社区作品
 summary: 游戏中心小米游戏中心easy-team https://github.com/zhqlol/edgarserverhttps://www.jianshu.com/p/71fe6197d358https://github.com/MaleWeb/FullStack_Cli
 coverImage: null

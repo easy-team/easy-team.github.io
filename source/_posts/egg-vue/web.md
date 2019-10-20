@@ -3,7 +3,7 @@
 id: 809509
 space: egg-vue
 slug: web
-url: /egg-vue/web
+url: https://easy-team.github.io/egg-vue/web
 title: 前端渲染模式
 summary: 浏览器渲染模式指的是Node 端只会根据包含html, head, body节点信息的 layout 文件输出骨架内容， 页面的实际内容交给浏览器去渲染。调用 egg-view-vue-ssr 的 renderClient 方法实现客户端浏览器渲染在使用上面, 客户端浏览器渲染模式只需要把 render 改成 renderClient。 正常情况下, 能进行 render 运行的, renderClient  方式也能正常运行。Webpack 配置优化，提高构建速度在 ${root}/webpack...
 coverImage: null

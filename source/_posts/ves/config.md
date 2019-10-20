@@ -25,7 +25,7 @@ layout: doc
 
 ## 默认配置
 
-- `config/ves.config.js`  为 [easywebpack](https://www.yuque.com/easy-team/easywebpack) 构建配置文件，除 entry 外，一般无需额外配置(注意该文件为 js 文件)
+- `config/ves.config.js`  为 [easywebpack](https://easy-team.github.io/easywebpack) 构建配置文件，除 entry 外，一般无需额外配置(注意该文件为 js 文件)
 
 - `config/tsconfig.json`  为 前后端 TypeScript 基础配置，后续考虑内置 ves 框架
 

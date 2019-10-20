@@ -87,7 +87,7 @@ module.exports = {
 
 #### .babelrc 配置
 
-> 如果是 SSR 模式，需要按如下 env 配置；前端渲染模式可以不用 env 方式。 BABEL_ENV 使用，请参考 [https://www.yuque.com/easy-team/egg-react/babel](https://www.yuque.com/easy-team/egg-react/babel)
+> 如果是 SSR 模式，需要按如下 env 配置；前端渲染模式可以不用 env 方式。 BABEL_ENV 使用，请参考 [https://easy-team.github.io/egg-react/babel](https://easy-team.github.io/egg-react/babel)
 
 
 ```javascript

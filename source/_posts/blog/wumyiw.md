@@ -13,7 +13,7 @@ wordCount: 1016
 layout: doc
 ---
 
-<br />在 [Egg + React 工程化解决方案](https://www.yuque.com/easy-team/egg-react) 和 [Egg + Vue 工程化解决方案](https://www.yuque.com/easy-team/egg-vue) 方案使用了 [egg-webpack](https://github.com/easy-team/egg-webpack) 实现了 Egg + easywebpack 热更新统一处理。其实 egg-webpack 是可以单独使用的，不耦合 easywebpack 构建配置。下面以 Egg + React + Webpack 为例。
+<br />在 [Egg + React 工程化解决方案](https://easy-team.github.io/egg-react) 和 [Egg + Vue 工程化解决方案](/egg-vue) 方案使用了 [egg-webpack](https://github.com/easy-team/egg-webpack) 实现了 Egg + easywebpack 热更新统一处理。其实 egg-webpack 是可以单独使用的，不耦合 easywebpack 构建配置。下面以 Egg + React + Webpack 为例。
 
 
 ## egg-wepback 介绍
@@ -261,7 +261,7 @@ module.exports = class IndexController extends egg.Controller {
 
 ## 更多实践
 
-- [Egg + Webpack 构建流程](https://www.yuque.com/easy-team/egg-react/build)
-- [Egg + Webpack 自定义前端渲染方案](https://www.yuque.com/easy-team/egg-react/html)
+- [Egg + Webpack 构建流程](https://easy-team.github.io/egg-react/build)
+- [Egg + Webpack 自定义前端渲染方案](https://easy-team.github.io/egg-react/html)
 
   

@@ -3,9 +3,9 @@
 id: 685679
 space: egg-vue
 slug: version
-url: /egg-vue/version
+url: https://easy-team.github.io/egg-vue/version
 title: 插件使用
-summary: 插件流程https://www.yuque.com/easy-team/egg-vue/build插件介绍egg-webpack 用于在 egg 项目中启动 Webpack 编译服务，具体流程请见 构建流程 。 该插件只在本地启用。 该插件除了深度结合 easywebpack 体系使用， 也可...
+summary: 插件流程https://easy-team.github.io/egg-vue/build插件介绍egg-webpack 用于在 egg 项目中启动 Webpack 编译服务，具体流程请见 构建流程 。 该插件只在本地启用。 该插件除了深度结合 easywebpack 体系使用， 也可...
 coverImage: null
 createTime: 2019-02-15T03:30:02.000Z 
 upateTime: 2019-06-15T15:47:15.000Z
@@ -14,7 +14,7 @@ layout: doc
 ---
 
 ## 插件流程
-> [https://www.yuque.com/easy-team/egg-vue/build](https://www.yuque.com/easy-team/egg-vue/build)
+> [https://easy-team.github.io/egg-vue/build](https://easy-team.github.io/egg-vue/build)
 
 ![](https://cdn.nlark.com/yuque/0/2019/png/116733/1550044986546-7774425c-9f73-4c23-8a0d-ff79fd56e7d1.png#width=827)
 
@@ -24,7 +24,7 @@ layout: doc
 
 ### [egg-webpack](https://github.com/easy-team/egg-webpack) 
 
-> 用于在 egg 项目中启动 Webpack 编译服务，具体流程请见 [构建流程 。 ](https://www.yuque.com/easy-team/egg-vue/build)该插件只在本地启用。 该插件除了深度结合 easywebpack 体系使用， 也可以单独使用，这个时候需要你自己编写 webpack 配置。
+> 用于在 egg 项目中启动 Webpack 编译服务，具体流程请见 [构建流程 。 ](https://easy-team.github.io/egg-vue/build)该插件只在本地启用。 该插件除了深度结合 easywebpack 体系使用， 也可以单独使用，这个时候需要你自己编写 webpack 配置。
 
 
 
@@ -100,11 +100,11 @@ module.exports = class IndexController extends egg.Controller {
 
 #### 内置方案
 
-- [服务端渲染模式 ](https://www.yuque.com/easy-team/egg-vue/node)
+- [服务端渲染模式 ](https://easy-team.github.io/egg-vue/node)
 
-- [前端渲染模式](https://www.yuque.com/easy-team/egg-vue/web)
+- [前端渲染模式](https://easy-team.github.io/egg-vue/web)
 
-- [Asset 渲染模式](https://www.yuque.com/easy-team/egg-vue/asset)
+- [Asset 渲染模式](https://easy-team.github.io/egg-vue/asset)
 
 
 

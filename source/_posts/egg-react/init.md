@@ -145,7 +145,7 @@ module.exports = {
 
 #### 5.1.1 多页面前端页面实现
 
-在app/web/page 目录下面创建 home 目录 和 home.jsx 文件, Webpack 自动根据 .jsx 文件创建 entry入口, 具体实现请见[webpack.config.js](https://www.yuque.com/easy-team/easywebpack/config)
+在app/web/page 目录下面创建 home 目录 和 home.jsx 文件, Webpack 自动根据 .jsx 文件创建 entry入口, 具体实现请见[webpack.config.js](https://easy-team.github.io/easywebpack/config)
 
 - home.jsx 以组件的方式实现页面逻辑
 

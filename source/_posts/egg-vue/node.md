@@ -3,7 +3,7 @@
 id: 810030
 space: egg-vue
 slug: node
-url: /egg-vue/node
+url: https://easy-team.github.io/egg-vue/node
 title: 服务端渲染模式
 summary: Egg + Vue 服务端 Node 渲染模式目前 egg-view-vue-ssr 支持 服务端渲染模式 和 前端渲染模式 两种渲染模式这里服务端渲染指的是编写的 Vue 组件在 Node 服务端直接编译成完整的HTML, 然后直接输出给浏览器。MVVM 服务端渲染相比前端渲染，支持SEO，...
 coverImage: null
@@ -129,6 +129,6 @@ export default class App {
 
 ### Egg + Vue 客户端浏览器渲染模式
 
-[https://www.yuque.com/easy-team/egg-vue/wekmet](https://www.yuque.com/easy-team/egg-vue/wekmet)
+[https://easy-team.github.io/egg-vue/wekmet](https://easy-team.github.io/egg-vue/wekmet)
 
   

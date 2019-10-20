@@ -5,13 +5,14 @@ space: blog
 slug: sg8avg
 url: /blog/sg8avg
 title: Babel 构建优化
-summary: 在进行 Egg + Vue 进行 SSR 模式开发时，运行 npm run dev  后你会看到如下界面， 启动了两个 Webpack 构建实例：Node 模式 和 Web 模式。SSR 运行需要 Webapck 单独构建 target: node   和 target: web  主要的差异...
+summary: 在进行 Egg + Vue 进行 SSR 模式开发时，运行 npm run dev  后你会看到如下界面， 启动了两个 Webpack 构建实例：Node 模式 和 Web 模式。
 coverImage: https://cdn.nlark.com/yuque/0/2019/png/116733/1560616304692-20f027c3-90d3-4ba1-b406-7c71f0838826.png
 createTime: 2019-06-15T16:31:45.000Z 
 upateTime: 2019-06-15T16:31:45.000Z
 wordCount: 727
 layout: doc
 ---
+
 在进行 Egg + Vue 进行 SSR 模式开发时，运行 `npm run dev`  后你会看到如下界面， 启动了两个 Webpack 构建实例：Node 模式 和 Web 模式。SSR 运行需要 Webapck 单独构建 `target: node`   和 `target: web`  主要的差异在于 Webpack需要处理 require 机制以及磨平 Node 和 浏览器运行环境的差异。
 
 ![](https://cdn.nlark.com/yuque/0/2018/png/116733/1536128449742-0024eb69-d2c7-4e47-8426-ff2cc85396d5.png#align=left&display=inline&height=83&originHeight=97&originWidth=962&status=done&width=827)
@@ -100,7 +101,7 @@ layout: doc
 
 ## Babel 7 升级
 
-[https://www.yuque.com/easy-team/easywebpack/babel7](https://www.yuque.com/easy-team/easywebpack/babel7)
+[https://easy-team.github.io/easywebpack/babel7](https://easy-team.github.io/easywebpack/babel7)
 
 
   

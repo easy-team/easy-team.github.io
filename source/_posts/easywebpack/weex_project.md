@@ -83,6 +83,6 @@ if (process.env.NODE_ENV === 'development') {
 
 ## License
 
-[MIT](https://www.yuque.com/easy-team/frontend/weex/LICENSE)
+[MIT](https://easy-team.github.io/frontend/weex/LICENSE)
 
   

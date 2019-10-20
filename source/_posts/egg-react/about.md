@@ -15,8 +15,8 @@ layout: doc
 
 ## 常见问题汇总
 
-- [AntD 按需加载与主题定制 ](https://www.yuque.com/easy-team/egg-react/antd)以及 [issue](https://github.com/easy-team/egg-react-webpack-boilerplate/issues/11)
-- [如果实现 Egg + React + Webpack  热更新？](https://www.yuque.com/easy-team/blog/wumyiw)
+- [AntD 按需加载与主题定制 ](https://easy-team.github.io/egg-react/antd)以及 [issue](https://github.com/easy-team/egg-react-webpack-boilerplate/issues/11)
+- [如果实现 Egg + React + Webpack  热更新？](https://easy-team.github.io/blog/wumyiw)
 - [服务端渲染如何使用 react-loadabel 实现异步加载](https://github.com/easy-team/egg-react-webpack-boilerplate/issues/23)
 
 

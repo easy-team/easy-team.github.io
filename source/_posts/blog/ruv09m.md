@@ -144,7 +144,7 @@ app.vue.renderBundle = (name, context, options) => {
 
 ## 解决方案
 
-- Egg + Vue：[https://www.yuque.com/easy-team/egg-vue/build](https://www.yuque.com/easy-team/egg-vue/build)
-- Egg + React ： [https://www.yuque.com/easy-team/egg-react/build](https://www.yuque.com/easy-team/egg-react/build)
+- Egg + Vue：[/egg-vue/build](/egg-vue/build)
+- Egg + React ： [https://easy-team.github.io/egg-react/build](https://easy-team.github.io/egg-react/build)
 
   

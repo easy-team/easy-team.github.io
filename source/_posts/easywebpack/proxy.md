@@ -351,7 +351,7 @@ DNS配置以后, 就可以在手机上面通过域名([http://proxy.test.com:500
 
 ### 接口代理
 
-easywebpack 4 版本支持了本地接口代理转发的功能, 主要解决本地开发跨域问题. 具体见：[https://www.yuque.com/easy-team/easywebpack/ed847g](https://www.yuque.com/easy-team/easywebpack/ed847g)
+easywebpack 4 版本支持了本地接口代理转发的功能, 主要解决本地开发跨域问题. 具体见：[https://easy-team.github.io/easywebpack/ed847g](https://easy-team.github.io/easywebpack/ed847g)
 
 
 

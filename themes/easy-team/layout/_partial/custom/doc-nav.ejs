@@ -1,4 +1,4 @@
-<div class="side-nav docsidenav">
+<div class="side-nav docsidenav" style="width:<%if(page.space=='blog'){%>400px<%}%>">
     <div class="doc-left-nav-title"><%- page.space %></div>
     <ul class="menu-list mobile-menu-list">
         <% site.data[page.space].forEach(function(doc) { %>
@@ -12,7 +12,8 @@
                     <ul <%if(theme.navMenu&&theme.navMenu.bgColor){%> style="display:block; background: <%-theme.navMenu.bgColor%>;"<%}%> >
                         <% for(let childrenDoc of doc.children){ %>
                             <li>   
-                                <a id="m-nav-item-<%- childrenDoc.space %>-<%- childrenDoc.slug %>" href="<%- url_for(childrenDoc.url)%> " style="margin-left:<%if(theme.navMenu&&theme.navMenu.mleft){%>50px<%}else{%>75px<%}%>";>
+                                <a id="m-nav-item-<%- childrenDoc.space %>-<%- childrenDoc.slug %>" href="<%- url_for(childrenDoc.url)%> " 
+                                    style="padding:0px 0px;margin-left:<%if(theme.navMenu&&theme.navMenu.mleft){%>50px<%}else{%>75px<%}%>";>
                                 <% if (childrenDoc.icon && childrenDoc.icon.length > 0) { %>
                                 <i class="fa <%- childrenDoc.icon %>" style="position: absolute;left:<%if(theme.navMenu&&theme.navMenu.mleft){%>28px<%}else{%>50px<%}%>" ></i>
                                 <% } %>
@@ -36,9 +37,15 @@
             <% } %>
         <% }) %>
         <li><div class="divider"></div></li>
+        
         <li>
-            <a href="<%- theme.githubLink.url %>" class="waves-effect waves-light" target="_blank">
-                <i class="fab fa-github-square fa-fw"></i><%- theme.githubLink.title %>
+            <a href="<%- site.data.config[page.space].btn.yuque %>" class="waves-effect waves-light" target="_blank">
+                <i class="fas fa-fw fa-link"></i>语雀文档
+            </a>
+        </li>
+        <li>
+            <a href="<%- site.data.config[page.space].btn.url %>" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i><%- site.data.config[page.space].btn.name %>
             </a>
         </li>
     </ul>

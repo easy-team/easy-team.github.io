@@ -3,7 +3,7 @@
 id: 946940
 space: egg-vue
 slug: case
-url: /egg-vue/case
+url: https://easy-team.github.io/egg-vue/case
 title: 项目一览
 summary: Egg + Vue 服务端渲染项目地址：https://github.com/easy-team/egg-vue-webpack-boilerplateEgg + Vue 前端渲染项目地址：https://github.com/easy-team/egg-vue-webpack-boilerplat...
 coverImage: null
@@ -38,7 +38,7 @@ layout: doc
 
 ## 社区作品
 
-- [https://www.yuque.com/easy-team/egg-vue/open](https://www.yuque.com/easy-team/egg-vue/open)
+- [https://easy-team.github.io/egg-vue/open](https://easy-team.github.io/egg-vue/open)
 
 
 
