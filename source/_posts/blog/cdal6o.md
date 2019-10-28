@@ -11,6 +11,8 @@ createTime: 2019-07-29T10:31:41.000Z
 upateTime: 2019-07-29T10:31:41.000Z
 wordCount: 625
 layout: doc
+keywords: egg,egg-view-nunjucks,react nunjucks render
+description: Egg React 前端渲染, Egg React Nunjucks 前端渲染, 静态页面渲染
 ---
 
 ## 背景
