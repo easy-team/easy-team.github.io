@@ -11,6 +11,8 @@ createTime: 2019-10-03T15:05:12.000Z
 upateTime: 2019-10-03T15:05:12.000Z
 wordCount: 346
 layout: doc
+keywords: egg,egg react ssr,egg react server side render, ant ssr
+description: Egg React Server Side Render(Egg React SSR) Webpack Babel 构建配置
 ---
 
 ## Webpack 标准配置

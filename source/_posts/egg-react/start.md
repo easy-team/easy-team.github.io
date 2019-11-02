@@ -11,6 +11,7 @@ createTime: 2019-10-03T13:44:01.000Z
 upateTime: 2019-10-08T11:44:49.000Z
 wordCount: 1356
 layout: doc
+keywords: egg,egg react ssr,egg react server side render, egg react ssr seo
 ---
 
 ## 从零开始搭建 Egg + React + Webpack 服务端渲染项目

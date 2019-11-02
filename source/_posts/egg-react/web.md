@@ -11,6 +11,7 @@ createTime: 2019-10-15T12:03:53.000Z
 upateTime: 2019-10-15T12:03:53.000Z
 wordCount: 524
 layout: doc
+keywords: egg, egg react, egg react ssr,egg react server side render
 ---
 
 ### Egg + React 客户端浏览器渲染模式

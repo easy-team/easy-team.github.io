@@ -4,9 +4,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="构建模式, 前端工程化, node, egg, webpack, easywebpack, ves, res, ssr, react server side render, vue server side render">
-    <meta name="description" content="easywebpack-cli 支持两种开发构建模式： easywebpack 增强模式 和 原生 webpack 模式， 同时在最新相关解决方案中，该文件非必须，也就是可以零配置。
-easywebpack 增强模式（默认）easywebp">
+    <meta name="keywords" content="框架介绍, 前端工程化, node, egg, webpack, easywebpack, ves, res, ssr, react server side render, vue server side render">
+    <meta name="description" content="res – Node React Application  Web FrameworkGitHub:https://github.com/easy-team/res
+框架特性
+Node 端基于 Egg 开发，遵循 Egg 开发规范和 Egg">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -14,7 +15,7 @@ easywebpack 增强模式（默认）easywebp">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>构建模式 | easy-team</title>
+    <title>框架介绍 | easy-team</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -391,485 +392,126 @@ easywebpack 增强模式（默认）easywebp">
     
      <div class="doc-left-nav" style="width:">
         <div class="side-nav docsidenav" style="width:">
-    <div class="doc-left-nav-title">easywebpack</div>
+    <div class="doc-left-nav-title">res</div>
     <ul class="menu-list mobile-menu-list">
         
             
                 <li class="m-nav-item">
-                    <a href="/easywebpack/index" class="waves-effect waves-light" id="m-nav-item-easywebpack-index">
+                    <a href="/res/index" class="waves-effect waves-light" id="m-nav-item-res-index">
                         
                         <i class="fas fa-fw fa-link"></i>
                         
-                        总体介绍
-                    </a>
-                </li>
-            
-        
-            
-                <li class="m-nav-item m-nav-show">
-                    <a href="javascript:;">
-                        <i class="fas fa-fw fa-link"></i>
-                        新手指南
-                        <span class="m-icon"><i class="fas fa-chevron-right"></i></span>
-                    </a>
-                    <ul  style="display:block; background:  ;" >
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-native" href="/easywebpack/native " 
-                                    style="padding-left:75px";>
-                                
-                                <span>快速开始</span>
-                                </a>
-                            </li>
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-about" href="/easywebpack/about " 
-                                    style="padding-left:75px";>
-                                
-                                <span>项目实战</span>
-                                </a>
-                            </li>
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-problem" href="/easywebpack/problem " 
-                                    style="padding-left:75px";>
-                                
-                                <span>常见问题</span>
-                                </a>
-                            </li>
-                         
-                    </ul>
-                </li>
-            
-        
-            
-                <li class="m-nav-item m-nav-show">
-                    <a href="javascript:;">
-                        <i class="fas fa-fw fa-link"></i>
-                        配置构建
-                        <span class="m-icon"><i class="fas fa-chevron-right"></i></span>
-                    </a>
-                    <ul  style="display:block; background:  ;" >
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-config" href="/easywebpack/config " 
-                                    style="padding-left:75px";>
-                                
-                                <span>webpack.config.js</span>
-                                </a>
-                            </li>
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-entry" href="/easywebpack/entry " 
-                                    style="padding-left:75px";>
-                                
-                                <span>entry</span>
-                                </a>
-                            </li>
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-loader" href="/easywebpack/loader " 
-                                    style="padding-left:75px";>
-                                
-                                <span>loaders</span>
-                                </a>
-                            </li>
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-plugin" href="/easywebpack/plugin " 
-                                    style="padding-left:75px";>
-                                
-                                <span>plugins</span>
-                                </a>
-                            </li>
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-ed847g" href="/easywebpack/ed847g " 
-                                    style="padding-left:75px";>
-                                
-                                <span>devServer</span>
-                                </a>
-                            </li>
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-optimizaiton" href="/easywebpack/optimizaiton " 
-                                    style="padding-left:75px";>
-                                
-                                <span>optimizaiton</span>
-                                </a>
-                            </li>
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-build" href="/easywebpack/build " 
-                                    style="padding-left:75px";>
-                                
-                                <span>deploy</span>
-                                </a>
-                            </li>
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-base" href="/easywebpack/base " 
-                                    style="padding-left:75px";>
-                                
-                                <span>扩展配置</span>
-                                </a>
-                            </li>
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-ayrtv3" href="/easywebpack/ayrtv3 " 
-                                    style="padding-left:75px";>
-                                
-                                <span>构建模式</span>
-                                </a>
-                            </li>
-                         
-                    </ul>
-                </li>
-            
-        
-            
-                <li class="m-nav-item m-nav-show">
-                    <a href="javascript:;">
-                        <i class="fas fa-fw fa-link"></i>
-                        开发技巧
-                        <span class="m-icon"><i class="fas fa-chevron-right"></i></span>
-                    </a>
-                    <ul  style="display:block; background:  ;" >
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-debug" href="/easywebpack/debug " 
-                                    style="padding-left:75px";>
-                                
-                                <span>开发调试</span>
-                                </a>
-                            </li>
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-hot" href="/easywebpack/hot " 
-                                    style="padding-left:75px";>
-                                
-                                <span>热更新</span>
-                                </a>
-                            </li>
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-css" href="/easywebpack/css " 
-                                    style="padding-left:75px";>
-                                
-                                <span>Css Style</span>
-                                </a>
-                            </li>
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-postcss" href="/easywebpack/postcss " 
-                                    style="padding-left:75px";>
-                                
-                                <span>PostCss</span>
-                                </a>
-                            </li>
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-proxy" href="/easywebpack/proxy " 
-                                    style="padding-left:75px";>
-                                
-                                <span>域名代理</span>
-                                </a>
-                            </li>
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-var" href="/easywebpack/var " 
-                                    style="padding-left:75px";>
-                                
-                                <span>全局常量</span>
-                                </a>
-                            </li>
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-deps" href="/easywebpack/deps " 
-                                    style="padding-left:75px";>
-                                
-                                <span>资源依赖</span>
-                                </a>
-                            </li>
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-common" href="/easywebpack/common " 
-                                    style="padding-left:75px";>
-                                
-                                <span>公共提取</span>
-                                </a>
-                            </li>
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-speed" href="/easywebpack/speed " 
-                                    style="padding-left:75px";>
-                                
-                                <span>极速编译</span>
-                                </a>
-                            </li>
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-dll" href="/easywebpack/dll " 
-                                    style="padding-left:75px";>
-                                
-                                <span>DLL 构建</span>
-                                </a>
-                            </li>
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-cdn" href="/easywebpack/cdn " 
-                                    style="padding-left:75px";>
-                                
-                                <span>CDN 构建</span>
-                                </a>
-                            </li>
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-pwd" href="/easywebpack/pwd " 
-                                    style="padding-left:75px";>
-                                
-                                <span>PWA 支持</span>
-                                </a>
-                            </li>
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-typescript" href="/easywebpack/typescript " 
-                                    style="padding-left:75px";>
-                                
-                                <span>TypeScript</span>
-                                </a>
-                            </li>
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-cssmodule" href="/easywebpack/cssmodule " 
-                                    style="padding-left:75px";>
-                                
-                                <span>Css Module</span>
-                                </a>
-                            </li>
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-wb66pe" href="/easywebpack/wb66pe " 
-                                    style="padding-left:75px";>
-                                
-                                <span>静态资源</span>
-                                </a>
-                            </li>
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-babel" href="/easywebpack/babel " 
-                                    style="padding-left:75px";>
-                                
-                                <span>Babel 配置</span>
-                                </a>
-                            </li>
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-babel7" href="/easywebpack/babel7 " 
-                                    style="padding-left:75px";>
-                                
-                                <span>Babel 升级</span>
-                                </a>
-                            </li>
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-rpd7gu" href="/easywebpack/rpd7gu " 
-                                    style="padding-left:75px";>
-                                
-                                <span>构建速度</span>
-                                </a>
-                            </li>
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-pdwchd" href="/easywebpack/pdwchd " 
-                                    style="padding-left:75px";>
-                                
-                                <span>构建大小</span>
-                                </a>
-                            </li>
-                         
-                    </ul>
-                </li>
-            
-        
-            
-                <li class="m-nav-item m-nav-show">
-                    <a href="javascript:;">
-                        <i class="fas fa-fw fa-link"></i>
-                        配置方案
-                        <span class="m-icon"><i class="fas fa-chevron-right"></i></span>
-                    </a>
-                    <ul  style="display:block; background:  ;" >
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-abtuv0" href="/easywebpack/abtuv0 " 
-                                    style="padding-left:75px";>
-                                
-                                <span>基础配置</span>
-                                </a>
-                            </li>
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-vue" href="/easywebpack/vue " 
-                                    style="padding-left:75px";>
-                                
-                                <span>Vue 项目构建</span>
-                                </a>
-                            </li>
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-react" href="/easywebpack/react " 
-                                    style="padding-left:75px";>
-                                
-                                <span>React 项目构建</span>
-                                </a>
-                            </li>
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-vue-single" href="/easywebpack/vue-single " 
-                                    style="padding-left:75px";>
-                                
-                                <span>Vue 单页面举例</span>
-                                </a>
-                            </li>
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-mgzlq5" href="/easywebpack/mgzlq5 " 
-                                    style="padding-left:75px";>
-                                
-                                <span>Vue 多页面举例</span>
-                                </a>
-                            </li>
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-in6n2r" href="/easywebpack/in6n2r " 
-                                    style="padding-left:75px";>
-                                
-                                <span>JS 文件打包</span>
-                                </a>
-                            </li>
-                         
-                    </ul>
-                </li>
-            
-        
-            
-                <li class="m-nav-item m-nav-show">
-                    <a href="javascript:;">
-                        <i class="fas fa-fw fa-link"></i>
-                        配置方案
-                        <span class="m-icon"><i class="fas fa-chevron-right"></i></span>
-                    </a>
-                    <ul  style="display:block; background:  ;" >
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-vue_project" href="/easywebpack/vue_project " 
-                                    style="padding-left:75px";>
-                                
-                                <span>Vue 工程方案</span>
-                                </a>
-                            </li>
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-react_project" href="/easywebpack/react_project " 
-                                    style="padding-left:75px";>
-                                
-                                <span>React 工程方案</span>
-                                </a>
-                            </li>
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-html_project" href="/easywebpack/html_project " 
-                                    style="padding-left:75px";>
-                                
-                                <span>HTML 工程方案</span>
-                                </a>
-                            </li>
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-js_project" href="/easywebpack/js_project " 
-                                    style="padding-left:75px";>
-                                
-                                <span>JS 打包工程方案</span>
-                                </a>
-                            </li>
-                        
-                            <li>   
-                                <a id="m-nav-item-easywebpack-weex_project" href="/easywebpack/weex_project " 
-                                    style="padding-left:75px";>
-                                
-                                <span>Weex 工程方案</span>
-                                </a>
-                            </li>
-                         
-                    </ul>
-                </li>
-            
-        
-            
-                <li class="m-nav-item m-nav-show">
-                    <a href="javascript:;">
-                        <i class="fas fa-fw fa-link"></i>
-                        Node方案
-                        <span class="m-icon"><i class="fas fa-chevron-right"></i></span>
-                    </a>
-                    <ul  style="display:block; background:  ;" >
-                         
-                    </ul>
-                </li>
-            
-        
-            
-                <li class="m-nav-item">
-                    <a href="/easywebpack/version" class="waves-effect waves-light" id="m-nav-item-easywebpack-version">
-                        
-                        <i class="fas fa-fw fa-link"></i>
-                        
-                        版本历史
+                        框架介绍
                     </a>
                 </li>
             
         
             
                 <li class="m-nav-item">
-                    <a href="/easywebpack/upgrade" class="waves-effect waves-light" id="m-nav-item-easywebpack-upgrade">
+                    <a href="/res/quickstart" class="waves-effect waves-light" id="m-nav-item-res-quickstart">
                         
                         <i class="fas fa-fw fa-link"></i>
                         
-                        升级指南
+                        快速开始
                     </a>
                 </li>
             
         
             
                 <li class="m-nav-item">
-                    <a href="/easywebpack/v4" class="waves-effect waves-light" id="m-nav-item-easywebpack-v4">
+                    <a href="/res/txcemm" class="waves-effect waves-light" id="m-nav-item-res-txcemm">
                         
                         <i class="fas fa-fw fa-link"></i>
                         
-                        更新历史
+                        项目配置
                     </a>
                 </li>
             
         
             
                 <li class="m-nav-item">
-                    <a href="/easywebpack/open" class="waves-effect waves-light" id="m-nav-item-easywebpack-open">
+                    <a href="/res/develop" class="waves-effect waves-light" id="m-nav-item-res-develop">
                         
                         <i class="fas fa-fw fa-link"></i>
                         
-                        社区作品
+                        项目开发
                     </a>
                 </li>
             
         
             
                 <li class="m-nav-item">
-                    <a href="/easywebpack/rlm0ki" class="waves-effect waves-light" id="m-nav-item-easywebpack-rlm0ki">
+                    <a href="/res/bc3wrz" class="waves-effect waves-light" id="m-nav-item-res-bc3wrz">
                         
                         <i class="fas fa-fw fa-link"></i>
                         
-                        交流反馈
+                        构建发布
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/res/dev" class="waves-effect waves-light" id="m-nav-item-res-dev">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        本地开发
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/res/framework" class="waves-effect waves-light" id="m-nav-item-res-framework">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        公共代码实现
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/res/ssr" class="waves-effect waves-light" id="m-nav-item-res-ssr">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        服务端渲染(SSR)
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/res/csr" class="waves-effect waves-light" id="m-nav-item-res-csr">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        客户端渲染(CSR)
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/res/html" class="waves-effect waves-light" id="m-nav-item-res-html">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        HTML 页面渲染
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/res/asset" class="waves-effect waves-light" id="m-nav-item-res-asset">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        Asset 渲染模式
                     </a>
                 </li>
             
@@ -877,12 +519,12 @@ easywebpack 增强模式（默认）easywebp">
         <li><div class="divider"></div></li>
         
         <li>
-            <a href="https://yuque.com/easy-team/easywebpack" class="waves-effect waves-light" target="_blank">
+            <a href="https://yuque.com/easy-team/res" class="waves-effect waves-light" target="_blank">
                 <i class="fas fa-fw fa-link"></i>语雀文档
             </a>
         </li>
         <li>
-            <a href="https://github.com/easy-team/easywebpack" class="waves-effect waves-light" target="_blank">
+            <a href="https://github.com/easy-team/res" class="waves-effect waves-light" target="_blank">
                 <i class="fab fa-github-square fa-fw"></i>Github
             </a>
         </li>
@@ -894,19 +536,19 @@ easywebpack 增强模式（默认）easywebp">
     <div class="doc-right-nav">
         <div class="card" class="doc-right-card">
             <div class="card-content article-info">
-                <h1 style="margin-top: 12px; text-align: center;">构建模式</h1>
+                <h1 style="margin-top: 12px; text-align: center;">框架介绍</h1>
                 
                 <div class="post-info">
                     <div class="post-date info-break-policy">
                         <i class="far fa-calendar-minus fa-fw"></i>Date:&nbsp;&nbsp;
-                        2019-10-20
+                        2019-10-19
                     </div>
     
                     
                         
                         <div class="info-break-policy">
                             <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                            308
+                            195
                         </div>
                         
     
@@ -929,14 +571,26 @@ easywebpack 增强模式（默认）easywebp">
             <hr class="clearfix" style="margin: 0px 0px;">
             <div class="card-content article-card-content" style="padding-top: 0px;">
                 <div id="articleContent">
-                    <p><strong>easywebpack-cli 支持两种开发构建模式： easywebpack 增强模式 和 原生 webpack 模式， 同时在最新相关解决方案中，该文件非必须，也就是可以零配置。</strong></p>
-<h3 id="easywebpack-增强模式（默认）"><a href="#easywebpack-增强模式（默认）" class="headerlink" title="easywebpack 增强模式（默认）"></a><strong>easywebpack 增强模式（默认）</strong></h3><p>easywebpack 增强模式时，  <code>webpack.config.js</code> 这份配置不是 Webpack 原生的配置文件, 这是专门给 easywebpack-cli`` 使用的配置文件.  这份配置简化了 Webpack 原生配置, 隐藏众多基础，loader, plugin 等细节, 只提供5个左右的基本配置项, 其中 loader, plugin 通过开关开启就可以使用其功能.  在构建时, <code>easywebpack-cli</code> 最终会这份简化的配置转换为 Webpack 原生配置.  当然 easywebpack 增强模式是兼容原生 Webpack 配置项，比如 entry, target, node, resolve, externals, module.noParse, module.alias, module.rules, devtool, performance等配置项。相关文档所讲都是基于 <strong>easywebpack 增强模式。</strong></p>
-<h4 id="开发模式"><a href="#开发模式" class="headerlink" title="开发模式"></a><strong>开发模式</strong></h4><pre class=" language-bash"><code class="language-bash">easy dev</code></pre>
-<h4 id="编译模式"><a href="#编译模式" class="headerlink" title="编译模式"></a>编译模式</h4><pre class=" language-bash"><code class="language-bash">easy build</code></pre>
-<h3 id="原生-webpack-模式-（easywebpack-cli-4-0-0-开始支持）"><a href="#原生-webpack-模式-（easywebpack-cli-4-0-0-开始支持）" class="headerlink" title="原生 webpack 模式 （easywebpack-cli@4.0.0 开始支持）"></a><strong>原生 webpack 模式 （<a href="mailto:easywebpack-cli@4.0.0" target="_blank" rel="noopener">easywebpack-cli@4.0.0</a> 开始支持）</strong></h3><p>你可以使用 <code>easywebpack-cli</code>  对<strong>原生 Webpack 配置</strong>进行构建,  这时候，你需要在 <code>easy</code>  命令后加上 <code>--webpack</code> 配置</p>
-<h4 id="原生-webpack-开发"><a href="#原生-webpack-开发" class="headerlink" title="原生 webpack 开发"></a><strong>原生 webpack 开发</strong></h4><pre class=" language-bash"><code class="language-bash">easy dev --webpack</code></pre>
-<h4 id="本地原生-webpack-编译"><a href="#本地原生-webpack-编译" class="headerlink" title="本地原生 webpack 编译"></a>本地原生 webpack 编译</h4><pre class=" language-bash"><code class="language-bash">easy build --webpack</code></pre>
-<p>更多命令使用，请见 <a href="https://github.com/hubcarl/easywebpack-cli" target="_blank" rel="noopener">easywebpack-cli</a> </p>
+                    <h3 id="res-–-Node-React-Application-Web-Framework"><a href="#res-–-Node-React-Application-Web-Framework" class="headerlink" title="res – Node React Application  Web Framework"></a><a href="https://github.com/easy-team/res" target="_blank" rel="noopener">res</a> – Node React Application  Web Framework</h3><p>GitHub:<a href="https://github.com/easy-team/res" target="_blank" rel="noopener">https://github.com/easy-team/res</a><br /></p>
+<h2 id="框架特性"><a href="#框架特性" class="headerlink" title="框架特性"></a>框架特性</h2><ul>
+<li><p>Node 端基于 Egg 开发，遵循 Egg 开发规范和 Egg 生态，支持 Egg 所有特性，比如插件机制，多进程机制。</p>
+</li>
+<li><p>使用 TypeScript 或 JavaScript 编写前端和Node端代码，支持 ts-node 无编译 和 Webpack 编译开发模式。</p>
+</li>
+<li><p>前端基于 React 框架，默认支持 React 服务端渲染，前端渲染模式，Asset 渲染，HTML 渲染多种渲染模式。</p>
+</li>
+<li><p>默认集成 Css/Sass/Less/Stylus 以及 Css Module 多种样式编写构建支持。</p>
+</li>
+<li><p>整合 Egg,  Webpack, TypeScript 构建工具，内置多进程，Webpack DLL和缓存等编译提速解决方案，并提供强大的 CLI 开发工具</p>
+</li>
+</ul>
+<h2 id="默认插件"><a href="#默认插件" class="headerlink" title="默认插件"></a>默认插件</h2><ul>
+<li><a href="https://github.com/easy-team/res-cli" target="_blank" rel="noopener">res-cli</a></li>
+<li><a href="https://github.com/easy-team/egg-view-react-ssr" target="_blank" rel="noopener">egg-view-react-ssr</a></li>
+<li>egg-view-nunjucks</li>
+<li>egg-webpack</li>
+<li>egg-webpack-react</li>
+</ul>
 
                 </div>
                 <hr/>
@@ -962,7 +616,7 @@ easywebpack 增强模式（默认）easywebp">
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://easy-team.github.io/easywebpack/ayrtv3/">https://easy-team.github.io/easywebpack/ayrtv3/</a>
+                    <a href="https://easy-team.github.io/res/introduction/">https://easy-team.github.io/res/introduction/</a>
                 </span>
             </div>
             <div class="reprint__type">
@@ -972,7 +626,7 @@ easywebpack 增强模式（默认）easywebp">
                         </i>
                     </span>
                     <span class="reprint-info">
-                        <a href="https://yuque.com/easy-team/easywebpack/ayrtv3/" target="_blank" rel="noopener">https://yuque.com/easy-team/easywebpack/ayrtv3/</a>
+                        <a href="https://yuque.com/easy-team/res/introduction/" target="_blank" rel="noopener">https://yuque.com/easy-team/res/introduction/</a>
                     </span>
             </div>
             <div class="reprint__notice">
@@ -1050,24 +704,24 @@ easywebpack 增强模式（默认）easywebp">
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/easywebpack/optimizaiton/">
+                <a href="/res/vlw7bu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="optimizaiton">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="常见问题">
                         
-                        <span class="card-title">optimizaiton</span>
+                        <span class="card-title">常见问题</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            从 webpack 4 开始，会根据你选择的 mode 来执行不同的优化，你可以通过 optimizaiton  节点进行覆盖配置。在 easywebpack  体系中，会进行进步配置简化。easywebpack 默认配置请根据需要，覆盖默认配置runtimeChunk 默认文件名为 runt...
+                            
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2019-10-20
+                            <i class="far fa-clock fa-fw icon-date"></i>2019-10-19
                         </span>
                         <span class="publish-author">
                             
@@ -1087,24 +741,24 @@ easywebpack 增强模式（默认）easywebp">
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/easywebpack/home/">
+                <a href="/res/wf5lvh/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="基本介绍">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="项目开发">
                         
-                        <span class="card-title">基本介绍</span>
+                        <span class="card-title">项目开发</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            easywebpack基于 Webpack 的前端构建工程化解决方案A Simple, Powerful Wepback Front-End Development Solution    使用文档     技术文章     GitHub
+                            
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-10-20
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-10-19
                             </span>
                         <span class="publish-author">
                             

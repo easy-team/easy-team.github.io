@@ -11,6 +11,8 @@ createTime: 2018-11-06T06:00:08.000Z
 upateTime: 2019-05-27T06:11:57.000Z
 wordCount: 368
 layout: doc
+keywords: egg,egg react ssr,egg react server side render, ant ssr
+description: Egg React Server Side Render, Egg React SSR, Egg AntD SSR, Egg React 服务端渲染
 ---
 项目示例： [https://github.com/easy-team/egg-react-webpack-boilerplate/tree/antd-theme](https://github.com/easy-team/egg-react-webpack-boilerplate/tree/antd-theme)
 

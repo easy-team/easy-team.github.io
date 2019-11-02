@@ -11,6 +11,7 @@ createTime: 2019-10-03T14:12:56.000Z
 upateTime: 2019-10-03T14:12:56.000Z
 wordCount: 524
 layout: doc
+keywords: egg,egg react ssr,egg react server side render, ant ssr
 ---
 目前 [egg-view-react-ssr](https://github.com/easy-team/egg-view-react-ssr) 支持 **服务端渲染模式** 和 **前端渲染模式** 两种渲染模式
 

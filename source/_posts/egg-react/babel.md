@@ -11,6 +11,8 @@ createTime: 2019-01-11T09:43:18.000Z
 upateTime: 2019-05-27T06:34:59.000Z
 wordCount: 659
 layout: doc
+keywords: egg,egg react ssr,egg react server side render, ant ssr
+description: Egg React Server Side Render(Egg React SSR) Webpack Babel 构建优化
 ---
 在进行 Egg + React 进行 SSR 模式开发时，运行 `npm run dev`  后你会看到如下界面， 启动了两个 Webpack 构建实例：Node 模式 和 Web 模式。SSR 运行需要 Webapck 单独构建 `target: node`   和 `target: web`  主要的差异在于 Webpack需要处理 require 机制以及磨平 Node 和 浏览器运行环境的差异。
 

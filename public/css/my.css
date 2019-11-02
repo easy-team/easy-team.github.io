@@ -89,13 +89,16 @@
     font-weight: 500;
     height: 48px;
     line-height: 48px;
-    padding: 0 32px;
+    padding: 0 20px;
+    width: 100%;
+    overflow: hidden;
 }
+
 .docsidenav li>a>i, .docsidenav li>a>[class^="mdi-"], .docsidenav li>a li>a>[class*="mdi-"], .docsidenav li>a>i.material-icons {
     float: left;
     height: 48px;
     line-height: 48px;
-    margin: 0 32px 0 0;
+    margin: 0 10px 0 0;
     width: 24px;
     color: rgba(0,0,0,0.54);
 }

@@ -2,6 +2,7 @@
   "res":{
     "title": "res",
     "description": "Node React Web Framework",
+    "keywords": "Egg Frameowrk, Node React SSR framework, Egg React SSR, Egg React CSR, Egg React Server Side Render, Egg React Client Side Render",
     "cover": "/medias/featureimages/0.jpg",
     "btn": {
       "name": "Github",
@@ -14,6 +15,7 @@
   "ves":{
     "title": "ves",
     "description": "Node Vue Web Framework",
+    "keywords": "Egg Frameowrk, Node Vue SSR framework, Egg Vue SSR, Egg Vue CSR, Egg Vue Server Side Render, Egg Vue Client Side Render",
     "cover": "/medias/featureimages/1.jpg",
     "btn": {
       "name": "Github",
@@ -25,7 +27,8 @@
   },
   "egg-react":{
     "title": "Egg + React 工程化方案",
-    "description": "Egg + React + Webpack 一体化工程方案",
+    "description": "Egg React SSR/CSR 工程方案",
+    "keywords": "Egg React SSR, Egg React CSR, Egg React Server Side Render, Egg React Client Side Render",
     "cover": "/medias/featureimages/2.jpg",
     "btn": {
       "name": "Github",
@@ -37,7 +40,8 @@
   },
   "egg-vue":{
     "title": "Egg + Vue 工程化方案",
-    "description": "Egg + Vue + Webpack 一体化工程方案",
+    "description": "Egg Vue SSR/CSR 工程方案",
+    "keywords": "Egg Vue SSR, Egg Vue CSR, Egg Vue Server Side Render",
     "cover": "/medias/featureimages/3.jpg",
     "btn": {
       "name": "Github",
@@ -50,6 +54,7 @@
   "easywebpack":{
     "title": "easywebpack",
     "description": "基于 Webpack 前端工程构建方案",
+    "keywords": "webpack,easywebpack,webpack react,webpack vue,webpack weex,webpack-dev-server",
     "cover": "/medias/featureimages/4.jpg",
     "btn": {
       "name": "Github",
@@ -61,7 +66,8 @@
   },
   "blog":{
     "title": "博客",
-    "description": "",
+    "description": "Egg/前端工程/多端技术",
+    "keywords": "Eggjs,Webpack,easywebpack,Egg React SSR,Egg Vue SSR, web ide, Flutter, React Native",
     "cover": "/medias/featureimages/5.jpg",
     "btn": {
       "name": "Github",

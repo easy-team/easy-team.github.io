@@ -11,6 +11,8 @@ createTime: 2018-12-17T06:37:54.000Z
 upateTime: 2019-06-03T07:09:18.000Z
 wordCount: 779
 layout: doc
+keywords: egg,egg react ssr,egg react server side render, ant ssr, egg-view-nunjucks
+description: Egg React Server Side Render, Egg React SSR, Egg AntD SSR, Egg React 服务端渲染，Egg React 前端渲染
 ---
 
 ## 背景

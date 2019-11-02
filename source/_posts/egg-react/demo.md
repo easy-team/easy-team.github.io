@@ -11,6 +11,8 @@ createTime: 2019-07-27T06:25:49.000Z
 upateTime: 2019-10-15T03:14:47.000Z
 wordCount: 30
 layout: doc
+keywords: egg,egg react ssr,egg react server side render, ant ssr
+description: Egg React Server Side Render(Egg React SSR) Example
 ---
 
 ## easy-team

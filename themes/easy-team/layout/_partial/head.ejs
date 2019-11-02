@@ -24,6 +24,12 @@
         title = __('tag') + ': ' + page.tag;
     }
 
+    var spaceInfo = {};
+    if (page.space && site.data.config[page.space]){
+      spaceInfo = site.data.config[page.space];
+      title = (spaceInfo.description || spaceInfo.title) + '-' + title;
+    }
+
     // final page title.
     var pageTitle = title ? title + ' | ' + config.title : config.title;
 
@@ -33,16 +39,17 @@
         keyWords = page.keywords + ',' + keyWords;
     }
     keyWords = title ? title  + ', ' + keyWords : keyWords;
+    keyWords = spaceInfo.keywords ? spaceInfo.keywords + ',' + keyWords : keyWords;
 
     // description.
-    var description = page.description;
+    var description = page.description || page.summary;
     if (!description && page.hasOwnProperty('__post') && page.__post) {
         description = strip_html(page.content).substring(0, 120);
     }
     description = description ? description : pageTitle;
-
-    let iconType = 'image/png'
-    let faviconExt = theme.favicon.substr(theme.favicon.lastIndexOf('.') + 1, theme.favicon.length)
+    description = spaceInfo.description ? spaceInfo.description + ',' + description : description;
+    var iconType = 'image/png'
+    var faviconExt = theme.favicon.substr(theme.favicon.lastIndexOf('.') + 1, theme.favicon.length)
     if (faviconExt === 'png') {
         iconType = 'image/png'
     } else if (faviconExt === 'svg') {
