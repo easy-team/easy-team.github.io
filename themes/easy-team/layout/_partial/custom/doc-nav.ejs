@@ -13,7 +13,7 @@
                         <% for(let childrenDoc of doc.children){ %>
                             <li>   
                                 <a id="m-nav-item-<%- childrenDoc.space %>-<%- childrenDoc.slug %>" href="<%- url_for(childrenDoc.url)%> " 
-                                    style="padding:0px 0px;margin-left:<%if(theme.navMenu&&theme.navMenu.mleft){%>50px<%}else{%>75px<%}%>";>
+                                    style="padding-left:<%if(theme.navMenu&&theme.navMenu.mleft){%>50px<%}else{%>75px<%}%>";>
                                 <% if (childrenDoc.icon && childrenDoc.icon.length > 0) { %>
                                 <i class="fa <%- childrenDoc.icon %>" style="position: absolute;left:<%if(theme.navMenu&&theme.navMenu.mleft){%>28px<%}else{%>50px<%}%>" ></i>
                                 <% } %>

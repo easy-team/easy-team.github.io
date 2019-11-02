@@ -2,8 +2,8 @@
 ---
 id: 2865291
 space: res
-slug: index
-url: /res/index
+slug: introduction
+url: /res/introduction
 title: 框架介绍
 summary: res -- Node React Application  Web FrameworkGitHub:https://github.com/easy-team/res框架特性Node 端基于 Egg 开发，遵循 Egg 开发规范和 Egg 生态，支持 Egg 所有特性，比如插件机制，多进程机制...
 coverImage: null
