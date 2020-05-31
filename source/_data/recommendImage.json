@@ -1,0 +1,44 @@
+{
+  "egg-react":[
+    {
+      "id": 3415456,
+      "space": "egg-react",
+      "slug": "learn",
+      "url": "/egg-react/learn",
+      "title": "工程介绍",
+      "summary": "Egg React 工程解决方案特性支持Node 端基于 Egg 开发，遵循 Egg 开发规范和 Egg 生态，支持 Egg 所有特性，比如插件机制，多进程机制。使用 TypeScript 或 JavaScript 编写前端和Node端代码，支持 ts-node 无编译 和 Webpack 编...",
+      "coverImage": "/medias/easy-team/egg-react-webpack-framework.png",
+      "createTime": "2019-11-30T06:47:31.000Z",
+      "updateTime": "2019-11-30T06:47:32.000Z",
+      "wordCount": 2079
+    }
+  ],
+  "egg-vue":[
+    {
+      "id": 946940,
+      "space": "egg-vue",
+      "slug": "learn",
+      "url": "/egg-vue/learn",
+      "title": "工程介绍",
+      "summary": "Egg Vue 工程解决方案特性支持Node 端基于 Egg 开发，遵循 Egg 开发规范和 Egg 生态，支持 Egg 所有特性，比如插件机制，多进程机制。使用 TypeScript 或 JavaScript 编写前端和Node端代码，支持 ts-node 无编译 和 Webpack 编译开...",
+      "coverImage": "/medias/easy-team/egg-vue-webpack-framework.png",
+      "createTime": "2019-11-30T06:48:54.000Z",
+      "updateTime": "2019-11-30T06:48:54.000Z",
+      "wordCount": 2152
+    }
+  ],
+  "easywebpack":[
+    {
+      "id": 685522,
+      "space": "easywebpack",
+      "slug": "index",
+      "url": "/easywebpack/index",
+      "title": "方案介绍",
+      "summary": "easywebpack 是什么easywebpack 是基于 webpack 的前端工程化解决方案。旨在解决 webpack 项目构建复杂,使用成本高,复用低,维护成本高等工程效率问题。基于 easywebpack 工程化方案, 你能非常简单容易的对各种前端项目进行工程化建设，及时享受最新的特...",
+      "coverImage": "/medias/easy-team/easywebpack.png",
+      "createTime": "2019-10-05T07:50:54.000Z",
+      "updateTime": "2019-10-05T07:50:54.000Z",
+      "wordCount": 1408
+    }
+  ]
+}

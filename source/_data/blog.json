@@ -1,0 +1,376 @@
+[
+  {
+    "title": "Egg 技术专题",
+    "expand": true,
+    "children": [
+      {
+        "id": 624202,
+        "space": "blog",
+        "slug": "kiygy5",
+        "url": "/blog/kiygy5",
+        "title": "Egg Vue SSR 组件加载",
+        "summary": "Node 端渲染提示 window/document 没有定义业务场景首先来看一个简单的 Vue 组件test.vue&lt;template&gt;   &lt;div&gt;     &lt;h2&gt;clientHeight: {{ clientHeight }} px &lt;/h2&gt;   &lt;/div&gt; &lt;/template&gt;  &lt;script type=&quot;text/babel&quot;&gt;   export default...",
+        "coverImage": null,
+        "createTime": "2018-04-28T08:22:27.000Z",
+        "updateTime": "2019-07-04T00:18:57.000Z",
+        "wordCount": 808
+      },
+      {
+        "id": 2229810,
+        "space": "blog",
+        "slug": "cdal6o",
+        "url": "/blog/cdal6o",
+        "title": "Egg + Web 自定义前端渲染",
+        "summary": "背景在 前端渲染模式 和 asset 渲染模式 章节讲到了基于 React 的前端渲染模式，但都依赖  egg-view-react-ssr 插件，那如何基于已有 egg 模板引擎 (egg-view-nunjucks 或 egg-view-ejs) + Webpack 完全自定义前端方案呢？...",
+        "coverImage": null,
+        "createTime": "2019-07-29T10:31:41.000Z",
+        "updateTime": "2019-07-29T10:31:41.000Z",
+        "wordCount": 625
+      },
+      {
+        "id": 1917532,
+        "space": "blog",
+        "slug": "ruv09m",
+        "url": "/blog/ruv09m",
+        "title": "Egg SSR Webpack热更新实现",
+        "keywords": "egg-webpack, egg-webpack-dev-server, hot-reload,egg-webpack-hot-reload",
+        "description": "在egg agent 启动 webpack dev　server 实现 webpack 热更新",
+        "summary": "1. 背景在用 Node.js + Webpack 构建的方式进行开发时, 我们希望能实现修改代码能实时刷新页面UI的效果. 这个特性 Webpack本身是支持的, 而且基于koa也有现成的 koa-webpack-hot-middleware 和 koa-webpack-dev-middle...",
+        "coverImage": "https://cdn.nlark.com/yuque/0/2019/png/116733/1560616044583-df8c99ac-297d-44d0-a824-212947d3ef6d.png",
+        "createTime": "2019-06-15T16:29:11.000Z",
+        "updateTime": "2019-06-15T16:29:11.000Z",
+        "wordCount": 1589
+      },
+      {
+        "id": 1987511,
+        "space": "blog",
+        "slug": "xriz8a",
+        "url": "/blog/xriz8a",
+        "title": "Egg + Vue/Nunjucks渲染性能",
+        "summary": "知乎专栏：https://zhuanlan.zhihu.com/p/30683070在用Vue做服务端渲染时，大家对Vue服务端渲染的性能持怀疑态度，业界也有一些尝试，不过完整的产品项目和数据分析比较少。结合线上和本地压测，我们对 Vue 和 Nunjucks 针对模板渲染Render时间，C...",
+        "coverImage": "https://cdn.nlark.com/yuque/0/2019/png/116733/1561601469682-887d3468-3abc-4fdd-9134-a7e214a5266c.png",
+        "createTime": "2019-06-27T02:11:10.000Z",
+        "updateTime": "2019-06-27T08:42:02.000Z",
+        "wordCount": 3077
+      }
+    ]
+  },
+  {
+    "title": "Webpack 技术专题",
+    "expand": true,
+    "children": [
+      {
+        "id": 1917539,
+        "space": "blog",
+        "slug": "sg8avg",
+        "url": "/blog/sg8avg",
+        "title": "Webpack Babel SSR 构建优化",
+        "summary": "在进行 Egg + Vue 进行 SSR 模式开发时，运行 npm run dev  后你会看到如下界面， 启动了两个 Webpack 构建实例：Node 模式 和 Web 模式。SSR 运行需要 Webapck 单独构建 target: node   和 target: web  主要的差异...",
+        "coverImage": "https://cdn.nlark.com/yuque/0/2019/png/116733/1560616304692-20f027c3-90d3-4ba1-b406-7c71f0838826.png",
+        "createTime": "2019-06-15T16:31:45.000Z",
+        "updateTime": "2019-06-15T16:31:45.000Z",
+        "wordCount": 727
+      },
+      {
+        "id": 1917543,
+        "space": "blog",
+        "slug": "zfri65",
+        "url": "/blog/zfri65",
+        "title": "Webpack 构建大小分析与优化",
+        "summary": "在项目开发时， 当页面构建的文件太大, 我们可以直接通过 easywebpack-cli 提供功能进行构建大小分析通过 -s 参数启动构建大小分析工具, 支持 analyzer(webpack-bundle-analyzer) 和 stats(stats-webpack-plugin) , 默...",
+        "coverImage": "https://cdn.nlark.com/yuque/0/2019/png/116733/1560616496624-05e47ee7-efff-4d58-a712-bb303c0ecbda.png",
+        "createTime": "2019-06-15T16:34:57.000Z",
+        "updateTime": "2019-06-15T16:34:57.000Z",
+        "wordCount": 1374
+      },
+      {
+        "id": 1917528,
+        "space": "blog",
+        "slug": "qwr449",
+        "url": "/blog/qwr449",
+        "title": "Webpack 热更新实现原理分析",
+        "summary": "概述在使用 Webpack 构建开发期时，Webpack 提供热更新功能为开发带来良好的体验和开发效率。Webpack 热更新可以做到页面无刷新局部更新能力。Webpack 热更新机制相比传统的直接自动刷新浏览器，可以保持元素当前状态，特别是在编写 css 样式调整布局的时候优势明显，不用反复...",
+        "coverImage": "https://cdn.nlark.com/yuque/0/2019/png/116733/1560615564178-0360d5b0-e1b6-43a0-a7d8-493936e6f6a8.png",
+        "createTime": "2019-07-26T02:15:22.000Z",
+        "updateTime": "2019-07-26T08:30:09.000Z",
+        "wordCount": 2740
+      },
+      {
+        "id": 939531,
+        "space": "blog",
+        "slug": "dxrrhq",
+        "url": "/blog/dxrrhq",
+        "title": "Webpack 4 编译内存泄漏",
+        "keywords": "webpack内存泄漏,--max_old_space_size,node-heapdump 排除 webpack内存泄漏",
+        "description": "增加内存堆栈大小(只能缓解，不能根除) &quot;scripts&quot;: {   &quot;dev&quot;:  &quot;node --max_old_space_size=4096 index.js&quot; } 通过  node-heapdump 获取内存堆栈信息const f...",
+        "summary": "增加内存堆栈大小(只能缓解，不能根除) &quot;scripts&quot;: {   &quot;dev&quot;:  &quot;node --max_old_space_size=4096 index.js&quot; } 通过  node-heapdump 获取内存堆栈信息const f...",
+        "coverImage": null,
+        "createTime": "2018-11-05T08:16:33.000Z",
+        "updateTime": "2019-05-31T02:11:15.000Z",
+        "wordCount": 481
+      },
+      {
+        "id": 721568,
+        "space": "blog",
+        "slug": "ekvirc",
+        "url": "/blog/ekvirc",
+        "title": "Webpack 构建流程解密",
+        "summary": "通过 Webpack 工具，可以很方便完成各种框架的构建打包支持。使用 Webpack 一段事件后，各种配置也都非常熟悉， 但只停留使用节点，对内部原理极致不是非常清新，常常带着这些疑问：Webpack 启动流程是怎么样的？Webpack 插件是怎么使用的，怎么保证调用顺序？Webpack 事件机制是怎么样的？接下来我将通过从 Webpack 启动流程， 事件机制， 插件机制， 热更新等几方面深入的讲述一下构建 Webpack 内部构建流程。启动流程首先我们来看看webpack的 webpack.js...",
+        "coverImage": null,
+        "createTime": "2018-07-10T10:35:29.000Z",
+        "updateTime": "2019-05-23T08:13:55.000Z",
+        "wordCount": 2231
+      }
+    ]
+  },
+  {
+    "title": "Flutter 技术专题",
+    "expand": true,
+    "children": [
+      {
+        "id": 2107012,
+        "space": "blog",
+        "slug": "wydpi1",
+        "url": "/blog/wydpi1",
+        "title": "Flutter 动态更新",
+        "keywords": "Flutter 动态更新, Flutter 更新机制",
+        "summary": "关于动态更新Google 考虑自家 Android 应用安全和苹果策略， 本来在 2019 的 roadmap 里面有这样一项，roadmap公布后，过一段时间后面又移除了这一项，目前不是主航道。 Android 目前可以通过整包方式实现动态更新， iOS 目前还不支持。Android Flu...",
+        "coverImage": "https://cdn.nlark.com/yuque/0/2019/png/116733/1561109060469-0f8a49ed-e433-4a9c-a154-47a888a9757f.png",
+        "createTime": "2019-07-12T16:13:29.000Z",
+        "updateTime": "2019-07-12T16:14:42.000Z",
+        "wordCount": 1143
+      },
+      {
+        "id": 2107009,
+        "space": "blog",
+        "slug": "zs3hog",
+        "url": "/blog/zs3hog",
+        "title": "Flutter iOS 混合工程实践",
+        "keywords": "Flutter ios 项目集成,Flutter 混合工程搭建",
+        "summary": "在 Flutter 混合工程体系 一文中，阐述了Flutter 三种开发模式，在实际业务中搭建持续集成时，我们更希望本地开发使用混合模式，持续集成使用解耦模式， 主要是解决以下两个问题： 混合模式：开发调试方便，包括热更新， Native 与 Flutter 开发源码断点调试 解耦模式：不侵入...",
+        "coverImage": "https://cdn.nlark.com/yuque/0/2019/png/116733/1561107700522-48bad7b9-f5b8-4e38-acc3-ee1355946893.png",
+        "createTime": "2019-07-12T16:13:04.000Z",
+        "updateTime": "2019-07-12T16:22:28.000Z",
+        "wordCount": 785
+      },
+      {
+        "id": 2107007,
+        "space": "blog",
+        "slug": "lsrssy",
+        "url": "/blog/lsrssy",
+        "title": "Flutter  Android  混合工程实践",
+        "keywords": "Flutter Android 集成,Flutter 混合工程搭建",
+        "summary": "在 Flutter 混合工程体系 一文中，阐述了Flutter 三种开发模式，在实际业务中搭建持续集成时，我们更希望发本地开发使用混合模式，持续集成使用解耦模式， 主要是解决以下两个问题： 混合模式：开发调试方便，包括热更新， Native 与 Flutter 开发源码断点调试 解耦模式：不侵...",
+        "coverImage": "https://cdn.nlark.com/yuque/0/2019/png/116733/1561088548020-8053b68f-c617-48d3-865e-fc426f098107.png",
+        "createTime": "2019-07-12T16:12:51.000Z",
+        "updateTime": "2019-07-12T16:13:43.000Z",
+        "wordCount": 2125
+      },
+      {
+        "id": 2107011,
+        "space": "blog",
+        "slug": "nrswgq",
+        "url": "/blog/nrswgq",
+        "title": "Android 与 Flutter 入门开发实践指引",
+        "keywords": "Flutter 入门开发实践指引, Flutter 新手指引",
+        "summary": "项目集成Android 集成 Flutter 项目通过 Android Studio 创建 Andriod 原生应用 AndroidApp通过 Android Studio 创建 New Flutter Project, 选择 Flutter Module，创建 Flutter Module ...",
+        "coverImage": "",
+        "createTime": "2019-07-12T16:13:18.000Z",
+        "updateTime": "2019-07-16T03:14:04.000Z",
+        "wordCount": 3486
+      }
+    ]
+  },
+  {
+    "title": "React Native 技术专题",
+    "expand": true,
+    "children": [
+      {
+        "id": 1028368,
+        "space": "blog",
+        "slug": "xcw19a",
+        "url": "/blog/xcw19a",
+        "title": "React Native, Hybrid App, H5 简单对比分析",
+        "summary": "原文： https://hubcarl.github.io/blog/2016/08/07/react-native-compare/learn once write anywhereWhat we really want is the user experience of the native...",
+        "coverImage": null,
+        "createTime": "2019-02-15T06:08:44.000Z",
+        "updateTime": "2019-03-22T07:08:45.000Z",
+        "wordCount": 515
+      },
+      {
+        "id": 1028376,
+        "space": "blog",
+        "slug": "vzgcgb",
+        "url": "/blog/vzgcgb",
+        "title": "React Native Android APK包大小分析",
+        "summary": "原文：https://hubcarl.github.io/blog/2016/08/21/react-native-size/React Native SO库React Native 打包后文件大小分析React Native java jar包分类和主要作用React Native 详细引用j...",
+        "coverImage": null,
+        "createTime": "2019-02-15T06:08:19.000Z",
+        "updateTime": "2019-03-22T07:08:45.000Z",
+        "wordCount": 101
+      },
+      {
+        "id": 1028386,
+        "space": "blog",
+        "slug": "wk5ney",
+        "url": "/blog/wk5ney",
+        "title": "React Native 自定义插件",
+        "summary": "原文： https://hubcarl.github.io/blog/2016/08/13/react-native-plugin/编写自定义插件需要继承ReactContextBaseJavaModule和实现ReactPackage接口, 具体实现步骤如下：1. 继承ReactContext...",
+        "coverImage": null,
+        "createTime": "2018-12-05T02:08:09.000Z",
+        "updateTime": "2019-03-22T07:08:45.000Z",
+        "wordCount": 210
+      },
+      {
+        "id": 1028397,
+        "space": "blog",
+        "slug": "kghphs",
+        "url": "/blog/kghphs",
+        "title": "React Native代码执行跟踪和调试",
+        "summary": "原文 https://hubcarl.github.io/blog/2016/09/04/react-native-debug/在本地开发时, React Native 是加载本地Node服务, 可以通过npm start 启动， package.json 代码如下：&quot;scripts&...",
+        "coverImage": null,
+        "createTime": "2018-12-05T02:09:16.000Z",
+        "updateTime": "2019-08-06T06:02:12.000Z",
+        "wordCount": 4891
+      },
+      {
+        "id": 1028408,
+        "space": "blog",
+        "slug": "qwywww",
+        "url": "/blog/qwywww",
+        "title": "React Native 热更新实现",
+        "summary": "原文：https://hubcarl.github.io/blog/2016/09/15/react-native-update/React Native 动态更新实际效果如下React Native 热更新实现APK我们知道, React Native所有的js文件都打包在一个jsbundle...",
+        "coverImage": null,
+        "createTime": "2018-12-05T02:10:28.000Z",
+        "updateTime": "2019-07-12T10:34:52.000Z",
+        "wordCount": 2287
+      },
+      {
+        "id": 1028413,
+        "space": "blog",
+        "slug": "rh45zo",
+        "url": "/blog/rh45zo",
+        "title": "React Native Android源码解读和交互原理分析",
+        "summary": "原文：https://hubcarl.github.io/blog/2016/08/28/react-native-js/首先来看一下一张完整Native与JavaScript交互原理图:在 React Native App中，在应用启动时根据 ReactPackage 会自动生成 JavaSc...",
+        "coverImage": null,
+        "createTime": "2018-12-05T02:13:23.000Z",
+        "updateTime": "2019-07-14T05:23:28.000Z",
+        "wordCount": 3538
+      },
+      {
+        "id": 1028434,
+        "space": "blog",
+        "slug": "uhmdkg",
+        "url": "/blog/uhmdkg",
+        "title": "Hybrid系列-phonegap android框架详解",
+        "summary": "原文：https://hubcarl.github.io/blog/2015/04/19/hybrid-phonegap/首先, 来看一下phonegap 初始化流程以及Native 与 JS 交互流程图。说明：socket server模式下, phonegap.js 源码实现的采用1 毫秒执...",
+        "coverImage": null,
+        "createTime": "2018-12-05T02:15:20.000Z",
+        "updateTime": "2019-03-22T07:08:45.000Z",
+        "wordCount": 1481
+      },
+      {
+        "id": 1028440,
+        "space": "blog",
+        "slug": "sxys82",
+        "url": "/blog/sxys82",
+        "title": "Hybrid系列-Cordova android框架详解",
+        "summary": "原文：https://hubcarl.github.io/blog/2015/04/11/hybrid-cordova/一、Cordova 核心java类说明CordovaActivity：Cordova Activity入口，已实现PluginManager、WebView的相关初始化工作, ...",
+        "coverImage": null,
+        "createTime": "2019-03-20T03:01:10.000Z",
+        "updateTime": "2019-08-07T02:24:34.000Z",
+        "wordCount": 1456
+      }
+    ]
+  },
+  {
+    "title": "开发工具使用",
+    "expand": true,
+    "children": [
+      {
+        "id": 1028456,
+        "space": "blog",
+        "slug": "syh43v",
+        "url": "/blog/syh43v",
+        "title": "npm 常用命令",
+        "summary": "原文： https://hubcarl.github.io/blog/2018/03/22/npm/npm 初始化 package.jsonnpm initnpm install 安装npm installnpm instal同时安装 package.json 配置 dependencies 和...",
+        "coverImage": null,
+        "createTime": "2019-04-03T03:19:29.000Z",
+        "updateTime": "2019-06-29T08:36:35.000Z",
+        "wordCount": 971
+      },
+      {
+        "id": 1028464,
+        "space": "blog",
+        "slug": "vfhw62",
+        "url": "/blog/vfhw62",
+        "title": "Git 使用技巧",
+        "summary": "原文： https://hubcarl.github.io/blog/2017/09/23/git/Git保存用户名密码git config credential.helper storeGit分支批量清理本地分支git branch | grep -E feature\\/(1\\.|activi...",
+        "coverImage": null,
+        "createTime": "2019-10-18T09:24:35.000Z",
+        "updateTime": "2019-10-18T09:24:35.000Z",
+        "wordCount": 983
+      },
+      {
+        "id": 1034985,
+        "space": "blog",
+        "slug": "gayu0o",
+        "url": "/blog/gayu0o",
+        "title": "Docker 随记",
+        "summary": "安装docker: Docker：https://download.docker.com/mac/stable/Docker.dmgDocker GUI： https://github.com/docker/kitematic/releasesDocker 服务管理docker run -d ...",
+        "coverImage": null,
+        "createTime": "2018-12-07T02:10:36.000Z",
+        "updateTime": "2019-06-15T16:43:26.000Z",
+        "wordCount": 852
+      },
+      {
+        "id": 1104836,
+        "space": "blog",
+        "slug": "egret",
+        "url": "/blog/egret",
+        "title": "Egret  游戏开发",
+        "summary": "命令行egret buildegret run -a   自动编译，浏览器不能自动刷新Stagepublic constructor() {    super();    this.once(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this...",
+        "coverImage": null,
+        "createTime": "2019-01-02T07:40:43.000Z",
+        "updateTime": "2019-06-15T16:06:35.000Z",
+        "wordCount": 1112
+      },
+      {
+        "id": 1111327,
+        "space": "blog",
+        "slug": "og9ogk",
+        "url": "/blog/og9ogk",
+        "title": "vscode 插件开发",
+        "summary": "插件初始化安装Yeoman和VS Code脚手架npm install -g yo generator-code生成项目模版yo code插件开发https://marketplace.visualstudio.com/items?itemName=hubcarl.vscode-easy-pl...",
+        "coverImage": null,
+        "createTime": "2019-01-04T05:44:18.000Z",
+        "updateTime": "2019-06-15T16:06:25.000Z",
+        "wordCount": 84
+      },
+      {
+        "id": 1146773,
+        "space": "blog",
+        "slug": "qz7n03",
+        "url": "/blog/qz7n03",
+        "title": "Mac PHP 环境",
+        "summary": "安装 PHP 5.6curl -s https://php-osx.liip.ch/install.sh | bash -s force 5.6php --ini 查看 php.ini 位置安装memcachebrew info memcachedbrew search memcachebre...",
+        "coverImage": null,
+        "createTime": "2019-01-15T06:00:47.000Z",
+        "updateTime": "2019-06-15T16:57:09.000Z",
+        "wordCount": 266
+      }
+    ]
+  },
+  {
+    "id": 721573,
+    "space": "blog",
+    "slug": "az519d",
+    "url": "/blog/az519d",
+    "title": "页面资源加载",
+    "summary": "首屏测试window.addEventListener(&#x27;DOMContentLoaded&#x27;, ()=&gt;{         const t = window.performance.timing;         console.log(&#x27;first pain time[painTime-navigationStart]:&#x27;, window.painTime - t.navigationStart);         console.log(&#x2...",
+    "coverImage": null,
+    "createTime": "2018-07-10T10:39:28.000Z",
+    "updateTime": "2019-07-26T02:26:05.000Z",
+    "wordCount": 810
+  }
+]

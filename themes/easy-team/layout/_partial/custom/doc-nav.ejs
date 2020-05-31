@@ -1,0 +1,63 @@
+<div class="side-nav docsidenav">
+    <div class="doc-left-nav-title">
+        <div class="doc-left-nav-title-name"><%- page.space %></div>
+        <div class="doc-left-nav-title-desc"><%- site.data.config[page.space].shortDesc %></div>
+    </div>
+    <ul class="menu-list mobile-menu-list">
+        <% site.data[page.space].forEach(function(doc) { %>
+            <% if(doc.children) { %>
+                <%
+                    var menu = doc.children.some(function(item){
+                        return item.url === page.url;
+                    });
+                    var menuStyle = menu ? 'm-nav-show' : '';
+                    var menuDisplay = menu ? 'block': '';
+                %>
+                <!---->
+                <li class="m-nav-item <%- menuStyle %>">
+                    <a href="javascript:;">
+                        <i class="fas fa-fw fa-link"></i>
+                        <%- doc.title %>
+                        <span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+                    </a>
+                    <ul style="display:<%- menuDisplay %>;">
+                        <% for(let childrenDoc of doc.children){ %>
+                            <li>   
+                                <a class="m-nav-item-<%- childrenDoc.space %>-<%- childrenDoc.slug %>" href="<%- url_for(childrenDoc.url)%> " 
+                                    style="padding-left:<%if(theme.navMenu&&theme.navMenu.mleft){%>50px<%}else{%>75px<%}%>";>
+                                <% if (childrenDoc.icon && childrenDoc.icon.length > 0) { %>
+                                <i class="fa <%- childrenDoc.icon %>" style="position: absolute;left:<%if(theme.navMenu&&theme.navMenu.mleft){%>28px<%}else{%>50px<%}%>" ></i>
+                                <% } %>
+                                <span><%- childrenDoc.title %></span>
+                                </a>
+                            </li>
+                        <% } %> 
+                    </ul>
+                </li>
+            <% } else { %>
+                <li class="m-nav-item">
+                    <a href="<%- doc.url %>" class="waves-effect waves-light m-nav-item-<%- doc.space %>-<%- doc.slug %>">
+                        <% if (doc.icon) { %>
+                            <i class="fa-fw <%- doc.icon %>"></i>
+                        <% } else { %>
+                        <i class="fas fa-fw fa-link"></i>
+                        <% } %>
+                        <%- doc.title %>
+                    </a>
+                </li>
+            <% } %>
+        <% }) %>
+        <li><div class="divider"></div></li>
+        
+        <li>
+            <a href="<%- site.data.config[page.space].btn.yuque %>" class="waves-effect waves-light" target="_blank">
+                <i class="fas fa-fw fa-link"></i>语雀文档
+            </a>
+        </li>
+        <li>
+            <a href="<%- site.data.config[page.space].btn.url %>" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i><%- site.data.config[page.space].btn.name %>
+            </a>
+        </li>
+    </ul>
+</div>

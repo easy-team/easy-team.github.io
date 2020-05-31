@@ -1,0 +1,274 @@
+/* Here is your custom css styles. */
+
+/* hexo-filter-github-emojis */
+.github-emoji{
+    height: 2em;
+    width: 2em;
+    display: inline-block !important;
+    position: relative;
+    margin: 0 3px !important;
+    padding: 0;
+}
+.github-emoji:hover{
+    animation: emoji-face 5s infinite ease-in-out;
+}
+@keyframes emoji-face {
+    2% {
+        transform: translate(0, 1.5px) rotate(1.5deg);
+    }
+    4% {
+        transform: translate(0, -1.5px) rotate(-0.5deg);
+    }
+    6% {
+        transform: translate(0, 1.5px) rotate(-1.5deg);
+    }
+    8% {
+        transform: translate(0, -1.5px) rotate(-1.5deg);
+    }
+    10% {
+        transform: translate(0, 2.5px) rotate(1.5deg);
+    }
+    12% {
+        transform: translate(0, -0.5px) rotate(1.5deg);
+    }
+    14% {
+        transform: translate(0, -1.5px) rotate(1.5deg);
+    }
+    16% {
+        transform: translate(0, -0.5px) rotate(-1.5deg);
+    }
+    18% {
+        transform: translate(0, 0.5px) rotate(-1.5deg);
+    }
+    20% {
+        transform: translate(0, -1.5px) rotate(2.5deg);
+    }
+    22% {
+        transform: translate(0, 0.5px) rotate(-1.5deg);
+    }
+    24% {
+        transform: translate(0, 1.5px) rotate(1.5deg);
+    }
+    26% {
+        transform: translate(0, 0.5px) rotate(0.5deg);
+    }
+    28% {
+        transform: translate(0, 0.5px) rotate(1.5deg);
+    }
+}
+
+.doc-left-nav-title {
+    flex-direction: column;
+    background-image: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%);font-size: 40px; 
+    font-weight: bolder; height: 100px; display: flex; align-items: center; justify-content: center; 
+    text-align: center; color: white;
+}
+.doc-left-nav-title >:nth-child(2) {
+  font-size: 12px;
+  color: #e3e3e3;
+}
+.doc-left-nav-mene-selected {
+    color: #34495e !important;
+    background-color: lightgrey;
+}
+.docsidenav {
+    margin: 0;
+    height: 100%;
+    padding-bottom: 60px;
+    background-color: #fff;
+    overflow-y: auto;
+    will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.docsidenav li {
+    float: none;
+    line-height: 48px;
+}
+.docsidenav li>a {
+    color: rgba(0,0,0,0.87);
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+    height: 48px;
+    line-height: 48px;
+    padding: 0 20px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.docsidenav li>a>i, .docsidenav li>a>[class^="mdi-"], .docsidenav li>a li>a>[class*="mdi-"], .docsidenav li>a>i.material-icons {
+    float: left;
+    height: 48px;
+    line-height: 48px;
+    margin: 0 10px 0 0;
+    width: 24px;
+    color: rgba(0,0,0,0.54);
+}
+
+.docsidenav li >a:hover {
+    color: #34495e;
+    background-color: lightgrey;
+}
+
+pre {
+    width: 100%;
+    white-space: pre-wrap;
+}
+.doc-content {
+    display: flex;
+}
+.doc-left-nav {
+    width: 300px; 
+    margin: 24px 0px 24px 24px; 
+    box-sizing: border-box;
+}
+.doc-right-nav {
+    flex: 1; 
+    margin: 24px; 
+    box-sizing: border-box;
+}
+.doc-right-card {
+    margin: 0px 0px; 
+    border-radius: 0px
+}
+.card {
+    margin-top: 0px !important;
+}
+
+.post-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.post-info-doc-title {
+    margin-top: 12px; 
+    text-align: center;
+}
+
+.post-info-doc-title-sub {
+    color: #42b983; font-size: 14px; text-align: center; margin-bottom: 16px;
+}
+
+.mobile-left-menu {
+    display: flex; height: 56px;
+    background-image: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%);
+}
+
+#mobile-main-menu {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 7px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+#mobile-main-menu-btn {
+    height: 100%;
+    display: flex;
+    flex:1; 
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border-right: 1px solid #55b344;
+    font-size: 18px;
+}
+
+#mobile-doc-menu-btn {
+    height: 100%;
+    display: flex;
+    flex:1; 
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+@media screen and (max-width: 992px) and (min-width: 320px) {
+    .doc-left-nav-title {
+      font-size: 20px !important;
+      font-weight: normal;
+      height: 36px;
+    } 
+    .doc-left-nav-title-name {
+      display: none;
+    }
+    .doc-left-nav-title-desc {
+        width: 80%;
+        text-align: center;
+    }
+    .mobile-head .logo-desc {
+        height: 36px;
+        display: flex;
+        align-items: center;    
+        justify-content: center;
+        padding-bottom: 0px !important; 
+    }
+    header .side-nav .fa-fw {
+      width: 1rem;
+    }
+    .docsidenav ul ul {
+        margin-left: 0px;
+        overflow: hidden;
+    }
+    header .side-nav .menu-list li {
+        max-width: 240px;
+        overflow: hidden;
+        font-size: 14px;
+    }
+    header .side-nav .menu-list li > a {
+        font-size: 14px;
+    }
+    .post-stat-label {
+        display: none;
+    }
+    .info-break-policy {
+        width: fit-content;
+        margin-right: 12px;
+    }
+    .doc-right-nav .prev-next {
+        margin-left: 0px;
+    }
+}
+
+/* nav, nav .nav-wrapper i, nav a.sidenav-trigger, nav a.sidenav-trigger i {
+  height: 56px !important;
+  line-height: 56px !important; 
+}
+.navbar-fixed {
+   height: 56px !important;
+   line-height: 56px !important;
+} */
+.recommend .post-card .read-more {
+    margin-top: 24px;
+}
+
+@media only screen and (max-width: 601px) {
+    .recommend .post-card .read-more {
+        margin-top: 36px;
+    }
+    .bg-cover .title {
+      margin-bottom: 20px;
+    }
+    .bg-cover .subtitle {
+        display: none;
+    }
+}
+
+
+.card .card-title {
+  font-size: 20px;
+}
+
+.footer-friend-link {
+   margin: 0 auto;
+   display: flex;
+   justify-content: center;
+}
+
+.footer-friend-link li{
+    float: left;
+    padding: 6px 6px; 
+    list-style: none; 
+}
+

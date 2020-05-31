@@ -1,0 +1,81 @@
+<style>
+    .carousel-control {
+        width: 45px;
+        height: 45px;
+        line-height: 55px;
+        border-radius: 45px;
+        background: transparent;
+        cursor: pointer;
+        z-index: 100;
+    }
+
+    .carousel-control:hover {
+        background-color:rgba(0, 0, 0, .4);
+    }
+
+    .carousel-control i {
+        color: #fff;
+        font-size: 2.4rem;
+    }
+    
+    html, body {
+        height:100%;
+    }
+
+    #page {
+        height:500px;
+        min-height: 500px;
+        width:100%;
+    }
+</style>
+
+<div id="page" class="carousel carousel-slider center index-cover" data-indicators="true" style="margin-top: -64px;">
+    <div class="carousel-item red white-text bg-cover about-cover" 
+        style="background-image: url('<%- site.data.config[page.space].cover %>');">
+        <div class="container" style="right: 0px;left: 0px;">
+            <div class="row">
+                <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
+                    <div class="brand">
+                        <h1 class="title main-title center-align">
+                            <%= site.data.config[page.space].title %>
+                        </h1>
+                        <h4 class="subtitle center-align">
+                            <%= site.data.config[page.space].subtitle %>
+                        </h4>
+                        <h6 class="description center-align">
+                            <%= site.data.config[page.space].description %>
+                        </h6>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cover-btns" style="top: 4vh">
+                <% if(site.data.config[page.space].btn.view) { %>
+                <a href="<%- site.data.config[page.space].btn.view %>" class="waves-effect waves-light btn">
+                    <i class="fa fa-arrow-right"></i><%- __('startView') %>
+                </a>
+                <% } %>
+                <a href="<%- site.data.config[page.space].btn.doc %>" class="waves-effect waves-light btn">
+                    <i class="icon far fa-eye fa-fw"></i><%- __(site.data.config[page.space].btn.text || 'startDoc') %>
+                </a>
+                <a href="<%- site.data.config[page.space].btn.url %>" class="waves-effect waves-light btn" target="_blank">
+                        <i class="<%- site.data.config[page.space].btn.icon %>"></i><%- site.data.config[page.space].btn.name %>
+                </a>
+            </div>
+            <div class="cover-social-link"><%- partial('_partial/social-link') %></div>
+        </div>
+    </div>
+</div>
+
+<script>
+$(function () {
+    var coverSlider = $('.carousel');
+    if (coverSlider) {
+        coverSlider.carousel({
+            duration: Number('<%- theme.cover.duration %>'),
+            fullWidth: true,
+            indicators: '<%- theme.cover.showIndicators %>' === 'true'
+        });
+    } 
+});
+</script>

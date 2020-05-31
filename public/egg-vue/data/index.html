@@ -1,0 +1,1716 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Egg Vue SSR asyncData 实现, vue ssr prefetch, vue ssr vuex asynData实现,Vue SSR,Vue Server-Side Rendering,Egg Vue SSR 服务端渲染, Egg Vue SSR,Egg Vue SSR 工程化,Egg Vue SSR 前端工程化,Egg Vue 服务端渲染, Egg Vue Server Side Render,Egg Vue Client Side Render">
+    <meta name="description" content="Egg Vue SSR 工程化解决方案能够快速实现前后端分离、服务端和客户端同构渲染; 基于 Egg Vue SSR 工程化方案你能够快速进行项目开发。">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="msvalidate.01" content="52C6E15B2B71F302C8C33257FFA2FF9B" />
+    <meta name="shenma-site-verification" content="023a7847fc1a21db55c8138e7de01ca1_1576943800">
+    <meta name="sogou_site_verification" content="AiTLm7IiAe"/>
+    <title>easyjs | Egg Vue SSR/CSR 解决方案-数据请求</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="easyjs" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper head-container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect-fix waves-light">
+                    
+                    <span class="logo-span">easyjs</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Home</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/egg-react" class="waves-effect waves-light">
+      
+      <i class="fas fa-forward" style="zoom: 0.6;"></i>
+      
+      <span>Egg+React</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/egg-vue" class="waves-effect waves-light">
+      
+      <i class="fas fa-forward" style="zoom: 0.6;"></i>
+      
+      <span>Egg+Vue</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>Egg Framework</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/res">
+          
+          <i class="fas fa-forward" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Res</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/ves">
+          
+          <i class="fas fa-forward" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Ves</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/easywebpack" class="waves-effect waves-light">
+      
+      <i class="fas fa-building" style="zoom: 0.6;"></i>
+      
+      <span>Webpack</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog" class="waves-effect waves-light">
+      
+      <i class="fas fa-forward" style="zoom: 0.6;"></i>
+      
+      <span>Blog</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>Contact</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+    
+    <div class="mobile-left-menu">
+      <div id="mobile-main-menu-btn">easyjs</div>
+      <div id="mobile-doc-menu-btn">egg-vue</div>
+    </div>
+    
+    <div id="mobile-main-menu" style="display:none">
+    <div class="mobile-head bg-color">
+        <!--  -->
+        
+        <div class="logo-desc">
+          
+            Egg Vue SSR/CSR 解决方案
+          
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Home
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/egg-react" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-forward"></i>
+			
+			Egg+React
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/egg-vue" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-forward"></i>
+			
+			Egg+Vue
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			Egg Framework
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>   
+				
+                  <a href="/res " style="margin-left:75px";>
+				  
+				   <i class="fa fas fa-forward" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Res</span>
+                  </a>
+                </li>
+              
+                <li>   
+				
+                  <a href="/ves " style="margin-left:75px";>
+				  
+				   <i class="fa fas fa-forward" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Ves</span>
+                  </a>
+                </li>
+               
+            </ul>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/easywebpack" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-building"></i>
+			
+			Webpack
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-forward"></i>
+			
+			Blog
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/easy-team" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Follow
+            </a>
+        </li>
+        
+    </ul>
+    </div>
+    
+    <div id="mobile-doc-menu">
+      <div class="side-nav docsidenav">
+    <div class="doc-left-nav-title">
+        <div class="doc-left-nav-title-name">egg-vue</div>
+        <div class="doc-left-nav-title-desc">Egg Vue SSR/CSR 解决方案</div>
+    </div>
+    <ul class="menu-list mobile-menu-list">
+        
+            
+                <li class="m-nav-item">
+                    <a href="/egg-vue/learn" class="waves-effect waves-light m-nav-item-egg-vue-learn">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        工程介绍
+                    </a>
+                </li>
+            
+        
+            
+                
+                <!---->
+                <li class="m-nav-item ">
+                    <a href="javascript:;">
+                        <i class="fas fa-fw fa-link"></i>
+                        开发指南
+                        <span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+                    </a>
+                    <ul style="display:;">
+                        
+                            <li>   
+                                <a class="m-nav-item-egg-vue-init" href="/egg-vue/init " 
+                                    style="padding-left:75px";>
+                                
+                                <span>快速开始</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-egg-vue-start" href="/egg-vue/start " 
+                                    style="padding-left:75px";>
+                                
+                                <span>从零开始</span>
+                                </a>
+                            </li>
+                         
+                    </ul>
+                </li>
+            
+        
+            
+                
+                <!---->
+                <li class="m-nav-item ">
+                    <a href="javascript:;">
+                        <i class="fas fa-fw fa-link"></i>
+                        渲染模式
+                        <span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+                    </a>
+                    <ul style="display:;">
+                        
+                            <li>   
+                                <a class="m-nav-item-egg-vue-node" href="/egg-vue/node " 
+                                    style="padding-left:75px";>
+                                
+                                <span>服务端渲染模式</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-egg-vue-web" href="/egg-vue/web " 
+                                    style="padding-left:75px";>
+                                
+                                <span>前端渲染模式</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-egg-vue-html" href="/egg-vue/html " 
+                                    style="padding-left:75px";>
+                                
+                                <span>HTML前端渲染</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-egg-vue-asset" href="/egg-vue/asset " 
+                                    style="padding-left:75px";>
+                                
+                                <span>asset 渲染模式</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-egg-vue-fls9r6" href="/egg-vue/fls9r6 " 
+                                    style="padding-left:75px";>
+                                
+                                <span>自定义前端渲染</span>
+                                </a>
+                            </li>
+                         
+                    </ul>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/egg-vue/online" class="waves-effect waves-light m-nav-item-egg-vue-online">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        部署流程
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/egg-vue/config" class="waves-effect waves-light m-nav-item-egg-vue-config">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        配置说明
+                    </a>
+                </li>
+            
+        
+            
+                
+                <!---->
+                <li class="m-nav-item m-nav-show">
+                    <a href="javascript:;">
+                        <i class="fas fa-fw fa-link"></i>
+                        特性支持
+                        <span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+                    </a>
+                    <ul style="display:block;">
+                        
+                            <li>   
+                                <a class="m-nav-item-egg-vue-qpeiow" href="/egg-vue/qpeiow " 
+                                    style="padding-left:75px";>
+                                
+                                <span>入口实现</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-egg-vue-data" href="/egg-vue/data " 
+                                    style="padding-left:75px";>
+                                
+                                <span>数据请求</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-egg-vue-async" href="/egg-vue/async " 
+                                    style="padding-left:75px";>
+                                
+                                <span>异步加载</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-egg-vue-seo" href="/egg-vue/seo " 
+                                    style="padding-left:75px";>
+                                
+                                <span>SEO实现</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-egg-vue-inline" href="/egg-vue/inline " 
+                                    style="padding-left:75px";>
+                                
+                                <span>资源内敛</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-egg-vue-typescript" href="/egg-vue/typescript " 
+                                    style="padding-left:75px";>
+                                
+                                <span>TypeScript</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-egg-vue-pwa" href="/egg-vue/pwa " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Service Worker</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-egg-vue-i18n" href="/egg-vue/i18n " 
+                                    style="padding-left:75px";>
+                                
+                                <span>i18n 国际化支持</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-egg-vue-babel" href="/egg-vue/babel " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Babel 构建优化</span>
+                                </a>
+                            </li>
+                         
+                    </ul>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/egg-vue/version" class="waves-effect waves-light m-nav-item-egg-vue-version">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        插件使用
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/egg-vue/about" class="waves-effect waves-light m-nav-item-egg-vue-about">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        相关问题
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/egg-vue/case" class="waves-effect waves-light m-nav-item-egg-vue-case">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        项目一览
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/egg-vue/case" class="waves-effect waves-light m-nav-item-egg-vue-case">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        社区作品
+                    </a>
+                </li>
+            
+        
+        <li><div class="divider"></div></li>
+        
+        <li>
+            <a href="https://yuque.com/easy-team/egg-vue" class="waves-effect waves-light" target="_blank">
+                <i class="fas fa-fw fa-link"></i>语雀文档
+            </a>
+        </li>
+        <li>
+            <a href="https://github.com/easy-team/egg-vue-webpack-boilerplate" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Github
+            </a>
+        </li>
+    </ul>
+</div>
+
+    </div>
+    
+</div>
+<script>
+  $('#mobile-main-menu-btn').click(function () {
+    $('#mobile-doc-menu').css('display', 'none');
+    $('#mobile-main-menu').css('display', 'block');
+    $('#mobile-main-menu-btn').css('font-weight', 'bold');
+    $('#mobile-doc-menu-btn').css('font-weight', 'normal');
+  });
+  $('#mobile-doc-menu-btn').click(function (e) {
+    $('#mobile-main-menu').css('display', 'none');
+    $('#mobile-doc-menu').css('display', 'block');
+    $('#mobile-doc-menu-btn').css('font-weight', 'bold');
+    $('#mobile-main-menu-btn').css('font-weight', 'normal');
+  });
+</script>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/easy-team" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Follow" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    <div class="bg-cover pd-header" style="height: 64px">
+    <div class="container"></div>
+</div>
+
+
+    <script>
+        // 每天切换 banner 图.  Switch banner image every day.
+        $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
+    </script>
+    
+
+<div class="doc-content">
+    
+     <div class="doc-left-nav" style="width:">
+        <div class="side-nav docsidenav">
+    <div class="doc-left-nav-title">
+        <div class="doc-left-nav-title-name">egg-vue</div>
+        <div class="doc-left-nav-title-desc">Egg Vue SSR/CSR 解决方案</div>
+    </div>
+    <ul class="menu-list mobile-menu-list">
+        
+            
+                <li class="m-nav-item">
+                    <a href="/egg-vue/learn" class="waves-effect waves-light m-nav-item-egg-vue-learn">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        工程介绍
+                    </a>
+                </li>
+            
+        
+            
+                
+                <!---->
+                <li class="m-nav-item ">
+                    <a href="javascript:;">
+                        <i class="fas fa-fw fa-link"></i>
+                        开发指南
+                        <span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+                    </a>
+                    <ul style="display:;">
+                        
+                            <li>   
+                                <a class="m-nav-item-egg-vue-init" href="/egg-vue/init " 
+                                    style="padding-left:75px";>
+                                
+                                <span>快速开始</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-egg-vue-start" href="/egg-vue/start " 
+                                    style="padding-left:75px";>
+                                
+                                <span>从零开始</span>
+                                </a>
+                            </li>
+                         
+                    </ul>
+                </li>
+            
+        
+            
+                
+                <!---->
+                <li class="m-nav-item ">
+                    <a href="javascript:;">
+                        <i class="fas fa-fw fa-link"></i>
+                        渲染模式
+                        <span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+                    </a>
+                    <ul style="display:;">
+                        
+                            <li>   
+                                <a class="m-nav-item-egg-vue-node" href="/egg-vue/node " 
+                                    style="padding-left:75px";>
+                                
+                                <span>服务端渲染模式</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-egg-vue-web" href="/egg-vue/web " 
+                                    style="padding-left:75px";>
+                                
+                                <span>前端渲染模式</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-egg-vue-html" href="/egg-vue/html " 
+                                    style="padding-left:75px";>
+                                
+                                <span>HTML前端渲染</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-egg-vue-asset" href="/egg-vue/asset " 
+                                    style="padding-left:75px";>
+                                
+                                <span>asset 渲染模式</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-egg-vue-fls9r6" href="/egg-vue/fls9r6 " 
+                                    style="padding-left:75px";>
+                                
+                                <span>自定义前端渲染</span>
+                                </a>
+                            </li>
+                         
+                    </ul>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/egg-vue/online" class="waves-effect waves-light m-nav-item-egg-vue-online">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        部署流程
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/egg-vue/config" class="waves-effect waves-light m-nav-item-egg-vue-config">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        配置说明
+                    </a>
+                </li>
+            
+        
+            
+                
+                <!---->
+                <li class="m-nav-item m-nav-show">
+                    <a href="javascript:;">
+                        <i class="fas fa-fw fa-link"></i>
+                        特性支持
+                        <span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+                    </a>
+                    <ul style="display:block;">
+                        
+                            <li>   
+                                <a class="m-nav-item-egg-vue-qpeiow" href="/egg-vue/qpeiow " 
+                                    style="padding-left:75px";>
+                                
+                                <span>入口实现</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-egg-vue-data" href="/egg-vue/data " 
+                                    style="padding-left:75px";>
+                                
+                                <span>数据请求</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-egg-vue-async" href="/egg-vue/async " 
+                                    style="padding-left:75px";>
+                                
+                                <span>异步加载</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-egg-vue-seo" href="/egg-vue/seo " 
+                                    style="padding-left:75px";>
+                                
+                                <span>SEO实现</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-egg-vue-inline" href="/egg-vue/inline " 
+                                    style="padding-left:75px";>
+                                
+                                <span>资源内敛</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-egg-vue-typescript" href="/egg-vue/typescript " 
+                                    style="padding-left:75px";>
+                                
+                                <span>TypeScript</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-egg-vue-pwa" href="/egg-vue/pwa " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Service Worker</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-egg-vue-i18n" href="/egg-vue/i18n " 
+                                    style="padding-left:75px";>
+                                
+                                <span>i18n 国际化支持</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-egg-vue-babel" href="/egg-vue/babel " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Babel 构建优化</span>
+                                </a>
+                            </li>
+                         
+                    </ul>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/egg-vue/version" class="waves-effect waves-light m-nav-item-egg-vue-version">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        插件使用
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/egg-vue/about" class="waves-effect waves-light m-nav-item-egg-vue-about">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        相关问题
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/egg-vue/case" class="waves-effect waves-light m-nav-item-egg-vue-case">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        项目一览
+                    </a>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/egg-vue/case" class="waves-effect waves-light m-nav-item-egg-vue-case">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        社区作品
+                    </a>
+                </li>
+            
+        
+        <li><div class="divider"></div></li>
+        
+        <li>
+            <a href="https://yuque.com/easy-team/egg-vue" class="waves-effect waves-light" target="_blank">
+                <i class="fas fa-fw fa-link"></i>语雀文档
+            </a>
+        </li>
+        <li>
+            <a href="https://github.com/easy-team/egg-vue-webpack-boilerplate" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Github
+            </a>
+        </li>
+    </ul>
+</div>
+
+     </div>
+    
+    <div class="doc-right-nav">
+        <div class="card" class="doc-right-card">
+            <div class="card-content article-info">
+                <h1 class="post-info-doc-title">数据请求</h1>
+                <div class="post-info-doc-title-sub">egg-vue - Egg Vue SSR 工程化解决方案能够快速实现前后端分离、服务端和客户端同构渲染; 基于 Egg Vue SSR 工程化方案你能够快速进行项目开发。</div>
+                <div class="post-info post-stat">
+                    <div class="post-date info-break-policy">
+                        <i class="far fa-calendar-minus fa-fw"></i><span class="post-stat-label">Date:</span>&nbsp;
+                        2020-04-18
+                    </div>
+    
+                    
+                        
+                        <div class="info-break-policy">
+                            <i class="far fa-file-word fa-fw"></i><span class="post-stat-label">Word Count:</span>&nbsp;
+                            1.5k
+                        </div>
+                        
+    
+                        
+                        <div class="stat-read-time info-break-policy" >
+                            <i class="far fa-clock fa-fw"></i><span class="post-stat-label">Read Times:</span>&nbsp;
+                            6 Min
+                        </div>
+                        
+                    
+                    
+                    
+                        <div id="busuanzi_container_page_pv" class="info-break-policy">
+                            <i class="far fa-eye fa-fw"></i><span class="post-stat-label">Read Count:</span>&nbsp;
+                            <span id="busuanzi_value_page_pv"></span>
+                        </div>
+                    
+                </div>
+            </div>
+            <hr class="clearfix" style="margin: 0px 0px;">
+            <div class="card-content article-card-content" style="padding-top: 0px;">
+                <div id="articleContent">
+                    <h2 id="服务端渲染-Node-层直接获取数据"><a href="#服务端渲染-Node-层直接获取数据" class="headerlink" title="服务端渲染 Node 层直接获取数据"></a>服务端渲染 Node 层直接获取数据</h2><p>在 Egg 项目如果使用模板引擎规范时是通过 render 方法进行模板渲染，render 的第一个参数模板路径，第二个参数时模板渲染数据. 如如下调用方式：<br /></p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">async</span> <span class="token function">index</span><span class="token punctuation">(</span>ctx<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 获取数据，可以是从数据库，后端 Http 接口 等形式</span>
+    <span class="token keyword">const</span> list <span class="token operator">=</span> ctx<span class="token punctuation">.</span>service<span class="token punctuation">.</span>article<span class="token punctuation">.</span><span class="token function">getArtilceList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 对模板进行渲染，这里的 index.js 是 vue 文件通过 Webpack 构建的 JSBundle 文件</span>
+    <span class="token keyword">await</span> ctx<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token string">'index.js'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> list <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>从上面的例子可以看出，这种使用方式是非常典型的也容易理解的模板渲染方式。在实际业务开发时，对于常规的页面渲染也建议使用这种方式获取数据，然后进行页面渲染。Node 获取数据后，在 Vue 文件里面就可以通过 this.list 的方式拿到 Node 获取的数据，然后就可以进行 Vue 模板文件数据绑定了。<br /><br><br />在这里有个高阶用法，可以直接把 ctx 等 Node 对象传递到第二个参数里面,  这个时候你在模板里面就直接拿到 ctx 这些对象。 但这个时候就需要自己处理好 SSR 渲染时导致的 hydrate 问题，因为前端hydrate时并没有 ctx 对象。<br /> <br /></p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">async</span> <span class="token function">index</span><span class="token punctuation">(</span>ctx<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 获取数据，可以是从数据库，后端 Http 接口 等形式</span>
+    <span class="token keyword">const</span> list <span class="token operator">=</span> ctx<span class="token punctuation">.</span>service<span class="token punctuation">.</span>article<span class="token punctuation">.</span><span class="token function">getArtilceList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 对模板进行渲染，这里的 index.js 是 vue 文件通过 Webpack 构建的 JSBundle 文件</span>
+    <span class="token keyword">await</span> ctx<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token string">'index.js'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> ctx<span class="token punctuation">,</span> list <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>如果把 ctx 对象传递到 Vue 模板文件里面，你可以通过在 Vue 模板文件进行 ctx.service.article.getArtilceList() 调用， 也就是在前端代码模板里面进行 Node 调用。<br /></p>
+<h2 id="服务端渲染-asyncData-方式获取数据"><a href="#服务端渲染-asyncData-方式获取数据" class="headerlink" title="服务端渲染 asyncData 方式获取数据"></a>服务端渲染 asyncData 方式获取数据</h2><p>在 Vue 单页面 SSR 时涉及数据的请求方式，Node 层获取数据方式可以继续使用，但当路由切换时(页面直接刷新)，Node 层就需要根据路由获取不同页面的数据，同时还要考虑前端路由切换的情况，这个时候路由是不会走 Node 层路由，而是直接进行的前端路由，这个时候也要考虑数据的请求方式。<br /><br><br />基于以上使用的优雅问题，这里提供一种 asyncData 获取数据的方式解决单页面 SSR 刷新不走 SSR 问题。 Node 不直接获取数据，获取数据的代码直接写到前端代码里面。这里需要解决如下两个问题：<br /></p>
+<h3 id="前端路由匹配-asyncData-调用"><a href="#前端路由匹配-asyncData-调用" class="headerlink" title="前端路由匹配 asyncData 调用"></a>前端路由匹配 asyncData 调用</h3><p>这里根据路由切换 url 获取指定的路由 componet 组件，然后检查是否有 aysncData，如果有就进行调用。调用之后，数据会放到 Vuex 的 store 里面。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span>resolve<span class="token punctuation">,</span> reject<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        router<span class="token punctuation">.</span><span class="token function">onReady</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+          <span class="token comment" spellcheck="true">// url 为当前请求路由，可以通过服务端传递到前端页面</span>
+          <span class="token keyword">const</span> matchedComponents <span class="token operator">=</span> router<span class="token punctuation">.</span><span class="token function">getMatchedComponents</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>matchedComponents<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token function">reject</span><span class="token punctuation">(</span><span class="token punctuation">{</span> code<span class="token punctuation">:</span> <span class="token string">'404'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+          <span class="token keyword">return</span> Promise<span class="token punctuation">.</span><span class="token function">all</span><span class="token punctuation">(</span>
+            matchedComponents<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>component <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+              <span class="token comment" spellcheck="true">// 关键代码</span>
+              <span class="token keyword">if</span> <span class="token punctuation">(</span>component<span class="token punctuation">.</span>methods <span class="token operator">&amp;&amp;</span> component<span class="token punctuation">.</span>methods<span class="token punctuation">.</span>asyncData<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> component<span class="token punctuation">.</span>methods<span class="token punctuation">.</span><span class="token function">asyncData</span><span class="token punctuation">(</span>store<span class="token punctuation">)</span><span class="token punctuation">;</span>
+              <span class="token punctuation">}</span>
+              <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span>
+          <span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+            context<span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token punctuation">{</span>
+              <span class="token operator">...</span>store<span class="token punctuation">.</span>state<span class="token punctuation">,</span>
+              <span class="token operator">...</span>context<span class="token punctuation">.</span>state
+            <span class="token punctuation">}</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h3 id="Vue-模板定义-asyncData-方法"><a href="#Vue-模板定义-asyncData-方法" class="headerlink" title="Vue 模板定义 asyncData 方法"></a>Vue 模板定义 asyncData 方法</h3><p>前端通过 Vuex 进行数据管理，把数据统一放到 store 里面，前端通过 this.$store.state 方式可以获取数据，Node 和 前端都可以获取到。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token operator">&lt;</span>script type<span class="token operator">=</span><span class="token string">"text/babel"</span><span class="token operator">></span>
+  <span class="token keyword">export</span> <span class="token keyword">default</span><span class="token punctuation">{</span>
+    computed<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      <span class="token function">isLoading</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+       <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token function">articleList</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span>state<span class="token punctuation">.</span>articleList<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    methods<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      asyncData <span class="token punctuation">(</span><span class="token punctuation">{</span> state<span class="token punctuation">,</span> dispatch<span class="token punctuation">,</span> commit <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token string">'FETCH_ARTICLE_LIST'</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span></code></pre>
+<h2 id="前端-asyncData-数据统一调用"><a href="#前端-asyncData-数据统一调用" class="headerlink" title="前端 asyncData 数据统一调用"></a>前端 asyncData 数据统一调用</h2><p>在服务端 asyncData 调用时，可以解决单页面 SSR 刷新问题，那直接在前端切换路由时因不走服务端路由，那数据如何处理？<br /><br><br />在 Vue 单页面实现时，通常都会使用 Vue-Router，这个时候可以借助 Vue-Router 提供 afterEach 钩子进行统一数据请求，可以直接调用 Vue 模板定义的 asyncData 方法。代码如下：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">const</span> options <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span>__INITIAL_STATE__<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span> router<span class="token punctuation">,</span> store <span class="token punctuation">}</span> <span class="token operator">=</span> options<span class="token punctuation">;</span>
+router<span class="token punctuation">.</span><span class="token function">beforeEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span>route<span class="token punctuation">,</span> redirec<span class="token punctuation">,</span> next<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+router<span class="token punctuation">.</span><span class="token function">afterEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span>route<span class="token punctuation">,</span> redirec<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>route<span class="token punctuation">.</span>matched <span class="token operator">&amp;&amp;</span> route<span class="token punctuation">.</span>matched<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> asyncData <span class="token operator">=</span> route<span class="token punctuation">.</span>matched<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>components<span class="token punctuation">.</span><span class="token keyword">default</span><span class="token punctuation">.</span>asyncData<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>asyncData<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">asyncData</span><span class="token punctuation">(</span>store<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>最后贴上可以用的完整代码，请根据实际需要进行修改, 实际可运行例子见 <a href="https://github.com/easy-team/egg-vue-webpack-boilerplate/tree/feature/green/spa" target="_blank" rel="noopener">https://github.com/easy-team/egg-vue-webpack-boilerplate/tree/feature/green/spa</a> </p>
+<ul>
+<li>Vue 页面初始化统一封装</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> sync <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'vuex-router-sync'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string">'./vue/filter'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string">'./vue/directive'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">App</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span>config<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>config <span class="token operator">=</span> config<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">bootstrap</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>EASY_ENV_IS_NODE<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">server</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">client</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">create</span><span class="token punctuation">(</span>initState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token punctuation">{</span> index<span class="token punctuation">,</span> options<span class="token punctuation">,</span> createStore<span class="token punctuation">,</span> createRouter <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>config<span class="token punctuation">;</span>
+    <span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token function">createStore</span><span class="token punctuation">(</span>initState<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token function">createRouter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">sync</span><span class="token punctuation">(</span>store<span class="token punctuation">,</span> router<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+      <span class="token operator">...</span>index<span class="token punctuation">,</span>
+      <span class="token operator">...</span>options<span class="token punctuation">,</span>
+      router<span class="token punctuation">,</span>
+      store
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">client</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Vue<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>$http <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'axios'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> options <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span>__INITIAL_STATE__<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> <span class="token punctuation">{</span> router<span class="token punctuation">,</span> store <span class="token punctuation">}</span> <span class="token operator">=</span> options<span class="token punctuation">;</span>
+    router<span class="token punctuation">.</span><span class="token function">beforeEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span>route<span class="token punctuation">,</span> redirec<span class="token punctuation">,</span> next<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+      <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    router<span class="token punctuation">.</span><span class="token function">afterEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span>route<span class="token punctuation">,</span> redirec<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'>>afterEach'</span><span class="token punctuation">,</span> route<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>route<span class="token punctuation">.</span>matched <span class="token operator">&amp;&amp;</span> route<span class="token punctuation">.</span>matched<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> asyncData <span class="token operator">=</span> route<span class="token punctuation">.</span>matched<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>components<span class="token punctuation">.</span><span class="token keyword">default</span><span class="token punctuation">.</span>asyncData<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>asyncData<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token function">asyncData</span><span class="token punctuation">(</span>store<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> root <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'app'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> hydrate <span class="token operator">=</span> root<span class="token punctuation">.</span>childNodes<span class="token punctuation">.</span>length <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">;</span>
+    app<span class="token punctuation">.</span><span class="token function">$mount</span><span class="token punctuation">(</span><span class="token string">'#app'</span><span class="token punctuation">,</span> hydrate<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> app<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">server</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> context <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> options <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>context<span class="token punctuation">.</span>state<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">const</span> <span class="token punctuation">{</span> store<span class="token punctuation">,</span> router <span class="token punctuation">}</span> <span class="token operator">=</span> options<span class="token punctuation">;</span>
+      router<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>context<span class="token punctuation">.</span>state<span class="token punctuation">.</span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span>resolve<span class="token punctuation">,</span> reject<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        router<span class="token punctuation">.</span><span class="token function">onReady</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+          <span class="token keyword">const</span> matchedComponents <span class="token operator">=</span> router<span class="token punctuation">.</span><span class="token function">getMatchedComponents</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>matchedComponents<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token function">reject</span><span class="token punctuation">(</span><span class="token punctuation">{</span> code<span class="token punctuation">:</span> <span class="token string">'404'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+          <span class="token keyword">return</span> Promise<span class="token punctuation">.</span><span class="token function">all</span><span class="token punctuation">(</span>
+            matchedComponents<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>component <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+              <span class="token keyword">if</span> <span class="token punctuation">(</span>component<span class="token punctuation">.</span>asyncData<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> component<span class="token punctuation">.</span><span class="token function">asyncData</span><span class="token punctuation">(</span>store<span class="token punctuation">)</span><span class="token punctuation">;</span>
+              <span class="token punctuation">}</span>
+              <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span>
+          <span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+            context<span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token punctuation">{</span>
+              <span class="token operator">...</span>store<span class="token punctuation">.</span>state<span class="token punctuation">,</span>
+              <span class="token operator">...</span>context<span class="token punctuation">.</span>state
+            <span class="token punctuation">}</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<ul>
+<li>页面入口代码</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// index.js</span>
+<span class="token string">'use strict'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> App <span class="token keyword">from</span> <span class="token string">'framework/app.js'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> index <span class="token keyword">from</span> <span class="token string">'./index.vue'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> createStore <span class="token keyword">from</span> <span class="token string">'./store'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> createRouter <span class="token keyword">from</span> <span class="token string">'./router'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> options <span class="token operator">=</span> <span class="token punctuation">{</span> base<span class="token punctuation">:</span> <span class="token string">'/'</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">new</span> <span class="token class-name">App</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  index<span class="token punctuation">,</span>
+  options<span class="token punctuation">,</span>
+  createStore<span class="token punctuation">,</span>
+  createRouter<span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">bootstrap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+</code></pre>
+<ul>
+<li>前端 router / store 定义</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// store/index.js</span>
+
+<span class="token string">'use strict'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> Vuex <span class="token keyword">from</span> <span class="token string">'vuex'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> actions <span class="token keyword">from</span> <span class="token string">'./actions'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> getters <span class="token keyword">from</span> <span class="token string">'./getters'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> mutations <span class="token keyword">from</span> <span class="token string">'./mutations'</span><span class="token punctuation">;</span>
+
+Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>Vuex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">function</span> <span class="token function">createStore</span><span class="token punctuation">(</span>initState <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+  <span class="token keyword">const</span> state <span class="token operator">=</span> <span class="token punctuation">{</span>
+    articleList<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    article<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token operator">...</span>initState
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Vuex<span class="token punctuation">.</span>Store</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    state<span class="token punctuation">,</span>
+    actions<span class="token punctuation">,</span>
+    getters<span class="token punctuation">,</span>
+    mutations
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// router/index.js</span>
+
+<span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> VueRouter <span class="token keyword">from</span> <span class="token string">'vue-router'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> ListView <span class="token keyword">from</span> <span class="token string">'./list'</span><span class="token punctuation">;</span>
+
+Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>VueRouter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">function</span> <span class="token function">createRouter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    mode<span class="token punctuation">:</span> <span class="token string">'history'</span><span class="token punctuation">,</span>
+    base<span class="token punctuation">:</span> <span class="token string">'/'</span><span class="token punctuation">,</span>
+    routes<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        path<span class="token punctuation">:</span> <span class="token string">'/'</span><span class="token punctuation">,</span>
+        component<span class="token punctuation">:</span> ListView
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        path<span class="token punctuation">:</span> <span class="token string">'/list'</span><span class="token punctuation">,</span>
+        component<span class="token punctuation">:</span> ListView
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        path<span class="token punctuation">:</span> <span class="token string">'/detail/:id'</span><span class="token punctuation">,</span>
+        component<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">'./detail'</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+
+</code></pre>
+<h2 id="直接-Vue-模板文件进行渲染"><a href="#直接-Vue-模板文件进行渲染" class="headerlink" title="直接 Vue 模板文件进行渲染"></a>直接 Vue 模板文件进行渲染</h2><p>那有没有办法直接渲染 Vue 文件，无需自己写入口代码实现？ 答案可以。 Egg + Vue 工程化方案提供了 <a href="https://github.com/easy-team/vue-entry-loader" target="_blank" rel="noopener">https://github.com/easy-team/vue-entry-loader</a>  结合 Webpack 可以无需编写以上入口实现，具体使用请见：<a href="https://www.yuque.com/easy-team/egg-vue/qpeiow" target="_blank" rel="noopener">https://www.yuque.com/easy-team/egg-vue/qpeiow</a></p>
+
+                </div>
+                <hr/>
+    
+                
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://easyjs.cn" rel="external nofollow noreferrer">sky</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://easyjs.cn/egg-vue/data/">https://easyjs.cn/egg-vue/data/</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                    <span class="reprint-meta" style="font-weight: bold;">
+                        <i class="fas fa-link">
+                            yuque:
+                        </i>
+                    </span>
+                    <span class="reprint-info">
+                        <a href="https://yuque.com/easy-team/egg-vue/data/" target="_blank" rel="noopener">https://yuque.com/easy-team/egg-vue/data/</a>
+                    </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="https://easyjs.cn" target="_blank">sky</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+    
+                <div class="tag_share" style="display: block; margin-top: 20px;">
+                    <div class="post-meta__tag-list" style="display: inline-block;">
+                        
+                            
+                        
+                    </div>
+                    <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                        <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    
+    <div class="social-share" data-sites="qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                    </div>
+
+                </div>
+                
+            </div>
+        </div>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aosd="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/egg-vue/case/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="社区作品">
+                        
+                        <span class="card-title">社区作品</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            游戏中心小米游戏中心土豆视频easy-team https://github.com/zhqlol/edgarserverhttps://www.jianshu.com/p/71fe6197d358https://github.com/MaleWeb/FullStack_Cli
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-18
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            sky
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/egg-vue/inline/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="静态资源">
+                        
+                        <span class="card-title">静态资源</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            静态资源构建此处为语雀文档，点击链接查看：https://www.yuque.com/easy-team/easywebpack/wb66pe外部静态资源链接const vConsoleScript = `<script async src="//cdn.com/script/vConsole...
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-18
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            sky
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+     </div>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('50')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + 'From: easyjs<br />'
+            + 'Author: sky<br />'
+            + 'Link: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+    
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+<!-- menu-selected -->
+<script>
+    var pathname = location.pathname.replace(/^\//, '').replace(/\/$/, '').replace(/\//g, '-');
+    console.log('>>>pathname', pathname);
+    $('.m-nav-item-' + pathname).addClass('doc-left-nav-mene-selected');
+</script>
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">年份</span>
+            <a href="https://easyjs.cn" target="_blank">sky</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">112.5k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    window.setTimeout("siteTime()", 1000);
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2019";
+                    var startMonth = "11";
+                    var startDate = "24";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+            <span id="icp"><img src="/medias/icp.png" alt="easyjs" style="vertical-align: text-bottom;" />
+                <a href="http://www.beian.miit.gov.cn/" target="_blank">粤ICP备19144149号</a>
+            </span>
+            
+        </div>
+        <div>
+            <ul class="footer-friend-link">
+                <li><a target="_blank" href="https://github.com/easy-team">GitHub</a></li>
+                <li><a target="_blank" href="https://zhuanlan.zhihu.com/easywebpack">知乎</a></li>
+                <li><a target="_blank" href="https://yuque.com/easy-team">语雀</a></li>
+                <li><a target="_blank" href="https://eggjs.org/zh-cn/intro/">Eggjs</a></li>
+                <li><a target="_blank" href="https://cn.vuejs.org/">Vue</a></li>
+                <li><a target="_blank" href="https://reactjs.org/">React</a></li>
+            </ul>
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/easy-team" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="https://zhuanlan.zhihu.com/easyjs" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: https://zhuanlan.zhihu.com/easyjs" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+    <a href="mailto:hubcarl@126.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=433207205" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 433207205" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/hubcarl" class="tooltipped" target="_blank" data-tooltip="关注我的微博: https://weibo.com/hubcarl" data-position="top" data-delay="50">
+        <i class="fab fa-weibo"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <!-- Baidu Analytics -->
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?18317956d9176481eb5e8d9780e34bda";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        bp.async = true;
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    <!-- 360 Push -->
+
+  <script>
+      (function () {
+          var bp = document.createElement('script');
+          bp.async = true;
+          bp.id='sozz';
+          bp.src = 'https://jspassport.ssl.qhimg.com/11.0.1.js?d182b3f28525f2db83acfaaf6e696dba';
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(bp, s);
+      })();
+  </script>
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

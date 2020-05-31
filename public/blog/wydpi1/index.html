@@ -1,0 +1,1798 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Flutter 动态更新, Flutter 更新机制,Eggjs,Webpack,easywebpack,Egg React SSR,Egg Vue SSR, Web IDE, Flutter, React Native">
+    <meta name="description" content="前端工程, Node/Egg, Flutter/Hybrid/小程序多端技术学习">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="msvalidate.01" content="52C6E15B2B71F302C8C33257FFA2FF9B" />
+    <meta name="shenma-site-verification" content="023a7847fc1a21db55c8138e7de01ca1_1576943800">
+    <meta name="sogou_site_verification" content="AiTLm7IiAe"/>
+    <title>easyjs | Egg/前端工程/多端技术-Flutter 动态更新</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="easyjs" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper head-container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect-fix waves-light">
+                    
+                    <span class="logo-span">easyjs</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Home</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/egg-react" class="waves-effect waves-light">
+      
+      <i class="fas fa-forward" style="zoom: 0.6;"></i>
+      
+      <span>Egg+React</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/egg-vue" class="waves-effect waves-light">
+      
+      <i class="fas fa-forward" style="zoom: 0.6;"></i>
+      
+      <span>Egg+Vue</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>Egg Framework</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/res">
+          
+          <i class="fas fa-forward" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Res</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/ves">
+          
+          <i class="fas fa-forward" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Ves</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/easywebpack" class="waves-effect waves-light">
+      
+      <i class="fas fa-building" style="zoom: 0.6;"></i>
+      
+      <span>Webpack</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/blog" class="waves-effect waves-light">
+      
+      <i class="fas fa-forward" style="zoom: 0.6;"></i>
+      
+      <span>Blog</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>Contact</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+    
+    <div class="mobile-left-menu">
+      <div id="mobile-main-menu-btn">easyjs</div>
+      <div id="mobile-doc-menu-btn">blog</div>
+    </div>
+    
+    <div id="mobile-main-menu" style="display:none">
+    <div class="mobile-head bg-color">
+        <!--  -->
+        
+        <div class="logo-desc">
+          
+            Egg/前端工程/多端技术
+          
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Home
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/egg-react" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-forward"></i>
+			
+			Egg+React
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/egg-vue" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-forward"></i>
+			
+			Egg+Vue
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			Egg Framework
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>   
+				
+                  <a href="/res " style="margin-left:75px";>
+				  
+				   <i class="fa fas fa-forward" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Res</span>
+                  </a>
+                </li>
+              
+                <li>   
+				
+                  <a href="/ves " style="margin-left:75px";>
+				  
+				   <i class="fa fas fa-forward" style="position: absolute;left:50px" ></i>
+			      
+		          <span>Ves</span>
+                  </a>
+                </li>
+               
+            </ul>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/easywebpack" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-building"></i>
+			
+			Webpack
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/blog" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-forward"></i>
+			
+			Blog
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/easy-team" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Follow
+            </a>
+        </li>
+        
+    </ul>
+    </div>
+    
+    <div id="mobile-doc-menu">
+      <div class="side-nav docsidenav">
+    <div class="doc-left-nav-title">
+        <div class="doc-left-nav-title-name">blog</div>
+        <div class="doc-left-nav-title-desc">Egg/前端工程/多端技术</div>
+    </div>
+    <ul class="menu-list mobile-menu-list">
+        
+            
+                
+                <!---->
+                <li class="m-nav-item ">
+                    <a href="javascript:;">
+                        <i class="fas fa-fw fa-link"></i>
+                        Egg 技术专题
+                        <span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+                    </a>
+                    <ul style="display:;">
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-kiygy5" href="/blog/kiygy5 " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Egg Vue SSR 组件加载</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-cdal6o" href="/blog/cdal6o " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Egg + Web 自定义前端渲染</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-ruv09m" href="/blog/ruv09m " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Egg SSR Webpack热更新实现</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-xriz8a" href="/blog/xriz8a " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Egg + Vue/Nunjucks渲染性能</span>
+                                </a>
+                            </li>
+                         
+                    </ul>
+                </li>
+            
+        
+            
+                
+                <!---->
+                <li class="m-nav-item ">
+                    <a href="javascript:;">
+                        <i class="fas fa-fw fa-link"></i>
+                        Webpack 技术专题
+                        <span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+                    </a>
+                    <ul style="display:;">
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-sg8avg" href="/blog/sg8avg " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Webpack Babel SSR 构建优化</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-zfri65" href="/blog/zfri65 " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Webpack 构建大小分析与优化</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-qwr449" href="/blog/qwr449 " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Webpack 热更新实现原理分析</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-dxrrhq" href="/blog/dxrrhq " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Webpack 4 编译内存泄漏</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-ekvirc" href="/blog/ekvirc " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Webpack 构建流程解密</span>
+                                </a>
+                            </li>
+                         
+                    </ul>
+                </li>
+            
+        
+            
+                
+                <!---->
+                <li class="m-nav-item m-nav-show">
+                    <a href="javascript:;">
+                        <i class="fas fa-fw fa-link"></i>
+                        Flutter 技术专题
+                        <span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+                    </a>
+                    <ul style="display:block;">
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-wydpi1" href="/blog/wydpi1 " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Flutter 动态更新</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-zs3hog" href="/blog/zs3hog " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Flutter iOS 混合工程实践</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-lsrssy" href="/blog/lsrssy " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Flutter  Android  混合工程实践</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-nrswgq" href="/blog/nrswgq " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Android 与 Flutter 入门开发实践指引</span>
+                                </a>
+                            </li>
+                         
+                    </ul>
+                </li>
+            
+        
+            
+                
+                <!---->
+                <li class="m-nav-item ">
+                    <a href="javascript:;">
+                        <i class="fas fa-fw fa-link"></i>
+                        React Native 技术专题
+                        <span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+                    </a>
+                    <ul style="display:;">
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-xcw19a" href="/blog/xcw19a " 
+                                    style="padding-left:75px";>
+                                
+                                <span>React Native, Hybrid App, H5 简单对比分析</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-vzgcgb" href="/blog/vzgcgb " 
+                                    style="padding-left:75px";>
+                                
+                                <span>React Native Android APK包大小分析</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-wk5ney" href="/blog/wk5ney " 
+                                    style="padding-left:75px";>
+                                
+                                <span>React Native 自定义插件</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-kghphs" href="/blog/kghphs " 
+                                    style="padding-left:75px";>
+                                
+                                <span>React Native代码执行跟踪和调试</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-qwywww" href="/blog/qwywww " 
+                                    style="padding-left:75px";>
+                                
+                                <span>React Native 热更新实现</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-rh45zo" href="/blog/rh45zo " 
+                                    style="padding-left:75px";>
+                                
+                                <span>React Native Android源码解读和交互原理分析</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-uhmdkg" href="/blog/uhmdkg " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Hybrid系列-phonegap android框架详解</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-sxys82" href="/blog/sxys82 " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Hybrid系列-Cordova android框架详解</span>
+                                </a>
+                            </li>
+                         
+                    </ul>
+                </li>
+            
+        
+            
+                
+                <!---->
+                <li class="m-nav-item ">
+                    <a href="javascript:;">
+                        <i class="fas fa-fw fa-link"></i>
+                        开发工具使用
+                        <span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+                    </a>
+                    <ul style="display:;">
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-syh43v" href="/blog/syh43v " 
+                                    style="padding-left:75px";>
+                                
+                                <span>npm 常用命令</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-vfhw62" href="/blog/vfhw62 " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Git 使用技巧</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-gayu0o" href="/blog/gayu0o " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Docker 随记</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-egret" href="/blog/egret " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Egret  游戏开发</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-og9ogk" href="/blog/og9ogk " 
+                                    style="padding-left:75px";>
+                                
+                                <span>vscode 插件开发</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-qz7n03" href="/blog/qz7n03 " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Mac PHP 环境</span>
+                                </a>
+                            </li>
+                         
+                    </ul>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/blog/az519d" class="waves-effect waves-light m-nav-item-blog-az519d">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        页面资源加载
+                    </a>
+                </li>
+            
+        
+        <li><div class="divider"></div></li>
+        
+        <li>
+            <a href="https://yuque.com/hubcarl" class="waves-effect waves-light" target="_blank">
+                <i class="fas fa-fw fa-link"></i>语雀文档
+            </a>
+        </li>
+        <li>
+            <a href="https://github.com/hubcarl" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Github
+            </a>
+        </li>
+    </ul>
+</div>
+
+    </div>
+    
+</div>
+<script>
+  $('#mobile-main-menu-btn').click(function () {
+    $('#mobile-doc-menu').css('display', 'none');
+    $('#mobile-main-menu').css('display', 'block');
+    $('#mobile-main-menu-btn').css('font-weight', 'bold');
+    $('#mobile-doc-menu-btn').css('font-weight', 'normal');
+  });
+  $('#mobile-doc-menu-btn').click(function (e) {
+    $('#mobile-main-menu').css('display', 'none');
+    $('#mobile-doc-menu').css('display', 'block');
+    $('#mobile-doc-menu-btn').css('font-weight', 'bold');
+    $('#mobile-main-menu-btn').css('font-weight', 'normal');
+  });
+</script>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/easy-team" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Follow" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    <div class="bg-cover pd-header" style="height: 64px">
+    <div class="container"></div>
+</div>
+
+
+    <script>
+        // 每天切换 banner 图.  Switch banner image every day.
+        $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
+    </script>
+    
+
+<div class="doc-content">
+    
+     <div class="doc-left-nav" style="width:300px">
+        <div class="side-nav docsidenav">
+    <div class="doc-left-nav-title">
+        <div class="doc-left-nav-title-name">blog</div>
+        <div class="doc-left-nav-title-desc">Egg/前端工程/多端技术</div>
+    </div>
+    <ul class="menu-list mobile-menu-list">
+        
+            
+                
+                <!---->
+                <li class="m-nav-item ">
+                    <a href="javascript:;">
+                        <i class="fas fa-fw fa-link"></i>
+                        Egg 技术专题
+                        <span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+                    </a>
+                    <ul style="display:;">
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-kiygy5" href="/blog/kiygy5 " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Egg Vue SSR 组件加载</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-cdal6o" href="/blog/cdal6o " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Egg + Web 自定义前端渲染</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-ruv09m" href="/blog/ruv09m " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Egg SSR Webpack热更新实现</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-xriz8a" href="/blog/xriz8a " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Egg + Vue/Nunjucks渲染性能</span>
+                                </a>
+                            </li>
+                         
+                    </ul>
+                </li>
+            
+        
+            
+                
+                <!---->
+                <li class="m-nav-item ">
+                    <a href="javascript:;">
+                        <i class="fas fa-fw fa-link"></i>
+                        Webpack 技术专题
+                        <span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+                    </a>
+                    <ul style="display:;">
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-sg8avg" href="/blog/sg8avg " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Webpack Babel SSR 构建优化</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-zfri65" href="/blog/zfri65 " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Webpack 构建大小分析与优化</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-qwr449" href="/blog/qwr449 " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Webpack 热更新实现原理分析</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-dxrrhq" href="/blog/dxrrhq " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Webpack 4 编译内存泄漏</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-ekvirc" href="/blog/ekvirc " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Webpack 构建流程解密</span>
+                                </a>
+                            </li>
+                         
+                    </ul>
+                </li>
+            
+        
+            
+                
+                <!---->
+                <li class="m-nav-item m-nav-show">
+                    <a href="javascript:;">
+                        <i class="fas fa-fw fa-link"></i>
+                        Flutter 技术专题
+                        <span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+                    </a>
+                    <ul style="display:block;">
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-wydpi1" href="/blog/wydpi1 " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Flutter 动态更新</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-zs3hog" href="/blog/zs3hog " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Flutter iOS 混合工程实践</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-lsrssy" href="/blog/lsrssy " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Flutter  Android  混合工程实践</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-nrswgq" href="/blog/nrswgq " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Android 与 Flutter 入门开发实践指引</span>
+                                </a>
+                            </li>
+                         
+                    </ul>
+                </li>
+            
+        
+            
+                
+                <!---->
+                <li class="m-nav-item ">
+                    <a href="javascript:;">
+                        <i class="fas fa-fw fa-link"></i>
+                        React Native 技术专题
+                        <span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+                    </a>
+                    <ul style="display:;">
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-xcw19a" href="/blog/xcw19a " 
+                                    style="padding-left:75px";>
+                                
+                                <span>React Native, Hybrid App, H5 简单对比分析</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-vzgcgb" href="/blog/vzgcgb " 
+                                    style="padding-left:75px";>
+                                
+                                <span>React Native Android APK包大小分析</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-wk5ney" href="/blog/wk5ney " 
+                                    style="padding-left:75px";>
+                                
+                                <span>React Native 自定义插件</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-kghphs" href="/blog/kghphs " 
+                                    style="padding-left:75px";>
+                                
+                                <span>React Native代码执行跟踪和调试</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-qwywww" href="/blog/qwywww " 
+                                    style="padding-left:75px";>
+                                
+                                <span>React Native 热更新实现</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-rh45zo" href="/blog/rh45zo " 
+                                    style="padding-left:75px";>
+                                
+                                <span>React Native Android源码解读和交互原理分析</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-uhmdkg" href="/blog/uhmdkg " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Hybrid系列-phonegap android框架详解</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-sxys82" href="/blog/sxys82 " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Hybrid系列-Cordova android框架详解</span>
+                                </a>
+                            </li>
+                         
+                    </ul>
+                </li>
+            
+        
+            
+                
+                <!---->
+                <li class="m-nav-item ">
+                    <a href="javascript:;">
+                        <i class="fas fa-fw fa-link"></i>
+                        开发工具使用
+                        <span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+                    </a>
+                    <ul style="display:;">
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-syh43v" href="/blog/syh43v " 
+                                    style="padding-left:75px";>
+                                
+                                <span>npm 常用命令</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-vfhw62" href="/blog/vfhw62 " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Git 使用技巧</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-gayu0o" href="/blog/gayu0o " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Docker 随记</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-egret" href="/blog/egret " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Egret  游戏开发</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-og9ogk" href="/blog/og9ogk " 
+                                    style="padding-left:75px";>
+                                
+                                <span>vscode 插件开发</span>
+                                </a>
+                            </li>
+                        
+                            <li>   
+                                <a class="m-nav-item-blog-qz7n03" href="/blog/qz7n03 " 
+                                    style="padding-left:75px";>
+                                
+                                <span>Mac PHP 环境</span>
+                                </a>
+                            </li>
+                         
+                    </ul>
+                </li>
+            
+        
+            
+                <li class="m-nav-item">
+                    <a href="/blog/az519d" class="waves-effect waves-light m-nav-item-blog-az519d">
+                        
+                        <i class="fas fa-fw fa-link"></i>
+                        
+                        页面资源加载
+                    </a>
+                </li>
+            
+        
+        <li><div class="divider"></div></li>
+        
+        <li>
+            <a href="https://yuque.com/hubcarl" class="waves-effect waves-light" target="_blank">
+                <i class="fas fa-fw fa-link"></i>语雀文档
+            </a>
+        </li>
+        <li>
+            <a href="https://github.com/hubcarl" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Github
+            </a>
+        </li>
+    </ul>
+</div>
+
+     </div>
+    
+    <div class="doc-right-nav">
+        <div class="card" class="doc-right-card">
+            <div class="card-content article-info">
+                <h1 class="post-info-doc-title">Flutter 动态更新</h1>
+                <div class="post-info-doc-title-sub">blog - 前端工程, Node/Egg, Flutter/Hybrid/小程序多端技术学习</div>
+                <div class="post-info post-stat">
+                    <div class="post-date info-break-policy">
+                        <i class="far fa-calendar-minus fa-fw"></i><span class="post-stat-label">Date:</span>&nbsp;
+                        2020-04-18
+                    </div>
+    
+                    
+                        
+                        <div class="info-break-policy">
+                            <i class="far fa-file-word fa-fw"></i><span class="post-stat-label">Word Count:</span>&nbsp;
+                            938
+                        </div>
+                        
+    
+                        
+                        <div class="stat-read-time info-break-policy" >
+                            <i class="far fa-clock fa-fw"></i><span class="post-stat-label">Read Times:</span>&nbsp;
+                            5 Min
+                        </div>
+                        
+                    
+                    
+                    
+                        <div id="busuanzi_container_page_pv" class="info-break-policy">
+                            <i class="far fa-eye fa-fw"></i><span class="post-stat-label">Read Count:</span>&nbsp;
+                            <span id="busuanzi_value_page_pv"></span>
+                        </div>
+                    
+                </div>
+            </div>
+            <hr class="clearfix" style="margin: 0px 0px;">
+            <div class="card-content article-card-content" style="padding-top: 0px;">
+                <div id="articleContent">
+                    <h2 id="关于动态更新"><a href="#关于动态更新" class="headerlink" title="关于动态更新"></a>关于动态更新</h2><ul>
+<li>Google 考虑自家 Android 应用安全和苹果策略， 本来在 2019 的 roadmap 里面有这样一项，roadmap公布后，过一段时间后面又移除了这一项，目前不是主航道。 </li>
+<li>Android 目前可以通过<strong>整包方式</strong>实现动态更新， iOS 目前还不支持。</li>
+</ul>
+<h2 id="Android-Flutter-整包动态更新实现"><a href="#Android-Flutter-整包动态更新实现" class="headerlink" title="Android Flutter 整包动态更新实现"></a>Android Flutter <strong>整包动态更新实现</strong></h2><h4 id="Flutter-构建产物加载流程"><a href="#Flutter-构建产物加载流程" class="headerlink" title="Flutter 构建产物加载流程"></a>Flutter 构建产物加载流程</h4><ul>
+<li>在<a href="https://www.yuque.com/hubcarl/flutter/igznpo" target="_blank" rel="noopener"> Flutter Android 启动流程</a> 一文中，我们知道了 Android Flutter 启动流程，启动时，会去加载 data/data/{AppPackage}/app_flutter 下面如下文件。 </li>
+</ul>
+<pre class=" language-bash"><code class="language-bash">isolate_snapshot_instr              - 应用程序指令段
+isolate_snapshot_data               - 应用程序数据段
+vm_snapshot_instr                   - DartVM 指令段
+vm_snapshot_data                    - DartVM 数据段</code></pre>
+<p><img src="/medias/easyjs/blog/blog-wydpi1-apk-update-5920333.png" alt="apk-update.png"></p>
+<h4 id="Flutter-构建产物"><a href="#Flutter-构建产物" class="headerlink" title="Flutter 构建产物"></a>Flutter 构建产物</h4><ul>
+<li>在 <a href="https://www.yuque.com/hubcarl/flutter/wfev72" target="_blank" rel="noopener">Flutter Android 混合工程实践 </a> 一文中，详细阐述了生成 Flutter 构建产物的流程。我们可以把构建产物打成压缩包上传到 CDN，然后 Native 通过下载服务器 Flutter 整体更新包进行更新。</li>
+</ul>
+<p>**</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> android<span class="token punctuation">.</span>Manifest<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>app<span class="token punctuation">.</span>DownloadManager<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>content<span class="token punctuation">.</span>BroadcastReceiver<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>content<span class="token punctuation">.</span>Context<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>content<span class="token punctuation">.</span>Intent<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>content<span class="token punctuation">.</span>IntentFilter<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>content<span class="token punctuation">.</span>pm<span class="token punctuation">.</span>PackageManager<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>net<span class="token punctuation">.</span>Uri<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>os<span class="token punctuation">.</span>Bundle<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>os<span class="token punctuation">.</span>Environment<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>support<span class="token punctuation">.</span>v4<span class="token punctuation">.</span>app<span class="token punctuation">.</span>ActivityCompat<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>support<span class="token punctuation">.</span>v4<span class="token punctuation">.</span>content<span class="token punctuation">.</span>ContextCompat<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Log<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>view<span class="token punctuation">.</span>View<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>widget<span class="token punctuation">.</span>Button<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>widget<span class="token punctuation">.</span>Toast<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>happy<span class="token punctuation">.</span>R<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>happy<span class="token punctuation">.</span>core<span class="token punctuation">.</span>BaseNativeActivity<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>happy<span class="token punctuation">.</span>core<span class="token punctuation">.</span>NativeFlutterActivity<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>happy<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>AppUtils<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>BufferedInputStream<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>BufferedOutputStream<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>File<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>FileOutputStream<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>InputStream<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>OutputStream<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Enumeration<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>zip<span class="token punctuation">.</span>ZipEntry<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>zip<span class="token punctuation">.</span>ZipFile<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> io<span class="token punctuation">.</span>flutter<span class="token punctuation">.</span>util<span class="token punctuation">.</span>PathUtils<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UpdateActivity</span> <span class="token keyword">extends</span> <span class="token class-name">BaseNativeActivity</span> <span class="token keyword">implements</span> <span class="token class-name">View<span class="token punctuation">.</span>OnClickListener</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> String TAG <span class="token operator">=</span> <span class="token string">"UpdateFlutterActivity"</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> String FLUTTER_UPDATE_PACKAGE_DIR <span class="token operator">=</span> <span class="token string">"flutter_package"</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> String FLUTTER_UPDATE_PACKAGE_NAME <span class="token operator">=</span> <span class="token string">"Flutter-package.zip"</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> String FLUTTER_UPDATE_PACKAGE_LOCAL_ZIP_FILE <span class="token operator">=</span> 
+    Environment<span class="token punctuation">.</span><span class="token function">getExternalStorageDirectory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getAbsolutePath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span> File<span class="token punctuation">.</span>separator <span class="token operator">+</span> FLUTTER_UPDATE_PACKAGE_DIR <span class="token operator">+</span> File<span class="token punctuation">.</span>separator <span class="token operator">+</span> FLUTTER_UPDATE_PACKAGE_NAME<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> String FLUTTER_UPDATE_PACKAGE_LOCAL_FILE_DIR <span class="token operator">=</span> Environment<span class="token punctuation">.</span><span class="token function">getExternalStorageDirectory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> File<span class="token punctuation">.</span>separator <span class="token operator">+</span> <span class="token string">"happy_flutter_update"</span> <span class="token operator">+</span> File<span class="token punctuation">.</span>separator<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> Button btnUpdate<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> Button btnPage<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> CompleteReceiver mDownloadCompleteReceiver <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">CompleteReceiver</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">onCreate</span><span class="token punctuation">(</span>Bundle savedInstanceState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">onCreate</span><span class="token punctuation">(</span>savedInstanceState<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">setContentView</span><span class="token punctuation">(</span>R<span class="token punctuation">.</span>layout<span class="token punctuation">.</span>activity_update<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">setActionToolBar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        btnUpdate <span class="token operator">=</span> <span class="token function">findViewById</span><span class="token punctuation">(</span>R<span class="token punctuation">.</span>id<span class="token punctuation">.</span>btn_update<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        btnPage <span class="token operator">=</span> <span class="token function">findViewById</span><span class="token punctuation">(</span>R<span class="token punctuation">.</span>id<span class="token punctuation">.</span>btn_page<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        btnUpdate<span class="token punctuation">.</span><span class="token function">setOnClickListener</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        btnPage<span class="token punctuation">.</span><span class="token function">setOnClickListener</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token function">registerReceiver</span><span class="token punctuation">(</span>mDownloadCompleteReceiver<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">IntentFilter</span><span class="token punctuation">(</span>DownloadManager<span class="token punctuation">.</span>ACTION_DOWNLOAD_COMPLETE<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onClick</span><span class="token punctuation">(</span>View v<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">switch</span> <span class="token punctuation">(</span>v<span class="token punctuation">.</span><span class="token function">getId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">case</span> R<span class="token punctuation">.</span>id<span class="token punctuation">.</span>btn_update<span class="token operator">:</span>
+                <span class="token function">checkPermission</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> R<span class="token punctuation">.</span>id<span class="token punctuation">.</span>btn_page<span class="token operator">:</span>
+                Intent intent <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Intent</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> NativeFlutterActivity<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                intent<span class="token punctuation">.</span><span class="token function">setAction</span><span class="token punctuation">(</span>Intent<span class="token punctuation">.</span>ACTION_RUN<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                intent<span class="token punctuation">.</span><span class="token function">putExtra</span><span class="token punctuation">(</span><span class="token string">"route"</span><span class="token punctuation">,</span> <span class="token string">"flutter://test/update"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token function">startActivity</span><span class="token punctuation">(</span>intent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">onFlutterUpdatePackageDownLoaded</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
+        <span class="token keyword">final</span> File file <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span>FLUTTER_UPDATE_PACKAGE_LOCAL_ZIP_FILE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>file <span class="token operator">==</span> null <span class="token operator">||</span> <span class="token operator">!</span>file<span class="token punctuation">.</span><span class="token function">exists</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            Log<span class="token punctuation">.</span><span class="token function">i</span><span class="token punctuation">(</span>TAG<span class="token punctuation">,</span> <span class="token string">"flutter package file download error, check URL or network state"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        File fileDir <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span>FLUTTER_UPDATE_PACKAGE_LOCAL_FILE_DIR<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>fileDir<span class="token punctuation">.</span><span class="token function">exists</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            fileDir<span class="token punctuation">.</span><span class="token function">mkdirs</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        ZipFile zipFile <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ZipFile</span><span class="token punctuation">(</span>FLUTTER_UPDATE_PACKAGE_LOCAL_ZIP_FILE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Enumeration zipList <span class="token operator">=</span> zipFile<span class="token punctuation">.</span><span class="token function">entries</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ZipEntry zipEntry<span class="token punctuation">;</span>
+        <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> buffer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">byte</span><span class="token punctuation">[</span><span class="token number">1024</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>zipList<span class="token punctuation">.</span><span class="token function">hasMoreElements</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            zipEntry <span class="token operator">=</span> <span class="token punctuation">(</span>ZipEntry<span class="token punctuation">)</span> zipList<span class="token punctuation">.</span><span class="token function">nextElement</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>zipEntry<span class="token punctuation">.</span><span class="token function">isDirectory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                String destPath <span class="token operator">=</span> FLUTTER_UPDATE_PACKAGE_LOCAL_FILE_DIR <span class="token operator">+</span> zipEntry<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                File dir <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span>destPath<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                dir<span class="token punctuation">.</span><span class="token function">mkdirs</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">continue</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            OutputStream out <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BufferedOutputStream</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">FileOutputStream</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span>FLUTTER_UPDATE_PACKAGE_LOCAL_FILE_DIR <span class="token operator">+</span> zipEntry<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            InputStream is <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BufferedInputStream</span><span class="token punctuation">(</span>zipFile<span class="token punctuation">.</span><span class="token function">getInputStream</span><span class="token punctuation">(</span>zipEntry<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token keyword">int</span> len<span class="token punctuation">;</span>
+            <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>len <span class="token operator">=</span> is<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span>buffer<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                out<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>buffer<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> len<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            out<span class="token punctuation">.</span><span class="token function">flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            out<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            is<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        zipFile<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">copyToDataFlutterAssets</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// String destPath = PathUtils.getDataDirectory(this.getApplicationContext()) + File.separator + "flutter_assets/";</span>
+        String destPath <span class="token operator">=</span> PathUtils<span class="token punctuation">.</span><span class="token function">getDataDirectory</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getApplicationContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span> File<span class="token punctuation">.</span>separator<span class="token punctuation">;</span>
+        File<span class="token punctuation">[</span><span class="token punctuation">]</span> files <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span>FLUTTER_UPDATE_PACKAGE_LOCAL_FILE_DIR<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">listFiles</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>File file <span class="token operator">:</span> files<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>file<span class="token punctuation">.</span><span class="token function">getPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span><span class="token string">"isolate_snapshot_data"</span><span class="token punctuation">)</span>
+                    <span class="token operator">||</span> file<span class="token punctuation">.</span><span class="token function">getPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span><span class="token string">"isolate_snapshot_instr"</span><span class="token punctuation">)</span>
+                    <span class="token operator">||</span> file<span class="token punctuation">.</span><span class="token function">getPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span><span class="token string">"vm_snapshot_data"</span><span class="token punctuation">)</span>
+                    <span class="token operator">||</span> file<span class="token punctuation">.</span><span class="token function">getPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span><span class="token string">"vm_snapshot_instr"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                AppUtils<span class="token punctuation">.</span><span class="token function">copyFile</span><span class="token punctuation">(</span>file<span class="token punctuation">.</span><span class="token function">getPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> destPath <span class="token operator">+</span> File<span class="token punctuation">.</span>separator <span class="token operator">+</span> file<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        Toast<span class="token punctuation">.</span><span class="token function">makeText</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token string">"更新包更新成功"</span><span class="token punctuation">,</span> Toast<span class="token punctuation">.</span>LENGTH_LONG<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">class</span> <span class="token class-name">CompleteReceiver</span> <span class="token keyword">extends</span> <span class="token class-name">BroadcastReceiver</span>  <span class="token punctuation">{</span>
+
+        <span class="token annotation punctuation">@Override</span>
+        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onReceive</span><span class="token punctuation">(</span>Context context<span class="token punctuation">,</span> Intent intent<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>DownloadManager<span class="token punctuation">.</span>ACTION_DOWNLOAD_COMPLETE<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>intent<span class="token punctuation">.</span><span class="token function">getAction</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                    Toast<span class="token punctuation">.</span><span class="token function">makeText</span><span class="token punctuation">(</span>UpdateActivity<span class="token punctuation">.</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token string">"更新包下载成功"</span><span class="token punctuation">,</span> Toast<span class="token punctuation">.</span>LENGTH_LONG<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token function">onFlutterUpdatePackageDownLoaded</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token function">copyToDataFlutterAssets</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">deleteFlutterPackage</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        File zipFile <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span>FLUTTER_UPDATE_PACKAGE_LOCAL_ZIP_FILE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>zipFile<span class="token punctuation">.</span><span class="token function">exists</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            zipFile<span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        File dir <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span>FLUTTER_UPDATE_PACKAGE_LOCAL_FILE_DIR<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>dir<span class="token punctuation">.</span><span class="token function">isDirectory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+           <span class="token keyword">for</span> <span class="token punctuation">(</span>File file <span class="token operator">:</span> dir<span class="token punctuation">.</span><span class="token function">listFiles</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+               <span class="token keyword">if</span> <span class="token punctuation">(</span>file<span class="token punctuation">.</span><span class="token function">exists</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                   file<span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               <span class="token punctuation">}</span>
+           <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">downloadFlutterUpdatePackage</span><span class="token punctuation">(</span>String url<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        DownloadManager<span class="token punctuation">.</span>Request request <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DownloadManager<span class="token punctuation">.</span>Request</span><span class="token punctuation">(</span>Uri<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        request<span class="token punctuation">.</span><span class="token function">setTitle</span><span class="token punctuation">(</span><span class="token string">"Flutter动态更新"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        request<span class="token punctuation">.</span><span class="token function">setDescription</span><span class="token punctuation">(</span><span class="token string">"Flutter动态更新包下载"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        request<span class="token punctuation">.</span><span class="token function">setAllowedOverRoaming</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        request<span class="token punctuation">.</span><span class="token function">setNotificationVisibility</span><span class="token punctuation">(</span>DownloadManager<span class="token punctuation">.</span>Request<span class="token punctuation">.</span>VISIBILITY_VISIBLE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        request<span class="token punctuation">.</span><span class="token function">setDestinationInExternalPublicDir</span><span class="token punctuation">(</span>FLUTTER_UPDATE_PACKAGE_DIR<span class="token punctuation">,</span> FLUTTER_UPDATE_PACKAGE_NAME<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// request.setDestinationUri(Uri.fromFile(new File(FLUTTER_UPDATE_PACKAGE_LOCAL_ZIP_FILE)));</span>
+        DownloadManager dm <span class="token operator">=</span> <span class="token punctuation">(</span>DownloadManager<span class="token punctuation">)</span> <span class="token function">getSystemService</span><span class="token punctuation">(</span>Context<span class="token punctuation">.</span>DOWNLOAD_SERVICE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        dm<span class="token punctuation">.</span><span class="token function">enqueue</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">startDownLoadFlutterPackage</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">deleteFlutterPackage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        String url <span class="token operator">=</span> <span class="token function">getFlutterUpdatePackageUrl</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">downloadFlutterUpdatePackage</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">checkPermission</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>ContextCompat<span class="token punctuation">.</span><span class="token function">checkSelfPermission</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> Manifest<span class="token punctuation">.</span>permission<span class="token punctuation">.</span>WRITE_EXTERNAL_STORAGE<span class="token punctuation">)</span> <span class="token operator">==</span> PackageManager<span class="token punctuation">.</span>PERMISSION_GRANTED
+                <span class="token operator">&amp;&amp;</span> ContextCompat<span class="token punctuation">.</span><span class="token function">checkSelfPermission</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> Manifest<span class="token punctuation">.</span>permission<span class="token punctuation">.</span>READ_EXTERNAL_STORAGE<span class="token punctuation">)</span> <span class="token operator">==</span> PackageManager<span class="token punctuation">.</span>PERMISSION_GRANTED<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">startDownLoadFlutterPackage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            ActivityCompat<span class="token punctuation">.</span><span class="token function">requestPermissions</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span> Manifest<span class="token punctuation">.</span>permission<span class="token punctuation">.</span>WRITE_EXTERNAL_STORAGE<span class="token punctuation">,</span> Manifest<span class="token punctuation">.</span>permission<span class="token punctuation">.</span>READ_EXTERNAL_STORAGE <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onRequestPermissionsResult</span><span class="token punctuation">(</span><span class="token keyword">int</span> requestCode<span class="token punctuation">,</span> String permissions<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> grantResults<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">switch</span> <span class="token punctuation">(</span>requestCode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">case</span> <span class="token number">1000</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>grantResults<span class="token punctuation">.</span>length <span class="token operator">></span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> grantResults<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">==</span> PackageManager<span class="token punctuation">.</span>PERMISSION_GRANTED <span class="token operator">&amp;&amp;</span>  grantResults<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">==</span> PackageManager<span class="token punctuation">.</span>PERMISSION_GRANTED<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token function">startDownLoadFlutterPackage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">static</span> String <span class="token function">getFlutterUpdatePackageUrl</span><span class="token punctuation">(</span>Context context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>AppUtils<span class="token punctuation">.</span><span class="token function">isApkInDebug</span><span class="token punctuation">(</span>context<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token string">"https://xxxx/flutter-update-debug.zip"</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+         <span class="token keyword">return</span> <span class="token string">"https://xxxx/flutter-update-release.zip"</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="Android-动态更新效果演示"><a href="#Android-动态更新效果演示" class="headerlink" title="Android 动态更新效果演示"></a>Android 动态更新效果演示</h2><p><a href="/medias/easyjs/blog/flutter-update.mp4"><img src="/medias/easyjs/blog/blog-wydpi1-flutter_update.mp4" alt="flutter_update.mp4 (1.36MB)"></a></p>
+
+                </div>
+                <hr/>
+    
+                
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://easyjs.cn" rel="external nofollow noreferrer">sky</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://easyjs.cn/blog/wydpi1/">https://easyjs.cn/blog/wydpi1/</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                    <span class="reprint-meta" style="font-weight: bold;">
+                        <i class="fas fa-link">
+                            yuque:
+                        </i>
+                    </span>
+                    <span class="reprint-info">
+                        <a href="https://yuque.com/easy-team/blog/wydpi1/" target="_blank" rel="noopener">https://yuque.com/easy-team/blog/wydpi1/</a>
+                    </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="https://easyjs.cn" target="_blank">sky</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+    
+                <div class="tag_share" style="display: block; margin-top: 20px;">
+                    <div class="post-meta__tag-list" style="display: inline-block;">
+                        
+                            
+                        
+                    </div>
+                    <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                        <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    
+    <div class="social-share" data-sites="qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                    </div>
+
+                </div>
+                
+            </div>
+        </div>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aosd="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/blog/wp0na4/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="轻轻松松搞定 Webpack 项目构建">
+                        
+                        <span class="card-title">轻轻松松搞定 Webpack 项目构建</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            基于 easywebpack 工程体系，你能非常简单，快速的编写出 webpack 复杂的配置，你无需过多关心热更新，是否压缩，是否Hash，公共JS/CSS，DLL，构建速度等问题，这些 easywebpack 都已经帮你解决和优化了。easywebpack 提供 Vue/React/JS/...
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-18
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            sky
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/blog/xcw19a/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="React Native, Hybrid App, H5 简单对比分析">
+                        
+                        <span class="card-title">React Native, Hybrid App, H5 简单对比分析</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            原文： https://hubcarl.github.io/blog/2016/08/07/react-native-compare/learn once write anywhereWhat we really want is the user experience of the native...
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-18
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            sky
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+     </div>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('50')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + 'From: easyjs<br />'
+            + 'Author: sky<br />'
+            + 'Link: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+    
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+<!-- menu-selected -->
+<script>
+    var pathname = location.pathname.replace(/^\//, '').replace(/\/$/, '').replace(/\//g, '-');
+    console.log('>>>pathname', pathname);
+    $('.m-nav-item-' + pathname).addClass('doc-left-nav-mene-selected');
+</script>
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">年份</span>
+            <a href="https://easyjs.cn" target="_blank">sky</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">112.5k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    window.setTimeout("siteTime()", 1000);
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2019";
+                    var startMonth = "11";
+                    var startDate = "24";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+            <span id="icp"><img src="/medias/icp.png" alt="easyjs" style="vertical-align: text-bottom;" />
+                <a href="http://www.beian.miit.gov.cn/" target="_blank">粤ICP备19144149号</a>
+            </span>
+            
+        </div>
+        <div>
+            <ul class="footer-friend-link">
+                <li><a target="_blank" href="https://github.com/easy-team">GitHub</a></li>
+                <li><a target="_blank" href="https://zhuanlan.zhihu.com/easywebpack">知乎</a></li>
+                <li><a target="_blank" href="https://yuque.com/easy-team">语雀</a></li>
+                <li><a target="_blank" href="https://eggjs.org/zh-cn/intro/">Eggjs</a></li>
+                <li><a target="_blank" href="https://cn.vuejs.org/">Vue</a></li>
+                <li><a target="_blank" href="https://reactjs.org/">React</a></li>
+            </ul>
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/easy-team" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="https://zhuanlan.zhihu.com/easyjs" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: https://zhuanlan.zhihu.com/easyjs" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+    <a href="mailto:hubcarl@126.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=433207205" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 433207205" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/hubcarl" class="tooltipped" target="_blank" data-tooltip="关注我的微博: https://weibo.com/hubcarl" data-position="top" data-delay="50">
+        <i class="fab fa-weibo"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <!-- Baidu Analytics -->
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?18317956d9176481eb5e8d9780e34bda";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        bp.async = true;
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    <!-- 360 Push -->
+
+  <script>
+      (function () {
+          var bp = document.createElement('script');
+          bp.async = true;
+          bp.id='sozz';
+          bp.src = 'https://jspassport.ssl.qhimg.com/11.0.1.js?d182b3f28525f2db83acfaaf6e696dba';
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(bp, s);
+      })();
+  </script>
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

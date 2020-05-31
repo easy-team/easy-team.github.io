@@ -1,0 +1,31 @@
+<%
+// the easyExamples photos of theme _config.yml.
+var easyExamples = theme.easyExamples.data;
+%>
+<div id="easyExamples" class="example-gallery">
+    <div class="title center-align" data-aos="zoom-in-up">
+        <i class="far fa-image"></i>&nbsp;&nbsp;<%- __('easyExamples') %>
+    </div>
+    <div class="row">
+        <% if (easyExamples) { %>
+        <% Object.keys(easyExamples).forEach(function(photo) { %>
+        <div class="photo col s12 m6 l4" data-aos="fade-up">
+            <div class="img-item" data-src="<%- easyExamples[photo] %>">
+                <img alt="easyjs" src="<%- easyExamples[photo] %>" class="responsive-img">
+            </div>
+        </div>
+        <% }); %>
+        <% } %>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        let animateClass = 'animated pulse';
+        $('#easyExamples .photo').hover(function () {
+            $(this).addClass(animateClass);
+        }, function () {
+            $(this).removeClass(animateClass);
+        });
+    });
+</script>

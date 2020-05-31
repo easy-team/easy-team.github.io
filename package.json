@@ -1,0 +1,52 @@
+{
+  "name": "easy-team.gitee.io",
+  "version": "1.0.0",
+  "private": true,
+  "author": "sky",
+  "scripts": {
+    "dev": "npm run server",
+    "start": "npm run server",
+    "build": "hexo generate",
+    "clean": "hexo clean",
+    "deploy": "hexo deploy",
+    "server": "hexo server",
+    "res": "SPACE=res node lib/sync.js",
+    "ves": "SPACE=ves node lib/sync.js",
+    "easy": "SPACE=easywebpack node lib/sync.js",
+    "vue": "SPACE=egg-vue node lib/sync.js",
+    "react": "SPACE=egg-react node lib/sync.js",
+    "team": "SPACE=blog node lib/sync.js",
+    "blog": "TEAM=hubcarl SPACE=blog node lib/sync.js",
+    "easyjs": "node lib/sync.js",
+    "sky": "TEAM=hubcarl node lib/sync.js",
+    "release": "npm run build && git add --all && git commit -m 'build' && git push"
+  },
+  "hexo": {
+    "version": "4.2.1"
+  },
+  "dependencies": {
+    "hexo": "^4.0.0",
+    "hexo-browsersync": "^0.3.0",
+    "hexo-deployer-git": "^2.0.0",
+    "hexo-generator-archive": "^1.0.0",
+    "hexo-generator-baidu-sitemap": "^0.1.6",
+    "hexo-generator-category": "^1.0.0",
+    "hexo-generator-feed": "^2.2.0",
+    "hexo-generator-index": "^1.0.0",
+    "hexo-generator-search": "^2.4.0",
+    "hexo-generator-sitemap": "^1.2.0",
+    "hexo-generator-tag": "^1.0.0",
+    "hexo-prism-plugin": "^2.3.0",
+    "hexo-renderer-ejs": "^1.0.0",
+    "hexo-renderer-marked": "^2.0.0",
+    "hexo-renderer-stylus": "^1.1.0",
+    "hexo-server": "^1.0.0",
+    "hexo-wordcount": "^6.0.1",
+    "mkdirp": "^0.5.1",
+    "urllib": "^2.34.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/easy-team/easy-team.github.io.git"
+  }
+}

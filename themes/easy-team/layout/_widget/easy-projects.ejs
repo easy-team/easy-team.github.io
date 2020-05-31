@@ -1,0 +1,27 @@
+<%
+// the projects information of theme _config.yml.
+var easyProjects = theme.easyProjects.data;
+%>
+<div class="my-projects">
+    <div class="title center-align" data-aos="zoom-in-up">
+        <i class="fas fa-gift"></i>&nbsp;&nbsp;<%- __('easyProjects') %>
+    </div>
+    <div class="row">
+        <% if (easyProjects) { %>
+        <% Object.keys(easyProjects).forEach(function(project) { %>
+        <div class="col s12 m6 l4" data-aos="fade-up">
+            <div class="info center-align">
+                <a href="<%- easyProjects[project].url %>" class="icon"
+                   style="background: <%- easyProjects[project].iconBackground %>" target="_blank">
+                    <i class="<%- easyProjects[project].icon %>"></i>
+                </a>
+                <div class="info-title">
+                    <a href="<%- easyProjects[project].url %>" target="_blank"><%- project %></a>
+                </div>
+                <div class="info-desc"><%- easyProjects[project].desc %></div>
+            </div>
+        </div>
+        <% }); %>
+        <% } %>
+    </div>
+</div>

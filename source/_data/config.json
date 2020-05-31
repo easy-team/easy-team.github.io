@@ -1,0 +1,100 @@
+{
+  "res":{
+    "title": "Res",
+    "subtitle": "Egg React SSR Web Framework",
+    "shortDesc": "Egg React SSR Framework",
+    "keywords": "React Server-Side Rendering,Server Side Rendering with React,Egg React SSR,React 服务端渲染,React 服务端渲染框架,Egg React SSR framework,Egg React CSR,Egg React Render,Egg React Server Side Render, Egg React Client Side Render",
+    "description": "Egg React SSR 框架 - 开发简单，扩展性行强, 支持 JavaScript 或 Typescript 编写, 默认支持 Vue 服务端渲染，前端渲染模式，Asset 渲染，HTML 渲染多种渲染模式。",
+    "cover": "/medias/featureimages/0.jpg",
+    "btn": {
+      "name": "Github",
+      "icon": "fab fa-github-alt",
+      "url": "https://github.com/easy-team/res",
+      "yuque": "https://yuque.com/easy-team/res",
+      "text": "startDoc",
+      "doc": "/res/introduction"
+    }
+  },
+  "ves":{
+    "title": "Ves",
+    "subtitle": "Egg Vue SSR Web Framework",
+    "shortDesc": "Egg Vue SSR Framework",
+    "keywords": "Vue SSR,Egg Vue SSR,Vue 服务端渲染,Vue 服务端渲染框架,Egg Vue CSR,Egg Vue SSR framework,Egg Vue Server Side Render",
+    "description": "Egg Vue SSR 框架 - 开发简单，扩展性行强, 支持 JavaScript 或 Typescript 编写, 默认支持 Vue 服务端渲染，前端渲染模式，Asset 渲染，HTML 渲染多种渲染模式。",
+    "cover": "/medias/featureimages/1.jpg",
+    "btn": {
+      "name": "Github",
+      "icon": "fab fa-github-alt",
+      "url": "https://github.com/easy-team/ves",
+      "yuque": "https://yuque.com/easy-team/ves",
+      "text": "startDoc",
+      "doc": "/ves/introduction/"
+    }
+  },
+  "egg-react":{
+    "title": "Egg + React 工程化方案",
+    "subtitle": "Egg React SSR/CSR 解决方案",
+    "shortDesc": "Egg React SSR 解决方案",
+    "keywords": "react ssr,React SSR 服务端渲染,React Server-Side Rendering,Server Side Rendering with React,Egg React SSR 服务端渲染, Egg React SSR,Egg React SSR 工程化,Egg React SSR 前端工程化,Egg React 服务端渲染, Egg React Server Side Render,Egg React Client Side Render",
+    "description": "Egg React SSR 工程化解决方案能够快速实现前后端分离、服务端和客户端同构渲染; 基于 Egg React SSR 工程化方案你能够快速进行项目开发。",   
+    "cover": "/medias/featureimages/2.jpg",
+    "btn": {
+      "name": "Github",
+      "icon": "fab fa-github-alt",
+      "url": "https://github.com/easy-team/egg-react-webpack-boilerplate",
+      "yueque": "https://yuque.com/easy-team/egg-react",
+      "text": "startDoc",
+      "view": "http://49.233.172.37:7001/",
+      "doc": "/egg-react/learn/"
+    }
+  },
+  "egg-vue":{
+    "title": "Egg + Vue 工程化方案",
+    "subtitle": "Egg Vue SSR/CSR 解决方案",
+    "shortDesc": "Egg Vue SSR/CSR 解决方案",
+    "keywords": "Vue SSR,Vue Server-Side Rendering,Egg Vue SSR 服务端渲染, Egg Vue SSR,Egg Vue SSR 工程化,Egg Vue SSR 前端工程化,Egg Vue 服务端渲染, Egg Vue Server Side Render,Egg Vue Client Side Render",
+    "description": "Egg Vue SSR 工程化解决方案能够快速实现前后端分离、服务端和客户端同构渲染; 基于 Egg Vue SSR 工程化方案你能够快速进行项目开发。",
+    "cover": "/medias/featureimages/3.jpg",
+    "btn": {
+      "name": "Github",
+      "icon": "fab fa-github-alt",
+      "url": "https://github.com/easy-team/egg-vue-webpack-boilerplate",
+      "yuque": "https://yuque.com/easy-team/egg-vue",
+      "text": "startDoc",
+      "view": "http://49.233.172.37:7002/",
+      "doc": "/egg-vue/learn/"
+    }
+  },
+  "easywebpack":{
+    "title": "easywebpack",
+    "subtitle": "基于 Webpack 前端工程构建方案",
+    "shortDesc": "基于 Webpack 前端工程构建方案",
+    "keywords": "webpack,easywebpack,webpack工程化,webpack前端工程化,webpack react构建,webpack vue构建,webpack weex构建,webpack-dev-server",
+    "description": "基于 Webpack 前端工程构建方案, 支持 Webpack Vue, React, Weex, JS, Weex等多种前端框架构建, 包括 Webpack Vue SSR, Webpack React SSR 构建。",
+    "cover": "/medias/featureimages/4.jpg",
+    "btn": {
+      "name": "Github",
+      "icon": "fab fa-github-alt",
+      "url": "https://github.com/easy-team/easywebpack",
+      "yuque": "https://yuque.com/easy-team/easywebpack",
+      "text": "startDoc",
+      "doc": "/easywebpack/index/"
+    }
+  },
+  "blog":{
+    "title": "博客",
+    "subtitle": "Egg/前端工程/多端技术",
+    "shortDesc": "Egg/前端工程/多端技术",
+    "keywords": "Eggjs,Webpack,easywebpack,Egg React SSR,Egg Vue SSR, Web IDE, Flutter, React Native",
+    "description": "前端工程, Node/Egg, Flutter/Hybrid/小程序多端技术学习",
+    "cover": "/medias/featureimages/5.jpg",
+    "btn": {
+      "name": "Github",
+      "icon": "fab fa-github-alt",
+      "url": "https://github.com/hubcarl",
+      "yuque": "https://yuque.com/hubcarl",
+      "text": "startRead",
+      "doc": "/blog/cdal6o/"
+    }
+  }
+}
