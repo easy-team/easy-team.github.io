@@ -3,5 +3,5 @@
 Document & Blog
 
 - https://easyjs.cn 
-- https://easy-team.gitee.io
+- https://yueque.com/easy-team
 - https://easy-team.github.io
